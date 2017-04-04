@@ -1,1 +1,10 @@
 C:\PicSim_Stiiift_Inc\PicSim\PicSim\bin\Debug\PicSim.exe.config
+D:\Stiiift_Inc\PicSim\PicSim\PicSim\bin\Debug\PicSim.exe.config
+D:\Stiiift_Inc\PicSim\PicSim\PicSim\bin\Debug\PicSim.exe
+D:\Stiiift_Inc\PicSim\PicSim\PicSim\bin\Debug\PicSim.pdb
+D:\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.csprojResolveAssemblyReference.cache
+D:\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.Form1.resources
+D:\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.Properties.Resources.resources
+D:\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.csproj.GenerateResource.Cache
+D:\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.exe
+D:\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.pdb
