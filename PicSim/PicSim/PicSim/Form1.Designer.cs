@@ -48,7 +48,6 @@
             this.lblBottomValueQuarzfrequenz = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblBottomQuarzfrequenz = new System.Windows.Forms.ToolStripStatusLabel();
             this.textBoxCode = new System.Windows.Forms.TextBox();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -232,16 +231,6 @@
             this.textBoxCode.Size = new System.Drawing.Size(765, 890);
             this.textBoxCode.TabIndex = 6;
             // 
-            // toolStrip2
-            // 
-            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip2.Location = new System.Drawing.Point(0, 94);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.toolStrip2.Size = new System.Drawing.Size(2116, 25);
-            this.toolStrip2.TabIndex = 7;
-            this.toolStrip2.Text = "toolStrip2";
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -251,7 +240,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2116, 1051);
-            this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.textBoxCode);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
@@ -294,7 +282,6 @@
         private System.Windows.Forms.ToolStripStatusLabel lblBottomValueQuarzfrequenz;
         private System.Windows.Forms.ToolStripStatusLabel lblBottomQuarzfrequenz;
         private System.Windows.Forms.TextBox textBoxCode;
-        private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
