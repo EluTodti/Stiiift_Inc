@@ -8,3 +8,12 @@ D:\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.Properties.Resources.resour
 D:\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.csproj.GenerateResource.Cache
 D:\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.exe
 D:\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.pdb
+C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\obj\Debug\PicSim.csprojResolveAssemblyReference.cache
+C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\obj\Debug\PicSim.Form1.resources
+C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\obj\Debug\PicSim.Properties.Resources.resources
+C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\obj\Debug\PicSim.csproj.GenerateResource.Cache
+C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\obj\Debug\PicSim.exe
+C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\obj\Debug\PicSim.pdb
+C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\bin\Debug\PicSim.exe.config
+C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\bin\Debug\PicSim.exe
+C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\bin\Debug\PicSim.pdb

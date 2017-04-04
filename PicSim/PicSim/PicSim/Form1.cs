@@ -41,5 +41,16 @@ namespace PicSim
         {
 
         }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                System.IO.StreamReader sr = new
+                   System.IO.StreamReader(openFileDialog1.FileName);
+               textBoxCode.Text = sr.ReadToEnd();
+                sr.Close();
+            }
+        }
     }
 }
