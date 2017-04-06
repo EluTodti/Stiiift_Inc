@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -32,11 +33,6 @@ namespace PicSim
         }
 
         private void toolStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
@@ -120,6 +116,24 @@ namespace PicSim
             }
             
             
+        }
+
+        //On-Click toolHelp
+        private void toolHelp_Click(object sender, EventArgs e)
+        {
+            //Dateipfad
+            System.Diagnostics.Process.Start("D:/Stiiift_Inc/PicSim/Help/Help.pdf");
+        }
+
+        private void toolAbout_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("D:/Stiiift_Inc/PicSim/About/About.pdf");
+        }
+
+
+        private void txtUnicorn_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=a-xWhG4UU_Y");
         }
     }
 }

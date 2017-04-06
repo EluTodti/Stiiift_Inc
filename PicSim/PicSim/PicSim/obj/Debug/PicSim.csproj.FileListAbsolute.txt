@@ -17,3 +17,8 @@ C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim
 C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\bin\Debug\PicSim.exe.config
 C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\bin\Debug\PicSim.exe
 C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\bin\Debug\PicSim.pdb
+D:\Stiiift_Inc\PicSim\PicSim\PicSim\bin\Debug\Interop.WMPLib.dll
+D:\Stiiift_Inc\PicSim\PicSim\PicSim\bin\Debug\AxInterop.WMPLib.dll
+D:\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\Interop.WMPLib.dll
+D:\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\AxInterop.WMPLib.dll
+D:\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.csproj.ResolveComReference.cache
