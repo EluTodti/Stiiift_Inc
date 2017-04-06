@@ -123,12 +123,26 @@ namespace PicSim
         private void toolHelp_Click(object sender, EventArgs e)
         {
             //Dateipfad
-            System.Diagnostics.Process.Start("D:/Stiiift_Inc/PicSim/Help/Help.pdf");
+            try {
+                System.Diagnostics.Process.Start("D:/Stiiift_Inc/PicSim/Help/Help.pdf");
+            }
+            catch (Exception FileNotFoundException)
+            {
+                MessageBox.Show("File not found");
+            }
         }
 
         private void toolAbout_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("D:/Stiiift_Inc/PicSim/About/About.pdf");
+            //Dateipfad
+            try
+            {
+                System.Diagnostics.Process.Start("D:/Stiiift_Inc/PicSim/About/About.pdf");
+            }
+            catch (Exception FileNotFoundException)
+            {
+                MessageBox.Show("File not found");
+            }
         }
 
 
