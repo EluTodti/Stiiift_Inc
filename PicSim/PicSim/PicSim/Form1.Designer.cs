@@ -195,7 +195,7 @@
             this.toolHelp.Name = "toolHelp";
             this.toolHelp.Size = new System.Drawing.Size(85, 41);
             this.toolHelp.Text = "Help";
-            this.toolHelp.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
+            this.toolHelp.Click += new System.EventHandler(this.toolHelp_Click);
             // 
             // statusStrip1
             // 
@@ -224,11 +224,12 @@
             // 
             // textBoxCode
             // 
-            this.textBoxCode.Location = new System.Drawing.Point(1326, 107);
+            this.textBoxCode.Dock = System.Windows.Forms.DockStyle.Right;
+            this.textBoxCode.Location = new System.Drawing.Point(1049, 94);
             this.textBoxCode.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxCode.Multiline = true;
             this.textBoxCode.Name = "textBoxCode";
-            this.textBoxCode.Size = new System.Drawing.Size(765, 890);
+            this.textBoxCode.Size = new System.Drawing.Size(1067, 915);
             this.textBoxCode.TabIndex = 6;
             // 
             // openFileDialog1

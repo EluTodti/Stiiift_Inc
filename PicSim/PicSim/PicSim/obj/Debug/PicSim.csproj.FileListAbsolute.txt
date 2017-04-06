@@ -22,3 +22,8 @@ D:\Stiiift_Inc\PicSim\PicSim\PicSim\bin\Debug\AxInterop.WMPLib.dll
 D:\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\Interop.WMPLib.dll
 D:\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\AxInterop.WMPLib.dll
 D:\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.csproj.ResolveComReference.cache
+C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\obj\Debug\Interop.WMPLib.dll
+C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\obj\Debug\PicSim.csproj.ResolveComReference.cache
+C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\bin\Debug\Interop.WMPLib.dll
+C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\bin\Debug\AxInterop.WMPLib.dll

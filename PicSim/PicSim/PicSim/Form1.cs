@@ -20,6 +20,7 @@ namespace PicSim
         public Form1()
         {
             InitializeComponent();
+            textBoxCode.ScrollBars = ScrollBars.Vertical;
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
