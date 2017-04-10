@@ -1,5 +1,12 @@
-﻿namespace PicSim
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+
+namespace PicSim
 {
+
+
     partial class Form1
     {
         /// <summary>
@@ -19,6 +26,7 @@
             }
             base.Dispose(disposing);
         }
+       
 
         #region Windows Form Designer generated code
 
@@ -28,6 +36,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -40,6 +49,9 @@
             this.quarzfrequenzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.txtUnicorn = new System.Windows.Forms.ToolStripLabel();
+            this.toolPlay = new System.Windows.Forms.ToolStripButton();
+            this.toolPause = new System.Windows.Forms.ToolStripButton();
+            this.toolStop = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolFile = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,39 +61,32 @@
             this.lblBottomQuarzfrequenz = new System.Windows.Forms.ToolStripStatusLabel();
             this.textBoxCode = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.toolStop = new System.Windows.Forms.ToolStripButton();
-            this.toolPlay = new System.Windows.Forms.ToolStripButton();
-            this.toolPause = new System.Windows.Forms.ToolStripButton();
+            this.dgvRam = new System.Windows.Forms.DataGridView();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Bit7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Bit6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Bit5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Bit4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Bit3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Bit2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Bit1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Bit0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRam)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 8;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(153, 386);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 9;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(161, 146);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 100);
+            this.tableLayoutPanel1.TabIndex = 8;
             // 
             // toolStrip1
             // 
@@ -100,7 +105,7 @@
             this.toolStop});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1094, 28);
+            this.toolStrip1.Size = new System.Drawing.Size(1507, 28);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -162,6 +167,34 @@
             this.txtUnicorn.Name = "txtUnicorn";
             this.txtUnicorn.Size = new System.Drawing.Size(105, 25);
             this.txtUnicorn.Text = "Unicorn magic";
+            this.txtUnicorn.Click += new System.EventHandler(this.txtUnicorn_Click);
+            // 
+            // toolPlay
+            // 
+            this.toolPlay.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolPlay.Image = global::PicSim.Properties.Resources.Play;
+            this.toolPlay.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolPlay.Name = "toolPlay";
+            this.toolPlay.Size = new System.Drawing.Size(24, 25);
+            this.toolPlay.Text = "Play";
+            // 
+            // toolPause
+            // 
+            this.toolPause.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolPause.Image = global::PicSim.Properties.Resources.Pause;
+            this.toolPause.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolPause.Name = "toolPause";
+            this.toolPause.Size = new System.Drawing.Size(24, 25);
+            this.toolPause.Text = "Pause";
+            // 
+            // toolStop
+            // 
+            this.toolStop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStop.Image = global::PicSim.Properties.Resources.Stop;
+            this.toolStop.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStop.Name = "toolStop";
+            this.toolStop.Size = new System.Drawing.Size(24, 25);
+            this.toolStop.Text = "Stop";
             // 
             // menuStrip1
             // 
@@ -171,7 +204,7 @@
             this.toolHelp});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1094, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1507, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -206,9 +239,9 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblBottomValueQuarzfrequenz,
             this.lblBottomQuarzfrequenz});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 552);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 1020);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1094, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(1507, 25);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -227,48 +260,177 @@
             // textBoxCode
             // 
             this.textBoxCode.Dock = System.Windows.Forms.DockStyle.Right;
-            this.textBoxCode.Location = new System.Drawing.Point(483, 56);
+            this.textBoxCode.Location = new System.Drawing.Point(896, 56);
             this.textBoxCode.Multiline = true;
             this.textBoxCode.Name = "textBoxCode";
-            this.textBoxCode.Size = new System.Drawing.Size(611, 496);
+            this.textBoxCode.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxCode.Size = new System.Drawing.Size(611, 964);
             this.textBoxCode.TabIndex = 6;
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // toolStop
+            // dgvRam
             // 
-            this.toolStop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStop.Image = global::PicSim.Properties.Resources.Stop;
-            this.toolStop.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStop.Name = "toolStop";
-            this.toolStop.Size = new System.Drawing.Size(24, 25);
-            this.toolStop.Text = "Stop";
+            this.dgvRam.AllowUserToAddRows = false;
+            this.dgvRam.AllowUserToDeleteRows = false;
+            this.dgvRam.AllowUserToResizeColumns = false;
+            this.dgvRam.AllowUserToResizeRows = false;
+            this.dgvRam.ColumnHeadersHeight = 50;
+            this.dgvRam.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvRam.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Address,
+            this.StatusName,
+            this.Bit7,
+            this.Bit6,
+            this.Bit5,
+            this.Bit4,
+            this.Bit3,
+            this.Bit2,
+            this.Bit1,
+            this.Bit0});
+            this.dgvRam.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dgvRam.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dgvRam.Location = new System.Drawing.Point(0, 56);
+            this.dgvRam.MultiSelect = false;
+            this.dgvRam.Name = "dgvRam";
+            this.dgvRam.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvRam.RowTemplate.DefaultCellStyle.Format = "N0";
+            this.dgvRam.RowTemplate.DefaultCellStyle.NullValue = null;
+            this.dgvRam.RowTemplate.Height = 50;
+            this.dgvRam.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRam.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvRam.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvRam.Size = new System.Drawing.Size(730, 964);
+            this.dgvRam.TabIndex = 9;
             // 
-            // toolPlay
+            // Address
             // 
-            this.toolPlay.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolPlay.Image = global::PicSim.Properties.Resources.Play;
-            this.toolPlay.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolPlay.Name = "toolPlay";
-            this.toolPlay.Size = new System.Drawing.Size(24, 25);
-            this.toolPlay.Text = "Play";
+            this.Address.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Address.Frozen = true;
+            this.Address.HeaderText = "ADDR";
+            this.Address.MinimumWidth = 50;
+            this.Address.Name = "Address";
+            this.Address.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Address.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Address.ToolTipText = "Memory Address";
+            this.Address.Width = 50;
             // 
-            // toolPause
+            // StatusName
             // 
-            this.toolPause.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolPause.Image = global::PicSim.Properties.Resources.Pause;
-            this.toolPause.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolPause.Name = "toolPause";
-            this.toolPause.Size = new System.Drawing.Size(24, 25);
-            this.toolPause.Text = "toolStripButton4";
+            this.StatusName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.StatusName.Frozen = true;
+            this.StatusName.HeaderText = "Name";
+            this.StatusName.MinimumWidth = 50;
+            this.StatusName.Name = "StatusName";
+            this.StatusName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.StatusName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.StatusName.ToolTipText = "Status Name";
+            this.StatusName.Width = 50;
+            // 
+            // Bit7
+            // 
+            this.Bit7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Bit7.Frozen = true;
+            this.Bit7.HeaderText = "Bit7";
+            this.Bit7.MinimumWidth = 50;
+            this.Bit7.Name = "Bit7";
+            this.Bit7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Bit7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Bit7.ToolTipText = "MsB Bit7";
+            this.Bit7.Width = 50;
+            // 
+            // Bit6
+            // 
+            this.Bit6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Bit6.Frozen = true;
+            this.Bit6.HeaderText = "Bit6";
+            this.Bit6.MinimumWidth = 50;
+            this.Bit6.Name = "Bit6";
+            this.Bit6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Bit6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Bit6.ToolTipText = "MsB Bit6";
+            this.Bit6.Width = 50;
+            // 
+            // Bit5
+            // 
+            this.Bit5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Bit5.Frozen = true;
+            this.Bit5.HeaderText = "Bit5";
+            this.Bit5.MinimumWidth = 50;
+            this.Bit5.Name = "Bit5";
+            this.Bit5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Bit5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Bit5.ToolTipText = "MsB Bit5";
+            this.Bit5.Width = 50;
+            // 
+            // Bit4
+            // 
+            this.Bit4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Bit4.Frozen = true;
+            this.Bit4.HeaderText = "Bit4";
+            this.Bit4.MinimumWidth = 50;
+            this.Bit4.Name = "Bit4";
+            this.Bit4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Bit4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Bit4.ToolTipText = "MsB Bit4";
+            this.Bit4.Width = 50;
+            // 
+            // Bit3
+            // 
+            this.Bit3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Bit3.HeaderText = "Bit3";
+            this.Bit3.MinimumWidth = 50;
+            this.Bit3.Name = "Bit3";
+            this.Bit3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Bit3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Bit3.ToolTipText = "MsB Bit3";
+            this.Bit3.Width = 50;
+            // 
+            // Bit2
+            // 
+            this.Bit2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Bit2.HeaderText = "Bit2";
+            this.Bit2.MinimumWidth = 50;
+            this.Bit2.Name = "Bit2";
+            this.Bit2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Bit2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Bit2.ToolTipText = "MsB Bit2";
+            this.Bit2.Width = 50;
+            // 
+            // Bit1
+            // 
+            this.Bit1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Bit1.HeaderText = "Bit1";
+            this.Bit1.MinimumWidth = 50;
+            this.Bit1.Name = "Bit1";
+            this.Bit1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Bit1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Bit1.ToolTipText = "MsB Bit1";
+            this.Bit1.Width = 50;
+            // 
+            // Bit0
+            // 
+            this.Bit0.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Bit0.HeaderText = "Bit0";
+            this.Bit0.MinimumWidth = 50;
+            this.Bit0.Name = "Bit0";
+            this.Bit0.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Bit0.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Bit0.ToolTipText = "MsB Bit0";
+            this.Bit0.Width = 50;
+            // 
+            // form1BindingSource
+            // 
+            this.form1BindingSource.DataSource = typeof(PicSim.Form1);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1094, 577);
+            this.ClientSize = new System.Drawing.Size(1507, 1045);
+            this.Controls.Add(this.dgvRam);
             this.Controls.Add(this.textBoxCode);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
@@ -284,6 +446,8 @@
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRam)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -314,6 +478,27 @@
         private System.Windows.Forms.ToolStripButton toolStop;
         private System.Windows.Forms.ToolStripButton toolPlay;
         private System.Windows.Forms.ToolStripButton toolPause;
+        private DataGridViewTextBoxColumn Mem;
+        private DataGridViewTextBoxColumn B0;
+        private DataGridViewTextBoxColumn B1;
+        private DataGridViewTextBoxColumn B2;
+        private DataGridViewTextBoxColumn B3;
+        private DataGridViewTextBoxColumn B4;
+        private DataGridViewTextBoxColumn B5;
+        private DataGridViewTextBoxColumn B6;
+        private DataGridViewTextBoxColumn B7;
+        private DataGridView dgvRam;
+        private DataGridViewTextBoxColumn Address;
+        private DataGridViewTextBoxColumn StatusName;
+        private DataGridViewTextBoxColumn Bit7;
+        private DataGridViewTextBoxColumn Bit6;
+        private DataGridViewTextBoxColumn Bit5;
+        private DataGridViewTextBoxColumn Bit4;
+        private DataGridViewTextBoxColumn Bit3;
+        private DataGridViewTextBoxColumn Bit2;
+        private DataGridViewTextBoxColumn Bit1;
+        private DataGridViewTextBoxColumn Bit0;
+        private BindingSource form1BindingSource;
     }
 }
 

@@ -17,11 +17,159 @@ namespace PicSim
         //Befehlsqueue
         Queue<int> BefehlsQueue = new Queue<int>();
 
+        //2dim. Array für den RAM
+        public int[,] ram = new int[256,10];
+
+
+
+
+        private DataGridViewRowCollection rows;
+
         public Form1()
         {
             InitializeComponent();
             textBoxCode.ScrollBars = ScrollBars.Vertical;
+            Fill_dgvRam();
+ 
         }
+        public void Fill_dgvRam()
+        {
+            for (int i = 0; i < 256; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    ram[i, j] = 0;
+                }
+            }
+
+            dgvRam.ColumnCount = 10;
+
+
+            var rowCount = ram.GetLength(0);
+            var rowLength = ram.GetLength(1);
+
+            for (int rowIndex = 0; rowIndex < rowCount; ++rowIndex)
+            {
+
+                var row = new DataGridViewRow();
+                for (int columnIndex = 0; columnIndex < rowLength; ++columnIndex)
+                {
+                    row.Cells.Add(new DataGridViewTextBoxCell()
+                    {
+                        Value = ram[rowIndex, columnIndex]
+                    });
+                }
+
+                dgvRam.Rows.Add(row);
+            }
+
+        }
+
+  /*      public void SetupDataGridView()
+        {
+            rows = this.dgvRam.Rows;
+
+            string[] rowTMR0 = { "01h", "TMR0", "0", "0", "0", "0", "0", "0", "0", "0", "0x00", "0" };
+            string[] rowPCL = { "02h", "PCL", "0", "0", "0", "0", "0", "0", "0", "0", "0x00", "0" };
+            string[] rowSTATUS = { "03h", "STATUS", "0", "0", "0", "0", "0", "0", "0", "0", "0x00", "0" };
+            string[] rowFSR = { "04h", "FSR", "0", "0", "0", "0", "0", "0", "0", "0", "0x00", "0" };
+            string[] rowPORTA = { "05h", "PORTA", "0", "0", "0", "0", "0", "0", "0", "0", "0x00", "0" };
+            string[] rowPORTB = { "06h", "PORTB", "0", "0", "0", "0", "0", "0", "0", "0", "0x00", "0" };
+            string[] rowEEDATA = { "08h", "EEDATA", "0", "0", "0", "0", "0", "0", "0", "0", "0x00", "0" };
+            string[] rowEEADR = { "09h", "EEADR", "0", "0", "0", "0", "0", "0", "0", "0", "0x00", "0" };
+            string[] rowPCLATH = { "0Ah", "PCLATH", "0", "0", "0", "0", "0", "0", "0", "0", "0x00", "0" };
+            string[] rowINTCON = { "0Bh", "INTCON", "0", "0", "0", "0", "0", "0", "0", "0", "0x00", "0" };
+
+            // Fügt die einzelnen Zeilen dem DataGridView hinzu
+            rows.Add(rowTMR0);
+            rows.Add(rowPCL);
+            rows.Add(rowSTATUS);
+            rows.Add(rowFSR);
+            rows.Add(rowPORTA);
+            rows.Add(rowPORTB);
+            rows.Add(rowEEDATA);
+            rows.Add(rowEEADR);
+            rows.Add(rowPCLATH);
+            rows.Add(rowINTCON);
+
+            string[] row0C = { "0Ch", "0x00", "0" };
+            string[] row0D = { "0Dh", "0x00", "0" };
+            string[] row0E = { "0Eh", "0x00", "0" };
+            string[] row0F = { "0Fh", "0x00", "0" };
+            string[] row10 = { "10h", "0x00", "0" };
+            string[] row11 = { "11h", "0x00", "0" };
+            string[] row12 = { "12h", "0x00", "0" };
+            string[] row13 = { "13h", "0x00", "0" };
+            string[] row14 = { "14h", "0x00", "0" };
+            string[] row15 = { "15h", "0x00", "0" };
+            string[] row16 = { "16h", "0x00", "0" };
+            string[] row17 = { "17h", "0x00", "0" };
+            string[] row18 = { "18h", "0x00", "0" };
+            string[] row19 = { "19h", "0x00", "0" };
+            string[] row1A = { "1Ah", "0x00", "0" };
+            string[] row1B = { "1Bh", "0x00", "0" };
+            string[] row1C = { "1Ch", "0x00", "0" };
+            string[] row1D = { "1Dh", "0x00", "0" };
+            string[] row1E = { "1Eh", "0x00", "0" };
+            string[] row1F = { "1Fh", "0x00", "0" };
+            string[] row20 = { "20h", "0x00", "0" };
+            string[] row21 = { "21h", "0x00", "0" };
+            string[] row22 = { "22h", "0x00", "0" };
+            string[] row23 = { "23h", "0x00", "0" };
+            string[] row24 = { "24h", "0x00", "0" };
+            string[] row25 = { "25h", "0x00", "0" };
+            string[] row26 = { "26h", "0x00", "0" };
+            string[] row27 = { "27h", "0x00", "0" };
+            string[] row28 = { "28h", "0x00", "0" };
+            string[] row29 = { "29h", "0x00", "0" };
+            string[] row2A = { "2Ah", "0x00", "0" };
+            string[] row2B = { "2Bh", "0x00", "0" };
+            string[] row2C = { "2Ch", "0x00", "0" };
+            string[] row2D = { "2Dh", "0x00", "0" };
+            string[] row2E = { "2Eh", "0x00", "0" };
+            string[] row2F = { "2Fh", "0x00", "0" };
+
+
+            rows.Add(row0C);
+            rows.Add(row0D);
+            rows.Add(row0E);
+            rows.Add(row0F);
+            rows.Add(row10);
+            rows.Add(row11);
+            rows.Add(row12);
+            rows.Add(row13);
+            rows.Add(row14);
+            rows.Add(row15);
+            rows.Add(row16);
+            rows.Add(row17);
+            rows.Add(row18);
+            rows.Add(row19);
+            rows.Add(row1A);
+            rows.Add(row1B);
+            rows.Add(row1C);
+            rows.Add(row1D);
+            rows.Add(row1E);
+            rows.Add(row1F);
+            rows.Add(row20);
+            rows.Add(row21);
+            rows.Add(row22);
+            rows.Add(row23);
+            rows.Add(row24);
+            rows.Add(row25);
+            rows.Add(row26);
+            rows.Add(row27);
+            rows.Add(row28);
+            rows.Add(row29);
+            rows.Add(row2A);
+            rows.Add(row2B);
+            rows.Add(row2C);
+            rows.Add(row2D);
+            rows.Add(row2E);
+            rows.Add(row2F);
+
+        }
+*/
+
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
@@ -145,10 +293,11 @@ namespace PicSim
             }
         }
 
-
         private void txtUnicorn_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=a-xWhG4UU_Y");
         }
+
     }
 }
+ 
