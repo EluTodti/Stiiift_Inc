@@ -20,10 +20,11 @@ namespace PicSim
         //2dim. Array für den RAM
         public int[,] ram = new int[256,10];
 
+        //Variable für Bank
+        public int bank = 0;
 
 
-
-        private DataGridViewRowCollection rows;
+        //private DataGridViewRowCollection rows;
 
         public Form1()
         {
@@ -98,7 +99,6 @@ namespace PicSim
             dgvRam[1, 9 + bank1].Value = "EECON2";
             dgvRam[1, 10 + bank1].Value = "PCLATH";
             dgvRam[1, 11 + bank1].Value = "INTCON";
-            MessageBox.Show(dgvRam[0, 0].Value.ToString());
 
         }
 
@@ -335,6 +335,20 @@ namespace PicSim
             System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=a-xWhG4UU_Y");
         }
 
+        private void dgvRam_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)
+                dgvRam.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            if((int)cell.Value == 0)
+            {
+                cell.Value = 1;
+            }
+            else
+            {
+                cell.Value = 0;
+            }
+
+        }
     }
 }
  

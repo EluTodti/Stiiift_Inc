@@ -62,6 +62,7 @@ namespace PicSim
             this.textBoxCode = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.dgvRam = new System.Windows.Forms.DataGridView();
+            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Bit7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,7 +73,6 @@ namespace PicSim
             this.Bit2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Bit1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Bit0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -304,6 +304,11 @@ namespace PicSim
             this.dgvRam.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvRam.Size = new System.Drawing.Size(730, 964);
             this.dgvRam.TabIndex = 9;
+            this.dgvRam.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRam_CellContentClick);
+            // 
+            // form1BindingSource
+            // 
+            this.form1BindingSource.DataSource = typeof(PicSim.Form1);
             // 
             // Address
             // 
@@ -312,6 +317,7 @@ namespace PicSim
             this.Address.HeaderText = "ADDR";
             this.Address.MinimumWidth = 50;
             this.Address.Name = "Address";
+            this.Address.ReadOnly = true;
             this.Address.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Address.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Address.ToolTipText = "Memory Address";
@@ -324,6 +330,7 @@ namespace PicSim
             this.StatusName.HeaderText = "Name";
             this.StatusName.MinimumWidth = 50;
             this.StatusName.Name = "StatusName";
+            this.StatusName.ReadOnly = true;
             this.StatusName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.StatusName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.StatusName.ToolTipText = "Status Name";
@@ -336,6 +343,7 @@ namespace PicSim
             this.Bit7.HeaderText = "Bit7";
             this.Bit7.MinimumWidth = 50;
             this.Bit7.Name = "Bit7";
+            this.Bit7.ReadOnly = true;
             this.Bit7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Bit7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Bit7.ToolTipText = "MsB Bit7";
@@ -421,10 +429,6 @@ namespace PicSim
             this.Bit0.ToolTipText = "MsB Bit0";
             this.Bit0.Width = 50;
             // 
-            // form1BindingSource
-            // 
-            this.form1BindingSource.DataSource = typeof(PicSim.Form1);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -478,16 +482,8 @@ namespace PicSim
         private System.Windows.Forms.ToolStripButton toolStop;
         private System.Windows.Forms.ToolStripButton toolPlay;
         private System.Windows.Forms.ToolStripButton toolPause;
-        private DataGridViewTextBoxColumn Mem;
-        private DataGridViewTextBoxColumn B0;
-        private DataGridViewTextBoxColumn B1;
-        private DataGridViewTextBoxColumn B2;
-        private DataGridViewTextBoxColumn B3;
-        private DataGridViewTextBoxColumn B4;
-        private DataGridViewTextBoxColumn B5;
-        private DataGridViewTextBoxColumn B6;
-        private DataGridViewTextBoxColumn B7;
         private DataGridView dgvRam;
+        private BindingSource form1BindingSource;
         private DataGridViewTextBoxColumn Address;
         private DataGridViewTextBoxColumn StatusName;
         private DataGridViewTextBoxColumn Bit7;
@@ -498,7 +494,6 @@ namespace PicSim
         private DataGridViewTextBoxColumn Bit2;
         private DataGridViewTextBoxColumn Bit1;
         private DataGridViewTextBoxColumn Bit0;
-        private BindingSource form1BindingSource;
     }
 }
 
