@@ -335,19 +335,29 @@ namespace PicSim
             System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=a-xWhG4UU_Y");
         }
 
-        private void dgvRam_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //!!!System.InvalidCastException!!!
+        private void dgvRam_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)
                 dgvRam.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            if((int)cell.Value == 0)
+            try
             {
-                cell.Value = 1;
+                if (e.ColumnIndex > 1) //Except String Cells
+                {
+                    if ((int)cell.Value == 0)
+                    {
+                        cell.Value = 1;
+                    }
+                    else
+                    {
+                        cell.Value = 0;
+                    }
+                }
             }
-            else
+            catch (System.InvalidCastException) //für erste beide Reihen [0,n][1,n] kann der Wert so nicht geändert werden
             {
-                cell.Value = 0;
+                MessageBox.Show("Zelle nicht veränderbar");
             }
-
         }
     }
 }

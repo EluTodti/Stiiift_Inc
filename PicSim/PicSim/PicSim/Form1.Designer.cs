@@ -38,6 +38,16 @@ namespace PicSim
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -62,7 +72,6 @@ namespace PicSim
             this.textBoxCode = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.dgvRam = new System.Windows.Forms.DataGridView();
-            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Bit7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,6 +82,7 @@ namespace PicSim
             this.Bit2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Bit1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Bit0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -302,132 +312,148 @@ namespace PicSim
             this.dgvRam.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvRam.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvRam.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvRam.Size = new System.Drawing.Size(730, 964);
+            this.dgvRam.Size = new System.Drawing.Size(615, 964);
             this.dgvRam.TabIndex = 9;
-            this.dgvRam.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRam_CellContentClick);
-            // 
-            // form1BindingSource
-            // 
-            this.form1BindingSource.DataSource = typeof(PicSim.Form1);
+            this.dgvRam.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRam_CellClick);
             // 
             // Address
             // 
             this.Address.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Address.DefaultCellStyle = dataGridViewCellStyle1;
             this.Address.Frozen = true;
             this.Address.HeaderText = "ADDR";
-            this.Address.MinimumWidth = 50;
+            this.Address.MinimumWidth = 80;
             this.Address.Name = "Address";
             this.Address.ReadOnly = true;
             this.Address.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Address.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Address.ToolTipText = "Memory Address";
-            this.Address.Width = 50;
+            this.Address.Width = 80;
             // 
             // StatusName
             // 
             this.StatusName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.StatusName.DefaultCellStyle = dataGridViewCellStyle2;
             this.StatusName.Frozen = true;
             this.StatusName.HeaderText = "Name";
-            this.StatusName.MinimumWidth = 50;
+            this.StatusName.MinimumWidth = 80;
             this.StatusName.Name = "StatusName";
             this.StatusName.ReadOnly = true;
             this.StatusName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.StatusName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.StatusName.ToolTipText = "Status Name";
-            this.StatusName.Width = 50;
+            this.StatusName.Width = 80;
             // 
             // Bit7
             // 
             this.Bit7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Bit7.Frozen = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit7.DefaultCellStyle = dataGridViewCellStyle3;
             this.Bit7.HeaderText = "Bit7";
-            this.Bit7.MinimumWidth = 50;
+            this.Bit7.MinimumWidth = 30;
             this.Bit7.Name = "Bit7";
             this.Bit7.ReadOnly = true;
             this.Bit7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Bit7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Bit7.ToolTipText = "MsB Bit7";
-            this.Bit7.Width = 50;
+            this.Bit7.Width = 30;
             // 
             // Bit6
             // 
             this.Bit6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Bit6.Frozen = true;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit6.DefaultCellStyle = dataGridViewCellStyle4;
             this.Bit6.HeaderText = "Bit6";
-            this.Bit6.MinimumWidth = 50;
+            this.Bit6.MinimumWidth = 30;
             this.Bit6.Name = "Bit6";
             this.Bit6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Bit6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Bit6.ToolTipText = "MsB Bit6";
-            this.Bit6.Width = 50;
+            this.Bit6.Width = 30;
             // 
             // Bit5
             // 
             this.Bit5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Bit5.Frozen = true;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit5.DefaultCellStyle = dataGridViewCellStyle5;
             this.Bit5.HeaderText = "Bit5";
-            this.Bit5.MinimumWidth = 50;
+            this.Bit5.MinimumWidth = 30;
             this.Bit5.Name = "Bit5";
             this.Bit5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Bit5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Bit5.ToolTipText = "MsB Bit5";
-            this.Bit5.Width = 50;
+            this.Bit5.Width = 30;
             // 
             // Bit4
             // 
             this.Bit4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Bit4.Frozen = true;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit4.DefaultCellStyle = dataGridViewCellStyle6;
             this.Bit4.HeaderText = "Bit4";
-            this.Bit4.MinimumWidth = 50;
+            this.Bit4.MinimumWidth = 30;
             this.Bit4.Name = "Bit4";
             this.Bit4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Bit4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Bit4.ToolTipText = "MsB Bit4";
-            this.Bit4.Width = 50;
+            this.Bit4.Width = 30;
             // 
             // Bit3
             // 
             this.Bit3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit3.DefaultCellStyle = dataGridViewCellStyle7;
             this.Bit3.HeaderText = "Bit3";
-            this.Bit3.MinimumWidth = 50;
+            this.Bit3.MinimumWidth = 30;
             this.Bit3.Name = "Bit3";
             this.Bit3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Bit3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Bit3.ToolTipText = "MsB Bit3";
-            this.Bit3.Width = 50;
+            this.Bit3.Width = 30;
             // 
             // Bit2
             // 
             this.Bit2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit2.DefaultCellStyle = dataGridViewCellStyle8;
             this.Bit2.HeaderText = "Bit2";
-            this.Bit2.MinimumWidth = 50;
+            this.Bit2.MinimumWidth = 30;
             this.Bit2.Name = "Bit2";
             this.Bit2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Bit2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Bit2.ToolTipText = "MsB Bit2";
-            this.Bit2.Width = 50;
+            this.Bit2.Width = 30;
             // 
             // Bit1
             // 
             this.Bit1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit1.DefaultCellStyle = dataGridViewCellStyle9;
             this.Bit1.HeaderText = "Bit1";
-            this.Bit1.MinimumWidth = 50;
+            this.Bit1.MinimumWidth = 30;
             this.Bit1.Name = "Bit1";
             this.Bit1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Bit1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Bit1.ToolTipText = "MsB Bit1";
-            this.Bit1.Width = 50;
+            this.Bit1.Width = 30;
             // 
             // Bit0
             // 
             this.Bit0.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit0.DefaultCellStyle = dataGridViewCellStyle10;
             this.Bit0.HeaderText = "Bit0";
-            this.Bit0.MinimumWidth = 50;
+            this.Bit0.MinimumWidth = 30;
             this.Bit0.Name = "Bit0";
             this.Bit0.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Bit0.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Bit0.ToolTipText = "MsB Bit0";
-            this.Bit0.Width = 50;
+            this.Bit0.Width = 30;
+            // 
+            // form1BindingSource
+            // 
+            this.form1BindingSource.DataSource = typeof(PicSim.Form1);
             // 
             // Form1
             // 
