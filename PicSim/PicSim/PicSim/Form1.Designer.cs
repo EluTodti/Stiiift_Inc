@@ -83,6 +83,7 @@ namespace PicSim
             this.Bit1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Bit0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblBottomC = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -248,23 +249,27 @@ namespace PicSim
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblBottomValueQuarzfrequenz,
-            this.lblBottomQuarzfrequenz});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 1020);
+            this.lblBottomQuarzfrequenz,
+            this.lblBottomC});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 1016);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1507, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(1507, 29);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // lblBottomValueQuarzfrequenz
             // 
             this.lblBottomValueQuarzfrequenz.Name = "lblBottomValueQuarzfrequenz";
-            this.lblBottomValueQuarzfrequenz.Size = new System.Drawing.Size(88, 20);
+            this.lblBottomValueQuarzfrequenz.Size = new System.Drawing.Size(88, 24);
             this.lblBottomValueQuarzfrequenz.Text = "Value Quarz";
             // 
             // lblBottomQuarzfrequenz
             // 
+            this.lblBottomQuarzfrequenz.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.lblBottomQuarzfrequenz.Name = "lblBottomQuarzfrequenz";
-            this.lblBottomQuarzfrequenz.Size = new System.Drawing.Size(98, 20);
+            this.lblBottomQuarzfrequenz.Size = new System.Drawing.Size(102, 24);
             this.lblBottomQuarzfrequenz.Text = "Qurzfrequenz";
             // 
             // textBoxCode
@@ -274,7 +279,7 @@ namespace PicSim
             this.textBoxCode.Multiline = true;
             this.textBoxCode.Name = "textBoxCode";
             this.textBoxCode.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxCode.Size = new System.Drawing.Size(611, 964);
+            this.textBoxCode.Size = new System.Drawing.Size(611, 960);
             this.textBoxCode.TabIndex = 6;
             // 
             // openFileDialog1
@@ -312,7 +317,7 @@ namespace PicSim
             this.dgvRam.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvRam.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvRam.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvRam.Size = new System.Drawing.Size(615, 964);
+            this.dgvRam.Size = new System.Drawing.Size(615, 960);
             this.dgvRam.TabIndex = 9;
             this.dgvRam.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRam_CellClick);
             // 
@@ -455,6 +460,15 @@ namespace PicSim
             // 
             this.form1BindingSource.DataSource = typeof(PicSim.Form1);
             // 
+            // lblBottomC
+            // 
+            this.lblBottomC.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.lblBottomC.Name = "lblBottomC";
+            this.lblBottomC.Size = new System.Drawing.Size(206, 24);
+            this.lblBottomC.Text = "© by Stiiift inc. - PaulG ChrisT";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -520,6 +534,7 @@ namespace PicSim
         private DataGridViewTextBoxColumn Bit2;
         private DataGridViewTextBoxColumn Bit1;
         private DataGridViewTextBoxColumn Bit0;
+        private ToolStripStatusLabel lblBottomC;
     }
 }
 

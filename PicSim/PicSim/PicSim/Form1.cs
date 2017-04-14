@@ -23,6 +23,9 @@ namespace PicSim
         //Variable für Bank
         public int bank = 0;
 
+        //Variable für Quarzfrequenz
+        public long quarz = 0;
+
 
         //private DataGridViewRowCollection rows;
 
