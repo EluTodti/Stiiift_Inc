@@ -14,8 +14,8 @@ namespace PicSim
 {
     public partial class Form1 : Form
     {
-        //Befehlsqueue
-        Queue<int> BefehlsQueue = new Queue<int>();
+        //Array für Befehle
+        int[] BefehlsArray = new int[666];
 
         //2dim. Array für den RAM
         public int[,] ram = new int[256,10];
@@ -232,9 +232,7 @@ namespace PicSim
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-
+        {   
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 System.IO.StreamReader sr = new System.IO.StreamReader(openFileDialog1.FileName);
@@ -243,13 +241,12 @@ namespace PicSim
                 //Datei wir in String Variable gespeichert
                 String stringtxt = textBoxCode.Text;
                 //String wird in char Array geschrieben
-
                 
                 char[] chartxt = new char[stringtxt.Length];
 
                 chartxt = stringtxt.ToCharArray(0, stringtxt.Length);
-                
 
+                int arrIndex = 0;
                 for (int i=0; i < chartxt.Length; i++)
                 {
                     if (chartxt[i] == 32)
@@ -264,7 +261,6 @@ namespace PicSim
                             }
                             i++;
                         }
-
                     }
                     else
                     {
@@ -272,17 +268,10 @@ namespace PicSim
                         char[] chars = {chartxt[i], chartxt[i + 1], chartxt[i + 2], chartxt[i + 3] };
                         string hexString = new string(chars);
                         int num = Int32.Parse(hexString, System.Globalization.NumberStyles.HexNumber);
-                        /*Zum testen
-                         * 
-                           MessageBox.Show(num.ToString());
-                         
-                         */
-
+                        //Befehle werden in Array gespeichert                        
+                        BefehlsArray[arrIndex] = num;
+                        arrIndex+=1;
                         
-
-                        BefehlsQueue.Enqueue(num);
-
-
                         //Index bis zum Ende der Zeile
                         for (int a = i; a < chartxt.Length; a++)
                         {
@@ -290,21 +279,17 @@ namespace PicSim
                             {
                                 i++;
                                 break;
-                            }
-                        
+                            }                        
                             i++;
                         }
                     }
                 }
                 //Nur zum testen
-                foreach (int s in BefehlsQueue)
+                for (int y=0;y<BefehlsArray.Length;y++) 
                 {
-                    textBoxCode.Text = textBoxCode.Text + (s.ToString()+'\n');
+                    textBoxCode.Text = textBoxCode.Text + BefehlsArray[y].ToString();
                 }
-                
             }
-            
-            
         }
 
         //On-Click toolHelp
