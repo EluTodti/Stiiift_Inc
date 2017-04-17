@@ -15,7 +15,7 @@ namespace PicSim
     public partial class Form1 : Form
     {
         //Array für Befehle
-        int[] BefehlsArray = new int[666];
+        String[] BefehlsArray = new String[666];
 
         //2dim. Array für den RAM
         public int[,] ram = new int[256,10];
@@ -267,9 +267,11 @@ namespace PicSim
                         i += 4; //Zeilennummer im Index i überspringen
                         char[] chars = {chartxt[i], chartxt[i + 1], chartxt[i + 2], chartxt[i + 3] };
                         string hexString = new string(chars);
-                        int num = Int32.Parse(hexString, System.Globalization.NumberStyles.HexNumber);
+                        //
+                        string binaryval = Convert.ToString(Convert.ToInt32(hexString, 16), 2);
+                        //int num = Int32.Parse(hexString, System.Globalization.NumberStyles.HexNumber);
                         //Befehle werden in Array gespeichert                        
-                        BefehlsArray[arrIndex] = num;
+                        BefehlsArray[arrIndex] = binaryval;
                         arrIndex+=1;
                         
                         //Index bis zum Ende der Zeile
@@ -287,7 +289,7 @@ namespace PicSim
                 //Nur zum testen
                 for (int y=0;y<BefehlsArray.Length;y++) 
                 {
-                    textBoxCode.Text = textBoxCode.Text + BefehlsArray[y].ToString();
+                    textBoxCode.Text = textBoxCode.Text + BefehlsArray[0];
                 }
             }
         }
@@ -346,6 +348,26 @@ namespace PicSim
             {
                 MessageBox.Show("Zelle nicht veränderbar");
             }
+        }
+
+        private void toolPlay_Click(object sender, EventArgs e)
+        {
+            int i = 0;
+            if (textBoxCode.Text== "")
+            {
+                MessageBox.Show("Kein Code gefunden!");
+            }
+            else
+            {
+                for (i = 0; i < BefehlsArray.Length; i++)
+                {
+                    Decode(BefehlsArray[i]);
+                }
+            }
+        }
+        private void Decode(String BinCode)
+        {
+            //hier müssen Befehle implementiert werden
         }
     }
 }
