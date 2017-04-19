@@ -35,7 +35,7 @@ namespace PicSim
             textBoxCode.ScrollBars = ScrollBars.Vertical;
             Fill_dgvRam();
             InitBefehlsArray();
- 
+            MessageBox.Show("Status Bank1 nur durch klicken gleich - per Code (Assembler) fehlt");
         }
 
         //Initialisieren des Befehls Arrays
@@ -341,18 +341,35 @@ namespace PicSim
         {
             DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)
                 dgvRam.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            DataGridViewTextBoxCell StatB1 = (DataGridViewTextBoxCell)
+                dgvRam.Rows[131].Cells[e.ColumnIndex];
             try
             {
-                if (e.ColumnIndex > 1) //Except String Cells
+                if (e.RowIndex < 131 | e.RowIndex > 131)
                 {
-                    if ((int)cell.Value == 0)
+                    if (e.ColumnIndex > 1) //Except String Cells
                     {
-                        cell.Value = 1;
+                        if ((int)cell.Value == 0)
+                        {
+                            cell.Value = 1;
+                            if (e.RowIndex == 3)
+                            {
+                                StatB1.Value = 1;
+                            }
+                        }
+                        else
+                        {
+                            cell.Value = 0;
+                            if (e.RowIndex == 3)
+                            {
+                                StatB1.Value = 0;
+                            }
+                        }
                     }
-                    else
-                    {
-                        cell.Value = 0;
-                    }
+                }
+                else
+                {
+                    MessageBox.Show("Bitte nur in Bank0 ändern");
                 }
             }
             catch (System.InvalidCastException) //für erste beide Reihen [0,n][1,n] kann der Wert so nicht geändert werden
