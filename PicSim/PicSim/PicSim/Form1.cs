@@ -34,8 +34,19 @@ namespace PicSim
             InitializeComponent();
             textBoxCode.ScrollBars = ScrollBars.Vertical;
             Fill_dgvRam();
+            InitBefehlsArray();
  
         }
+
+        //Initialisieren des Befehls Arrays
+        public void InitBefehlsArray()
+        {
+            for (int i = 0; i < BefehlsArray.Length; i++)
+            {
+                BefehlsArray[i] = "0";
+            }
+        }
+
         public void Fill_dgvRam()
         {
             for (int i = 0; i < 256; i++)
