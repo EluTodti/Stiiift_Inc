@@ -18,7 +18,7 @@ namespace PicSim
         String[] BefehlsArray = new String[666];
 
         //2dim. Array für den RAM
-        public int[,] ram = new int[256,10];
+        public int[,] ram = new int[8,256];
 
         //Variable für Bank
         public int bank = 0;
@@ -35,6 +35,7 @@ namespace PicSim
             textBoxCode.ScrollBars = ScrollBars.Vertical;
             Fill_dgvRam();
             InitBefehlsArray();
+            InitRAM();
             MessageBox.Show("Status Bank1 nur durch klicken gleich - per Code (Assembler) fehlt");
         }
 
@@ -46,46 +47,61 @@ namespace PicSim
                 BefehlsArray[i] = "0";
             }
         }
-
-        public void Fill_dgvRam()
+        //----------------------------------
+        public void InitRAM()
         {
             for (int i = 0; i < 256; i++)
             {
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < 8; j++)
                 {
-                    ram[i, j] = 0;
+                    ram[j, i] = 0;
                 }
             }
+        }
+        //-----------------------------------
 
-
-
+        //-----------------------------------
+        public void Fill_dgvRam()
+        {
             dgvRam.ColumnCount = 10;
-
 
             var rowCount = ram.GetLength(0);
             var rowLength = ram.GetLength(1);
 
-            for (int rowIndex = 0; rowIndex < rowCount; ++rowIndex)
+            //for (int rowIndex = 0; rowIndex < rowCount; ++rowIndex)
+            //{
+
+            //    var row = new DataGridViewRow();
+            //    for (int columnIndex = 0; columnIndex < rowLength; ++columnIndex)
+            //    {
+            //        row.Cells.Add(new DataGridViewTextBoxCell()
+            //        {
+            //            Value = ram[rowIndex, columnIndex]
+            //        });
+            //    }
+
+            //    dgvRam.Rows.Add(row);
+            //}
+
+            for (int i = 0; i < 256; i++)
             {
-
                 var row = new DataGridViewRow();
-                for (int columnIndex = 0; columnIndex < rowLength; ++columnIndex)
-                {
-                    row.Cells.Add(new DataGridViewTextBoxCell()
-                    {
-                        Value = ram[rowIndex, columnIndex]
-                    });
-                }
-
+                
                 dgvRam.Rows.Add(row);
+             }
+           for (int i = 0;i<256; i++)
+            {
+                for(int k = 2; k<10; k++ )
+                {
+                    dgvRam[k, i].Value = 0;
+                }
             }
-
-            //Addressnamen eingetragen
             for (int k = 0; k < 256; k++)
             {
                 dgvRam[0, k].Value = k.ToString("X2");
             }
 
+            //Addressnamen eingetragen
             //Namen
             dgvRam[1, 0].Value = "INDF";
             dgvRam[1, 1].Value = "TMR0";
@@ -113,7 +129,19 @@ namespace PicSim
             dgvRam[1, 9 + bank1].Value = "EECON2";
             dgvRam[1, 10 + bank1].Value = "PCLATH";
             dgvRam[1, 11 + bank1].Value = "INTCON";
+           
+        }
+        //-----------------------------------
 
+        public void DataGridViewAktualisieren()
+        {
+            for (int Spalte = 0; Spalte < 8; Spalte++)
+            {
+                for (int Reihe = 0; Reihe < 256; Reihe++)
+                {
+                    dgvRam[Spalte + 2, Reihe].Value = ram[Spalte, Reihe];
+                }
+            }
         }
 
         /*      public void SetupDataGridView()
@@ -335,51 +363,62 @@ namespace PicSim
         {
             System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=a-xWhG4UU_Y");
         }
-
-        //!!!System.InvalidCastException!!!
+       
         private void dgvRam_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)
-                dgvRam.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            DataGridViewTextBoxCell StatB1 = (DataGridViewTextBoxCell)
-                dgvRam.Rows[131].Cells[e.ColumnIndex];
-            try
-            {
-                if (e.RowIndex < 131 | e.RowIndex > 131)
-                {
-                    if (e.ColumnIndex > 1) //Except String Cells
-                    {
-                        if ((int)cell.Value == 0)
-                        {
-                            cell.Value = 1;
-                            if (e.RowIndex == 3)
-                            {
-                                StatB1.Value = 1;
-                            }
-                        }
-                        else
-                        {
-                            cell.Value = 0;
-                            if (e.RowIndex == 3)
-                            {
-                                StatB1.Value = 0;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Bitte nur in Bank0 ändern");
-                }
-            }
-            catch (System.InvalidCastException) //für erste beide Reihen [0,n][1,n] kann der Wert so nicht geändert werden
-            {
-                MessageBox.Show("Zelle nicht veränderbar");
-            }
+            //DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)
+            //    dgvRam.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            //DataGridViewTextBoxCell StatB0 = (DataGridViewTextBoxCell)
+            //    dgvRam.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            //DataGridViewTextBoxCell StatB1 = (DataGridViewTextBoxCell)
+            //    dgvRam.Rows[131].Cells[e.ColumnIndex];
+            //try
+            //{
+
+            //    if (e.ColumnIndex > 1) //Except String Cells
+            //    {
+            //        if ((int)cell.Value == 0)
+            //        {
+            //            cell.Value = 1;
+            //            //Code für Statusregistersynchronität
+            //            if (e.RowIndex == 3)
+            //            {
+            //                StatB1.Value = 1;
+            //            }
+            //            if (e.RowIndex == 131)
+            //            {
+            //                StatB0.Value = 1;
+            //            }
+            //            //------------------------------------
+            //        }
+            //        else
+            //        {
+            //            cell.Value = 0;
+            //            if (e.RowIndex == 3)
+            //            {
+            //                StatB1.Value = 0;
+            //            }
+            //            if (e.RowIndex == 131)
+            //            {
+            //                StatB0.Value = 0;
+            //            }
+            //        }
+
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Bitte nur in Bank0 ändern");
+            //    }
+            //}
+            //catch (System.InvalidCastException) //für erste beide Reihen [0,n][1,n] kann der Wert so nicht geändert werden
+            //{
+            //    MessageBox.Show("Zelle nicht veränderbar");
+            //}
         }
 
         private void toolPlay_Click(object sender, EventArgs e)
         {
+            DataGridViewAktualisieren();
             int i = 0;
             if (textBoxCode.Text== "")
             {
@@ -393,9 +432,10 @@ namespace PicSim
                 }
             }
         }
-        private void Decode(String BinCode)
+        private void Decode(String binCode)
         {
             //hier müssen Befehle implementiert werden
+            
         }
     }
 }
