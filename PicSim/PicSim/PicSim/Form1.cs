@@ -1,14 +1,7 @@
 ﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
+
 
 namespace PicSim
 {
@@ -21,11 +14,10 @@ namespace PicSim
         public int[,] ram = new int[8,256];
 
         //Variable für Bank
-        public int bank = 0;
+        public int bank = 128;
 
         //Variable für Quarzfrequenz
         public long quarz = 0;
-
 
         //private DataGridViewRowCollection rows;
 
@@ -34,9 +26,10 @@ namespace PicSim
             InitializeComponent();
             textBoxCode.ScrollBars = ScrollBars.Vertical;
             Fill_dgvRam();
-            InitBefehlsArray();
+            InitBefehlsArray();            
             InitRAM();
-            MessageBox.Show("Status Bank1 nur durch klicken gleich - per Code (Assembler) fehlt");
+            DataGridViewAktualisieren();
+            
         }
 
         //Initialisieren des Befehls Arrays
@@ -57,6 +50,38 @@ namespace PicSim
                     ram[j, i] = 0;
                 }
             }
+            ram[4, Const.STATUS] = 1;
+            ram[5, Const.STATUS] = 1;
+
+            ram[4, Const.STATUS + bank] = 1;
+            ram[5, Const.STATUS + bank] = 1;
+
+            ram[0, Const.OPTION_REG + bank] = 1;
+            ram[1, Const.OPTION_REG + bank] = 1;
+            ram[2, Const.OPTION_REG + bank] = 1;
+            ram[3, Const.OPTION_REG + bank] = 1;
+            ram[4, Const.OPTION_REG + bank] = 1;
+            ram[5, Const.OPTION_REG + bank] = 1;
+            ram[6, Const.OPTION_REG + bank] = 1;
+            ram[7, Const.OPTION_REG + bank] = 1;
+
+            ram[0, Const.TRISA + bank] = 1;
+            ram[1, Const.TRISA + bank] = 1;
+            ram[2, Const.TRISA + bank] = 1;
+            ram[3, Const.TRISA + bank] = 1;
+            ram[4, Const.TRISA + bank] = 1;
+
+            ram[0, Const.TRISB + bank] = 1;
+            ram[1, Const.TRISB + bank] = 1;
+            ram[2, Const.TRISB + bank] = 1;
+            ram[3, Const.TRISB + bank] = 1;
+            ram[4, Const.TRISB + bank] = 1;
+            ram[5, Const.TRISB + bank] = 1;
+            ram[6, Const.TRISB + bank] = 1;
+            ram[7, Const.TRISB + bank] = 1;
+
+
+
         }
         //-----------------------------------
 
@@ -135,11 +160,11 @@ namespace PicSim
 
         public void DataGridViewAktualisieren()
         {
-            for (int Spalte = 2; Spalte < 8; Spalte++)
+            for (int Spalte = 2; Spalte < 10; Spalte++)
             {
                 for (int Reihe = 0; Reihe < 256; Reihe++)
                 {
-                    dgvRam[Spalte, Reihe].Value = ram[Spalte, Reihe];
+                    dgvRam[Spalte, Reihe].Value = ram[Spalte-2, Reihe];
                 }
             }
         }
@@ -313,7 +338,7 @@ namespace PicSim
                     else
                     {
                         i += 4; //Zeilennummer im Index i überspringen
-                        char[] chars = {chartxt[i], chartxt[i + 1], chartxt[i + 2], chartxt[i + 3] };
+                        char[] chars = {chartxt[i], chartxt[i + 1], chartxt[i], chartxt[i + 3] };
                         string hexString = new string(chars);
                         //
                         
@@ -563,6 +588,7 @@ namespace PicSim
                 //BTFSS
                 return;
             }
+
             //LITERAL AND CONTROL OPERATIONS
             if ((binCode & 0x3E00) == 0x3E00)
             {
@@ -629,6 +655,13 @@ namespace PicSim
                 //XORLW           
                 return;
             }
+            MessageBox.Show("Befehl nicht gefunden:" + binCode);
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            InitRAM();
+            DataGridViewAktualisieren();
         }
     }
 }
