@@ -135,15 +135,24 @@ namespace PicSim
 
         public void DataGridViewAktualisieren()
         {
-            for (int Spalte = 0; Spalte < 8; Spalte++)
+            for (int Spalte = 2; Spalte < 8; Spalte++)
             {
                 for (int Reihe = 0; Reihe < 256; Reihe++)
                 {
-                    dgvRam[Spalte + 2, Reihe].Value = ram[Spalte, Reihe];
+                    dgvRam[Spalte, Reihe].Value = ram[Spalte, Reihe];
                 }
             }
         }
-
+        public void RamAktualisieren()
+        {
+            for (int Spalte = 2; Spalte < 8; Spalte++)
+            {
+                for (int Reihe = 0; Reihe < 256; Reihe++)
+                {
+                    ram[Spalte, Reihe] =  (int)dgvRam[Spalte, Reihe].Value;
+                }
+            }
+        }
         /*      public void SetupDataGridView()
               {
                   rows = this.dgvRam.Rows;
@@ -366,54 +375,55 @@ namespace PicSim
        
         private void dgvRam_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)
-            //    dgvRam.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            //DataGridViewTextBoxCell StatB0 = (DataGridViewTextBoxCell)
-            //    dgvRam.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            //DataGridViewTextBoxCell StatB1 = (DataGridViewTextBoxCell)
-            //    dgvRam.Rows[131].Cells[e.ColumnIndex];
-            //try
-            //{
+            DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)
+                dgvRam.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            DataGridViewTextBoxCell StatB0 = (DataGridViewTextBoxCell)
+                dgvRam.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            DataGridViewTextBoxCell StatB1 = (DataGridViewTextBoxCell)
+                dgvRam.Rows[131].Cells[e.ColumnIndex];
+            try
+            {
 
-            //    if (e.ColumnIndex > 1) //Except String Cells
-            //    {
-            //        if ((int)cell.Value == 0)
-            //        {
-            //            cell.Value = 1;
-            //            //Code für Statusregistersynchronität
-            //            if (e.RowIndex == 3)
-            //            {
-            //                StatB1.Value = 1;
-            //            }
-            //            if (e.RowIndex == 131)
-            //            {
-            //                StatB0.Value = 1;
-            //            }
-            //            //------------------------------------
-            //        }
-            //        else
-            //        {
-            //            cell.Value = 0;
-            //            if (e.RowIndex == 3)
-            //            {
-            //                StatB1.Value = 0;
-            //            }
-            //            if (e.RowIndex == 131)
-            //            {
-            //                StatB0.Value = 0;
-            //            }
-            //        }
+                if (e.ColumnIndex > 1) //Except String Cells
+                {
+                    if ((int)cell.Value == 0)
+                    {
+                        cell.Value = 1;
+                        //Code für Statusregistersynchronität
+                        if (e.RowIndex == 3)
+                        {
+                            StatB1.Value = 1;
+                        }
+                        if (e.RowIndex == 131)
+                        {
+                            StatB0.Value = 1;
+                        }
+                        //------------------------------------
+                    }
+                    else
+                    {
+                        cell.Value = 0;
+                        if (e.RowIndex == 3)
+                        {
+                            StatB1.Value = 0;
+                        }
+                        if (e.RowIndex == 131)
+                        {
+                            StatB0.Value = 0;
+                        }
+                    }
 
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Bitte nur in Bank0 ändern");
-            //    }
-            //}
-            //catch (System.InvalidCastException) //für erste beide Reihen [0,n][1,n] kann der Wert so nicht geändert werden
-            //{
-            //    MessageBox.Show("Zelle nicht veränderbar");
-            //}
+                }
+                else
+                {
+                    MessageBox.Show("Bitte nur in Bank0 ändern");
+                }
+            }
+            catch (System.InvalidCastException) //für erste beide Reihen [0,n][1,n] kann der Wert so nicht geändert werden
+            {
+                MessageBox.Show("Zelle nicht veränderbar");
+            }
+            RamAktualisieren();
         }
 
         private void toolPlay_Click(object sender, EventArgs e)
