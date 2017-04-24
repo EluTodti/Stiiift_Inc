@@ -15,7 +15,7 @@ namespace PicSim
     public partial class Form1 : Form
     {
         //Array für Befehle
-        String[] BefehlsArray = new String[666];
+        int[] BefehlsArray = new int[666];
 
         //2dim. Array für den RAM
         public int[,] ram = new int[8,256];
@@ -44,7 +44,7 @@ namespace PicSim
         {
             for (int i = 0; i < BefehlsArray.Length; i++)
             {
-                BefehlsArray[i] = "0";
+                BefehlsArray[i] = 0;
             }
         }
         //----------------------------------
@@ -316,10 +316,10 @@ namespace PicSim
                         char[] chars = {chartxt[i], chartxt[i + 1], chartxt[i + 2], chartxt[i + 3] };
                         string hexString = new string(chars);
                         //
-                        string binaryval = Convert.ToString(Convert.ToInt32(hexString, 16), 2);
-                        //int num = Int32.Parse(hexString, System.Globalization.NumberStyles.HexNumber);
+                        
+                        int num = Int32.Parse(hexString, System.Globalization.NumberStyles.HexNumber);
                         //Befehle werden in Array gespeichert                        
-                        BefehlsArray[arrIndex] = binaryval;
+                        BefehlsArray[arrIndex] = num;
                         arrIndex+=1;
                         
                         //Index bis zum Ende der Zeile
@@ -335,13 +335,13 @@ namespace PicSim
                     }
                 }
                 //Nur zum testen
-                for (int y=0;y<BefehlsArray.Length;y++) 
+                for (int y = 0;y < BefehlsArray.Length; y++) 
                 {
-                    textBoxCode.Text = textBoxCode.Text + BefehlsArray[0];
+                    textBoxCode.Text = textBoxCode.Text + BefehlsArray[y];
                 }
             }
         }
-
+        
         //On-Click toolHelp
         private void toolHelp_Click(object sender, EventArgs e)
         {
@@ -442,10 +442,193 @@ namespace PicSim
                 }
             }
         }
-        private void Decode(String binCode)
+        private void Decode(int binCode)
         {
-            //hier müssen Befehle implementiert werden
-            
+            //BYTE-ORIENTED FILE REGISTER OPERATIONS
+            if ((binCode & 0x3F00) == 0x0700)
+            {
+                //ADDWF
+                return;
+            }
+            if ((binCode & 0x3F00) == 0x0500)
+            {
+                //ANDWF
+                return;
+            }
+            if ((binCode & 0x3F80) == 0x0180)
+            {
+                //CLRF
+                return;
+            }
+            if ((binCode & 0x3F80) == 0x0100)
+            {
+                //CLRW
+                return;
+            }
+            if ((binCode & 0x3F00) == 0x0900)
+            {
+                //COMF
+                return;
+            }
+            if ((binCode & 0x3F00) == 0x0300)
+            {
+                //DECF
+                return;
+            }
+            if ((binCode & 0x3F00) == 0x0B00)
+            {
+                //DECFSZ
+                return;
+            }
+            if ((binCode & 0x3F00) == 0x0A00)
+            {
+                //INCF
+                return;
+            }
+            if ((binCode & 0x3F00) == 0x0F00)
+            {
+                //INCFSZ
+                return;
+            }
+            if ((binCode & 0x3F00) == 0x0400)
+            {
+                //IORWF
+                return;
+            }
+            if ((binCode & 0x3F00) == 0x0800)
+            {
+                //MOVF
+                return;
+            }
+            if ((binCode & 0x3F80) == 0x0080)
+            {
+                //MOVWF
+                return;
+            }
+            if ((binCode & 0x3F00) == 0x0300)
+            {
+                //DECF
+                return;
+            }
+            if (binCode == 0x0 || binCode == 0x20 || binCode == 0x40 || binCode == 0x60)
+            {
+                //NOP
+                return;
+            }
+            if ((binCode & 0x3F00) == 0x0D00)
+            {
+                //RLF
+                return;
+            }
+            if ((binCode & 0x3F00) == 0x0C00)
+            {
+                //RRF
+                return;
+            }
+            if ((binCode & 0x3F00) == 0x0200)
+            {
+                //SUBWF
+                return;
+            }
+            if ((binCode & 0x3F00) == 0x0E00)
+            {
+                //SWAPF
+                return;
+            }
+            if ((binCode & 0x3F00) == 0x0600)
+            {
+                //XORWF
+                return;
+            }
+
+            //BIT-ORIENTED FILE REGISTER OPERATIONS
+            if ((binCode & 0x3C00) == 0x1000)
+            {
+                //BCF
+                return;
+            }
+            if ((binCode & 0x3C00) == 0x1400)
+            {
+                //BSF
+                return;
+            }
+
+            if ((binCode & 0x3C00) == 0x1800)
+            {
+                //BTFSC
+                return;
+            }
+            if ((binCode & 0x3C00) == 0x1C00)
+            {
+                //BTFSS
+                return;
+            }
+            //LITERAL AND CONTROL OPERATIONS
+            if ((binCode & 0x3E00) == 0x3E00)
+            {
+                //ADDLW                
+                return;
+            }
+            if ((binCode & 0x3F00) == 0x3C00)
+            {
+                //ANDLW              
+                return;
+            }
+            if ((binCode & 0x3800) == 0x2000)
+            {
+                //CALL            
+                return;
+            }
+            if (binCode == 0x64)
+            {
+                //CLRWDT                
+                return;
+            }
+            if ((binCode & 0x3800) == 0x2800)
+            {
+                //GOTO        
+                return;
+            }
+            if ((binCode & 0x3F00) == 0x3800)
+            {
+                //IORLW     
+                return;
+            }
+            if ((binCode & 0x3C00) == 0x3000)
+            {
+                //MOVLW   
+                return;
+            }
+            if (binCode == 0x9)
+            {
+                //RETFIE                
+                return;
+            }
+            if ((binCode & 0x3C00) == 0x3400)
+            {
+                //RETLW   
+                return;
+            }
+            if (binCode == 0x8)
+            {
+                //RETURN                
+                return;
+            }
+            if (binCode == 0x63)
+            {
+                //SLEEP
+                return;
+            }
+            if ((binCode & 0x3E00) == 0x3C00)
+            {
+                //SUBLW           
+                return;
+            }
+            if ((binCode & 0x3F00) == 0x3A00)
+            {
+                //XORLW           
+                return;
+            }
         }
     }
 }
