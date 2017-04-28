@@ -18,7 +18,7 @@ namespace PicSim
         public const int PORTB = 6;
         public const int EEDATA = 8;
         public const int EEADR = 9;
-        public const int FPCLATH = 10;
+        public const int PCLATH = 10;
         public const int INTCON = 11;
         //BANK1
         public const int OPTION_REG = 1;

@@ -48,7 +48,16 @@ namespace PicSim
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
@@ -70,9 +79,8 @@ namespace PicSim
             this.lblBottomValueQuarzfrequenz = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblBottomQuarzfrequenz = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblBottomC = new System.Windows.Forms.ToolStripStatusLabel();
-            this.textBoxCode = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.dgvRam = new System.Windows.Forms.DataGridView();
+            this.dgvRam0 = new System.Windows.Forms.DataGridView();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Bit0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,22 +92,30 @@ namespace PicSim
             this.Bit6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Bit7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnReset = new System.Windows.Forms.Button();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.dgvRam1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.textBoxCode = new System.Windows.Forms.TextBox();
+            this.lblWReg = new System.Windows.Forms.Label();
+            this.lblPC = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRam)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRam0)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRam1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 350F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(350, 181);
-            this.tableLayoutPanel1.TabIndex = 8;
             // 
             // toolStrip1
             // 
@@ -116,10 +132,9 @@ namespace PicSim
             this.toolPlay,
             this.toolPause,
             this.toolStop});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 49);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.toolStrip1.Size = new System.Drawing.Size(2625, 45);
+            this.toolStrip1.Size = new System.Drawing.Size(1770, 28);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -129,28 +144,28 @@ namespace PicSim
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(24, 42);
+            this.toolStripButton1.Size = new System.Drawing.Size(24, 25);
             this.toolStripButton1.Text = "toolStripButton1";
             // 
             // toolStripComboBox1
             // 
             this.toolStripComboBox1.Name = "toolStripComboBox1";
-            this.toolStripComboBox1.Size = new System.Drawing.Size(209, 45);
+            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 28);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 45);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
             // toolStripTextBox1
             // 
             this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(172, 45);
+            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 28);
             // 
             // lblQuarzfrequenz
             // 
             this.lblQuarzfrequenz.Name = "lblQuarzfrequenz";
-            this.lblQuarzfrequenz.Size = new System.Drawing.Size(190, 42);
+            this.lblQuarzfrequenz.Size = new System.Drawing.Size(106, 25);
             this.lblQuarzfrequenz.Text = "Quarzfrequenz";
             // 
             // toolStripSplitButton1
@@ -161,25 +176,25 @@ namespace PicSim
             this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
             this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(50, 42);
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(39, 25);
             this.toolStripSplitButton1.Text = "toolStripSplitButton1";
             // 
             // quarzfrequenzToolStripMenuItem
             // 
             this.quarzfrequenzToolStripMenuItem.Name = "quarzfrequenzToolStripMenuItem";
-            this.quarzfrequenzToolStripMenuItem.Size = new System.Drawing.Size(215, 42);
+            this.quarzfrequenzToolStripMenuItem.Size = new System.Drawing.Size(132, 26);
             this.quarzfrequenzToolStripMenuItem.Text = "100000";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 45);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
             // 
             // txtUnicorn
             // 
             this.txtUnicorn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.txtUnicorn.Name = "txtUnicorn";
-            this.txtUnicorn.Size = new System.Drawing.Size(189, 42);
+            this.txtUnicorn.Size = new System.Drawing.Size(105, 25);
             this.txtUnicorn.Text = "Unicorn magic";
             this.txtUnicorn.Click += new System.EventHandler(this.txtUnicorn_Click);
             // 
@@ -189,7 +204,7 @@ namespace PicSim
             this.toolPlay.Image = global::PicSim.Properties.Resources.Play;
             this.toolPlay.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolPlay.Name = "toolPlay";
-            this.toolPlay.Size = new System.Drawing.Size(24, 42);
+            this.toolPlay.Size = new System.Drawing.Size(24, 25);
             this.toolPlay.Text = "Play";
             this.toolPlay.Click += new System.EventHandler(this.toolPlay_Click);
             // 
@@ -199,7 +214,7 @@ namespace PicSim
             this.toolPause.Image = global::PicSim.Properties.Resources.Pause;
             this.toolPause.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolPause.Name = "toolPause";
-            this.toolPause.Size = new System.Drawing.Size(24, 42);
+            this.toolPause.Size = new System.Drawing.Size(24, 25);
             this.toolPause.Text = "Pause";
             // 
             // toolStop
@@ -208,7 +223,7 @@ namespace PicSim
             this.toolStop.Image = global::PicSim.Properties.Resources.Stop;
             this.toolStop.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStop.Name = "toolStop";
-            this.toolStop.Size = new System.Drawing.Size(24, 42);
+            this.toolStop.Size = new System.Drawing.Size(24, 25);
             this.toolStop.Text = "Stop";
             // 
             // menuStrip1
@@ -219,8 +234,7 @@ namespace PicSim
             this.toolHelp});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(10, 4, 0, 4);
-            this.menuStrip1.Size = new System.Drawing.Size(2625, 49);
+            this.menuStrip1.Size = new System.Drawing.Size(1770, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -229,13 +243,13 @@ namespace PicSim
             this.toolFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem});
             this.toolFile.Name = "toolFile";
-            this.toolFile.Size = new System.Drawing.Size(70, 41);
+            this.toolFile.Size = new System.Drawing.Size(44, 24);
             this.toolFile.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(190, 42);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(120, 26);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -245,7 +259,7 @@ namespace PicSim
             this.toolHelp.BackColor = System.Drawing.SystemColors.Control;
             this.toolHelp.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolHelp.Name = "toolHelp";
-            this.toolHelp.Size = new System.Drawing.Size(85, 41);
+            this.toolHelp.Size = new System.Drawing.Size(53, 24);
             this.toolHelp.Text = "Help";
             this.toolHelp.Click += new System.EventHandler(this.toolHelp_Click);
             // 
@@ -256,17 +270,16 @@ namespace PicSim
             this.lblBottomValueQuarzfrequenz,
             this.lblBottomQuarzfrequenz,
             this.lblBottomC});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 1000);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 852);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 24, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(2625, 46);
+            this.statusStrip1.Size = new System.Drawing.Size(1770, 29);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // lblBottomValueQuarzfrequenz
             // 
             this.lblBottomValueQuarzfrequenz.Name = "lblBottomValueQuarzfrequenz";
-            this.lblBottomValueQuarzfrequenz.Size = new System.Drawing.Size(159, 41);
+            this.lblBottomValueQuarzfrequenz.Size = new System.Drawing.Size(88, 24);
             this.lblBottomValueQuarzfrequenz.Text = "Value Quarz";
             // 
             // lblBottomQuarzfrequenz
@@ -275,7 +288,7 @@ namespace PicSim
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.lblBottomQuarzfrequenz.Name = "lblBottomQuarzfrequenz";
-            this.lblBottomQuarzfrequenz.Size = new System.Drawing.Size(180, 41);
+            this.lblBottomQuarzfrequenz.Size = new System.Drawing.Size(102, 24);
             this.lblBottomQuarzfrequenz.Text = "Qurzfrequenz";
             // 
             // lblBottomC
@@ -284,33 +297,22 @@ namespace PicSim
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.lblBottomC.Name = "lblBottomC";
-            this.lblBottomC.Size = new System.Drawing.Size(369, 41);
+            this.lblBottomC.Size = new System.Drawing.Size(206, 24);
             this.lblBottomC.Text = "© by Stiiift inc. - PaulG ChrisT";
-            // 
-            // textBoxCode
-            // 
-            this.textBoxCode.Dock = System.Windows.Forms.DockStyle.Right;
-            this.textBoxCode.Location = new System.Drawing.Point(1559, 94);
-            this.textBoxCode.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.textBoxCode.Multiline = true;
-            this.textBoxCode.Name = "textBoxCode";
-            this.textBoxCode.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxCode.Size = new System.Drawing.Size(1066, 906);
-            this.textBoxCode.TabIndex = 6;
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // dgvRam
+            // dgvRam0
             // 
-            this.dgvRam.AllowUserToAddRows = false;
-            this.dgvRam.AllowUserToDeleteRows = false;
-            this.dgvRam.AllowUserToResizeColumns = false;
-            this.dgvRam.AllowUserToResizeRows = false;
-            this.dgvRam.ColumnHeadersHeight = 50;
-            this.dgvRam.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvRam.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvRam0.AllowUserToAddRows = false;
+            this.dgvRam0.AllowUserToDeleteRows = false;
+            this.dgvRam0.AllowUserToResizeColumns = false;
+            this.dgvRam0.AllowUserToResizeRows = false;
+            this.dgvRam0.ColumnHeadersHeight = 50;
+            this.dgvRam0.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvRam0.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Address,
             this.StatusName,
             this.Bit0,
@@ -321,21 +323,22 @@ namespace PicSim
             this.Bit5,
             this.Bit6,
             this.Bit7});
-            this.dgvRam.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dgvRam.Location = new System.Drawing.Point(0, 114);
-            this.dgvRam.Margin = new System.Windows.Forms.Padding(5);
-            this.dgvRam.MultiSelect = false;
-            this.dgvRam.Name = "dgvRam";
-            this.dgvRam.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvRam.RowTemplate.DefaultCellStyle.Format = "N0";
-            this.dgvRam.RowTemplate.DefaultCellStyle.NullValue = null;
-            this.dgvRam.RowTemplate.Height = 50;
-            this.dgvRam.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRam.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvRam.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvRam.Size = new System.Drawing.Size(1076, 906);
-            this.dgvRam.TabIndex = 9;
-            this.dgvRam.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRam_CellClick);
+            this.dgvRam0.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dgvRam0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvRam0.Location = new System.Drawing.Point(3, 3);
+            this.dgvRam0.MultiSelect = false;
+            this.dgvRam0.Name = "dgvRam0";
+            this.dgvRam0.ReadOnly = true;
+            this.dgvRam0.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvRam0.RowTemplate.DefaultCellStyle.Format = "N0";
+            this.dgvRam0.RowTemplate.DefaultCellStyle.NullValue = null;
+            this.dgvRam0.RowTemplate.Height = 50;
+            this.dgvRam0.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRam0.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvRam0.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvRam0.Size = new System.Drawing.Size(609, 392);
+            this.dgvRam0.TabIndex = 9;
+            this.dgvRam0.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRam0_CellClick);
             // 
             // Address
             // 
@@ -375,6 +378,7 @@ namespace PicSim
             this.Bit0.HeaderText = "Bit0";
             this.Bit0.MinimumWidth = 30;
             this.Bit0.Name = "Bit0";
+            this.Bit0.ReadOnly = true;
             this.Bit0.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Bit0.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Bit0.ToolTipText = "MsB Bit0";
@@ -388,6 +392,7 @@ namespace PicSim
             this.Bit1.HeaderText = "Bit1";
             this.Bit1.MinimumWidth = 30;
             this.Bit1.Name = "Bit1";
+            this.Bit1.ReadOnly = true;
             this.Bit1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Bit1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Bit1.ToolTipText = "MsB Bit1";
@@ -401,6 +406,7 @@ namespace PicSim
             this.Bit2.HeaderText = "Bit2";
             this.Bit2.MinimumWidth = 30;
             this.Bit2.Name = "Bit2";
+            this.Bit2.ReadOnly = true;
             this.Bit2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Bit2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Bit2.ToolTipText = "MsB Bit2";
@@ -414,6 +420,7 @@ namespace PicSim
             this.Bit3.HeaderText = "Bit3";
             this.Bit3.MinimumWidth = 30;
             this.Bit3.Name = "Bit3";
+            this.Bit3.ReadOnly = true;
             this.Bit3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Bit3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Bit3.ToolTipText = "MsB Bit3";
@@ -427,6 +434,7 @@ namespace PicSim
             this.Bit4.HeaderText = "Bit4";
             this.Bit4.MinimumWidth = 30;
             this.Bit4.Name = "Bit4";
+            this.Bit4.ReadOnly = true;
             this.Bit4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Bit4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Bit4.ToolTipText = "MsB Bit4";
@@ -440,6 +448,7 @@ namespace PicSim
             this.Bit5.HeaderText = "Bit5";
             this.Bit5.MinimumWidth = 30;
             this.Bit5.Name = "Bit5";
+            this.Bit5.ReadOnly = true;
             this.Bit5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Bit5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Bit5.ToolTipText = "MsB Bit5";
@@ -453,6 +462,7 @@ namespace PicSim
             this.Bit6.HeaderText = "Bit6";
             this.Bit6.MinimumWidth = 30;
             this.Bit6.Name = "Bit6";
+            this.Bit6.ReadOnly = true;
             this.Bit6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Bit6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Bit6.ToolTipText = "MsB Bit6";
@@ -474,34 +484,260 @@ namespace PicSim
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(1213, 352);
+            this.btnReset.Location = new System.Drawing.Point(620, 63);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(2);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(219, 107);
+            this.btnReset.Size = new System.Drawing.Size(125, 59);
             this.btnReset.TabIndex = 10;
             this.btnReset.Text = "RESET";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.5F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.5F));
+            this.tableLayoutPanel2.Controls.Add(this.dgvRam0, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.dgvRam1, 0, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 56);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(615, 796);
+            this.tableLayoutPanel2.TabIndex = 11;
+            // 
+            // dgvRam1
+            // 
+            this.dgvRam1.AllowUserToAddRows = false;
+            this.dgvRam1.AllowUserToDeleteRows = false;
+            this.dgvRam1.AllowUserToResizeColumns = false;
+            this.dgvRam1.AllowUserToResizeRows = false;
+            this.dgvRam1.ColumnHeadersHeight = 20;
+            this.dgvRam1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvRam1.ColumnHeadersVisible = false;
+            this.dgvRam1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10});
+            this.dgvRam1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dgvRam1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvRam1.Location = new System.Drawing.Point(3, 401);
+            this.dgvRam1.MultiSelect = false;
+            this.dgvRam1.Name = "dgvRam1";
+            this.dgvRam1.ReadOnly = true;
+            this.dgvRam1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvRam1.RowTemplate.DefaultCellStyle.Format = "N0";
+            this.dgvRam1.RowTemplate.DefaultCellStyle.NullValue = null;
+            this.dgvRam1.RowTemplate.Height = 50;
+            this.dgvRam1.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRam1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvRam1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvRam1.Size = new System.Drawing.Size(609, 392);
+            this.dgvRam1.TabIndex = 10;
+            this.dgvRam1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRam1_CellContentClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dataGridViewTextBoxColumn1.Frozen = true;
+            this.dataGridViewTextBoxColumn1.HeaderText = "ADDR";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 80;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.ToolTipText = "Memory Address";
+            this.dataGridViewTextBoxColumn1.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle12;
+            this.dataGridViewTextBoxColumn2.Frozen = true;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 80;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.ToolTipText = "Status Name";
+            this.dataGridViewTextBoxColumn2.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle13;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Bit0";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 30;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn3.ToolTipText = "MsB Bit0";
+            this.dataGridViewTextBoxColumn3.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle14;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Bit1";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 30;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn4.ToolTipText = "MsB Bit1";
+            this.dataGridViewTextBoxColumn4.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Bit2";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 30;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn5.ToolTipText = "MsB Bit2";
+            this.dataGridViewTextBoxColumn5.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle16;
+            this.dataGridViewTextBoxColumn6.HeaderText = "Bit3";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 30;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn6.ToolTipText = "MsB Bit3";
+            this.dataGridViewTextBoxColumn6.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle17;
+            this.dataGridViewTextBoxColumn7.HeaderText = "Bit4";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 30;
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn7.ToolTipText = "MsB Bit4";
+            this.dataGridViewTextBoxColumn7.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle18;
+            this.dataGridViewTextBoxColumn8.HeaderText = "Bit5";
+            this.dataGridViewTextBoxColumn8.MinimumWidth = 30;
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn8.ToolTipText = "MsB Bit5";
+            this.dataGridViewTextBoxColumn8.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle19;
+            this.dataGridViewTextBoxColumn9.HeaderText = "Bit6";
+            this.dataGridViewTextBoxColumn9.MinimumWidth = 30;
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn9.ToolTipText = "MsB Bit6";
+            this.dataGridViewTextBoxColumn9.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle20;
+            this.dataGridViewTextBoxColumn10.HeaderText = "Bit7";
+            this.dataGridViewTextBoxColumn10.MinimumWidth = 30;
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn10.ToolTipText = "MsB Bit7";
+            this.dataGridViewTextBoxColumn10.Width = 30;
+            // 
             // form1BindingSource
             // 
             this.form1BindingSource.DataSource = typeof(PicSim.Form1);
             // 
+            // textBoxCode
+            // 
+            this.textBoxCode.Dock = System.Windows.Forms.DockStyle.Right;
+            this.textBoxCode.Location = new System.Drawing.Point(956, 56);
+            this.textBoxCode.Multiline = true;
+            this.textBoxCode.Name = "textBoxCode";
+            this.textBoxCode.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxCode.Size = new System.Drawing.Size(814, 796);
+            this.textBoxCode.TabIndex = 6;
+            // 
+            // lblWReg
+            // 
+            this.lblWReg.AutoSize = true;
+            this.lblWReg.Location = new System.Drawing.Point(622, 216);
+            this.lblWReg.Name = "lblWReg";
+            this.lblWReg.Size = new System.Drawing.Size(51, 17);
+            this.lblWReg.TabIndex = 12;
+            this.lblWReg.Text = "WREG";
+            // 
+            // lblPC
+            // 
+            this.lblPC.AutoSize = true;
+            this.lblPC.Location = new System.Drawing.Point(622, 242);
+            this.lblPC.Name = "lblPC";
+            this.lblPC.Size = new System.Drawing.Size(26, 17);
+            this.lblPC.TabIndex = 13;
+            this.lblPC.Text = "PC";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2625, 1046);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1770, 881);
+            this.Controls.Add(this.lblPC);
+            this.Controls.Add(this.lblWReg);
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.btnReset);
-            this.Controls.Add(this.dgvRam);
             this.Controls.Add(this.textBoxCode);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.tableLayoutPanel1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "Form1";
-            this.Text = "PicSim - Stiiift Inc";
+            this.Text = "PicSim";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -509,7 +745,9 @@ namespace PicSim
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRam)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRam0)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRam1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -517,8 +755,6 @@ namespace PicSim
         }
 
         #endregion
-
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
@@ -536,12 +772,11 @@ namespace PicSim
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblBottomValueQuarzfrequenz;
         private System.Windows.Forms.ToolStripStatusLabel lblBottomQuarzfrequenz;
-        private System.Windows.Forms.TextBox textBoxCode;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripButton toolStop;
         private System.Windows.Forms.ToolStripButton toolPlay;
         private System.Windows.Forms.ToolStripButton toolPause;
-        private DataGridView dgvRam;
+        private DataGridView dgvRam0;
         private BindingSource form1BindingSource;
         private ToolStripStatusLabel lblBottomC;
         private DataGridViewTextBoxColumn Address;
@@ -555,6 +790,21 @@ namespace PicSim
         private DataGridViewTextBoxColumn Bit6;
         private DataGridViewTextBoxColumn Bit7;
         private Button btnReset;
+        private TableLayoutPanel tableLayoutPanel2;
+        private DataGridView dgvRam1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private TextBox textBoxCode;
+        private Label lblWReg;
+        private Label lblPC;
     }
 }
 

@@ -7,6 +7,16 @@ namespace PicSim
 {
     public partial class Form1 : Form
     {
+        //W-Register in Befehle
+
+        //
+        Befehle befehle = new Befehle();
+
+        Resetter resetter = new Resetter();
+
+        //Memory
+        Memory mem = Memory.Instance;
+
         //Array für Befehle
         int[] BefehlsArray = new int[666];
 
@@ -28,7 +38,7 @@ namespace PicSim
             Fill_dgvRam();
             InitBefehlsArray();            
             InitRAM();
-            DataGridViewAktualisieren();
+            GUIAktualisieren();
             
         }
 
@@ -86,9 +96,15 @@ namespace PicSim
         //-----------------------------------
 
         //-----------------------------------
+        public void RegisterInitialisieren()
+        {
+            befehle.WReg = 0;
+        }
+
+        //-----------------------------------
         public void Fill_dgvRam()
         {
-            dgvRam.ColumnCount = 10;
+            dgvRam0.ColumnCount = 10;
 
             var rowCount = ram.GetLength(0);
             var rowLength = ram.GetLength(1);
@@ -105,82 +121,129 @@ namespace PicSim
             //        });
             //    }
 
-            //    dgvRam.Rows.Add(row);
+            //    dgvRam0.Rows.Add(row);
             //}
 
-            for (int i = 0; i < 256; i++)
+            for (int i = 0; i < 80; i++)
             {
                 var row = new DataGridViewRow();
                 
-                dgvRam.Rows.Add(row);
+                dgvRam0.Rows.Add(row);
              }
-           for (int i = 0;i<256; i++)
+           for (int i = 0;i<80; i++)
             {
                 for(int k = 2; k<10; k++ )
                 {
-                    dgvRam[k, i].Value = 0;
+                    dgvRam0[k, i].Value = 0;
                 }
             }
-            for (int k = 0; k < 256; k++)
+            for (int k = 0; k < 80; k++)
             {
-                dgvRam[0, k].Value = k.ToString("X2");
+                dgvRam0[0, k].Value = k.ToString("X2");
             }
 
             //Addressnamen eingetragen
             //Namen
-            dgvRam[1, 0].Value = "INDF";
-            dgvRam[1, 1].Value = "TMR0";
-            dgvRam[1, 2].Value = "PCL";
-            dgvRam[1, 3].Value = "STATUS";
-            dgvRam[1, 4].Value = "FSR";
-            dgvRam[1, 5].Value = "PORTA";
-            dgvRam[1, 6].Value = "PORTB";
-            dgvRam[1, 7].Value = "";
-            dgvRam[1, 8].Value = "EEDATA";
-            dgvRam[1, 9].Value = "EEADR";
-            dgvRam[1, 10].Value = "PCLATH";
-            dgvRam[1, 11].Value = "INTCON";
+            dgvRam0[1, 0].Value = "INDF";
+            dgvRam0[1, 1].Value = "TMR0";
+            dgvRam0[1, 2].Value = "PCL";
+            dgvRam0[1, 3].Value = "STATUS";
+            dgvRam0[1, 4].Value = "FSR";
+            dgvRam0[1, 5].Value = "PORTA";
+            dgvRam0[1, 6].Value = "PORTB";
+            dgvRam0[1, 7].Value = "";
+            dgvRam0[1, 8].Value = "EEDATA";
+            dgvRam0[1, 9].Value = "EEADR";
+            dgvRam0[1, 10].Value = "PCLATH";
+            dgvRam0[1, 11].Value = "INTCON";
+
+
+            //dgvRam1
+
+            dgvRam1.ColumnCount = 10;
+
+            for (int i = 0; i < 80; i++)
+            {
+                var row = new DataGridViewRow();
+
+                dgvRam1.Rows.Add(row);
+            }
+            for (int i = 0; i < 80; i++)
+            {
+                for (int k = 2; k < 10; k++)
+                {
+                    dgvRam1[k, i].Value = 0;
+                }
+            }
+
+
+            int hexincrement = 0x80;
+            for (int k = 0; k < 80; k++)
+            {
+                dgvRam1[0, k].Value = hexincrement.ToString("X2");
+                hexincrement++;
+            }
 
             int bank1 = 128;
-            dgvRam[1, 0 + bank1].Value = "INDF";
-            dgvRam[1, 1 + bank1].Value = "OPTION_REG";
-            dgvRam[1, 2 + bank1].Value = "PCL";
-            dgvRam[1, 3 + bank1].Value = "STATUS";
-            dgvRam[1, 4 + bank1].Value = "FSR";
-            dgvRam[1, 5 + bank1].Value = "TRISA";
-            dgvRam[1, 6 + bank1].Value = "TRISB";
-            dgvRam[1, 7 + bank1].Value = "";
-            dgvRam[1, 8 + bank1].Value = "EECON1";
-            dgvRam[1, 9 + bank1].Value = "EECON2";
-            dgvRam[1, 10 + bank1].Value = "PCLATH";
-            dgvRam[1, 11 + bank1].Value = "INTCON";
+            dgvRam1[1, 0].Value = "INDF";
+            dgvRam1[1, 1].Value = "OPTION_REG";
+            dgvRam1[1, 2].Value = "PCL";
+            dgvRam1[1, 3].Value = "STATUS";
+            dgvRam1[1, 4].Value = "FSR";
+            dgvRam1[1, 5].Value = "TRISA";
+            dgvRam1[1, 6].Value = "TRISB";
+            dgvRam1[1, 7].Value = "";
+            dgvRam1[1, 8].Value = "EECON1";
+            dgvRam1[1, 9].Value = "EECON2";
+            dgvRam1[1, 10].Value = "PCLATH";
+            dgvRam1[1, 11].Value = "INTCON";
            
         }
         //-----------------------------------
 
-        public void DataGridViewAktualisieren()
+        public void RegisterAktualisieren()
+        {
+            lblWReg.Text = befehle.WReg.ToString();
+        }
+
+        public void GUIAktualisieren()
         {
             for (int Spalte = 2; Spalte < 10; Spalte++)
             {
-                for (int Reihe = 0; Reihe < 256; Reihe++)
+                int ramreihe = 0x80;
+
+                for (int Reihe = 0; Reihe < 80; Reihe++)
                 {
-                    dgvRam[Spalte, Reihe].Value = ram[Spalte-2, Reihe];
+                    dgvRam0[Spalte, Reihe].Value = ram[Spalte-2, Reihe];
+
+                    
+                    dgvRam1[Spalte, Reihe].Value = ram[Spalte - 2, ramreihe];
+                    ramreihe++;
                 }
             }
+            lblWReg.Text  = befehle.WReg.ToString();
         }
+
         public void RamAktualisieren()
         {
             for (int Spalte = 2; Spalte < 8; Spalte++)
             {
-                for (int Reihe = 0; Reihe < 256; Reihe++)
+                for (int Reihe = 0; Reihe < 80; Reihe++)
                 {
-                    ram[Spalte, Reihe] =  (int)dgvRam[Spalte, Reihe].Value;
+                    ram[Spalte, Reihe] =  (int)dgvRam0[Spalte, Reihe].Value;
+                }
+                int dgvRamReihe = 0;
+                for (int Reihe = 128; Reihe < 207; Reihe++)
+                {
+                   
+                    ram[Spalte, Reihe] = (int)dgvRam1[Spalte, dgvRamReihe].Value;
+                    dgvRamReihe++;
                 }
             }
         }
         /*      public void SetupDataGridView()
               {
-                  rows = this.dgvRam.Rows;
+                  rows = this.dgvRam0.Rows;
 
                   string[] rowTMR0 = { "01h", "TMR0", "0", "0", "0", "0", "0", "0", "0", "0", "0x00", "0" };
                   string[] rowPCL = { "02h", "PCL", "0", "0", "0", "0", "0", "0", "0", "0", "0x00", "0" };
@@ -338,7 +401,7 @@ namespace PicSim
                     else
                     {
                         i += 4; //Zeilennummer im Index i überspringen
-                        char[] chars = {chartxt[i], chartxt[i + 1], chartxt[i], chartxt[i + 3] };
+                        char[] chars = { chartxt[i], chartxt[i + 1], chartxt[i + 2], chartxt[i + 3] };
                         string hexString = new string(chars);
                         //
                         
@@ -363,6 +426,7 @@ namespace PicSim
                 for (int y = 0;y < BefehlsArray.Length; y++) 
                 {
                     textBoxCode.Text = textBoxCode.Text + BefehlsArray[y];
+
                 }
             }
         }
@@ -397,63 +461,59 @@ namespace PicSim
         {
             System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=a-xWhG4UU_Y");
         }
-       
-        private void dgvRam_CellClick(object sender, DataGridViewCellEventArgs e)
+
+
+        //Synchonisieren der Register===================================================================================
+        private void RegisterSynchronisieren(DataGridViewCellEventArgs e, DataGridViewTextBoxCell cell , DataGridViewTextBoxCell Reg)
         {
-            DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)
-                dgvRam.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            DataGridViewTextBoxCell StatB0 = (DataGridViewTextBoxCell)
-                dgvRam.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            DataGridViewTextBoxCell StatB1 = (DataGridViewTextBoxCell)
-                dgvRam.Rows[131].Cells[e.ColumnIndex];
-            try
+            if (e.ColumnIndex > 1) //Except String Cells
             {
-
-                if (e.ColumnIndex > 1) //Except String Cells
+                if ((int)cell.Value == 0)
                 {
-                    if ((int)cell.Value == 0)
+                    cell.Value = 1;
+                    //Code für Statusregistersynchronität
+                    if (e.RowIndex == Const.INDF || e.RowIndex == Const.PCL || e.RowIndex == Const.STATUS 
+                        || e.RowIndex == Const.FSR || e.RowIndex == Const.PCLATH || e.RowIndex == Const.INTCON)
                     {
-                        cell.Value = 1;
-                        //Code für Statusregistersynchronität
-                        if (e.RowIndex == 3)
-                        {
-                            StatB1.Value = 1;
-                        }
-                        if (e.RowIndex == 131)
-                        {
-                            StatB0.Value = 1;
-                        }
-                        //------------------------------------
+                        Reg.Value = 1;
                     }
-                    else
-                    {
-                        cell.Value = 0;
-                        if (e.RowIndex == 3)
-                        {
-                            StatB1.Value = 0;
-                        }
-                        if (e.RowIndex == 131)
-                        {
-                            StatB0.Value = 0;
-                        }
-                    }
-
+                    //------------------------------------
                 }
                 else
                 {
-                    MessageBox.Show("Bitte nur in Bank0 ändern");
+                    cell.Value = 0;
+                    if (e.RowIndex == Const.INDF || e.RowIndex == Const.PCL || e.RowIndex == Const.STATUS
+                        || e.RowIndex == Const.FSR || e.RowIndex == Const.PCLATH || e.RowIndex == Const.INTCON)
+                    {
+                        Reg.Value = 0;
+                    }
                 }
-            }
-            catch (System.InvalidCastException) //für erste beide Reihen [0,n][1,n] kann der Wert so nicht geändert werden
-            {
-                MessageBox.Show("Zelle nicht veränderbar");
+
             }
             RamAktualisieren();
         }
+        private void dgvRam0_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)
+                dgvRam0.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            DataGridViewTextBoxCell RegB1 = (DataGridViewTextBoxCell)
+                dgvRam1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            RegisterSynchronisieren(e, cell, RegB1);
+            
+        }
+        private void dgvRam1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)
+                dgvRam1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            DataGridViewTextBoxCell RegB0 = (DataGridViewTextBoxCell)
+                dgvRam0.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            RegisterSynchronisieren(e, cell, RegB0);
+        }
+        //===================================================================================
 
         private void toolPlay_Click(object sender, EventArgs e)
         {
-            DataGridViewAktualisieren();
+            GUIAktualisieren();
             int i = 0;
             if (textBoxCode.Text== "")
             {
@@ -461,18 +521,24 @@ namespace PicSim
             }
             else
             {
-                for (i = 0; i < BefehlsArray.Length; i++)
+                for (mem.pc = 0; mem.pc < BefehlsArray.Length; mem.pc++)
                 {
-                    Decode(BefehlsArray[i]);
+                    Decode(BefehlsArray[mem.pc]);
+                    GUIAktualisieren();
+                    RegisterAktualisieren();
+                    //MessageBox.Show(BefehlsArray[6].ToString());
                 }
             }
         }
+
+
         private void Decode(int binCode)
         {
             //BYTE-ORIENTED FILE REGISTER OPERATIONS
             if ((binCode & 0x3F00) == 0x0700)
             {
                 //ADDWF
+
                 return;
             }
             if ((binCode & 0x3F00) == 0x0500)
@@ -592,12 +658,14 @@ namespace PicSim
             //LITERAL AND CONTROL OPERATIONS
             if ((binCode & 0x3E00) == 0x3E00)
             {
-                //ADDLW                
+                //ADDLW   
+                befehle.addlw(binCode);             
                 return;
             }
-            if ((binCode & 0x3F00) == 0x3C00)
+            if ((binCode & 0x3F00) == 0x3900)
             {
-                //ANDLW              
+                //ANDLW    
+                befehle.andlw(binCode);          
                 return;
             }
             if ((binCode & 0x3800) == 0x2000)
@@ -613,16 +681,20 @@ namespace PicSim
             if ((binCode & 0x3800) == 0x2800)
             {
                 //GOTO        
+                befehle.goto_(binCode);
+                
                 return;
             }
             if ((binCode & 0x3F00) == 0x3800)
             {
-                //IORLW     
+                //IORLW   
+                befehle.iorlw(binCode);  
                 return;
             }
             if ((binCode & 0x3C00) == 0x3000)
             {
                 //MOVLW   
+                befehle.movlw(binCode);
                 return;
             }
             if (binCode == 0x9)
@@ -647,12 +719,14 @@ namespace PicSim
             }
             if ((binCode & 0x3E00) == 0x3C00)
             {
-                //SUBLW           
+                //SUBLW     
+                befehle.sublw(binCode);      
                 return;
             }
             if ((binCode & 0x3F00) == 0x3A00)
             {
-                //XORLW           
+                //XORLW       
+                befehle.xorlw(binCode);    
                 return;
             }
             MessageBox.Show("Befehl nicht gefunden:" + binCode);
@@ -661,8 +735,12 @@ namespace PicSim
         private void btnReset_Click(object sender, EventArgs e)
         {
             InitRAM();
-            DataGridViewAktualisieren();
+            RegisterInitialisieren();          
+            GUIAktualisieren();
+            RegisterAktualisieren();
         }
+
+
     }
 }
  
