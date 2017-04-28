@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 
@@ -12,10 +13,14 @@ namespace PicSim
         //
         Befehle befehle = new Befehle();
 
+        //
         Resetter resetter = new Resetter();
 
         //Memory
         Memory mem = Memory.Instance;
+
+        //Quarzfrequenz
+        int Quarzfrequenz = 10;
 
         //Array für Befehle
         int[] BefehlsArray = new int[666];
@@ -222,6 +227,7 @@ namespace PicSim
                 }
             }
             lblWReg.Text  = befehle.WReg.ToString();
+            lblBottomValueQuarzfrequenz.Text = Quarzfrequenz.ToString();
         }
 
         public void RamAktualisieren()
@@ -526,7 +532,7 @@ namespace PicSim
                     Decode(BefehlsArray[mem.pc]);
                     GUIAktualisieren();
                     RegisterAktualisieren();
-                    //MessageBox.Show(BefehlsArray[6].ToString());
+                    System.Threading.Thread.Sleep(1 / Quarzfrequenz);
                 }
             }
         }
@@ -604,6 +610,7 @@ namespace PicSim
             if (binCode == 0x0 || binCode == 0x20 || binCode == 0x40 || binCode == 0x60)
             {
                 //NOP
+                befehle.nop(binCode);
                 return;
             }
             if ((binCode & 0x3F00) == 0x0D00)
@@ -670,7 +677,8 @@ namespace PicSim
             }
             if ((binCode & 0x3800) == 0x2000)
             {
-                //CALL            
+                //CALL      
+                befehle.call(binCode);      
                 return;
             }
             if (binCode == 0x64)
@@ -704,12 +712,14 @@ namespace PicSim
             }
             if ((binCode & 0x3C00) == 0x3400)
             {
-                //RETLW   
+                //RETLW
+                befehle.retlw(binCode);   
                 return;
             }
             if (binCode == 0x8)
             {
-                //RETURN                
+                //RETURN 
+                befehle.return_ (binCode);               
                 return;
             }
             if (binCode == 0x63)
@@ -740,7 +750,17 @@ namespace PicSim
             RegisterAktualisieren();
         }
 
-
+        private void lblQuarzfrequenz_Click(object sender, EventArgs e)
+        {
+            try {
+                Quarzfrequenz = int.Parse(txtQuarzfrequenz.Text);
+                GUIAktualisieren();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Nur int erlaubt!");
+            }
+        }
     }
 }
  

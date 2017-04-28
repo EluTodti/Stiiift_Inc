@@ -111,6 +111,39 @@ namespace PicSim
             int pclath = 0;  //<< 7;         //TODO pclath
             int adresse = (binCode & 0x07FF);
             mem.pc = adresse + pclath;
+            //PC -1, da in for Schleife erhöht
+            mem.pc--;
+        }
+
+        public void call(int binCode)
+        {
+            //TODO 2 Cycles
+            mem.pc++;
+            mem.Stack.Push(mem.pc);
+            int pclath = 0;  //<< 7;         //TODO pclath
+            int adresse = (binCode & 0x07FF);
+            mem.pc = adresse + pclath;
+            //PC -1, da in for Schleife erhöht
+            mem.pc--;
+        }
+
+        public void nop(int binCode)
+        {
+            //Nope
+        }
+
+        public void return_(int binCode)
+        {
+            mem.pc = mem.Stack.Pop();
+            //PC -1, da in for Schleife erhöht
+            mem.pc--;
+        }
+
+        public void retlw(int binCode)
+        {
+            literal = binCode & 0x00FF;
+            WReg = literal;
+            mem.pc = mem.Stack.Pop();
             mem.pc--;
         }
     }

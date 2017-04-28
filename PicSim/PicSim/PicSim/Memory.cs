@@ -28,5 +28,11 @@ namespace PicSim
 
         public int pc = 0;
 
+        //Stack
+        public Stack<int> Stack = new Stack<int>();
+        //TODO Stack in GUI
+
+
+
     }
 }
