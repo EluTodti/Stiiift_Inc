@@ -104,6 +104,7 @@ namespace PicSim
         public void RegisterInitialisieren()
         {
             befehle.WReg = 0;
+            mem.pc = 0;
         }
 
         //-----------------------------------
@@ -760,6 +761,14 @@ namespace PicSim
             {
                 MessageBox.Show("Nur int erlaubt!");
             }
+        }
+
+        private void btnStep_Click(object sender, EventArgs e)
+        {
+            Decode(BefehlsArray[mem.pc]);
+            GUIAktualisieren();
+            RegisterAktualisieren();
+            mem.pc++;
         }
     }
 }
