@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace PicSim
 {
      class Const
-    {   
+    {
+        public const int bank = 128;
         //Bank0
         public const int INDF = 0;
         public const int TMR0 = 1;
@@ -26,5 +27,7 @@ namespace PicSim
         public const int TRISB = 6;
         public const int EECON1 = 8;
         public const int EECON2 = 9;
+        
+        
     }
 }

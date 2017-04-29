@@ -10,76 +10,65 @@ namespace PicSim
     class Befehle
     {
         Memory mem = Memory.Instance;
-        
+        public int literal = 0;
+
         //string binaryval = Convert.ToString(literal, 2);
 
         //TODO complete
         public void CheckZero()
         {
 
-            if (WReg == 0)
+            if (mem.WReg == 0)
             {
-                //Status , 2 = 1
+                mem.ram[2, Const.STATUS] = 1;               
             }
             else
             {
-                //Status , 2 = 0
+                mem.ram[2, Const.STATUS] = 0;
             }
         }
+
         public void CheckCarry()
         {
-            if ((WReg & 256) == 1)
+            if ((mem.WReg & 256) == 1)
             {
-                //Status , 0 = 1
+                mem.ram[0, Const.STATUS] = 1;
             }
             else
             {
-                //Status , 0 = 0
+                mem.ram[0, Const.STATUS] = 0;
             }
         }
+
         public void CheckDigitCarry()
         {
             //
-        }
-
-
-        //W Register
-        public int WReg = 0;
-        //Literal
-        public int literal = 0;
+        }            
+        
         public void movlw(int binCode)
         {
             literal = binCode & 0x00FF;
-            WReg = literal;
-            //PC++
-            
+            mem.WReg = literal;            
         }
 
         public void andlw(int binCode)
         {
             literal = binCode & 0x00FF;
-            WReg = (literal & WReg);
-            //PC++
-            
+            mem.WReg = (literal & mem.WReg);                     
             CheckZero();
         }
 
         public void iorlw(int binCode)
         {
             literal = binCode & 0x00FF;
-            WReg = (literal | WReg);
-            //PC++
-            
+            mem.WReg = (literal | mem.WReg);            
             CheckZero();
-
         }
 
         public void sublw(int binCode)
         {
             literal = binCode & 0x00FF;
-            WReg = (literal - WReg);
-            //PC++
-            
+            mem.WReg = (literal - mem.WReg);
             CheckZero();
             CheckCarry();
             CheckDigitCarry();
@@ -88,18 +77,14 @@ namespace PicSim
         public void xorlw(int binCode)
         {
             literal = binCode & 0x00FF;
-            WReg = (literal ^ WReg);
-            //PC++
-            
+            mem.WReg = (literal ^ mem.WReg);
             CheckZero();
         }
 
         public void addlw(int binCode)
         {
             literal = binCode & 0x00FF;
-            WReg = literal + WReg;
-            //PC++
-            
+            mem.WReg = literal + mem.WReg;
             CheckZero();
             CheckCarry();
             CheckDigitCarry();
@@ -142,7 +127,7 @@ namespace PicSim
         public void retlw(int binCode)
         {
             literal = binCode & 0x00FF;
-            WReg = literal;
+            mem.WReg = literal;
             mem.pc = mem.Stack.Pop();
             mem.pc--;
         }

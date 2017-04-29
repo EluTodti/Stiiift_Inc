@@ -8,12 +8,9 @@ namespace PicSim
 {
     class Memory
     {
+        //Singleton
         private static Memory instance;
-        private Memory()
-        {
-
-        }
-
+        private Memory(){}
         public static Memory Instance
         {
             get
@@ -26,13 +23,15 @@ namespace PicSim
             }
         }
 
+        //Spezialregister
         public int pc = 0;
+        public int WReg = 0;
 
-        //Stack
         public Stack<int> Stack = new Stack<int>();
-        //TODO Stack in GUI
-
-
+       
+        public int[] BefehlsArray = new int[666];
+        public int[,] ram = new int[8, 256];
+        
 
     }
 }

@@ -27,3 +27,17 @@ C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim
 C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\obj\Debug\PicSim.csproj.ResolveComReference.cache
 C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\bin\Debug\Interop.WMPLib.dll
 C:\Users\paulg\Documents\Visual Studio 2015\Projects\PicSim\PicSim\PicSim\PicSim\bin\Debug\AxInterop.WMPLib.dll
+D:\Dokumente\GitHub\Stiiift_Inc\PicSim\PicSim\PicSim\bin\Debug\PicSim.exe.config
+D:\Dokumente\GitHub\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\Interop.WMPLib.dll
+D:\Dokumente\GitHub\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\AxInterop.WMPLib.dll
+D:\Dokumente\GitHub\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.csproj.ResolveComReference.cache
+D:\Dokumente\GitHub\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.exe
+D:\Dokumente\GitHub\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.pdb
+D:\Dokumente\GitHub\Stiiift_Inc\PicSim\PicSim\PicSim\bin\Debug\PicSim.exe
+D:\Dokumente\GitHub\Stiiift_Inc\PicSim\PicSim\PicSim\bin\Debug\PicSim.pdb
+D:\Dokumente\GitHub\Stiiift_Inc\PicSim\PicSim\PicSim\bin\Debug\Interop.WMPLib.dll
+D:\Dokumente\GitHub\Stiiift_Inc\PicSim\PicSim\PicSim\bin\Debug\AxInterop.WMPLib.dll
+D:\Dokumente\GitHub\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.csprojResolveAssemblyReference.cache
+D:\Dokumente\GitHub\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.Form1.resources
+D:\Dokumente\GitHub\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.Properties.Resources.resources
+D:\Dokumente\GitHub\Stiiift_Inc\PicSim\PicSim\PicSim\obj\Debug\PicSim.csproj.GenerateResource.Cache
