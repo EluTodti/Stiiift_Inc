@@ -28,10 +28,10 @@ namespace PicSim
         public int WReg = 0;
 
         public Stack<int> Stack = new Stack<int>();
-       
+        public int[] StackArray = new int[8];
+
         public int[] BefehlsArray = new int[666];
         public int[,] ram = new int[8, 256];
-        
 
     }
 }
