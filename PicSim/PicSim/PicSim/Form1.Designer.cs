@@ -38,26 +38,26 @@ namespace PicSim
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
@@ -126,8 +126,11 @@ namespace PicSim
             this.lblStackAddr5 = new System.Windows.Forms.Label();
             this.lblStackAddr6 = new System.Windows.Forms.Label();
             this.lblStackAddr7 = new System.Windows.Forms.Label();
-            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblStackContent0 = new System.Windows.Forms.Label();
+            this.tableLayoutSpezialregister = new System.Windows.Forms.TableLayoutPanel();
+            this.lblWRegTxt = new System.Windows.Forms.Label();
+            this.lblPCTxt = new System.Windows.Forms.Label();
+            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -135,6 +138,7 @@ namespace PicSim
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRam1)).BeginInit();
             this.tableLayoutStack.SuspendLayout();
+            this.tableLayoutSpezialregister.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -365,8 +369,8 @@ namespace PicSim
             // Address
             // 
             this.Address.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Address.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Address.DefaultCellStyle = dataGridViewCellStyle21;
             this.Address.Frozen = true;
             this.Address.HeaderText = "ADDR";
             this.Address.MinimumWidth = 80;
@@ -380,8 +384,8 @@ namespace PicSim
             // StatusName
             // 
             this.StatusName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.StatusName.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.StatusName.DefaultCellStyle = dataGridViewCellStyle22;
             this.StatusName.Frozen = true;
             this.StatusName.HeaderText = "Name";
             this.StatusName.MinimumWidth = 80;
@@ -395,8 +399,8 @@ namespace PicSim
             // Bit0
             // 
             this.Bit0.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Bit0.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit0.DefaultCellStyle = dataGridViewCellStyle23;
             this.Bit0.HeaderText = "Bit0";
             this.Bit0.MinimumWidth = 30;
             this.Bit0.Name = "Bit0";
@@ -409,8 +413,8 @@ namespace PicSim
             // Bit1
             // 
             this.Bit1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Bit1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit1.DefaultCellStyle = dataGridViewCellStyle24;
             this.Bit1.HeaderText = "Bit1";
             this.Bit1.MinimumWidth = 30;
             this.Bit1.Name = "Bit1";
@@ -423,8 +427,8 @@ namespace PicSim
             // Bit2
             // 
             this.Bit2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Bit2.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit2.DefaultCellStyle = dataGridViewCellStyle25;
             this.Bit2.HeaderText = "Bit2";
             this.Bit2.MinimumWidth = 30;
             this.Bit2.Name = "Bit2";
@@ -437,8 +441,8 @@ namespace PicSim
             // Bit3
             // 
             this.Bit3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Bit3.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit3.DefaultCellStyle = dataGridViewCellStyle26;
             this.Bit3.HeaderText = "Bit3";
             this.Bit3.MinimumWidth = 30;
             this.Bit3.Name = "Bit3";
@@ -451,8 +455,8 @@ namespace PicSim
             // Bit4
             // 
             this.Bit4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Bit4.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit4.DefaultCellStyle = dataGridViewCellStyle27;
             this.Bit4.HeaderText = "Bit4";
             this.Bit4.MinimumWidth = 30;
             this.Bit4.Name = "Bit4";
@@ -465,8 +469,8 @@ namespace PicSim
             // Bit5
             // 
             this.Bit5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Bit5.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit5.DefaultCellStyle = dataGridViewCellStyle28;
             this.Bit5.HeaderText = "Bit5";
             this.Bit5.MinimumWidth = 30;
             this.Bit5.Name = "Bit5";
@@ -479,8 +483,8 @@ namespace PicSim
             // Bit6
             // 
             this.Bit6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Bit6.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit6.DefaultCellStyle = dataGridViewCellStyle29;
             this.Bit6.HeaderText = "Bit6";
             this.Bit6.MinimumWidth = 30;
             this.Bit6.Name = "Bit6";
@@ -493,8 +497,8 @@ namespace PicSim
             // Bit7
             // 
             this.Bit7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Bit7.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit7.DefaultCellStyle = dataGridViewCellStyle30;
             this.Bit7.HeaderText = "Bit7";
             this.Bit7.MinimumWidth = 30;
             this.Bit7.Name = "Bit7";
@@ -571,8 +575,8 @@ namespace PicSim
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle31;
             this.dataGridViewTextBoxColumn1.Frozen = true;
             this.dataGridViewTextBoxColumn1.HeaderText = "ADDR";
             this.dataGridViewTextBoxColumn1.MinimumWidth = 80;
@@ -586,8 +590,8 @@ namespace PicSim
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle32;
             this.dataGridViewTextBoxColumn2.Frozen = true;
             this.dataGridViewTextBoxColumn2.HeaderText = "Name";
             this.dataGridViewTextBoxColumn2.MinimumWidth = 80;
@@ -601,8 +605,8 @@ namespace PicSim
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle33;
             this.dataGridViewTextBoxColumn3.HeaderText = "Bit0";
             this.dataGridViewTextBoxColumn3.MinimumWidth = 30;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
@@ -615,8 +619,8 @@ namespace PicSim
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle34;
             this.dataGridViewTextBoxColumn4.HeaderText = "Bit1";
             this.dataGridViewTextBoxColumn4.MinimumWidth = 30;
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
@@ -629,8 +633,8 @@ namespace PicSim
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle35;
             this.dataGridViewTextBoxColumn5.HeaderText = "Bit2";
             this.dataGridViewTextBoxColumn5.MinimumWidth = 30;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
@@ -643,8 +647,8 @@ namespace PicSim
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle36;
             this.dataGridViewTextBoxColumn6.HeaderText = "Bit3";
             this.dataGridViewTextBoxColumn6.MinimumWidth = 30;
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
@@ -657,8 +661,8 @@ namespace PicSim
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle37;
             this.dataGridViewTextBoxColumn7.HeaderText = "Bit4";
             this.dataGridViewTextBoxColumn7.MinimumWidth = 30;
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
@@ -671,8 +675,8 @@ namespace PicSim
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle38;
             this.dataGridViewTextBoxColumn8.HeaderText = "Bit5";
             this.dataGridViewTextBoxColumn8.MinimumWidth = 30;
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -685,8 +689,8 @@ namespace PicSim
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle39;
             this.dataGridViewTextBoxColumn9.HeaderText = "Bit6";
             this.dataGridViewTextBoxColumn9.MinimumWidth = 30;
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
@@ -699,8 +703,8 @@ namespace PicSim
             // dataGridViewTextBoxColumn10
             // 
             this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle40;
             this.dataGridViewTextBoxColumn10.HeaderText = "Bit7";
             this.dataGridViewTextBoxColumn10.MinimumWidth = 30;
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
@@ -723,18 +727,20 @@ namespace PicSim
             // lblWReg
             // 
             this.lblWReg.AutoSize = true;
-            this.lblWReg.Location = new System.Drawing.Point(622, 216);
+            this.lblWReg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblWReg.Location = new System.Drawing.Point(65, 0);
             this.lblWReg.Name = "lblWReg";
-            this.lblWReg.Size = new System.Drawing.Size(51, 17);
+            this.lblWReg.Size = new System.Drawing.Size(56, 25);
             this.lblWReg.TabIndex = 12;
             this.lblWReg.Text = "WREG";
             // 
             // lblPC
             // 
             this.lblPC.AutoSize = true;
-            this.lblPC.Location = new System.Drawing.Point(622, 242);
+            this.lblPC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPC.Location = new System.Drawing.Point(65, 25);
             this.lblPC.Name = "lblPC";
-            this.lblPC.Size = new System.Drawing.Size(26, 17);
+            this.lblPC.Size = new System.Drawing.Size(56, 25);
             this.lblPC.TabIndex = 13;
             this.lblPC.Text = "PC";
             // 
@@ -952,10 +958,6 @@ namespace PicSim
             this.lblStackAddr7.TabIndex = 15;
             this.lblStackAddr7.Text = "7";
             // 
-            // form1BindingSource
-            // 
-            this.form1BindingSource.DataSource = typeof(PicSim.Form1);
-            // 
             // lblStackContent0
             // 
             this.lblStackContent0.AutoSize = true;
@@ -965,16 +967,57 @@ namespace PicSim
             this.lblStackContent0.Size = new System.Drawing.Size(161, 20);
             this.lblStackContent0.TabIndex = 17;
             // 
+            // tableLayoutSpezialregister
+            // 
+            this.tableLayoutSpezialregister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tableLayoutSpezialregister.ColumnCount = 2;
+            this.tableLayoutSpezialregister.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutSpezialregister.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutSpezialregister.Controls.Add(this.lblPCTxt, 0, 1);
+            this.tableLayoutSpezialregister.Controls.Add(this.lblWRegTxt, 0, 0);
+            this.tableLayoutSpezialregister.Controls.Add(this.lblWReg, 1, 0);
+            this.tableLayoutSpezialregister.Controls.Add(this.lblPC, 1, 1);
+            this.tableLayoutSpezialregister.Location = new System.Drawing.Point(625, 617);
+            this.tableLayoutSpezialregister.Name = "tableLayoutSpezialregister";
+            this.tableLayoutSpezialregister.RowCount = 2;
+            this.tableLayoutSpezialregister.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutSpezialregister.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutSpezialregister.Size = new System.Drawing.Size(124, 50);
+            this.tableLayoutSpezialregister.TabIndex = 17;
+            // 
+            // lblWRegTxt
+            // 
+            this.lblWRegTxt.AutoSize = true;
+            this.lblWRegTxt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblWRegTxt.Location = new System.Drawing.Point(3, 0);
+            this.lblWRegTxt.Name = "lblWRegTxt";
+            this.lblWRegTxt.Size = new System.Drawing.Size(56, 25);
+            this.lblWRegTxt.TabIndex = 14;
+            this.lblWRegTxt.Text = "W-Reg";
+            // 
+            // lblPCTxt
+            // 
+            this.lblPCTxt.AutoSize = true;
+            this.lblPCTxt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPCTxt.Location = new System.Drawing.Point(3, 25);
+            this.lblPCTxt.Name = "lblPCTxt";
+            this.lblPCTxt.Size = new System.Drawing.Size(56, 25);
+            this.lblPCTxt.TabIndex = 15;
+            this.lblPCTxt.Text = "PC";
+            // 
+            // form1BindingSource
+            // 
+            this.form1BindingSource.DataSource = typeof(PicSim.Form1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1770, 881);
+            this.Controls.Add(this.tableLayoutSpezialregister);
             this.Controls.Add(this.tableLayoutStack);
             this.Controls.Add(this.btnStep);
-            this.Controls.Add(this.lblPC);
-            this.Controls.Add(this.lblWReg);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.textBoxCode);
@@ -996,6 +1039,8 @@ namespace PicSim
             ((System.ComponentModel.ISupportInitialize)(this.dgvRam1)).EndInit();
             this.tableLayoutStack.ResumeLayout(false);
             this.tableLayoutStack.PerformLayout();
+            this.tableLayoutSpezialregister.ResumeLayout(false);
+            this.tableLayoutSpezialregister.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1073,6 +1118,9 @@ namespace PicSim
         private Label lblStackAddr6;
         private Label lblStackAddr7;
         private Label lblStackContent0;
+        private TableLayoutPanel tableLayoutSpezialregister;
+        private Label lblPCTxt;
+        private Label lblWRegTxt;
     }
 }
 

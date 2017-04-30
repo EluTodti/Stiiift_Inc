@@ -324,8 +324,15 @@ namespace PicSim
         private void lblQuarzfrequenz_Click(object sender, EventArgs e)
         {
             try {
-                Quarzfrequenz = int.Parse(txtQuarzfrequenz.Text);
-                GUIAktualisieren();
+                if (int.Parse(txtQuarzfrequenz.Text) < 2147483648)
+                {
+                    Quarzfrequenz = int.Parse(txtQuarzfrequenz.Text);
+                    GUIAktualisieren();
+                }
+                else
+                {
+                    MessageBox.Show("Quarzwert zu groß");
+                }
             }
             catch (Exception exception)
             {
@@ -335,9 +342,16 @@ namespace PicSim
 
         private void btnStep_Click(object sender, EventArgs e)
         {
-            decoder.Decode(mem.BefehlsArray[mem.pc]);
-            GUIAktualisieren();
-            mem.pc++;
+            if (textBoxCode.Text == "")
+            {
+                MessageBox.Show("Kein Code gefunden!");
+            }
+            else
+            {
+                decoder.Decode(mem.BefehlsArray[mem.pc]);
+                GUIAktualisieren();
+                mem.pc++;
+            }
         }
 
     }
