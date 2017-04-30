@@ -226,7 +226,10 @@ namespace PicSim
                 befehle.xorlw(binCode);
                 return;
             }
-            MessageBox.Show("Befehl nicht gefunden:" + binCode);
+            else
+            {
+                MessageBox.Show("Befehl nicht gefunden:" + binCode);
+            }
         }
     }
 }

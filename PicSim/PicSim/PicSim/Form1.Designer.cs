@@ -108,32 +108,33 @@ namespace PicSim
             this.lblWReg = new System.Windows.Forms.Label();
             this.lblPC = new System.Windows.Forms.Label();
             this.btnStep = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.tableLayoutStack = new System.Windows.Forms.TableLayoutPanel();
+            this.lblStackAddr0 = new System.Windows.Forms.Label();
+            this.lblStackContent1 = new System.Windows.Forms.Label();
+            this.lblStackContent2 = new System.Windows.Forms.Label();
+            this.lblStackContent3 = new System.Windows.Forms.Label();
+            this.lblStackContent4 = new System.Windows.Forms.Label();
+            this.lblStackContent5 = new System.Windows.Forms.Label();
+            this.lblStackContent6 = new System.Windows.Forms.Label();
+            this.lblStackContent7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
+            this.lblStackAddr = new System.Windows.Forms.Label();
+            this.lblStackAddr1 = new System.Windows.Forms.Label();
+            this.lblStackAddr2 = new System.Windows.Forms.Label();
+            this.lblStackAddr3 = new System.Windows.Forms.Label();
+            this.lblStackAddr4 = new System.Windows.Forms.Label();
+            this.lblStackAddr5 = new System.Windows.Forms.Label();
+            this.lblStackAddr6 = new System.Windows.Forms.Label();
+            this.lblStackAddr7 = new System.Windows.Forms.Label();
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblStackContent0 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRam0)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRam1)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutStack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -748,123 +749,118 @@ namespace PicSim
             this.btnStep.UseVisualStyleBackColor = true;
             this.btnStep.Click += new System.EventHandler(this.btnStep_Click);
             // 
-            // tableLayoutPanel1
+            // tableLayoutStack
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.25581F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.74419F));
-            this.tableLayoutPanel1.Controls.Add(this.label17, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.label16, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label15, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label14, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label12, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label10, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label13, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(625, 673);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 9;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(294, 179);
-            this.tableLayoutPanel1.TabIndex = 16;
+            this.tableLayoutStack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tableLayoutStack.ColumnCount = 2;
+            this.tableLayoutStack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.25581F));
+            this.tableLayoutStack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.74419F));
+            this.tableLayoutStack.Controls.Add(this.lblStackContent0, 1, 8);
+            this.tableLayoutStack.Controls.Add(this.lblStackAddr0, 0, 8);
+            this.tableLayoutStack.Controls.Add(this.lblStackContent1, 1, 7);
+            this.tableLayoutStack.Controls.Add(this.lblStackContent2, 1, 6);
+            this.tableLayoutStack.Controls.Add(this.lblStackContent3, 1, 5);
+            this.tableLayoutStack.Controls.Add(this.lblStackContent4, 1, 4);
+            this.tableLayoutStack.Controls.Add(this.lblStackContent5, 1, 3);
+            this.tableLayoutStack.Controls.Add(this.lblStackContent6, 1, 2);
+            this.tableLayoutStack.Controls.Add(this.lblStackContent7, 1, 1);
+            this.tableLayoutStack.Controls.Add(this.label4, 1, 0);
+            this.tableLayoutStack.Controls.Add(this.lblStackAddr, 0, 0);
+            this.tableLayoutStack.Controls.Add(this.lblStackAddr1, 0, 7);
+            this.tableLayoutStack.Controls.Add(this.lblStackAddr2, 0, 6);
+            this.tableLayoutStack.Controls.Add(this.lblStackAddr3, 0, 5);
+            this.tableLayoutStack.Controls.Add(this.lblStackAddr4, 0, 4);
+            this.tableLayoutStack.Controls.Add(this.lblStackAddr5, 0, 3);
+            this.tableLayoutStack.Controls.Add(this.lblStackAddr6, 0, 2);
+            this.tableLayoutStack.Controls.Add(this.lblStackAddr7, 0, 1);
+            this.tableLayoutStack.Location = new System.Drawing.Point(625, 673);
+            this.tableLayoutStack.Name = "tableLayoutStack";
+            this.tableLayoutStack.RowCount = 9;
+            this.tableLayoutStack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutStack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutStack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutStack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutStack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutStack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutStack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutStack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutStack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutStack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutStack.Size = new System.Drawing.Size(294, 179);
+            this.tableLayoutStack.TabIndex = 16;
             // 
-            // label1
+            // lblStackAddr0
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 20);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "7";
+            this.lblStackAddr0.AutoSize = true;
+            this.lblStackAddr0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStackAddr0.Location = new System.Drawing.Point(3, 160);
+            this.lblStackAddr0.Name = "lblStackAddr0";
+            this.lblStackAddr0.Size = new System.Drawing.Size(121, 20);
+            this.lblStackAddr0.TabIndex = 42;
+            this.lblStackAddr0.Text = "0";
             // 
-            // label3
+            // lblStackContent1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 40);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(121, 20);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "6";
+            this.lblStackContent1.AutoSize = true;
+            this.lblStackContent1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStackContent1.Location = new System.Drawing.Point(130, 140);
+            this.lblStackContent1.Name = "lblStackContent1";
+            this.lblStackContent1.Size = new System.Drawing.Size(161, 20);
+            this.lblStackContent1.TabIndex = 41;
             // 
-            // label5
+            // lblStackContent2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 60);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(121, 20);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "5";
+            this.lblStackContent2.AutoSize = true;
+            this.lblStackContent2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStackContent2.Location = new System.Drawing.Point(130, 120);
+            this.lblStackContent2.Name = "lblStackContent2";
+            this.lblStackContent2.Size = new System.Drawing.Size(161, 20);
+            this.lblStackContent2.TabIndex = 40;
             // 
-            // label7
+            // lblStackContent3
             // 
-            this.label7.AutoSize = true;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(3, 80);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(121, 20);
-            this.label7.TabIndex = 21;
-            this.label7.Text = "4";
+            this.lblStackContent3.AutoSize = true;
+            this.lblStackContent3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStackContent3.Location = new System.Drawing.Point(130, 100);
+            this.lblStackContent3.Name = "lblStackContent3";
+            this.lblStackContent3.Size = new System.Drawing.Size(161, 20);
+            this.lblStackContent3.TabIndex = 39;
             // 
-            // label9
+            // lblStackContent4
             // 
-            this.label9.AutoSize = true;
-            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(3, 100);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(121, 20);
-            this.label9.TabIndex = 23;
-            this.label9.Text = "3";
+            this.lblStackContent4.AutoSize = true;
+            this.lblStackContent4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStackContent4.Location = new System.Drawing.Point(130, 80);
+            this.lblStackContent4.Name = "lblStackContent4";
+            this.lblStackContent4.Size = new System.Drawing.Size(161, 20);
+            this.lblStackContent4.TabIndex = 38;
             // 
-            // label11
+            // lblStackContent5
             // 
-            this.label11.AutoSize = true;
-            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(3, 120);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(121, 20);
-            this.label11.TabIndex = 25;
-            this.label11.Text = "2";
+            this.lblStackContent5.AutoSize = true;
+            this.lblStackContent5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStackContent5.Location = new System.Drawing.Point(130, 60);
+            this.lblStackContent5.Name = "lblStackContent5";
+            this.lblStackContent5.Size = new System.Drawing.Size(161, 20);
+            this.lblStackContent5.TabIndex = 37;
             // 
-            // label13
+            // lblStackContent6
             // 
-            this.label13.AutoSize = true;
-            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label13.Location = new System.Drawing.Point(3, 140);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(121, 20);
-            this.label13.TabIndex = 32;
-            this.label13.Text = "1";
+            this.lblStackContent6.AutoSize = true;
+            this.lblStackContent6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStackContent6.Location = new System.Drawing.Point(130, 40);
+            this.lblStackContent6.Name = "lblStackContent6";
+            this.lblStackContent6.Size = new System.Drawing.Size(161, 20);
+            this.lblStackContent6.TabIndex = 36;
             // 
-            // label2
+            // lblStackContent7
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 20);
-            this.label2.TabIndex = 33;
-            this.label2.Text = "Stack ADDR";
+            this.lblStackContent7.AutoSize = true;
+            this.lblStackContent7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStackContent7.Location = new System.Drawing.Point(130, 20);
+            this.lblStackContent7.Name = "lblStackContent7";
+            this.lblStackContent7.Size = new System.Drawing.Size(161, 20);
+            this.lblStackContent7.TabIndex = 35;
             // 
             // label4
             // 
@@ -876,82 +872,98 @@ namespace PicSim
             this.label4.TabIndex = 34;
             this.label4.Text = "Inhalt";
             // 
-            // label6
+            // lblStackAddr
             // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(130, 20);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(161, 20);
-            this.label6.TabIndex = 35;
+            this.lblStackAddr.AutoSize = true;
+            this.lblStackAddr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStackAddr.Location = new System.Drawing.Point(3, 0);
+            this.lblStackAddr.Name = "lblStackAddr";
+            this.lblStackAddr.Size = new System.Drawing.Size(121, 20);
+            this.lblStackAddr.TabIndex = 33;
+            this.lblStackAddr.Text = "Stack ADDR";
             // 
-            // label8
+            // lblStackAddr1
             // 
-            this.label8.AutoSize = true;
-            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(130, 40);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(161, 20);
-            this.label8.TabIndex = 36;
+            this.lblStackAddr1.AutoSize = true;
+            this.lblStackAddr1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStackAddr1.Location = new System.Drawing.Point(3, 140);
+            this.lblStackAddr1.Name = "lblStackAddr1";
+            this.lblStackAddr1.Size = new System.Drawing.Size(121, 20);
+            this.lblStackAddr1.TabIndex = 32;
+            this.lblStackAddr1.Text = "1";
             // 
-            // label10
+            // lblStackAddr2
             // 
-            this.label10.AutoSize = true;
-            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(130, 60);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(161, 20);
-            this.label10.TabIndex = 37;
+            this.lblStackAddr2.AutoSize = true;
+            this.lblStackAddr2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStackAddr2.Location = new System.Drawing.Point(3, 120);
+            this.lblStackAddr2.Name = "lblStackAddr2";
+            this.lblStackAddr2.Size = new System.Drawing.Size(121, 20);
+            this.lblStackAddr2.TabIndex = 25;
+            this.lblStackAddr2.Text = "2";
             // 
-            // label12
+            // lblStackAddr3
             // 
-            this.label12.AutoSize = true;
-            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(130, 80);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(161, 20);
-            this.label12.TabIndex = 38;
+            this.lblStackAddr3.AutoSize = true;
+            this.lblStackAddr3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStackAddr3.Location = new System.Drawing.Point(3, 100);
+            this.lblStackAddr3.Name = "lblStackAddr3";
+            this.lblStackAddr3.Size = new System.Drawing.Size(121, 20);
+            this.lblStackAddr3.TabIndex = 23;
+            this.lblStackAddr3.Text = "3";
             // 
-            // label14
+            // lblStackAddr4
             // 
-            this.label14.AutoSize = true;
-            this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label14.Location = new System.Drawing.Point(130, 100);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(161, 20);
-            this.label14.TabIndex = 39;
+            this.lblStackAddr4.AutoSize = true;
+            this.lblStackAddr4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStackAddr4.Location = new System.Drawing.Point(3, 80);
+            this.lblStackAddr4.Name = "lblStackAddr4";
+            this.lblStackAddr4.Size = new System.Drawing.Size(121, 20);
+            this.lblStackAddr4.TabIndex = 21;
+            this.lblStackAddr4.Text = "4";
             // 
-            // label15
+            // lblStackAddr5
             // 
-            this.label15.AutoSize = true;
-            this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label15.Location = new System.Drawing.Point(130, 120);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(161, 20);
-            this.label15.TabIndex = 40;
+            this.lblStackAddr5.AutoSize = true;
+            this.lblStackAddr5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStackAddr5.Location = new System.Drawing.Point(3, 60);
+            this.lblStackAddr5.Name = "lblStackAddr5";
+            this.lblStackAddr5.Size = new System.Drawing.Size(121, 20);
+            this.lblStackAddr5.TabIndex = 19;
+            this.lblStackAddr5.Text = "5";
             // 
-            // label16
+            // lblStackAddr6
             // 
-            this.label16.AutoSize = true;
-            this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label16.Location = new System.Drawing.Point(130, 140);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(161, 20);
-            this.label16.TabIndex = 41;
+            this.lblStackAddr6.AutoSize = true;
+            this.lblStackAddr6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStackAddr6.Location = new System.Drawing.Point(3, 40);
+            this.lblStackAddr6.Name = "lblStackAddr6";
+            this.lblStackAddr6.Size = new System.Drawing.Size(121, 20);
+            this.lblStackAddr6.TabIndex = 17;
+            this.lblStackAddr6.Text = "6";
             // 
-            // label17
+            // lblStackAddr7
             // 
-            this.label17.AutoSize = true;
-            this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label17.Location = new System.Drawing.Point(3, 160);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(121, 20);
-            this.label17.TabIndex = 42;
-            this.label17.Text = "0";
+            this.lblStackAddr7.AutoSize = true;
+            this.lblStackAddr7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStackAddr7.Location = new System.Drawing.Point(3, 20);
+            this.lblStackAddr7.Name = "lblStackAddr7";
+            this.lblStackAddr7.Size = new System.Drawing.Size(121, 20);
+            this.lblStackAddr7.TabIndex = 15;
+            this.lblStackAddr7.Text = "7";
             // 
             // form1BindingSource
             // 
             this.form1BindingSource.DataSource = typeof(PicSim.Form1);
+            // 
+            // lblStackContent0
+            // 
+            this.lblStackContent0.AutoSize = true;
+            this.lblStackContent0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStackContent0.Location = new System.Drawing.Point(130, 160);
+            this.lblStackContent0.Name = "lblStackContent0";
+            this.lblStackContent0.Size = new System.Drawing.Size(161, 20);
+            this.lblStackContent0.TabIndex = 17;
             // 
             // Form1
             // 
@@ -959,7 +971,7 @@ namespace PicSim
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1770, 881);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tableLayoutStack);
             this.Controls.Add(this.btnStep);
             this.Controls.Add(this.lblPC);
             this.Controls.Add(this.lblWReg);
@@ -973,7 +985,6 @@ namespace PicSim
             this.Name = "Form1";
             this.Text = "PicSim";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -983,8 +994,8 @@ namespace PicSim
             ((System.ComponentModel.ISupportInitialize)(this.dgvRam0)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRam1)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutStack.ResumeLayout(false);
+            this.tableLayoutStack.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1043,24 +1054,25 @@ namespace PicSim
         private Label lblWReg;
         private Label lblPC;
         private Button btnStep;
-        private TableLayoutPanel tableLayoutPanel1;
-        private Label label17;
-        private Label label16;
-        private Label label15;
-        private Label label14;
-        private Label label12;
-        private Label label10;
-        private Label label8;
-        private Label label6;
+        private TableLayoutPanel tableLayoutStack;
+        private Label lblStackAddr0;
+        private Label lblStackContent1;
+        private Label lblStackContent2;
+        private Label lblStackContent3;
+        private Label lblStackContent4;
+        private Label lblStackContent5;
+        private Label lblStackContent6;
+        private Label lblStackContent7;
         private Label label4;
-        private Label label2;
-        private Label label13;
-        private Label label11;
-        private Label label9;
-        private Label label7;
-        private Label label5;
-        private Label label3;
-        private Label label1;
+        private Label lblStackAddr;
+        private Label lblStackAddr1;
+        private Label lblStackAddr2;
+        private Label lblStackAddr3;
+        private Label lblStackAddr4;
+        private Label lblStackAddr5;
+        private Label lblStackAddr6;
+        private Label lblStackAddr7;
+        private Label lblStackContent0;
     }
 }
 

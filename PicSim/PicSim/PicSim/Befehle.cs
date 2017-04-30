@@ -43,7 +43,22 @@ namespace PicSim
         public void CheckDigitCarry()
         {
             //
-        }            
+        }   
+        
+        //Befehle für Stackänderungen
+        public void StackPop()
+        {
+            mem.pc = mem.Stack.Pop();
+            mem.StackArray = mem.Stack.ToArray();
+        }
+        public void StackPush()
+        {
+            mem.Stack.Push(mem.pc);
+            mem.StackArray = mem.Stack.ToArray();
+        }
+        //==============================
+
+        //Befehle         
         
         public void movlw(int binCode)
         {
@@ -104,7 +119,7 @@ namespace PicSim
         {
             //TODO 2 Cycles
             mem.pc++;
-            mem.Stack.Push(mem.pc);
+            StackPush();
             int pclath = 0;  //<< 7;         //TODO pclath
             int adresse = (binCode & 0x07FF);
             mem.pc = adresse + pclath;
@@ -119,7 +134,7 @@ namespace PicSim
 
         public void return_(int binCode)
         {
-            mem.pc = mem.Stack.Pop();
+            StackPop();
             //PC -1, da in for Schleife erhöht
             mem.pc--;
         }
@@ -128,7 +143,7 @@ namespace PicSim
         {
             literal = binCode & 0x00FF;
             mem.WReg = literal;
-            mem.pc = mem.Stack.Pop();
+            StackPop();
             mem.pc--;
         }
     }

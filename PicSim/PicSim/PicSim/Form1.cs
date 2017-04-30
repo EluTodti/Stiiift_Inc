@@ -122,8 +122,20 @@ namespace PicSim
 
             //Register
             lblWReg.Text  = mem.WReg.ToString();
+            lblPC.Text = mem.pc.ToString();
 
+            //Quarzfrequenz
             lblBottomValueQuarzfrequenz.Text = Quarzfrequenz.ToString();
+            //Stack
+            lblStackContent0.Text = mem.StackArray[0].ToString();
+            lblStackContent1.Text = mem.StackArray[1].ToString();
+            lblStackContent2.Text = mem.StackArray[2].ToString();
+            lblStackContent3.Text = mem.StackArray[3].ToString();
+            lblStackContent4.Text = mem.StackArray[4].ToString();
+            lblStackContent5.Text = mem.StackArray[5].ToString();
+            lblStackContent6.Text = mem.StackArray[6].ToString();
+            lblStackContent7.Text = mem.StackArray[7].ToString();
+
         }
 
         private void RamAktualisieren()
@@ -328,25 +340,6 @@ namespace PicSim
             mem.pc++;
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void toolStripComboBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
  
