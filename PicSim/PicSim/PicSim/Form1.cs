@@ -140,17 +140,17 @@ namespace PicSim
 
         private void RamAktualisieren()
         {
-            for (int Spalte = 2; Spalte < 8; Spalte++)
+            for (int Spalte = 2; Spalte < 10; Spalte++)
             {
                 for (int Reihe = 0; Reihe < 80; Reihe++)
                 {
-                    mem.ram[Spalte, Reihe] =  (int)dgvRam0[Spalte, Reihe].Value;
+                    mem.ram[Spalte-2, Reihe] =  (int)dgvRam0[Spalte, Reihe].Value;
                 }
                 int dgvRamReihe = 0;
                 for (int Reihe = 128; Reihe < 207; Reihe++)
                 {
                    
-                    mem.ram[Spalte, Reihe] = (int)dgvRam1[Spalte, dgvRamReihe].Value;
+                    mem.ram[Spalte-2, Reihe] = (int)dgvRam1[Spalte, dgvRamReihe].Value;
                     dgvRamReihe++;
                 }
             }

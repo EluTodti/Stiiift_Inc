@@ -20,6 +20,7 @@ namespace PicSim
         private int getFileVal(int f)
         {
             int FileVal = 0;
+
             for (int i = 0; i < 8; i++)
             {
                 FileVal += mem.ram[i, f] * (int)Math.Pow(2, i);
@@ -29,13 +30,21 @@ namespace PicSim
 
         private void schreibeInRam(int f, int val)
         {
+            
+            if (val > 255)
+            {
+                val = val & 0x00FF;
+            }
+
             string binVal = Convert.ToString(val, 2);
             binVal.ToArray();
+           
             for (int i = 0; i < binVal.Length; i++)
             {
                 mem.ram[i, f] = int.Parse(binVal[binVal.Length - i - 1].ToString());
             }
         }
+
 
         //TODO complete
         public void CheckZero()
@@ -183,15 +192,19 @@ namespace PicSim
             destination = binCode & 0x0080;
 
             fileVal = getFileVal(fileAdress);
-
+            MessageBox.Show("der Wert aus dem Register 0C ist: " + fileVal.ToString());
             if (destination == 0)
             {
-                mem.WReg = mem.WReg + fileVal;
+               mem.WReg = mem.WReg + fileVal;
             }
             else
             {              
                 schreibeInRam(fileAdress, mem.WReg + fileVal);
             }
+            
+            CheckZero();
+            CheckCarry();
+            CheckDigitCarry();
         }   
     }
 }
