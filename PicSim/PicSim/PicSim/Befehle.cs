@@ -11,8 +11,9 @@ namespace PicSim
     class Befehle
     {
         Memory mem = Memory.Instance;
-        public int literal = 0;
-        public int fileAdress = 0;
+        private int literal = 0;
+        private int fileAdress = 0;
+        private int fileVal = 0;
         private int destination;
 
         //string binaryval = Convert.ToString(literal, 2);
@@ -37,11 +38,16 @@ namespace PicSim
             }
 
             string binVal = Convert.ToString(val, 2);
-            binVal.ToArray();
-           
-            for (int i = 0; i < binVal.Length; i++)
+            //Nullen werden bei String vorrangestellt bis 8 Zeichen
+           while(binVal.Length < 8)
             {
-                mem.ram[i, f] = int.Parse(binVal[binVal.Length - i - 1].ToString());
+                binVal= binVal.Insert(0, "0");
+            }
+               binVal.ToArray(); //Array enthält immer 8 Bit
+
+            for (int i = 0; i < 8; i++)
+            {
+                mem.ram[i, f] = int.Parse(binVal[7 - i].ToString());
             }
         }
 
@@ -75,7 +81,12 @@ namespace PicSim
         public void CheckDigitCarry()
         {
             //
-        }   
+        }
+
+        public void setZero(int n)
+        {
+            mem.ram[2, Const.STATUS] = n;
+        }
         
         //Befehle für Stackänderungen
         public void StackPop()
@@ -186,13 +197,12 @@ namespace PicSim
         }
 
         public void addwf(int binCode)
-        {
-            int fileVal;
+        {            
             fileAdress = binCode & 0x007F;
             destination = binCode & 0x0080;
 
             fileVal = getFileVal(fileAdress);
-            MessageBox.Show("der Wert aus dem Register 0C ist: " + fileVal.ToString());
+            
             if (destination == 0)
             {
                mem.WReg = mem.WReg + fileVal;
@@ -205,6 +215,28 @@ namespace PicSim
             CheckZero();
             CheckCarry();
             CheckDigitCarry();
-        }   
+        } 
+        public void andwf(int binCode)
+        {
+            fileAdress = binCode & 0x007F;
+            destination = binCode & 0x0080;
+            fileVal= getFileVal(fileAdress);
+
+            if (destination == 0)
+            {
+                mem.WReg = mem.WReg & fileVal;
+            }
+            else
+            {
+                schreibeInRam(fileAdress, mem.WReg & fileVal);
+            }
+            CheckZero();
+        } 
+        public void clrf(int binCode)
+        {
+            fileAdress = binCode & 0x007F;
+            schreibeInRam(fileAdress, 0);
+            setZero(1);
+        }
     }
 }

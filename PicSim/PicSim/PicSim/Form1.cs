@@ -349,8 +349,8 @@ namespace PicSim
             else
             {
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
-                GUIAktualisieren();
                 mem.pc++;
+                GUIAktualisieren();                
             }
         }
 

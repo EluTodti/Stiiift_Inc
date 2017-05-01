@@ -37,11 +37,13 @@ namespace PicSim
             if ((binCode & 0x3F00) == 0x0500)
             {
                 //ANDWF
+                befehle.andwf(binCode);
                 return;
             }
             if ((binCode & 0x3F80) == 0x0180)
             {
                 //CLRF
+                befehle.clrf(binCode);
                 return;
             }
             if ((binCode & 0x3F80) == 0x0100)
