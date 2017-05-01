@@ -54,11 +54,13 @@ namespace PicSim
             if ((binCode & 0x3F00) == 0x0900)
             {
                 //COMF
+                befehle.comf(binCode);
                 return;
             }
             if ((binCode & 0x3F00) == 0x0300)
             {
                 //DECF
+                befehle.decf(binCode);
                 return;
             }
             if ((binCode & 0x3F00) == 0x0B00)
@@ -69,6 +71,7 @@ namespace PicSim
             if ((binCode & 0x3F00) == 0x0A00)
             {
                 //INCF
+                befehle.incf(binCode);
                 return;
             }
             if ((binCode & 0x3F00) == 0x0F00)
@@ -84,6 +87,7 @@ namespace PicSim
             if ((binCode & 0x3F00) == 0x0800)
             {
                 //MOVF
+                befehle.movf(binCode);
                 return;
             }
             if ((binCode & 0x3F80) == 0x0080)

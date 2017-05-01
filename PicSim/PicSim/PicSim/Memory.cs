@@ -33,5 +33,17 @@ namespace PicSim
         public int[] BefehlsArray = new int[666];
         public int[,] ram = new int[8, 256];
 
+        public void setWReg(int val)
+        {
+            //Umgang mit negativen Werten
+            if (val < 0)
+            {
+                WReg = 256 + val;
+            }
+            else
+            {
+                WReg = val;
+            }
+        }
     }
 }

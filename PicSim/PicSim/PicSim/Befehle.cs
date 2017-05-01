@@ -53,10 +53,10 @@ namespace PicSim
 
 
         //TODO complete
-        public void CheckZero()
+        //Argumentübergabe, da die Operation an sich auf 0 überprüft werden muss, nicht nur das WReg.
+        public void CheckZero(int val)
         {
-
-            if (mem.WReg == 0)
+            if (val == 0)
             {
                 mem.ram[2, Const.STATUS] = 1;               
             }
@@ -106,28 +106,28 @@ namespace PicSim
         public void movlw(int binCode)
         {
             literal = binCode & 0x00FF;
-            mem.WReg = literal;            
+            mem.setWReg(literal);            
         }
 
         public void andlw(int binCode)
         {
             literal = binCode & 0x00FF;
-            mem.WReg = (literal & mem.WReg);                     
-            CheckZero();
+            mem.setWReg(literal & mem.WReg);                     
+            CheckZero(mem.WReg);
         }
 
         public void iorlw(int binCode)
         {
             literal = binCode & 0x00FF;
-            mem.WReg = (literal | mem.WReg);            
-            CheckZero();
+            mem.setWReg(literal | mem.WReg);            
+            CheckZero(mem.WReg);
         }
 
         public void sublw(int binCode)
         {
             literal = binCode & 0x00FF;
-            mem.WReg = (literal - mem.WReg);
-            CheckZero();
+            mem.setWReg(literal - mem.WReg);
+            CheckZero(mem.WReg);
             CheckCarry();
             CheckDigitCarry();
         }
@@ -135,15 +135,15 @@ namespace PicSim
         public void xorlw(int binCode)
         {
             literal = binCode & 0x00FF;
-            mem.WReg = (literal ^ mem.WReg);
-            CheckZero();
+            mem.setWReg(literal ^ mem.WReg);
+            CheckZero(mem.WReg);
         }
 
         public void addlw(int binCode)
         {
             literal = binCode & 0x00FF;
-            mem.WReg = literal + mem.WReg;
-            CheckZero();
+            mem.setWReg(literal + mem.WReg);
+            CheckZero(mem.WReg);
             CheckCarry();
             CheckDigitCarry();
         }
@@ -185,7 +185,7 @@ namespace PicSim
         public void retlw(int binCode)
         {
             literal = binCode & 0x00FF;
-            mem.WReg = literal;
+            mem.setWReg(literal);
             StackPop();
             mem.pc--;
         }
@@ -199,44 +199,114 @@ namespace PicSim
         public void addwf(int binCode)
         {            
             fileAdress = binCode & 0x007F;
+            fileVal = getFileVal(fileAdress);
             destination = binCode & 0x0080;
 
-            fileVal = getFileVal(fileAdress);
-            
             if (destination == 0)
             {
-               mem.WReg = mem.WReg + fileVal;
+                mem.setWReg(mem.WReg + fileVal);
+                
             }
             else
             {              
                 schreibeInRam(fileAdress, mem.WReg + fileVal);
             }
-            
-            CheckZero();
+            CheckZero(mem.WReg + fileVal);
             CheckCarry();
             CheckDigitCarry();
         } 
+
         public void andwf(int binCode)
         {
-            fileAdress = binCode & 0x007F;
-            destination = binCode & 0x0080;
+            fileAdress = binCode & 0x007F;           
             fileVal= getFileVal(fileAdress);
+            destination = binCode & 0x0080;
 
             if (destination == 0)
             {
-                mem.WReg = mem.WReg & fileVal;
+                mem.setWReg(mem.WReg & fileVal);
             }
             else
             {
                 schreibeInRam(fileAdress, mem.WReg & fileVal);
             }
-            CheckZero();
+            CheckZero(mem.WReg & fileVal);
         } 
+
         public void clrf(int binCode)
         {
             fileAdress = binCode & 0x007F;
             schreibeInRam(fileAdress, 0);
             setZero(1);
+        }
+
+        public void comf(int binCode)
+        {
+            fileAdress = binCode & 0x007F;
+            fileVal = getFileVal(fileAdress);
+            destination = binCode & 0x0080;
+
+            if (destination == 0)
+            {
+                mem.setWReg(255 - fileVal);
+            }
+            else
+            {
+                schreibeInRam(fileAdress, 255 - fileVal);
+            }
+
+            CheckZero(255 - fileVal);
+        }
+
+        public void decf(int binCode)
+        {
+            fileAdress = binCode & 0x007F;
+            fileVal = getFileVal(fileAdress);
+            destination = binCode & 0x0080;
+
+            if (destination == 0)
+            {
+                mem.setWReg(fileVal - 1);
+            }
+            else
+            {
+                schreibeInRam(fileAdress, fileVal - 1);
+            }
+            CheckZero(fileVal - 1);
+        }
+
+        public void incf(int binCode)
+        {
+            fileAdress = binCode & 0x007F;
+            fileVal = getFileVal(fileAdress);
+            destination = binCode & 0x0080;
+
+            if (destination == 0)
+            {
+                mem.setWReg(fileVal + 1);
+            }
+            else
+            {
+                schreibeInRam(fileAdress, fileVal + 1);
+            }
+            CheckZero(fileVal + 1);
+        }
+
+        public void movf(int binCode)
+        {
+            fileAdress = binCode & 0x007F;
+            fileVal = getFileVal(fileAdress);
+            destination = binCode & 0x0080;
+
+            if (destination == 0)
+            {
+                mem.setWReg(fileVal);
+            }
+            else
+            {
+                schreibeInRam(fileAdress, fileVal);
+            }
+            CheckZero(fileVal);
         }
     }
 }
