@@ -13,8 +13,29 @@ namespace PicSim
         Memory mem = Memory.Instance;
         public int literal = 0;
         public int fileAdress = 0;
+        private int destination;
 
         //string binaryval = Convert.ToString(literal, 2);
+
+        private int getFileVal(int f)
+        {
+            int FileVal = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                FileVal += mem.ram[i, f] * (int)Math.Pow(2, i);
+            }
+            return FileVal;
+        }
+
+        private void schreibeInRam(int f, int val)
+        {
+            string binVal = Convert.ToString(val, 2);
+            binVal.ToArray();
+            for (int i = 0; i < binVal.Length; i++)
+            {
+                mem.ram[i, f] = int.Parse(binVal[binVal.Length - i - 1].ToString());
+            }
+        }
 
         //TODO complete
         public void CheckZero()
@@ -152,13 +173,25 @@ namespace PicSim
         public void movwf(int binCode)
         {
             fileAdress = binCode & 0x007F;
-            string w = Convert.ToString(mem.WReg, 2);
-            w.ToArray();
-
-            for (int i = 0; i < w.Length; i++)
-            {
-                mem.ram[i, fileAdress] = int.Parse(w[w.Length-i-1].ToString()); //in w[] sind die Bits MSB, im Speicher ist aber LSB. --> w[w.Length-i-1] 
-            }
+            schreibeInRam(fileAdress, mem.WReg);
         }
+
+        public void addwf(int binCode)
+        {
+            int fileVal;
+            fileAdress = binCode & 0x007F;
+            destination = binCode & 0x0080;
+
+            fileVal = getFileVal(fileAdress);
+
+            if (destination == 0)
+            {
+                mem.WReg = mem.WReg + fileVal;
+            }
+            else
+            {              
+                schreibeInRam(fileAdress, mem.WReg + fileVal);
+            }
+        }   
     }
 }

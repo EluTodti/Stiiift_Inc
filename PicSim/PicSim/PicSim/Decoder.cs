@@ -31,7 +31,7 @@ namespace PicSim
             if ((binCode & 0x3F00) == 0x0700)
             {
                 //ADDWF
-
+                befehle.addwf(binCode);
                 return;
             }
             if ((binCode & 0x3F00) == 0x0500)
