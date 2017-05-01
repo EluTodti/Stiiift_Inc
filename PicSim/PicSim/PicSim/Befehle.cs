@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace PicSim
     {
         Memory mem = Memory.Instance;
         public int literal = 0;
+        public int fileAdress = 0;
 
         //string binaryval = Convert.ToString(literal, 2);
 
@@ -145,6 +147,18 @@ namespace PicSim
             mem.WReg = literal;
             StackPop();
             mem.pc--;
+        }
+
+        public void movwf(int binCode)
+        {
+            fileAdress = binCode & 0x007F;
+            string w = Convert.ToString(mem.WReg, 2);
+            w.ToArray();
+
+            for (int i = 0; i < w.Length; i++)
+            {
+                mem.ram[i, fileAdress] = int.Parse(w[w.Length-i-1].ToString()); //in w[] sind die Bits MSB, im Speicher ist aber LSB. --> w[w.Length-i-1] 
+            }
         }
     }
 }

@@ -87,6 +87,7 @@ namespace PicSim
             if ((binCode & 0x3F80) == 0x0080)
             {
                 //MOVWF
+                befehle.movwf(binCode);
                 return;
             }
             if ((binCode & 0x3F00) == 0x0300)
