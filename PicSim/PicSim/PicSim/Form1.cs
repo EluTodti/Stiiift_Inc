@@ -7,8 +7,8 @@ using System.Windows.Forms;
 namespace PicSim
 {
     public partial class Form1 : Form
-    {              
-              
+    {
+
         private Resetter resetter = new Resetter();
         private Memory mem = Memory.Instance;
         private Decoder decoder = Decoder.Instance;
@@ -19,7 +19,7 @@ namespace PicSim
             InitializeComponent();
             textBoxCode.ScrollBars = ScrollBars.Vertical;
             Fill_dgvRam();
-            resetter.ResetBefehlsArray();            
+            resetter.ResetBefehlsArray();
             resetter.ResetRAM();
             GUIAktualisieren();
         }
@@ -69,7 +69,7 @@ namespace PicSim
             {
                 dgvRam0[0, k].Value = k.ToString("X2");
             }
-                                   
+
             for (int k = 0; k < 80; k++)
             {
                 dgvRam1[0, k].Value = hexincrement.ToString("X2");
@@ -89,7 +89,7 @@ namespace PicSim
             dgvRam0[1, 9].Value = "EEADR";
             dgvRam0[1, 10].Value = "PCLATH";
             dgvRam0[1, 11].Value = "INTCON";
-            
+
             dgvRam1[1, 0].Value = "INDF";
             dgvRam1[1, 1].Value = "OPTION_REG";
             dgvRam1[1, 2].Value = "PCL";
@@ -103,7 +103,7 @@ namespace PicSim
             dgvRam1[1, 10].Value = "PCLATH";
             dgvRam1[1, 11].Value = "INTCON";
         }
-        
+
         private void GUIAktualisieren()
         {
             //dgv
@@ -113,15 +113,15 @@ namespace PicSim
 
                 for (int Reihe = 0; Reihe < 80; Reihe++)
                 {
-                    dgvRam0[Spalte, Reihe].Value = mem.ram[Spalte-2, Reihe];
-                                        
+                    dgvRam0[Spalte, Reihe].Value = mem.ram[Spalte - 2, Reihe];
+
                     dgvRam1[Spalte, Reihe].Value = mem.ram[Spalte - 2, ramreihe];
                     ramreihe++;
                 }
             }
 
             //Register
-            lblWReg.Text  = mem.WReg.ToString();
+            lblWReg.Text = mem.WReg.ToString();
             lblPC.Text = mem.pc.ToString();
 
             //Quarzfrequenz
@@ -144,21 +144,21 @@ namespace PicSim
             {
                 for (int Reihe = 0; Reihe < 80; Reihe++)
                 {
-                    mem.ram[Spalte-2, Reihe] =  (int)dgvRam0[Spalte, Reihe].Value;
+                    mem.ram[Spalte - 2, Reihe] = (int)dgvRam0[Spalte, Reihe].Value;
                 }
                 int dgvRamReihe = 0;
                 for (int Reihe = 128; Reihe < 207; Reihe++)
                 {
-                   
-                    mem.ram[Spalte-2, Reihe] = (int)dgvRam1[Spalte, dgvRamReihe].Value;
+
+                    mem.ram[Spalte - 2, Reihe] = (int)dgvRam1[Spalte, dgvRamReihe].Value;
                     dgvRamReihe++;
                 }
             }
-        } 
-              
+        }
+
         //Datei einlesen
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {   
+        {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 System.IO.StreamReader sr = new System.IO.StreamReader(openFileDialog1.FileName);
@@ -167,13 +167,13 @@ namespace PicSim
                 //Datei wir in String Variable gespeichert
                 String stringtxt = textBoxCode.Text;
                 //String wird in char Array geschrieben
-                
+
                 char[] chartxt = new char[stringtxt.Length];
 
                 chartxt = stringtxt.ToCharArray(0, stringtxt.Length);
 
                 int arrIndex = 0;
-                for (int i=0; i < chartxt.Length; i++)
+                for (int i = 0; i < chartxt.Length; i++)
                 {
                     if (chartxt[i] == 32)
                     {
@@ -193,12 +193,12 @@ namespace PicSim
                         i += 4; //Zeilennummer im Index i überspringen
                         char[] chars = { chartxt[i], chartxt[i + 1], chartxt[i + 2], chartxt[i + 3] };
                         string hexString = new string(chars);
-                         
+
                         int num = Int32.Parse(hexString, System.Globalization.NumberStyles.HexNumber);
                         //Befehle werden in Array gespeichert                        
                         mem.BefehlsArray[arrIndex] = num;
-                        arrIndex+=1;
-                        
+                        arrIndex += 1;
+
                         //Index bis zum Ende der Zeile
                         for (int a = i; a < chartxt.Length; a++)
                         {
@@ -206,22 +206,23 @@ namespace PicSim
                             {
                                 i++;
                                 break;
-                            }                        
+                            }
                             i++;
                         }
                     }
                 }
                 //Nur zum testen
-                for (int y = 0; y < mem.BefehlsArray.Length; y++) 
+                for (int y = 0; y < mem.BefehlsArray.Length; y++)
                 {
                     textBoxCode.Text = textBoxCode.Text + mem.BefehlsArray[y];
                 }
             }
         }
-        
+
         private void toolHelp_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 System.Diagnostics.Process.Start("D:/Stiiift_Inc/PicSim/Help/Help.pdf");
             }
             catch (Exception FileNotFoundException)
@@ -266,21 +267,21 @@ namespace PicSim
                 dgvRam0.Rows[e.RowIndex].Cells[e.ColumnIndex];
             RegisterSynchronisieren(e, cell, RegB0);
         }
-                
-        private void RegisterSynchronisieren(DataGridViewCellEventArgs e, DataGridViewTextBoxCell cell , DataGridViewTextBoxCell Reg)
+
+        private void RegisterSynchronisieren(DataGridViewCellEventArgs e, DataGridViewTextBoxCell cell, DataGridViewTextBoxCell Reg)
         {
             if (e.ColumnIndex > 1) //Except String Cells
             {
                 if ((int)cell.Value == 0)
                 {
                     cell.Value = 1;
-                    
-                    if (e.RowIndex == Const.INDF || e.RowIndex == Const.PCL || e.RowIndex == Const.STATUS 
+
+                    if (e.RowIndex == Const.INDF || e.RowIndex == Const.PCL || e.RowIndex == Const.STATUS
                         || e.RowIndex == Const.FSR || e.RowIndex == Const.PCLATH || e.RowIndex == Const.INTCON)
                     {
                         Reg.Value = 1;
                     }
-                 }
+                }
                 else
                 {
                     cell.Value = 0;
@@ -293,12 +294,12 @@ namespace PicSim
             }
             RamAktualisieren();
         }
-       
+
         private void toolPlay_Click(object sender, EventArgs e)
         {
             GUIAktualisieren();
             int i = 0;
-            if (textBoxCode.Text== "")
+            if (textBoxCode.Text == "")
             {
                 MessageBox.Show("Kein Code gefunden!");
             }
@@ -311,19 +312,20 @@ namespace PicSim
                     System.Threading.Thread.Sleep(1 / Quarzfrequenz);
                 }
             }
-        }      
+        }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
             resetter.ResetRAM();
             resetter.ResetRegister();
             mem.pc = 0;
-            GUIAktualisieren();            
+            GUIAktualisieren();
         }
 
         private void lblQuarzfrequenz_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 if (int.Parse(txtQuarzfrequenz.Text) < 2147483648)
                 {
                     Quarzfrequenz = int.Parse(txtQuarzfrequenz.Text);
@@ -350,12 +352,13 @@ namespace PicSim
             {
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
                 mem.pc++;
-                GUIAktualisieren();                
+                GUIAktualisieren();
             }
         }
 
         private void btnStepBack_Click(object sender, EventArgs e)
         {
+            /*
             if (textBoxCode.Text == "")
             {
                 MessageBox.Show("Kein Code gefunden!");
@@ -363,9 +366,11 @@ namespace PicSim
             else
             {
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
-                if (mem.pc >= 0)
+                if (mem.pc > 0)
                 {
                     mem.pc--;
+                    decoder.Decode(mem.BefehlsArray[mem.pc]);
+
                 }
                 else
                 {
@@ -373,7 +378,9 @@ namespace PicSim
                 }
                 GUIAktualisieren();
             }
+            */
         }
+
     }
 }
  

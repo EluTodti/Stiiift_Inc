@@ -49,6 +49,7 @@ namespace PicSim
             if ((binCode & 0x3F80) == 0x0100)
             {
                 //CLRW
+                befehle.clrw(binCode);
                 return;
             }
             if ((binCode & 0x3F00) == 0x0900)
