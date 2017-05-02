@@ -354,6 +354,26 @@ namespace PicSim
             }
         }
 
+        private void btnStepBack_Click(object sender, EventArgs e)
+        {
+            if (textBoxCode.Text == "")
+            {
+                MessageBox.Show("Kein Code gefunden!");
+            }
+            else
+            {
+                decoder.Decode(mem.BefehlsArray[mem.pc]);
+                if (mem.pc >= 0)
+                {
+                    mem.pc--;
+                }
+                else
+                {
+                    MessageBox.Show("Programmstart erreicht");
+                }
+                GUIAktualisieren();
+            }
+        }
     }
 }
  

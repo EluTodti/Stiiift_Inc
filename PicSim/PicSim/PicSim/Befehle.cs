@@ -52,7 +52,7 @@ namespace PicSim
         }
 
 
-        //TODO complete
+        //TODO complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //Argumentübergabe, da die Operation an sich auf 0 überprüft werden muss, nicht nur das WReg.
         public void CheckZero(int val)
         {
@@ -382,7 +382,7 @@ namespace PicSim
             }
         }
 
-        public void xowrf(int binCode)
+        public void xorwf(int binCode)
         {
             fileAdress = binCode & 0x007F;
             fileVal = getFileVal(fileAdress);
@@ -402,6 +402,7 @@ namespace PicSim
             CheckZero(fileVal);
         }
 
+        //Test4
 
     }
 }

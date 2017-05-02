@@ -133,6 +133,7 @@ namespace PicSim
             if ((binCode & 0x3F00) == 0x0600)
             {
                 //XORWF
+                befehle.xorwf(binCode);
                 return;
             }
 
