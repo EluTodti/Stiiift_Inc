@@ -82,6 +82,7 @@ namespace PicSim
             if ((binCode & 0x3F00) == 0x0400)
             {
                 //IORWF
+                befehle.iorwf(binCode);
                 return;
             }
             if ((binCode & 0x3F00) == 0x0800)

@@ -87,7 +87,9 @@ namespace PicSim
         {
             mem.ram[2, Const.STATUS] = n;
         }
-        
+
+
+
         //Befehle für Stackänderungen
         public void StackPop()
         {
@@ -307,6 +309,45 @@ namespace PicSim
                 schreibeInRam(fileAdress, fileVal);
             }
             CheckZero(fileVal);
+        }
+
+        public void iorwf(int binCode)
+        {
+            fileAdress = binCode & 0x007F;
+            fileVal = getFileVal(fileAdress);
+            destination = binCode & 0x0080;
+
+            fileVal = fileVal | mem.WReg;
+            if (destination == 0)
+            {
+                mem.setWReg(fileVal);
+            }
+            else
+            {
+                schreibeInRam(fileAdress, fileVal);
+            }
+            CheckZero(fileVal);
+
+        }
+
+        public void subwf(int binCode)
+        {
+            fileAdress = binCode & 0x007F;
+            fileVal = getFileVal(fileAdress);
+            destination = binCode & 0x0080;
+
+            //Complement(WReg) + 1 = - WReg
+            fileVal = fileVal + (~mem.WReg + 1);
+            fileVal = fileVal & 0x000000FF;
+            //d=0 or d=1 ?
+            if (destination == 0)
+            {
+                mem.setWReg(fileVal);
+            }
+            else
+            {
+                schreibeInRam(fileAdress, fileVal);
+            }
         }
     }
 }
