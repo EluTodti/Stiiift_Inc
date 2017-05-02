@@ -88,7 +88,18 @@ namespace PicSim
             mem.ram[2, Const.STATUS] = n;
         }
 
-
+        //Swap Nibbles
+        public void SwapNibbles(int fileValue)
+        {
+            //LowerNibble
+            int NewLowerNibble = fileValue >> 4;
+            NewLowerNibble = NewLowerNibble & 0x0F;
+            //UpperNibble
+            fileValue = fileValue << 4;
+            fileValue = fileValue & 0xF0;
+            //New fileVal
+            fileVal = fileValue + NewLowerNibble;
+        }
 
         //Befehle für Stackänderungen
         public void StackPop()
@@ -348,6 +359,49 @@ namespace PicSim
             {
                 schreibeInRam(fileAdress, fileVal);
             }
+            CheckZero(fileVal);
+            CheckCarry();
+            CheckDigitCarry();
         }
+
+        public void swapf(int binCode)
+        {
+            fileAdress = binCode & 0x007F;
+            fileVal = getFileVal(fileAdress);
+            destination = binCode & 0x0080;
+            //SwapNibbles
+            SwapNibbles(fileVal);
+
+            if (destination == 0)
+            {
+                mem.setWReg(fileVal);
+            }
+            else
+            {
+                schreibeInRam(fileAdress, fileVal);
+            }
+        }
+
+        public void xowrf(int binCode)
+        {
+            fileAdress = binCode & 0x007F;
+            fileVal = getFileVal(fileAdress);
+            destination = binCode & 0x0080;
+
+            fileVal = fileVal ^ mem.WReg;
+            if (destination == 0)
+            {
+                mem.setWReg(fileVal);
+            }
+            else
+            {
+                schreibeInRam(fileAdress, fileVal);
+            }
+
+            mem.setWReg(literal ^ mem.WReg);
+            CheckZero(fileVal);
+        }
+
+
     }
 }

@@ -121,11 +121,13 @@ namespace PicSim
             if ((binCode & 0x3F00) == 0x0200)
             {
                 //SUBWF
+                befehle.subwf(binCode);
                 return;
             }
             if ((binCode & 0x3F00) == 0x0E00)
             {
                 //SWAPF
+                befehle.swapf(binCode);
                 return;
             }
             if ((binCode & 0x3F00) == 0x0600)
