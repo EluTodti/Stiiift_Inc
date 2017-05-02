@@ -89,16 +89,16 @@ namespace PicSim
         }
 
         //Swap Nibbles
-        public void SwapNibbles(int fileValue)
+        public int SwapNibbles(int fileValue)
         {
             //LowerNibble
-            int NewLowerNibble = fileValue >> 4;
-            NewLowerNibble = NewLowerNibble & 0x0F;
+            int NewLowerNibble = (fileValue >> 4) & 0x0F;
             //UpperNibble
-            fileValue = fileValue << 4;
-            fileValue = fileValue & 0xF0;
+            fileValue = (fileValue << 4) & 0xF0;
             //New fileVal
-            fileVal = fileValue + NewLowerNibble;
+            fileValue = fileValue + NewLowerNibble;
+
+            return fileValue;
         }
 
         //Befehle für Stackänderungen
@@ -370,7 +370,7 @@ namespace PicSim
             fileVal = getFileVal(fileAdress);
             destination = binCode & 0x0080;
             //SwapNibbles
-            SwapNibbles(fileVal);
+            fileVal= SwapNibbles(fileVal);
 
             if (destination == 0)
             {
@@ -397,9 +397,13 @@ namespace PicSim
             {
                 schreibeInRam(fileAdress, fileVal);
             }
-
-            mem.setWReg(literal ^ mem.WReg);
             CheckZero(fileVal);
+        }
+
+        public void clrw(int binCode)
+        {
+            mem.setWReg(0);
+            setZero(1);
         }
 
         //Test4
