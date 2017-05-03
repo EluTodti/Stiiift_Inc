@@ -67,6 +67,7 @@ namespace PicSim
             if ((binCode & 0x3F00) == 0x0B00)
             {
                 //DECFSZ
+                befehle.decfsz(binCode);
                 return;
             }
             if ((binCode & 0x3F00) == 0x0A00)
@@ -78,6 +79,7 @@ namespace PicSim
             if ((binCode & 0x3F00) == 0x0F00)
             {
                 //INCFSZ
+                befehle.incfsz(binCode);
                 return;
             }
             if ((binCode & 0x3F00) == 0x0400)
