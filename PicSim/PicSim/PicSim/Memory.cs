@@ -40,10 +40,6 @@ namespace PicSim
             {
                 WReg = 256 + val;
             }
-            if(val > 255)
-            {
-                WReg = val - 256;
-            }
             else
             {
                 WReg = val;
