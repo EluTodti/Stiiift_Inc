@@ -98,11 +98,6 @@ namespace PicSim
                 befehle.movwf(binCode);
                 return;
             }
-            if ((binCode & 0x3F00) == 0x0300)
-            {
-                //DECF
-                return;
-            }
             if (binCode == 0x0 || binCode == 0x20 || binCode == 0x40 || binCode == 0x60)
             {
                 //NOP
@@ -144,22 +139,26 @@ namespace PicSim
             if ((binCode & 0x3C00) == 0x1000)
             {
                 //BCF
+                befehle.bcf(binCode);
                 return;
             }
             if ((binCode & 0x3C00) == 0x1400)
             {
                 //BSF
+                befehle.bsf(binCode);
                 return;
             }
 
             if ((binCode & 0x3C00) == 0x1800)
             {
                 //BTFSC
+                befehle.btfsc(binCode);
                 return;
             }
             if ((binCode & 0x3C00) == 0x1C00)
             {
                 //BTFSS
+                befehle.btfss(binCode);
                 return;
             }
 
