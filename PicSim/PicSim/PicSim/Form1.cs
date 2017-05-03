@@ -227,7 +227,7 @@ namespace PicSim
             }
             catch (Exception FileNotFoundException)
             {
-                MessageBox.Show("File not found");
+                MessageBox.Show("File not found:" + FileNotFoundException);
             }
         }
 

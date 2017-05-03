@@ -130,8 +130,8 @@ namespace PicSim
             this.tableLayoutSpezialregister = new System.Windows.Forms.TableLayoutPanel();
             this.lblPCTxt = new System.Windows.Forms.Label();
             this.lblWRegTxt = new System.Windows.Forms.Label();
-            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnStepBack = new System.Windows.Forms.Button();
+            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -1006,10 +1006,6 @@ namespace PicSim
             this.lblWRegTxt.TabIndex = 14;
             this.lblWRegTxt.Text = "W-Reg";
             // 
-            // form1BindingSource
-            // 
-            this.form1BindingSource.DataSource = typeof(PicSim.Form1);
-            // 
             // btnStepBack
             // 
             this.btnStepBack.Location = new System.Drawing.Point(749, 126);
@@ -1020,6 +1016,10 @@ namespace PicSim
             this.btnStepBack.Text = "STEP BACK";
             this.btnStepBack.UseVisualStyleBackColor = true;
             this.btnStepBack.Click += new System.EventHandler(this.btnStepBack_Click);
+            // 
+            // form1BindingSource
+            // 
+            this.form1BindingSource.DataSource = typeof(PicSim.Form1);
             // 
             // Form1
             // 
@@ -1039,7 +1039,7 @@ namespace PicSim
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "PicSim";
+            this.Text = "PicSim - Stiiift Inc.";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
