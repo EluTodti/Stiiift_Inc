@@ -561,7 +561,33 @@ namespace PicSim
         }
 
 
+        public void decfsz(int binCode)
+        {
+            decf(binCode);
+            fileAdress = binCode & 0x007F;
+            fileVal = getFileVal(fileAdress);
+            if (fileVal == 0)
+            {
+                nop(binCode);
+                mem.pc++;
+            }
+        }
 
+
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/master
+=======
+        public void incfsz(int binCode)
+        {
+            incf(binCode);
+            fileAdress = binCode & 0x007F;
+            fileVal = getFileVal(fileAdress);
+            if (fileVal == 0)
+            {
+                nop(binCode);
+                mem.pc++;
+            }
+        }
 >>>>>>> refs/remotes/origin/master
     }
 }
