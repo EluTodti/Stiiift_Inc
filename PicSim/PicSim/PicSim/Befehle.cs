@@ -15,6 +15,7 @@ namespace PicSim
         private int fileAdress = 0;
         private int fileVal = 0;
         private int destination;
+        private byte bit;
 
         //string binaryval = Convert.ToString(literal, 2);
 
@@ -51,6 +52,17 @@ namespace PicSim
             }
         }
 
+        private void BitSetOderBitClear(byte bit,int file, bool BitSetIfTrue)
+        {
+            if (BitSetIfTrue)
+            {
+                mem.ram[bit, file] = 1;
+            }
+            else
+            {
+                mem.ram[bit, file] = 0;
+            }
+        }
 
         //TODO complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //Argumentübergabe, da die Operation an sich auf 0 überprüft werden muss, nicht nur das WReg.
@@ -407,6 +419,61 @@ namespace PicSim
         }
 
         //Test4
+
+        //Test5
+        public void bsf(int binCode)
+        {
+            fileAdress = binCode & 0x007F;
+            bit = (byte)((binCode >> 7) & 0x7);
+
+            BitSetOderBitClear(bit, fileAdress, true);
+        }
+
+        public void bcf(int binCode)
+        {
+            fileAdress = binCode & 0x007F;
+            bit = (byte)((binCode >> 7) & 0x7);
+
+            BitSetOderBitClear(bit, fileAdress, false);
+        }
+
+        public void btfsc(int binCode)
+        {
+            fileAdress = binCode & 0x007F;
+            fileVal = getFileVal(fileAdress);
+            bit = (byte)((fileVal >> 7) & 0x7);
+
+            int Bool = mem.ram[bit, fileAdress];
+            if (Bool == 1)
+            {
+
+            }
+            else
+            {
+                nop(binCode);
+                mem.pc++;
+            }
+        }
+
+        public void btfss(int binCode)
+        {
+            fileAdress = binCode & 0x007F;
+            fileVal = getFileVal(fileAdress);
+            bit = (byte)((fileVal >> 7) & 0x7);
+
+            int Bool = mem.ram[bit, fileAdress];
+            if (Bool == 0)
+            {
+
+            }
+            else
+            {
+                nop(binCode);
+                mem.pc++;
+            }
+        }
+
+
 
     }
 }
