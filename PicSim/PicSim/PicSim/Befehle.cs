@@ -97,7 +97,7 @@ namespace PicSim
 
         public void CheckCarry()
         {
-            if ((mem.WReg & 256) == 1)
+            if (mem.WReg > 255)
             {
                 mem.ram[0, Const.STATUS] = 1;
             }

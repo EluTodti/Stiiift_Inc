@@ -12,6 +12,7 @@ namespace PicSim
         private Resetter resetter = new Resetter();
         private Memory mem = Memory.Instance;
         private Decoder decoder = Decoder.Instance;
+        private int Quarzfrequenz = 2500;
 
         public Form1()
         {
@@ -306,6 +307,7 @@ namespace PicSim
             {
                 if (!backgroundWorker1.IsBusy)
                 {
+                    toolStatus.Text = "Status: running...";
                     backgroundWorker1.RunWorkerAsync(); //startet backgroundWorker1_DoWork Funktion
                 }            
             }
@@ -396,10 +398,10 @@ namespace PicSim
                     backgroundWorker1.ReportProgress(mem.pc);
                     return;
                 }
+
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
                 mem.pc++;
-                backgroundWorker1.ReportProgress(mem.pc); //ruft backgroundWorker1_ProgressChanged Funktion auf
-
+                backgroundWorker1.ReportProgress(mem.pc); //ruft backgroundWorker1_ProgressChanged Funktion auf, also GUIaktualisieren
                 
                 System.Threading.Thread.Sleep(Quarzfrequenz); //Quarzfrequenz??
             }        
@@ -412,7 +414,7 @@ namespace PicSim
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            //Hier kommt rein, was passieren soll wenn der Thread beendet wurde
+            toolStatus.Text = "Status: stopped";
         }       
     }
 }
