@@ -36,11 +36,11 @@ namespace PicSim
                     mem.ram[j, i] = 0;
                 }
             }
+            mem.ram[3, Const.STATUS] = 1;
             mem.ram[4, Const.STATUS] = 1;
-            mem.ram[5, Const.STATUS] = 1;
 
+            mem.ram[3, Const.STATUS + Const.bank] = 1;
             mem.ram[4, Const.STATUS + Const.bank] = 1;
-            mem.ram[5, Const.STATUS + Const.bank] = 1;
 
             mem.ram[0, Const.OPTION_REG + Const.bank] = 1;
             mem.ram[1, Const.OPTION_REG + Const.bank] = 1;

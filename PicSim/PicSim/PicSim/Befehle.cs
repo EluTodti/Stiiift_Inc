@@ -32,7 +32,7 @@ namespace PicSim
 
         private void schreibeInRam(int f, int val)
         {
-            
+
             if (val > 255)
             {
                 val = val & 0x00FF;
@@ -40,28 +40,32 @@ namespace PicSim
 
             string binVal = Convert.ToString(val, 2);
             //Nullen werden bei String vorrangestellt bis 8 Zeichen
-           while(binVal.Length < 8)
+            while (binVal.Length < 8)
             {
-                binVal= binVal.Insert(0, "0");
+                binVal = binVal.Insert(0, "0");
             }
-               binVal.ToArray(); //Array enthält immer 8 Bit
-
+            binVal.ToArray(); //Array enthält immer 8 Bit
+            if (mem.ram[5, Const.STATUS] == 1)
+            {
+                f = f + Const.bank;
+            }
             for (int i = 0; i < 8; i++)
             {
                 mem.ram[i, f] = int.Parse(binVal[7 - i].ToString());
             }
-            mem.RegisterSynchronisieren(f,val);
+
+            mem.RegisterSynchronisieren(f, val);
         }
 
-        private void BitSetOderBitClear(byte bit,int file, bool BitSetIfTrue)
+        private void BitSetOderBitClear(byte bit,int fileaddress, bool BitSetIfTrue)
         {
             if (BitSetIfTrue)
             {
-                mem.ram[bit, file] = 1;
+                schreibeInRam(fileaddress ,getFileVal(fileaddress) | (int) Math.Pow(2, bit));
             }
             else
             {
-                mem.ram[bit, file] = 0;
+                schreibeInRam(fileaddress, getFileVal(fileaddress) & (0xFF - (int)Math.Pow(2, bit)));
             }
         }
 

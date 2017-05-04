@@ -89,7 +89,7 @@ namespace PicSim
 
                 for (int i = 0; i < 8; i++)
                 {
-                    ram[i, fileadresse + 128] = int.Parse(binVal[7 - i].ToString());
+                    ram[i, fileadresse + Const.bank] = int.Parse(binVal[7 - i].ToString());
                 }
             }
             if (fileadresse - 128 == Const.INDF || fileadresse - 128 == Const.PCL || fileadresse - 128 == Const.STATUS
