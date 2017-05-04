@@ -45,5 +45,59 @@ namespace PicSim
                 WReg = val;
             }
         }
+
+        public bool statusdurchgang = true;
+        //RegisterSynchronisieren bei Adressierung
+        //eingefügt in befehle.schreibeInRam();
+        public void RegisterSynchronisieren(int fileadresse, int filevalue)
+        {
+            if (fileadresse == Const.INDF || fileadresse == Const.PCL || fileadresse == Const.STATUS
+                || fileadresse == Const.FSR || fileadresse == Const.PCLATH || fileadresse == Const.INTCON)
+            {
+
+                //befehle.schreibeInRam(fileadresse,filevalue);
+                if (filevalue > 255)
+                {
+                    filevalue = filevalue & 0x00FF;
+                }
+
+                string binVal = Convert.ToString(filevalue, 2);
+                //Nullen werden bei String vorrangestellt bis 8 Zeichen
+                while (binVal.Length < 8)
+                {
+                    binVal = binVal.Insert(0, "0");
+                }
+                binVal.ToArray(); //Array enthält immer 8 Bit
+
+                for (int i = 0; i < 8; i++)
+                {
+                    ram[i, fileadresse+128] = int.Parse(binVal[7 - i].ToString());
+                }
+            }
+            if (fileadresse - 128 == Const.INDF || fileadresse - 128 == Const.PCL || fileadresse - 128 == Const.STATUS
+                || fileadresse - 128 == Const.FSR || fileadresse - 128 == Const.PCLATH || fileadresse - 128 == Const.INTCON)
+            {
+                //befehle.schreibeInRam(fileadresse,filevalue);
+                if (filevalue > 255)
+                {
+                    filevalue = filevalue & 0x00FF;
+                }
+
+                string binVal = Convert.ToString(filevalue, 2);
+                //Nullen werden bei String vorrangestellt bis 8 Zeichen
+                while (binVal.Length < 8)
+                {
+                    binVal = binVal.Insert(0, "0");
+                }
+                binVal.ToArray(); //Array enthält immer 8 Bit
+
+                for (int i = 0; i < 8; i++)
+                {
+                    ram[i, fileadresse - 128] = int.Parse(binVal[7 - i].ToString());
+                }
+            }
+
+
+        }
     }
 }

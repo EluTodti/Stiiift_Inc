@@ -50,6 +50,7 @@ namespace PicSim
             {
                 mem.ram[i, f] = int.Parse(binVal[7 - i].ToString());
             }
+            mem.RegisterSynchronisieren(f,val);
         }
 
         private void BitSetOderBitClear(byte bit,int file, bool BitSetIfTrue)
