@@ -34,6 +34,7 @@ namespace PicSim
 
         public Stack<int> Stack = new Stack<int>();
         public int[] StackArray = new int[8];
+        public int[] StackArrayHelper = new int[8];
 
         public int[] BefehlsArray = new int[666];
         public int[,] ram = new int[8, 256];

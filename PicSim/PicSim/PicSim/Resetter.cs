@@ -11,6 +11,14 @@ namespace PicSim
     { 
         Memory mem = Memory.Instance;
 
+        public void Reset()
+        {
+            //ResetBefehlsArray(); nur am Anfang, hat hier nix zu suchen :)
+            ResetRAM();
+            ResetRegister();
+            ResetStackArrays();
+        }
+
         public void ResetBefehlsArray()
         {
             for (int i = 0; i < mem.BefehlsArray.Length; i++)
@@ -61,8 +69,24 @@ namespace PicSim
 
         public void ResetRegister()
         {
-            mem.WReg = 0;
+            mem.setWReg(0);
             mem.pc = 0;
+        }
+
+        public void ResetStackArrays()
+        {
+            for (int i = 0; i < mem.StackArray.Length; i++)
+            {
+                mem.StackArray[i] = 0;
+            }
+            for (int i = 0; i < mem.StackArrayHelper.Length; i++)
+            {
+                mem.StackArrayHelper[i] = 0;
+            }
+            for (int i = 0; i < mem.Stack.Count(); i++)
+            {
+                mem.Stack.Pop();
+            }
         }
 
     }
