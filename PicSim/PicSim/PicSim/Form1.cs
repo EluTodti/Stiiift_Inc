@@ -12,7 +12,6 @@ namespace PicSim
         private Resetter resetter = new Resetter();
         private Memory mem = Memory.Instance;
         private Decoder decoder = Decoder.Instance;
-        private int Quarzfrequenz = 10;
 
         public Form1()
         {
@@ -299,24 +298,26 @@ namespace PicSim
 
         private void toolPlay_Click(object sender, EventArgs e)
         {
-            GUIAktualisieren();
-            int i = 0;
             if (textBoxCode.Text == "")
             {
                 MessageBox.Show("Kein Code gefunden!");
             }
             else
             {
-                for (mem.pc = 0; mem.pc < mem.BefehlsArray.Length; mem.pc++)
+                if (!backgroundWorker1.IsBusy)
                 {
-                    decoder.Decode(mem.BefehlsArray[mem.pc]);
-                    GUIAktualisieren();
-                    //RamAktualisieren();
-                    System.Threading.Thread.Sleep(1 / Quarzfrequenz);
-                }
+                    backgroundWorker1.RunWorkerAsync(); //startet backgroundWorker1_DoWork Funktion
+                }            
             }
         }
 
+        private void toolPause_Click(object sender, EventArgs e)
+        {
+            if (backgroundWorker1.IsBusy)
+            {
+                backgroundWorker1.CancelAsync();    //sagt Thread, er soll sich beenden
+            }
+        }
         private void btnReset_Click(object sender, EventArgs e)
         {
             resetter.Reset();
@@ -384,6 +385,35 @@ namespace PicSim
             */
         }
 
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            while (mem.pc < mem.BefehlsArray.Length) //evtl while Schleife eleganter?
+            {
+
+                if (backgroundWorker1.CancellationPending == true)  //ist True, wenn Pause Button gedrückt wurde
+                {
+                    e.Cancel = true;
+                    backgroundWorker1.ReportProgress(mem.pc);
+                    return;
+                }
+                decoder.Decode(mem.BefehlsArray[mem.pc]);
+                mem.pc++;
+                backgroundWorker1.ReportProgress(mem.pc); //ruft backgroundWorker1_ProgressChanged Funktion auf
+
+                
+                System.Threading.Thread.Sleep(Quarzfrequenz); //Quarzfrequenz??
+            }        
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            GUIAktualisieren();
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            //Hier kommt rein, was passieren soll wenn der Thread beendet wurde
+        }       
     }
 }
  
