@@ -19,8 +19,8 @@ namespace PicSim
             InitializeComponent();
             textBoxCode.ScrollBars = ScrollBars.Vertical;
             Fill_dgvRam();
+            resetter.Reset();
             resetter.ResetBefehlsArray();
-            resetter.ResetRAM();
             GUIAktualisieren();
         }
 
@@ -319,8 +319,7 @@ namespace PicSim
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            resetter.ResetRAM();
-            resetter.ResetRegister();
+            resetter.Reset();
             mem.pc = 0;
             GUIAktualisieren();
         }
