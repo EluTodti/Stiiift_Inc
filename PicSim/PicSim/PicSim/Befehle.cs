@@ -112,6 +112,7 @@ namespace PicSim
             mem.ram[2, Const.STATUS] = n;
         }
 
+
         //Swap Nibbles
         public int SwapNibbles(int fileValue)
         {
@@ -466,11 +467,13 @@ namespace PicSim
             setZero(1);
         }
 
-<<<<<<< HEAD
+
         //Test4
         public void rlf(int binCode)
         {
             fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
             fileVal = getFileVal(fileAdress);
             destination = binCode & 0x0080;
 
@@ -518,10 +521,11 @@ namespace PicSim
             }
         }
 
-<<<<<<< HEAD
+
         public void rrf(int binCode)
         {
             fileAdress = binCode & 0x007F;
+            IndirekteAdressierung(fileAdress);
             fileVal = getFileVal(fileAdress);
             destination = binCode & 0x0080;
 
@@ -555,11 +559,9 @@ namespace PicSim
                 schreibeInRam(fileAdress, fileVal);
             }
         }
-=======
-        //Test5
-=======
 
->>>>>>> refs/remotes/origin/master
+        //Test5
+
         public void bsf(int binCode)
         {
             fileAdress = binCode & 0x007F;
@@ -638,9 +640,7 @@ namespace PicSim
         }
 
 
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/master
-=======
+
         public void incfsz(int binCode)
         {
             incf(binCode);
@@ -655,6 +655,6 @@ namespace PicSim
                 mem.pc++;
             }
         }
->>>>>>> refs/remotes/origin/master
+
     }
 }

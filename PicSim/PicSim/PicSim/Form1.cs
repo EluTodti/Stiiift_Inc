@@ -154,8 +154,8 @@ namespace PicSim
                     dgvRamReihe++;
                 }
             }
-            //WReg maximal 255
-            mem.WReg = mem.WReg & 0x00FF;
+  
+            
         }
 
         //Datei einlesen
@@ -311,7 +311,7 @@ namespace PicSim
                 {
                     decoder.Decode(mem.BefehlsArray[mem.pc]);
                     GUIAktualisieren();
-                    RamAktualisieren();
+                    //RamAktualisieren();
                     System.Threading.Thread.Sleep(1 / Quarzfrequenz);
                 }
             }
@@ -356,7 +356,7 @@ namespace PicSim
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
                 mem.pc++;
                 GUIAktualisieren();
-                RamAktualisieren();
+                //RamAktualisieren();
             }
         }
 
