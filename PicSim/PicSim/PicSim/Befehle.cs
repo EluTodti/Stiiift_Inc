@@ -131,12 +131,17 @@ namespace PicSim
         public void StackPop()
         {
             mem.pc = mem.Stack.Pop();
-            mem.StackArray = mem.Stack.ToArray();
+            mem.StackArray[mem.Stack.Count()] = 0;
+           
         }
         public void StackPush()
         {
             mem.Stack.Push(mem.pc);
-            mem.StackArray = mem.Stack.ToArray();
+            mem.StackArrayHelper = mem.Stack.ToArray();
+            for (int i = 0; i < mem.StackArrayHelper.Length; i++)
+            {
+                mem.StackArray[i] = mem.StackArrayHelper[i];
+            }
         }
         //==============================
 
