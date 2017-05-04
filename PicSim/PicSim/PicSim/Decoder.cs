@@ -109,11 +109,13 @@ namespace PicSim
             if ((binCode & 0x3F00) == 0x0D00)
             {
                 //RLF
+                befehle.rlf(binCode);
                 return;
             }
             if ((binCode & 0x3F00) == 0x0C00)
             {
                 //RRF
+                befehle.rrf(binCode);
                 return;
             }
             if ((binCode & 0x3F00) == 0x0200)
