@@ -64,6 +64,18 @@ namespace PicSim
             }
         }
 
+        private void IndirekteAdressierung(int fileadress)
+        {
+            //Wenn INDF adressiert, lese Wert aus FSR-Adresse : movwf indirect => indirect adressing
+            
+            //Beispiel: 10H=0
+            //steht in FST 10H, so adressiert addwf 10H --> 10H=1
+            if (fileadress == 0)
+            {
+                fileAdress = getFileVal(Const.FSR);
+            }
+        }
+
         //TODO complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //Argumentübergabe, da die Operation an sich auf 0 überprüft werden muss, nicht nur das WReg.
         public void CheckZero(int val)
@@ -218,14 +230,20 @@ namespace PicSim
         public void movwf(int binCode)
         {
             fileAdress = binCode & 0x007F;
+            IndirekteAdressierung(fileAdress);
             schreibeInRam(fileAdress, mem.WReg);
+
         }
 
         public void addwf(int binCode)
         {            
             fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
+
             fileVal = getFileVal(fileAdress);
             destination = binCode & 0x0080;
+ 
 
             if (destination == 0)
             {
@@ -243,8 +261,11 @@ namespace PicSim
 
         public void andwf(int binCode)
         {
-            fileAdress = binCode & 0x007F;           
-            fileVal= getFileVal(fileAdress);
+            fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
+
+            fileVal = getFileVal(fileAdress);
             destination = binCode & 0x0080;
 
             if (destination == 0)
@@ -261,6 +282,9 @@ namespace PicSim
         public void clrf(int binCode)
         {
             fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
+
             schreibeInRam(fileAdress, 0);
             setZero(1);
         }
@@ -268,6 +292,9 @@ namespace PicSim
         public void comf(int binCode)
         {
             fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
+
             fileVal = getFileVal(fileAdress);
             destination = binCode & 0x0080;
 
@@ -286,6 +313,9 @@ namespace PicSim
         public void decf(int binCode)
         {
             fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
+
             fileVal = getFileVal(fileAdress);
             destination = binCode & 0x0080;
 
@@ -303,6 +333,9 @@ namespace PicSim
         public void incf(int binCode)
         {
             fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
+
             fileVal = getFileVal(fileAdress);
             destination = binCode & 0x0080;
 
@@ -320,6 +353,9 @@ namespace PicSim
         public void movf(int binCode)
         {
             fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
+
             fileVal = getFileVal(fileAdress);
             destination = binCode & 0x0080;
 
@@ -337,6 +373,9 @@ namespace PicSim
         public void iorwf(int binCode)
         {
             fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
+
             fileVal = getFileVal(fileAdress);
             destination = binCode & 0x0080;
 
@@ -356,6 +395,9 @@ namespace PicSim
         public void subwf(int binCode)
         {
             fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
+
             fileVal = getFileVal(fileAdress);
             destination = binCode & 0x0080;
 
@@ -379,6 +421,9 @@ namespace PicSim
         public void swapf(int binCode)
         {
             fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
+
             fileVal = getFileVal(fileAdress);
             destination = binCode & 0x0080;
             //SwapNibbles
@@ -397,6 +442,9 @@ namespace PicSim
         public void xorwf(int binCode)
         {
             fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
+
             fileVal = getFileVal(fileAdress);
             destination = binCode & 0x0080;
 
@@ -418,6 +466,7 @@ namespace PicSim
             setZero(1);
         }
 
+<<<<<<< HEAD
         //Test4
         public void rlf(int binCode)
         {
@@ -508,9 +557,15 @@ namespace PicSim
         }
 =======
         //Test5
+=======
+
+>>>>>>> refs/remotes/origin/master
         public void bsf(int binCode)
         {
             fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
+
             bit = (byte)((binCode >> 7) & 0x7);
 
             BitSetOderBitClear(bit, fileAdress, true);
@@ -527,6 +582,9 @@ namespace PicSim
         public void btfsc(int binCode)
         {
             fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
+
             fileVal = getFileVal(fileAdress);
             bit = (byte)((fileVal >> 7) & 0x7);
 
@@ -545,6 +603,9 @@ namespace PicSim
         public void btfss(int binCode)
         {
             fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
+
             fileVal = getFileVal(fileAdress);
             bit = (byte)((fileVal >> 7) & 0x7);
 
@@ -565,6 +626,9 @@ namespace PicSim
         {
             decf(binCode);
             fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
+
             fileVal = getFileVal(fileAdress);
             if (fileVal == 0)
             {
@@ -581,6 +645,9 @@ namespace PicSim
         {
             incf(binCode);
             fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
+
             fileVal = getFileVal(fileAdress);
             if (fileVal == 0)
             {
