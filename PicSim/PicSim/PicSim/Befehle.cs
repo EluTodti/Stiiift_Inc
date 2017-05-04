@@ -113,6 +113,7 @@ namespace PicSim
             mem.ram[2, Const.STATUS] = n;
         }
 
+
         //Swap Nibbles
         public int SwapNibbles(int fileValue)
         {
@@ -468,6 +469,100 @@ namespace PicSim
         }
 
 
+        //Test4
+        public void rlf(int binCode)
+        {
+            fileAdress = binCode & 0x007F;
+
+            IndirekteAdressierung(fileAdress);
+            fileVal = getFileVal(fileAdress);
+            destination = binCode & 0x0080;
+
+            int carryBit = mem.ram[0, Const.STATUS];
+
+
+
+            if (carryBit == 1)
+            {
+                if (fileVal >= 128)
+                {
+                    mem.ram[0, Const.STATUS] = 1;
+                }
+                else
+                {
+                    mem.ram[0, Const.STATUS] = 0;
+                }
+                fileVal = fileVal << 1;
+                fileVal += 1;
+
+            }
+
+            else
+            {
+                if (fileVal >= 128)
+                {
+                    mem.ram[0, Const.STATUS] = 1;
+                }
+                else
+                {
+                    mem.ram[0, Const.STATUS] = 0;
+                }
+
+                fileVal = fileVal << 1;
+            }
+
+            if (destination == 0)
+            {
+                mem.setWReg(fileVal);
+            }
+
+            else
+            {
+                schreibeInRam(fileAdress, fileVal);
+            }
+        }
+
+
+        public void rrf(int binCode)
+        {
+            fileAdress = binCode & 0x007F;
+            IndirekteAdressierung(fileAdress);
+            fileVal = getFileVal(fileAdress);
+            destination = binCode & 0x0080;
+
+            int carryBit = mem.ram[0, Const.STATUS];
+            if (carryBit == 1)
+            {
+                fileVal += 256;
+            }
+
+            if ((fileVal % 2) == 1)
+            {
+
+                fileVal = fileVal >> 1;
+                mem.ram[0, Const.STATUS] = 1;
+            }
+
+            else
+            {
+                fileVal = fileVal >> 1;
+                mem.ram[0, Const.STATUS] = 0;
+            }
+
+
+            if (destination == 0)
+            {
+                mem.setWReg(fileVal);
+            }
+
+            else
+            {
+                schreibeInRam(fileAdress, fileVal);
+            }
+        }
+
+        //Test5
+
         public void bsf(int binCode)
         {
             fileAdress = binCode & 0x007F;
@@ -546,6 +641,7 @@ namespace PicSim
         }
 
 
+
         public void incfsz(int binCode)
         {
             incf(binCode);
@@ -560,5 +656,6 @@ namespace PicSim
                 mem.pc++;
             }
         }
+
     }
 }

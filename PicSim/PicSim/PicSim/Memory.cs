@@ -12,7 +12,7 @@ namespace PicSim
         private static Memory instance;
         private Memory(){}
         public static Memory Instance
-        {
+        { 
             get
             {
                 if(instance == null)
@@ -35,14 +35,26 @@ namespace PicSim
 
         public void setWReg(int val)
         {
+            //TODTDO: CARRY checken
             //Umgang mit negativen Werten
-            if (val < 0)
-            {
-                WReg = 256 + val;
+            if( val < 0)
+            {            
+                while (val < 0)
+                {
+                     WReg = 256 + val;
+                }
+
+                WReg = val;
             }
-            else
+
+            if (val > 255)
+            {
+                WReg = val & 0x00FF; 
+            }
+             else
             {
                 WReg = val;
+<<<<<<< HEAD
             }
         }
 
@@ -99,5 +111,10 @@ namespace PicSim
 
 
         }
+=======
+            }      
+                
+       }
+>>>>>>> refs/remotes/origin/master
     }
 }
