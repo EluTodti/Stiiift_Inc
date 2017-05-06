@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -119,6 +120,24 @@ namespace PicSim
 
         }
 
+        public void CheckRegister()
+        {
+            //PD Bit checken
+            if (ram[3, Const.STATUS] == 0)
+            {
+                //TODO den PIC schlafen lassen, bis powerup oder clrwdt
+                //TODO Backgroundworker anhalten
+                while (true)
+                {
+                    //Wenn clrwdt --> PD = 1
+                    if (ram[3,Const.STATUS] == 1)
+                    {
+                        return;
+                    }
+                    //TODO evtl sleep einbauen?
+                }
+            }
+        }
     }
 
 }

@@ -117,7 +117,6 @@ namespace PicSim
             mem.ram[2, Const.STATUS] = n;
         }
 
-
         //Swap Nibbles
         public int SwapNibbles(int fileValue)
         {
@@ -665,6 +664,25 @@ namespace PicSim
                 mem.pc++;
             }
         }
+
+
+        public void clrwdt(int binCode)
+        {
+            //TODO 00H -> WDT
+            //TODO 0 -> WDT prescaler
+            mem.ram[Const.STATUS, 3] = 1;
+            mem.ram[Const.STATUS, 4] = 1;
+            //TODO TMR0 ++
+        }
+
+        public void sleep(int binCode)
+        {
+            clrwdt(binCode);
+            mem.ram[Const.STATUS, 3] = 0;
+            //Kein TMR0 erhöhen, da in clrwdt ++
+        }
+
+
 
     }
 }

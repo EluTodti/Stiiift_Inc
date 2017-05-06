@@ -355,6 +355,7 @@ namespace PicSim
             }
             else
             {
+                mem.CheckRegister();
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
                 mem.pc++;
                 GUIAktualisieren();
@@ -398,7 +399,7 @@ namespace PicSim
                     backgroundWorker1.ReportProgress(mem.pc);
                     return;
                 }
-
+                mem.CheckRegister();
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
                 mem.pc++;
                 backgroundWorker1.ReportProgress(mem.pc); //ruft backgroundWorker1_ProgressChanged Funktion auf, also GUIaktualisieren
