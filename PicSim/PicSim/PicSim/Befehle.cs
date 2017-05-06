@@ -10,6 +10,24 @@ namespace PicSim
 {
     class Befehle
     {
+        private static Befehle instance;
+
+        private Befehle()
+        {
+        }
+
+        public static Befehle Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Befehle();
+                }
+                return instance;
+            }
+        }
+
         Memory mem = Memory.Instance;
         private int literal = 0;
         private int fileAdress = 0;
@@ -19,7 +37,7 @@ namespace PicSim
 
         //string binaryval = Convert.ToString(literal, 2);
 
-        private int getFileVal(int f)
+        public int getFileVal(int f)
         {
             int FileVal = 0;
 
@@ -145,6 +163,52 @@ namespace PicSim
             for (int i = 0; i < mem.StackArrayHelper.Length; i++)
             {
                 mem.StackArray[i] = mem.StackArrayHelper[i];
+            }
+        }
+
+        public void CheckTimer()
+        {
+            //Check for Mode
+            if (mem.ram[5, Const.OPTION_REG + 128] == 0)
+            {
+                //Timer Mode                     
+                mem.TimerValNew = getFileVal(0x01);
+                if (!(mem.TimerValOld == mem.TimerValNew))
+                {
+                    mem.setTimerInhibit();
+                }           
+
+                if (mem.timerInhibit == 0)
+                {
+                    int val = getFileVal(0x01);
+                    int f = 0x01;
+
+                    if (mem.ram[5, Const.STATUS] == 1)
+                    {
+                        f -= 128;
+                    }
+                    schreibeInRam(f, val+1);
+                }
+                else
+                {
+                    mem.decTimerInhibit();
+                }
+            }
+            //Counter Mode
+            if (mem.ram[4, Const.OPTION_REG + 128] == 0)
+            {
+                //rising edge
+
+                if (mem.Ra4ValOld == 0 && mem.Ra4ValNew == 1)
+                {
+                    schreibeInRam(Const.TMR0, getFileVal(Const.TMR0) + 1);
+                }
+
+                //falling edge
+                if (mem.Ra4ValOld == 1 && mem.Ra4ValNew == 0)
+                {
+                    schreibeInRam(Const.TMR0, getFileVal(Const.TMR0) + 1);
+                }
             }
         }
         //==============================

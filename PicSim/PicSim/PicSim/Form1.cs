@@ -12,6 +12,7 @@ namespace PicSim
         private Resetter resetter = new Resetter();
         private Memory mem = Memory.Instance;
         private Decoder decoder = Decoder.Instance;
+        private Befehle befehle = Befehle.Instance;
         private int Quarzfrequenz = 2500;
 
         public Form1()
@@ -355,8 +356,18 @@ namespace PicSim
             }
             else
             {
+                mem.TimerValOld = befehle.getFileVal(0x01);
+                mem.Ra4ValOld = mem.ram[4, Const.PORTA];
+               
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
                 mem.pc++;
+
+                befehle.CheckTimer();
+                mem.Ra4ValNew = mem.ram[4, Const.PORTA];
+              
+
+
+
                 GUIAktualisieren();
                 //RamAktualisieren();
             }
@@ -401,6 +412,7 @@ namespace PicSim
 
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
                 mem.pc++;
+
                 backgroundWorker1.ReportProgress(mem.pc); //ruft backgroundWorker1_ProgressChanged Funktion auf, also GUIaktualisieren
                 
                 System.Threading.Thread.Sleep(Quarzfrequenz); //Quarzfrequenz??

@@ -29,7 +29,6 @@ namespace PicSim
 
         //Spezialregister
         public int pc = 0;
-
         public int WReg = 0;
 
         public Stack<int> Stack = new Stack<int>();
@@ -38,6 +37,23 @@ namespace PicSim
 
         public int[] BefehlsArray = new int[666];
         public int[,] ram = new int[8, 256];
+
+        //Timer Funktion
+        public int timerInhibit = 0;
+        public int RA4_T0CKL = 0;
+        public int TimerValOld = 0;
+        public int TimerValNew = 0;
+        public int Ra4ValOld = 0;
+        public int Ra4ValNew = 0;
+
+        public void setTimerInhibit()
+        {
+            timerInhibit = 2;
+        }
+        public void decTimerInhibit()
+        {
+            timerInhibit -= 1;
+        }
 
         public void setWReg(int val)
         {
