@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,7 @@ namespace PicSim
             }
         }
 
+        Interrupter interrupter = Interrupter.Instance;
         //Spezialregister
         public int pc = 0;
 
@@ -118,6 +120,7 @@ namespace PicSim
 
 
         }
+
 
     }
 

@@ -185,7 +185,8 @@ namespace PicSim
             }
             if (binCode == 0x64)
             {
-                //CLRWDT                
+                //CLRWDT 
+                befehle.clrwdt(binCode);               
                 return;
             }
             if ((binCode & 0x3800) == 0x2800)
@@ -209,7 +210,8 @@ namespace PicSim
             }
             if (binCode == 0x9)
             {
-                //RETFIE                
+                //RETFIE  
+                befehle.retfie(binCode);              
                 return;
             }
             if ((binCode & 0x3C00) == 0x3400)
@@ -227,6 +229,7 @@ namespace PicSim
             if (binCode == 0x63)
             {
                 //SLEEP
+                befehle.sleep(binCode);
                 return;
             }
             if ((binCode & 0x3E00) == 0x3C00)
