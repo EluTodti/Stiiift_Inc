@@ -13,6 +13,7 @@ namespace PicSim
         private Memory mem = Memory.Instance;
         private Decoder decoder = Decoder.Instance;
         private int Quarzfrequenz = 2500;
+        private Interrupter interrupter = Interrupter.Instance;
 
         public Form1()
         {
@@ -355,7 +356,8 @@ namespace PicSim
             }
             else
             {
-                mem.CheckRegister();
+                CheckForSleep();
+                interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
                 mem.pc++;
                 GUIAktualisieren();
@@ -399,7 +401,8 @@ namespace PicSim
                     backgroundWorker1.ReportProgress(mem.pc);
                     return;
                 }
-                mem.CheckRegister();
+                CheckForSleep();
+                interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
                 mem.pc++;
                 backgroundWorker1.ReportProgress(mem.pc); //ruft backgroundWorker1_ProgressChanged Funktion auf, also GUIaktualisieren
@@ -416,7 +419,31 @@ namespace PicSim
         private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             toolStatus.Text = "Status: stopped";
-        }       
+        }
+
+
+        public void CheckForSleep()
+        {
+            //PD Bit checken
+            if (mem.ram[3, Const.STATUS] == 0)
+            {
+                //TODO den PIC schlafen lassen, bis powerup oder clrwdt
+                //TODO Backgroundworker anhalten
+                while (true)
+                {
+                    //Wenn clrwdt --> PD = 1
+                    //Wenn Interupt an RB0, RB4-7 -> aufwachen
+                    //Interrupter setzt PD im RAM auf 1
+                    if (mem.ram[3, Const.STATUS] == 1)
+                    {
+                        return;
+                    }
+                    //TODO evtl sleep einbauen?
+                }
+            }
+        }
+
+
     }
 }
  

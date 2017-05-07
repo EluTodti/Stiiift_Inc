@@ -28,6 +28,7 @@ namespace PicSim
             }
         }
 
+        Interrupter interrupter = Interrupter.Instance;
         //Spezialregister
         public int pc = 0;
 
@@ -120,24 +121,7 @@ namespace PicSim
 
         }
 
-        public void CheckRegister()
-        {
-            //PD Bit checken
-            if (ram[3, Const.STATUS] == 0)
-            {
-                //TODO den PIC schlafen lassen, bis powerup oder clrwdt
-                //TODO Backgroundworker anhalten
-                while (true)
-                {
-                    //Wenn clrwdt --> PD = 1
-                    if (ram[3,Const.STATUS] == 1)
-                    {
-                        return;
-                    }
-                    //TODO evtl sleep einbauen?
-                }
-            }
-        }
+
     }
 
 }

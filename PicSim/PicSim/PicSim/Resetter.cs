@@ -10,6 +10,7 @@ namespace PicSim
     class Resetter
     { 
         Memory mem = Memory.Instance;
+        Interrupter interrupter = Interrupter.Instance;
 
         public void Reset()
         {
@@ -17,6 +18,7 @@ namespace PicSim
             ResetRAM();
             ResetRegister();
             ResetStackArrays();
+            ResetInterrupts();
         }
 
         public void ResetBefehlsArray()
@@ -87,6 +89,17 @@ namespace PicSim
             {
                 mem.Stack.Pop();
             }
+        }
+
+        public void ResetInterrupts()
+        {
+            /*
+            interrupter.INTRB0 = false;
+            interrupter.INTRB4 = false;
+            interrupter.INTRB5 = false;
+            interrupter.INTRB6 = false;
+            interrupter.INTRB7 = false;
+            */
         }
 
     }

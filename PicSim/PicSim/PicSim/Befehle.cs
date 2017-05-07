@@ -677,9 +677,28 @@ namespace PicSim
 
         public void sleep(int binCode)
         {
+            /*  *Kann unterbrochen werden durch:
+                *clrwdt (PD bit = 1)
+                *Interrupt auf RB0, RB4-7 (nur wenn als input)
+                *RESET (wenn wdt aus)
+                *
+            */
             clrwdt(binCode);
             mem.ram[Const.STATUS, 3] = 0;
             //Kein TMR0 erhöhen, da in clrwdt ++
+        }
+
+
+        //TODO überprüfen
+        public void retfie(int binCode)
+        {
+            //exit interrupt routine
+            //TODO richtig?
+            StackPop();
+            //enable Interrupts
+            mem.ram[7, Const.INTCON] = 1;
+            //pc-1 da in for Schleife +1
+            mem.pc--;
         }
 
 

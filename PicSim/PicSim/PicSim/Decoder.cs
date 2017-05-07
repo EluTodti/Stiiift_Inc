@@ -210,7 +210,8 @@ namespace PicSim
             }
             if (binCode == 0x9)
             {
-                //RETFIE                
+                //RETFIE  
+                befehle.retfie(binCode);              
                 return;
             }
             if ((binCode & 0x3C00) == 0x3400)
