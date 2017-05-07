@@ -28,7 +28,6 @@ namespace PicSim
             }
         }
 
-        Interrupter interrupter = Interrupter.Instance;
         //Spezialregister
         public int pc = 0;
 
@@ -38,6 +37,14 @@ namespace PicSim
         public int[] StackArray = new int[8];
         public int[] StackArrayHelper = new int[8];
 
+        //StepBack
+        public Stack<Array> BackStack = new Stack<Array>();
+        public int length = 256;        //mem.ram.length wirft exception, deshalb hard-coded
+        public int[,] BackArray = new int[8,257];
+        //0-255 = ram
+        //256: 0:PC, 1:WReg, 
+
+        //BefehlsArray & RAM
         public int[] BefehlsArray = new int[666];
         public int[,] ram = new int[8, 256];
 
@@ -119,6 +126,29 @@ namespace PicSim
             }
 
 
+        }
+
+        //Funktion: Speichern der Werte im BackStack für StepBack Button
+        public void SafeBack()
+        {
+            for (int adresse = 0; adresse < length; adresse++)
+            {
+                for (int bits = 0; bits < 8; bits++)
+                {
+                    BackArray[bits, adresse] = ram[bits, adresse];
+                }
+            }
+            //Siehe //StepBack
+            BackArray[0, 256] = pc;
+            BackArray[1, 256] = WReg;
+            BackArray[2, 256] = 0;
+            BackArray[3, 256] = 0;
+            BackArray[4, 256] = 0;
+            BackArray[5, 256] = 0;
+            BackArray[6, 256] = 0;
+            BackArray[7, 256] = 0;
+
+            BackStack.Push(BackArray);
         }
 
 

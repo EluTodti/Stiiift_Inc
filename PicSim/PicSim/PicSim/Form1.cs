@@ -358,6 +358,7 @@ namespace PicSim
             {
                 CheckForSleep();
                 interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
+                mem.SafeBack();
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
                 mem.pc++;
                 GUIAktualisieren();
@@ -367,27 +368,41 @@ namespace PicSim
 
         private void btnStepBack_Click(object sender, EventArgs e)
         {
-            /*
+            
             if (textBoxCode.Text == "")
             {
                 MessageBox.Show("Kein Code gefunden!");
             }
             else
             {
-                decoder.Decode(mem.BefehlsArray[mem.pc]);
-                if (mem.pc > 0)
+                if ((mem.pc > 0) && (mem.BackStack.Count > 0))
                 {
-                    mem.pc--;
-                    decoder.Decode(mem.BefehlsArray[mem.pc]);
+                    mem.BackArray = (int[,])mem.BackStack.Pop();
+                    for (int adresse = 0; adresse < mem.length; adresse++)
+                    {
+                        for (int bits = 0; bits < 8; bits++)
+                        {
+                            mem.ram[bits, adresse] = mem.BackArray[bits, adresse];
+                        }
+                    }
+                    mem.pc = mem.BackArray[0, 256];
+                    mem.WReg = mem.BackArray[1, 256];
 
                 }
                 else
                 {
-                    MessageBox.Show("Programmstart erreicht");
+                    if (mem.pc == 0)
+                    {
+                        MessageBox.Show("Programmstart erreicht");
+                    }
+                    if (mem.BackStack.Count == 0)
+                    {
+                        MessageBox.Show("Error: BackStack leer");
+                    }
                 }
                 GUIAktualisieren();
             }
-            */
+            
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
