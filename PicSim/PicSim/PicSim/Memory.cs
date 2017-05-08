@@ -45,11 +45,23 @@ namespace PicSim
         public int[,,] BackArray = new int[8,258,100];
         public Stack<int>Stack_Backhelper=new Stack<int>();
         //0-255 = ram
-        //256: 0:PC, 1:WReg, 
+        //256: 0:PC, 1:WReg, 2: Laufzeitzähler, 3: Quarzfrequenz 
 
         //BefehlsArray & RAM
         public int[] BefehlsArray = new int[666];
         public int[,] ram = new int[8, 256];
+
+        //Laufzeitzähler
+        public double Laufzeitzaehler = 0;
+        public double LaufzeitIntervall = 0;
+
+        public double Quarzfrequenz = 2500;
+
+        public void IncLaufzeitzaehler()
+        {
+            Laufzeitzaehler = Laufzeitzaehler*(double)1.0 + LaufzeitIntervall*(double)1.0;
+        }
+
 
         public void setWReg(int val)
         {
@@ -144,46 +156,55 @@ namespace PicSim
             }
             */
             //Mit Array
-            if(BackCount>= 0)
+            if (BackCount < 100)
             {
-                for (int adresse = 0; adresse < length; adresse++)
+                if (BackCount >= 0)
                 {
-                    for (int bits = 0; bits < 8; bits++)
+                    for (int adresse = 0; adresse < length; adresse++)
                     {
-                        BackArray[bits, adresse, BackCount] = ram[bits, adresse];
+                        for (int bits = 0; bits < 8; bits++)
+                        {
+                            BackArray[bits, adresse, BackCount] = ram[bits, adresse];
+                        }
                     }
-                }
 
-                //Register
-                //Siehe //StepBack
-                BackArray[0, 256, BackCount] = pc;
-                BackArray[1, 256, BackCount] = WReg;
-                BackArray[2, 256, BackCount] = 0;
-                BackArray[3, 256, BackCount] = 0;
-                BackArray[4, 256, BackCount] = 0;
-                BackArray[5, 256, BackCount] = 0;
-                BackArray[6, 256, BackCount] = 0;
-                BackArray[7, 256, BackCount] = 0;
-                //Stack
-                Stack_Backhelper = new Stack<int>(Stack.Reverse());
-                for (int StackPos = 0; StackPos < 8; StackPos++)
+                    //Register
+                    //Siehe //StepBack
+                    BackArray[0, 256, BackCount] = pc;
+                    BackArray[1, 256, BackCount] = WReg;
+                    BackArray[2, 256, BackCount] = (int)Laufzeitzaehler;
+                    BackArray[3, 256, BackCount] = (int)Quarzfrequenz;
+                    BackArray[4, 256, BackCount] = 0;
+                    BackArray[5, 256, BackCount] = 0;
+                    BackArray[6, 256, BackCount] = 0;
+                    BackArray[7, 256, BackCount] = 0;
+                    //Stack
+                    Stack_Backhelper = new Stack<int>(Stack.Reverse());
+                    for (int StackPos = 0; StackPos < 8; StackPos++)
+                    {
+                        try
+                        {
+                            BackArray[StackPos, 257, BackCount] = Stack_Backhelper.Pop();
+
+                        }
+                        catch (InvalidOperationException e)
+                        {
+                            //Falls Stack leer
+                        }
+                    }
+                    BackCount++;
+                    //BackStack.Push(BackArray);
+                }
+            }
+            else
+            {
+                if (BackCount == 100)
                 {
-                    try
-                    {
-                        BackArray[StackPos, 257, BackCount] = Stack_Backhelper.Pop(); 
-
-                    }
-                    catch (InvalidOperationException e)
-                    {
-                        //Falls Stack leer
-                    }
+                    MessageBox.Show("Zu viele Steps, StepBack nicht mehr möglich");
+                    BackCount++;
                 }
-                BackCount++;
-                //BackStack.Push(BackArray);
             }
         }
-
-
     }
 
 }

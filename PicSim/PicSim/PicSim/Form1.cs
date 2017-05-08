@@ -12,7 +12,6 @@ namespace PicSim
         private Resetter resetter = new Resetter();
         private Memory mem = Memory.Instance;
         private Decoder decoder = Decoder.Instance;
-        private int Quarzfrequenz = 2500;
         private Interrupter interrupter = Interrupter.Instance;
         //Tooltip
         ToolTip tooltipStepBack = new ToolTip();
@@ -134,9 +133,12 @@ namespace PicSim
             //Register
             lblWReg.Text = mem.WReg.ToString();
             lblPC.Text = mem.pc.ToString();
+            lblLaufzeitzaehler.Text = mem.Laufzeitzaehler.ToString("0.##µs");
+                //string.Format("{0:N2}µs", mem.Laufzeitzaehler);
 
             //Quarzfrequenz
-            lblBottomValueQuarzfrequenz.Text = Quarzfrequenz.ToString();
+            lblBottomValueQuarzfrequenz.Text = mem.Quarzfrequenz.ToString();
+            txtQuarzfrequenz.Text = mem.Quarzfrequenz.ToString();
             //Stack
             lblStackContent0.Text = mem.StackArray[0].ToString();
             lblStackContent1.Text = mem.StackArray[1].ToString();
@@ -342,9 +344,10 @@ namespace PicSim
         {
             try
             {
-                if (int.Parse(txtQuarzfrequenz.Text) < 2147483648)
+                if (int.Parse(txtQuarzfrequenz.Text) < 2147483647)
                 {
-                    Quarzfrequenz = int.Parse(txtQuarzfrequenz.Text);
+                    mem.Quarzfrequenz = double.Parse(txtQuarzfrequenz.Text);
+                    mem.LaufzeitIntervall = (double)4.0 / (mem.Quarzfrequenz / (double)1000000.0);
                     GUIAktualisieren();
                 }
                 else
@@ -370,6 +373,7 @@ namespace PicSim
                 interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
                 mem.SafeBack();
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
+                mem.IncLaufzeitzaehler();
                 mem.pc++;
                 GUIAktualisieren();
                 //RamAktualisieren();
@@ -398,6 +402,8 @@ namespace PicSim
                     }
                     mem.pc = mem.BackArray[0, 256, mem.BackCount];
                     mem.WReg = mem.BackArray[1, 256, mem.BackCount];
+                    mem.Laufzeitzaehler = (double)mem.BackArray[2, 256, mem.BackCount];
+                    mem.Quarzfrequenz = (double)mem.BackArray[3, 256, mem.BackCount];
                     //Stack
 
                     for (int StackPos = 0; StackPos < 8; StackPos++)
@@ -415,7 +421,7 @@ namespace PicSim
                     {
                         MessageBox.Show("Programmstart erreicht");
                     }
-                    if (mem.BackCount >= 100)
+                    if (mem.BackCount <= 0)
                     {
                         MessageBox.Show("Error: Back nicht mehr möglich");
                     }
@@ -438,11 +444,13 @@ namespace PicSim
                 }
                 CheckForSleep();
                 interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
+                mem.SafeBack();
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
                 mem.pc++;
+                mem.IncLaufzeitzaehler();
                 backgroundWorker1.ReportProgress(mem.pc); //ruft backgroundWorker1_ProgressChanged Funktion auf, also GUIaktualisieren
                 
-                System.Threading.Thread.Sleep(Quarzfrequenz); //Quarzfrequenz??
+                System.Threading.Thread.Sleep(50); 
             }        
         }
 
@@ -477,8 +485,6 @@ namespace PicSim
                 }
             }
         }
-
-
     }
 }
  
