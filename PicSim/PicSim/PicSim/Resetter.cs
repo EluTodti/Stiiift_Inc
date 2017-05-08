@@ -74,6 +74,9 @@ namespace PicSim
         {
             mem.setWReg(0);
             mem.pc = 0;
+            mem.Laufzeitzaehler = 0;
+            mem.Quarzfrequenz = 4000000;
+            mem.LaufzeitIntervall = (double)4.0/(mem.Quarzfrequenz/(double)1000000.0);
         }
 
         public void ResetStackArrays()

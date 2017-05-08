@@ -210,6 +210,8 @@ namespace PicSim
             mem.pc = adresse + pclath;
             //PC -1, da in for Schleife erhöht
             mem.pc--;
+
+            mem.IncLaufzeitzaehler();
         }
 
         public void call(int binCode)
@@ -222,6 +224,8 @@ namespace PicSim
             mem.pc = adresse + pclath;
             //PC -1, da in for Schleife erhöht
             mem.pc--;
+
+            mem.IncLaufzeitzaehler();
         }
 
         public void nop(int binCode)
@@ -234,6 +238,8 @@ namespace PicSim
             StackPop();
             //PC -1, da in for Schleife erhöht
             mem.pc--;
+
+            mem.IncLaufzeitzaehler();
         }
 
         public void retlw(int binCode)
@@ -242,6 +248,8 @@ namespace PicSim
             mem.setWReg(literal);
             StackPop();
             mem.pc--;
+
+            mem.IncLaufzeitzaehler();
         }
 
         public void movwf(int binCode)
@@ -615,6 +623,7 @@ namespace PicSim
             {
                 nop(binCode);
                 mem.pc++;
+                mem.IncLaufzeitzaehler();
             }
         }
 
@@ -636,6 +645,7 @@ namespace PicSim
             {
                 nop(binCode);
                 mem.pc++;
+                mem.IncLaufzeitzaehler();
             }
         }
 
@@ -652,6 +662,7 @@ namespace PicSim
             {
                 nop(binCode);
                 mem.pc++;
+                mem.IncLaufzeitzaehler();
             }
         }
 
@@ -669,14 +680,15 @@ namespace PicSim
             {
                 nop(binCode);
                 mem.pc++;
+                mem.IncLaufzeitzaehler();
             }
         }
 
 
         public void clrwdt(int binCode)
         {
-            //TODO 00H -> WDT
-            //TODO 0 -> WDT prescaler
+            //TODO 00H -> WDT bzw Startwert 18.000
+            //TODO 0 -> WDT prescaler bzw. Startwert
             mem.ram[Const.STATUS, 3] = 1;
             mem.ram[Const.STATUS, 4] = 1;
             //TODO TMR0 ++
@@ -706,9 +718,8 @@ namespace PicSim
             mem.ram[7, Const.INTCON] = 1;
             //pc-1 da in for Schleife +1
             mem.pc--;
+
+            mem.IncLaufzeitzaehler();
         }
-
-
-
     }
 }
