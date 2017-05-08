@@ -24,7 +24,7 @@ namespace PicSim
 
 
         private Memory mem = Memory.Instance;
-        Befehle befehle = new Befehle();
+        Befehle befehle = Befehle.Instance;
         /*Initialisierung
         public bool INTRB0 = false;
         public bool INTRB4 = false;
@@ -35,6 +35,11 @@ namespace PicSim
 
         public void CheckInterrupt()
         {
+            //Für sleep - Unterbrechung
+            if (CheckOtherInterrupts())
+            {
+                mem.ram[3, Const.STATUS] = 1;
+            }
             //Wenn True Interrupt an Prozessor
             if (InterruptGIE() && CheckOtherInterrupts())
             {
@@ -45,11 +50,6 @@ namespace PicSim
                 //Adresse 4 laden - Interrupt Service Routine
                 befehle.call(0x04);
 
-            }
-            //Für sleep - Unterbrechung
-            if (CheckOtherInterrupts())
-            {
-                mem.ram[3, Const.STATUS] = 1;
             }
         }
 

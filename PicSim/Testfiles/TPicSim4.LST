@@ -32,7 +32,7 @@
 0006 0D0C           00032           rlf wert1,w         ;W=10h, wert1=88h, wert2=?? , DC=0, C=1, Z=0
 0007 0D8C           00033           rlf wert1           ;W=10h, wert1=11h, wert2=?? , DC=0, C=1, Z=0
 0008 0D0C           00034           rlf wert1,w         ;W=23h, wert1=11h, wert2=?? , DC=0, C=0, Z=0
-0009 0C8C           00035           rrf wert1           ;W=23h, wert1=08h, wert2=?? , DC=0, C=0, Z=0
+0009 0C8C           00035           rrf wert1           ;W=23h, wert1=08h, wert2=?? , DC=0, C=1, Z=0
 000A 008D           00036           movwf wert2         ;W=23h, wert1=08h, wert2=23h, DC=0, C=0, Z=0
 000B 0C8D           00037           rrf wert2           ;W=23h, wert1=08h, wert2=91h, DC=0, C=1, Z=0
 000C 0C0D           00038           rrf wert2,w         ;W=C8h, wert1=08h, wert2=91h, DC=0, C=1, Z=0

@@ -62,6 +62,18 @@ namespace PicSim
             Laufzeitzaehler = Laufzeitzaehler*(double)1.0 + LaufzeitIntervall*(double)1.0;
         }
 
+        //Timer0
+        public int TimerValOld = 0;
+        public int TimerValNew = 0;
+        public int TimerInhibit = 0;
+        public bool IncomingOverFlow = false;
+        public bool TwoCycles = false;
+
+        public void decTimerInhibit()
+        {
+            TimerInhibit--;
+        }
+
 
         public void setWReg(int val)
         {
@@ -144,6 +156,8 @@ namespace PicSim
         }
 
         //Funktion: Speichern der Werte im BackStack für StepBack Button
+
+            //TimerValOld   TimerValNew     TimerInhibit
         public void SafeBack()
         {
             /* Mit Stack
@@ -187,7 +201,7 @@ namespace PicSim
                             BackArray[StackPos, 257, BackCount] = Stack_Backhelper.Pop();
 
                         }
-                        catch (InvalidOperationException e)
+                        catch (InvalidOperationException)
                         {
                             //Falls Stack leer
                         }
