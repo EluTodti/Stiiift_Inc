@@ -29,7 +29,6 @@ namespace PicSim
 
         //Spezialregister
         public int pc = 0;
-
         public int WReg = 0;
 
         public Stack<int> Stack = new Stack<int>();
@@ -38,6 +37,23 @@ namespace PicSim
 
         public int[] BefehlsArray = new int[666];
         public int[,] ram = new int[8, 256];
+
+        //Timer Funktion
+        public int timerInhibit = 0;
+        public int RA4_T0CKL = 0;
+        public int TimerValOld = 0;
+        public int TimerValNew = 0;
+        public int Ra4ValOld = 0;
+        public int Ra4ValNew = 0;
+
+        public void setTimerInhibit()
+        {
+            timerInhibit = 2;
+        }
+        public void decTimerInhibit()
+        {
+            timerInhibit -= 1;
+        }
 
         public void setWReg(int val)
         {
@@ -89,7 +105,7 @@ namespace PicSim
 
                 for (int i = 0; i < 8; i++)
                 {
-                    ram[i, fileadresse + 128] = int.Parse(binVal[7 - i].ToString());
+                    ram[i, fileadresse + Const.bank] = int.Parse(binVal[7 - i].ToString());
                 }
             }
             if (fileadresse - 128 == Const.INDF || fileadresse - 128 == Const.PCL || fileadresse - 128 == Const.STATUS

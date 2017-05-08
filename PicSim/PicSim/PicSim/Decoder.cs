@@ -23,10 +23,11 @@ namespace PicSim
                 return instance;
             }
         }
-        Befehle befehle = new Befehle();
+        Befehle befehle = Befehle.Instance;
 
         public void Decode(int binCode)
         {
+            
             //BYTE-ORIENTED FILE REGISTER OPERATIONS
             if ((binCode & 0x3F00) == 0x0700)
             {
