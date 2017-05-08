@@ -10,6 +10,25 @@ namespace PicSim
 {
     class Befehle
     {
+        //Singleton
+        private static Befehle instance;
+
+        private Befehle()
+        {
+        }
+
+        public static Befehle Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Befehle();
+                }
+                return instance;
+            }
+        }
+
         Memory mem = Memory.Instance;
         private int literal = 0;
         private int fileAdress = 0;
@@ -18,7 +37,7 @@ namespace PicSim
         private byte bit;
         //string binaryval = Convert.ToString(literal, 2);
 
-        private int getFileVal(int f)
+        public int getFileVal(int f)
         {
             int FileVal = 0;
 
@@ -29,7 +48,7 @@ namespace PicSim
             return FileVal;
         }
 
-        private void schreibeInRam(int f, int val)
+        public void schreibeInRam(int f, int val)
         {
 
             if (val > 255)
@@ -148,15 +167,14 @@ namespace PicSim
                     mem.StackArray[i] = mem.StackArrayHelper[i];
                 }
             }
-            catch (IndexOutOfRangeException e)
+            catch (IndexOutOfRangeException)
             {
                 MessageBox.Show("StepBack sollte nicht zwischen call und return ausgeführt werden! PicSim bitte resetten.");
             }
         }
         //==============================
-
         //Befehle         
-        
+
         public void movlw(int binCode)
         {
             literal = binCode & 0x00FF;
@@ -212,6 +230,8 @@ namespace PicSim
             mem.pc--;
 
             mem.IncLaufzeitzaehler();
+            mem.TwoCycles = true;
+
         }
 
         public void call(int binCode)
@@ -226,6 +246,8 @@ namespace PicSim
             mem.pc--;
 
             mem.IncLaufzeitzaehler();
+            mem.TwoCycles = true;
+
         }
 
         public void nop(int binCode)
@@ -240,6 +262,7 @@ namespace PicSim
             mem.pc--;
 
             mem.IncLaufzeitzaehler();
+            mem.TwoCycles = true;
         }
 
         public void retlw(int binCode)
@@ -250,6 +273,7 @@ namespace PicSim
             mem.pc--;
 
             mem.IncLaufzeitzaehler();
+            mem.TwoCycles = true;
         }
 
         public void movwf(int binCode)
@@ -384,13 +408,29 @@ namespace PicSim
             fileVal = getFileVal(fileAdress);
             destination = binCode & 0x0080;
 
+           
             if (destination == 0)
             {
-                mem.setWReg(fileVal);
+                if (fileAdress == 1)
+                {
+                    mem.setWReg(fileVal + 1);
+
+                }
+                else
+                {
+                    mem.setWReg(fileVal);
+                }
             }
             else
             {
-                schreibeInRam(fileAdress, fileVal);
+                if (fileAdress == 1)
+                {
+                    mem.setWReg(fileVal + 1);
+                }
+                else
+                {
+                    schreibeInRam(fileAdress, fileVal);
+                }
             }
             CheckZero(fileVal);
         }
@@ -624,6 +664,8 @@ namespace PicSim
                 nop(binCode);
                 mem.pc++;
                 mem.IncLaufzeitzaehler();
+                mem.TwoCycles = true;
+
             }
         }
 
@@ -646,6 +688,8 @@ namespace PicSim
                 nop(binCode);
                 mem.pc++;
                 mem.IncLaufzeitzaehler();
+                mem.TwoCycles = true;
+
             }
         }
 
@@ -663,6 +707,8 @@ namespace PicSim
                 nop(binCode);
                 mem.pc++;
                 mem.IncLaufzeitzaehler();
+                mem.TwoCycles = true;
+
             }
         }
 
@@ -681,6 +727,8 @@ namespace PicSim
                 nop(binCode);
                 mem.pc++;
                 mem.IncLaufzeitzaehler();
+                mem.TwoCycles = true;
+
             }
         }
 
@@ -720,6 +768,8 @@ namespace PicSim
             mem.pc--;
 
             mem.IncLaufzeitzaehler();
+            mem.TwoCycles = true;
+
         }
     }
 }

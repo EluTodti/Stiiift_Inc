@@ -25,8 +25,8 @@
 0001 1683           00025           bsf status,5        ;Bank umschalten
 0002 0081           00026           movwf 1             ;Option-Register
 0003 1283           00027           bcf status,5
-0004 3001           00028           movlw 1             ;Timer 1 auf 1
-0005 0081           00029           movwf 1
+0004 3001           00028           movlw 1             
+0005 0081           00029           movwf 1				;Timer 1 auf 1
 0006 0190           00030           clrf 10h            ;zähler
                     00031  loop1    
 0007 0000           00032           nop

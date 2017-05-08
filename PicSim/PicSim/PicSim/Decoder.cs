@@ -23,7 +23,7 @@ namespace PicSim
                 return instance;
             }
         }
-        Befehle befehle = new Befehle();
+        Befehle befehle = Befehle.Instance;
 
         public void Decode(int binCode)
         {
