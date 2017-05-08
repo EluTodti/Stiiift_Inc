@@ -24,7 +24,7 @@ namespace PicSim
 
 
         private Memory mem = Memory.Instance;
-        Befehle befehle = new Befehle();
+        Befehle befehle = Befehle.Instance;
         /*Initialisierung
         public bool INTRB0 = false;
         public bool INTRB4 = false;

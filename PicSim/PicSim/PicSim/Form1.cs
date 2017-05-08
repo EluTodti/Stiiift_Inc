@@ -367,15 +367,15 @@ namespace PicSim
             }
             else
             {
-<<<<<<< HEAD
+
                 mem.TimerValOld = befehle.getFileVal(0x01);
                 mem.Ra4ValOld = mem.ram[4, Const.PORTA];
                
-=======
+
                 CheckForSleep();
                 interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
                 mem.SafeBack();
->>>>>>> refs/remotes/origin/master
+
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
                 mem.pc++;
 
