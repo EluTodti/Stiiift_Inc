@@ -1108,6 +1108,8 @@ namespace PicSim
             this.ResumeLayout(false);
             this.PerformLayout();
 
+
+
         }
 
         #endregion

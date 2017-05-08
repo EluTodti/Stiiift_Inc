@@ -19,6 +19,7 @@ namespace PicSim
             ResetRegister();
             ResetStackArrays();
             ResetInterrupts();
+            mem.BackCount = 0;
         }
 
         public void ResetBefehlsArray()

@@ -16,7 +16,6 @@ namespace PicSim
         private int fileVal = 0;
         private int destination;
         private byte bit;
-
         //string binaryval = Convert.ToString(literal, 2);
 
         private int getFileVal(int f)
@@ -140,10 +139,18 @@ namespace PicSim
         public void StackPush()
         {
             mem.Stack.Push(mem.pc);
+
             mem.StackArrayHelper = mem.Stack.ToArray();
-            for (int i = 0; i < mem.StackArrayHelper.Length; i++)
+            try
             {
-                mem.StackArray[i] = mem.StackArrayHelper[i];
+                for (int i = 0; i < mem.StackArrayHelper.Length; i++)
+                {
+                    mem.StackArray[i] = mem.StackArrayHelper[i];
+                }
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                MessageBox.Show("StepBack sollte nicht zwischen call und return ausgeführt werden! PicSim bitte resetten.");
             }
         }
         //==============================

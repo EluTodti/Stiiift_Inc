@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PicSim
 {
@@ -28,7 +29,6 @@ namespace PicSim
             }
         }
 
-        Interrupter interrupter = Interrupter.Instance;
         //Spezialregister
         public int pc = 0;
 
@@ -38,6 +38,16 @@ namespace PicSim
         public int[] StackArray = new int[8];
         public int[] StackArrayHelper = new int[8];
 
+        //StepBack
+        //public Stack<Array> BackStack = new Stack<Array>();
+        public int length = 256;        //mem.ram.length wirft exception, deshalb hard-coded
+        public int BackCount = 0;
+        public int[,,] BackArray = new int[8,258,100];
+        public Stack<int>Stack_Backhelper=new Stack<int>();
+        //0-255 = ram
+        //256: 0:PC, 1:WReg, 
+
+        //BefehlsArray & RAM
         public int[] BefehlsArray = new int[666];
         public int[,] ram = new int[8, 256];
 
@@ -119,6 +129,58 @@ namespace PicSim
             }
 
 
+        }
+
+        //Funktion: Speichern der Werte im BackStack für StepBack Button
+        public void SafeBack()
+        {
+            /* Mit Stack
+            for (int adresse = 0; adresse < length; adresse++)
+            {
+                for (int bits = 0; bits < 8; bits++)
+                {
+                    BackArray[bits, adresse] = ram[bits, adresse];
+                }
+            }
+            */
+            //Mit Array
+            if(BackCount>= 0)
+            {
+                for (int adresse = 0; adresse < length; adresse++)
+                {
+                    for (int bits = 0; bits < 8; bits++)
+                    {
+                        BackArray[bits, adresse, BackCount] = ram[bits, adresse];
+                    }
+                }
+
+                //Register
+                //Siehe //StepBack
+                BackArray[0, 256, BackCount] = pc;
+                BackArray[1, 256, BackCount] = WReg;
+                BackArray[2, 256, BackCount] = 0;
+                BackArray[3, 256, BackCount] = 0;
+                BackArray[4, 256, BackCount] = 0;
+                BackArray[5, 256, BackCount] = 0;
+                BackArray[6, 256, BackCount] = 0;
+                BackArray[7, 256, BackCount] = 0;
+                //Stack
+                Stack_Backhelper = new Stack<int>(Stack.Reverse());
+                for (int StackPos = 0; StackPos < 8; StackPos++)
+                {
+                    try
+                    {
+                        BackArray[StackPos, 257, BackCount] = Stack_Backhelper.Pop(); 
+
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        //Falls Stack leer
+                    }
+                }
+                BackCount++;
+                //BackStack.Push(BackArray);
+            }
         }
 
 

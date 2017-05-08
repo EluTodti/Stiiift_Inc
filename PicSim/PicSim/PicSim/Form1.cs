@@ -14,15 +14,25 @@ namespace PicSim
         private Decoder decoder = Decoder.Instance;
         private int Quarzfrequenz = 2500;
         private Interrupter interrupter = Interrupter.Instance;
-
+        //Tooltip
+        ToolTip tooltipStepBack = new ToolTip();
+        ToolTip tooltipStep = new ToolTip();
         public Form1()
         {
             InitializeComponent();
             textBoxCode.ScrollBars = ScrollBars.Vertical;
+            Tooltips();
             Fill_dgvRam();
             resetter.Reset();
             resetter.ResetBefehlsArray();
             GUIAktualisieren();
+        }
+
+        private void Tooltips()
+        {
+            tooltipStepBack.SetToolTip(btnStepBack, "Achtung: StepBack darf nicht zwischen call und return verwendet werden!");
+            tooltipStep.SetToolTip(btnStep,"Einen Befehl ausführen");
+
         }
 
         private void Fill_dgvRam()
@@ -358,36 +368,61 @@ namespace PicSim
             {
                 CheckForSleep();
                 interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
+                mem.SafeBack();
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
                 mem.pc++;
                 GUIAktualisieren();
                 //RamAktualisieren();
             }
         }
-
+        //StepBack nicht zwischen Calls anwenden!
         private void btnStepBack_Click(object sender, EventArgs e)
         {
-            /*
+            
             if (textBoxCode.Text == "")
             {
                 MessageBox.Show("Kein Code gefunden!");
             }
             else
             {
-                decoder.Decode(mem.BefehlsArray[mem.pc]);
-                if (mem.pc > 0)
+                mem.BackCount--;
+                if ((mem.pc > 0) && (mem.BackCount > 0))
                 {
-                    mem.pc--;
-                    decoder.Decode(mem.BefehlsArray[mem.pc]);
+                    //mem.BackArray = (int[,])mem.BackStack.Pop();
+                    for (int adresse = 0; adresse < mem.length; adresse++)
+                    {
+                        for (int bits = 0; bits < 8; bits++)
+                        {
+                            mem.ram[bits, adresse] = mem.BackArray[bits, adresse, mem.BackCount];
+                        }
+                    }
+                    mem.pc = mem.BackArray[0, 256, mem.BackCount];
+                    mem.WReg = mem.BackArray[1, 256, mem.BackCount];
+                    //Stack
+
+                    for (int StackPos = 0; StackPos < 8; StackPos++)
+                    {
+
+                        mem.StackArray[StackPos] = mem.BackArray[StackPos, 257, mem.BackCount];
+                        mem.Stack.Push(mem.StackArray[StackPos]);
+
+                    }
 
                 }
                 else
                 {
-                    MessageBox.Show("Programmstart erreicht");
+                    if (mem.pc == 0)
+                    {
+                        MessageBox.Show("Programmstart erreicht");
+                    }
+                    if (mem.BackCount >= 100)
+                    {
+                        MessageBox.Show("Error: Back nicht mehr möglich");
+                    }
                 }
                 GUIAktualisieren();
             }
-            */
+            
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
