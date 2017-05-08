@@ -14,15 +14,25 @@ namespace PicSim
         private Decoder decoder = Decoder.Instance;
         private int Quarzfrequenz = 2500;
         private Interrupter interrupter = Interrupter.Instance;
-
+        //Tooltip
+        ToolTip tooltipStepBack = new ToolTip();
+        ToolTip tooltipStep = new ToolTip();
         public Form1()
         {
             InitializeComponent();
             textBoxCode.ScrollBars = ScrollBars.Vertical;
+            Tooltips();
             Fill_dgvRam();
             resetter.Reset();
             resetter.ResetBefehlsArray();
             GUIAktualisieren();
+        }
+
+        private void Tooltips()
+        {
+            tooltipStepBack.SetToolTip(btnStepBack, "Achtung: StepBack darf nicht zwischen call und return verwendet werden!");
+            tooltipStep.SetToolTip(btnStep,"Einen Befehl ausführen");
+
         }
 
         private void Fill_dgvRam()
@@ -365,7 +375,7 @@ namespace PicSim
                 //RamAktualisieren();
             }
         }
-
+        //StepBack nicht zwischen Calls anwenden!
         private void btnStepBack_Click(object sender, EventArgs e)
         {
             
@@ -375,18 +385,28 @@ namespace PicSim
             }
             else
             {
-                if ((mem.pc > 0) && (mem.BackStack.Count > 0))
+                mem.BackCount--;
+                if ((mem.pc > 0) && (mem.BackCount > 0))
                 {
-                    mem.BackArray = (int[,])mem.BackStack.Pop();
+                    //mem.BackArray = (int[,])mem.BackStack.Pop();
                     for (int adresse = 0; adresse < mem.length; adresse++)
                     {
                         for (int bits = 0; bits < 8; bits++)
                         {
-                            mem.ram[bits, adresse] = mem.BackArray[bits, adresse];
+                            mem.ram[bits, adresse] = mem.BackArray[bits, adresse, mem.BackCount];
                         }
                     }
-                    mem.pc = mem.BackArray[0, 256];
-                    mem.WReg = mem.BackArray[1, 256];
+                    mem.pc = mem.BackArray[0, 256, mem.BackCount];
+                    mem.WReg = mem.BackArray[1, 256, mem.BackCount];
+                    //Stack
+
+                    for (int StackPos = 0; StackPos < 8; StackPos++)
+                    {
+
+                        mem.StackArray[StackPos] = mem.BackArray[StackPos, 257, mem.BackCount];
+                        mem.Stack.Push(mem.StackArray[StackPos]);
+
+                    }
 
                 }
                 else
@@ -395,9 +415,9 @@ namespace PicSim
                     {
                         MessageBox.Show("Programmstart erreicht");
                     }
-                    if (mem.BackStack.Count == 0)
+                    if (mem.BackCount >= 100)
                     {
-                        MessageBox.Show("Error: BackStack leer");
+                        MessageBox.Show("Error: Back nicht mehr möglich");
                     }
                 }
                 GUIAktualisieren();
