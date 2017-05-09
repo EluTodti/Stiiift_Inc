@@ -652,7 +652,7 @@ namespace PicSim
             IndirekteAdressierung(fileAdress);
 
             fileVal = getFileVal(fileAdress);
-            bit = (byte)((fileVal >> 7) & 0x7);
+            bit = (byte)((binCode >> 7) & 0x7);
 
             int Bool = mem.ram[bit, fileAdress];
             if (Bool == 1)
@@ -676,7 +676,7 @@ namespace PicSim
             IndirekteAdressierung(fileAdress);
 
             fileVal = getFileVal(fileAdress);
-            bit = (byte)((fileVal >> 7) & 0x7);
+            bit = (byte)((binCode >> 7) & 0x7);
 
             int Bool = mem.ram[bit, fileAdress];
             if (Bool == 0)

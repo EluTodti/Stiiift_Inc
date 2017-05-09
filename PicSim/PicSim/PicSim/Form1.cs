@@ -399,9 +399,18 @@ namespace PicSim
             }
             else
             {
-                mem.BackCount--;
-                if ((mem.pc > 0) && (mem.BackCount > 0))
+                //Ringarray
+                if (mem.BackCount == 0)
                 {
+                    mem.BackCount = 99;
+                }
+                else
+                {
+                    mem.BackCount--;
+                }
+                if ((mem.pc > 0) && (mem.CountOfStepsSafed > 0))
+                {
+                    mem.CountOfStepsSafed--;
                     //mem.BackArray = (int[,])mem.BackStack.Pop();
                     for (int adresse = 0; adresse < mem.length; adresse++)
                     {
@@ -414,16 +423,13 @@ namespace PicSim
                     mem.WReg = mem.BackArray[1, 256, mem.BackCount];
                     mem.Laufzeitzaehler = (double)mem.BackArray[2, 256, mem.BackCount];
                     mem.Quarzfrequenz = (double)mem.BackArray[3, 256, mem.BackCount];
-                    //Stack
 
+                    //Stack
                     for (int StackPos = 0; StackPos < 8; StackPos++)
                     {
-
                         mem.StackArray[StackPos] = mem.BackArray[StackPos, 257, mem.BackCount];
                         mem.Stack.Push(mem.StackArray[StackPos]);
-
                     }
-
                 }
                 else
                 {
@@ -431,9 +437,9 @@ namespace PicSim
                     {
                         MessageBox.Show("Programmstart erreicht");
                     }
-                    if (mem.BackCount <= 0)
+                    if (mem.CountOfStepsSafed <= 0)
                     {
-                        MessageBox.Show("Error: Back nicht mehr möglich");
+                        MessageBox.Show("Error: Back nicht mehr möglich, maximal 100 x StepBack erreicht");
                     }
                 }
                 GUIAktualisieren();
@@ -464,7 +470,7 @@ namespace PicSim
                 mem.IncLaufzeitzaehler();
                 backgroundWorker1.ReportProgress(mem.pc); //ruft backgroundWorker1_ProgressChanged Funktion auf, also GUIaktualisieren
                 
-                System.Threading.Thread.Sleep(50); 
+                System.Threading.Thread.Sleep(20); 
             }        
         }
 
