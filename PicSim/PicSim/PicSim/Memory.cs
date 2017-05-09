@@ -158,6 +158,8 @@ namespace PicSim
         //Funktion: Speichern der Werte im BackStack für StepBack Button
 
             //TimerValOld   TimerValNew     TimerInhibit
+        public int CountOfStepsSafed = 0;
+
         public void SafeBack()
         {
             /* Mit Stack
@@ -170,52 +172,54 @@ namespace PicSim
             }
             */
             //Mit Array
-            if (BackCount < 100)
+            if (CountOfStepsSafed < 100)
             {
-                if (BackCount >= 0)
+                CountOfStepsSafed++;
+            }
+            Safe();
+            BackCount++;
+            //BackStack.Push(BackArray);
+
+            //Ringarray
+            if (BackCount == 100)
+            {
+                BackCount = 0;
+            }
+        }
+
+        //Für SafeBack
+        private void Safe()
+        {
+            for (int adresse = 0; adresse < length; adresse++)
+            {
+                for (int bits = 0; bits < 8; bits++)
                 {
-                    for (int adresse = 0; adresse < length; adresse++)
-                    {
-                        for (int bits = 0; bits < 8; bits++)
-                        {
-                            BackArray[bits, adresse, BackCount] = ram[bits, adresse];
-                        }
-                    }
-
-                    //Register
-                    //Siehe //StepBack
-                    BackArray[0, 256, BackCount] = pc;
-                    BackArray[1, 256, BackCount] = WReg;
-                    BackArray[2, 256, BackCount] = (int)Laufzeitzaehler;
-                    BackArray[3, 256, BackCount] = (int)Quarzfrequenz;
-                    BackArray[4, 256, BackCount] = 0;
-                    BackArray[5, 256, BackCount] = 0;
-                    BackArray[6, 256, BackCount] = 0;
-                    BackArray[7, 256, BackCount] = 0;
-                    //Stack
-                    Stack_Backhelper = new Stack<int>(Stack.Reverse());
-                    for (int StackPos = 0; StackPos < 8; StackPos++)
-                    {
-                        try
-                        {
-                            BackArray[StackPos, 257, BackCount] = Stack_Backhelper.Pop();
-
-                        }
-                        catch (InvalidOperationException)
-                        {
-                            //Falls Stack leer
-                        }
-                    }
-                    BackCount++;
-                    //BackStack.Push(BackArray);
+                    BackArray[bits, adresse, BackCount] = ram[bits, adresse];
                 }
             }
-            else
+
+            //Register
+            //Siehe //StepBack
+            BackArray[0, 256, BackCount] = pc;
+            BackArray[1, 256, BackCount] = WReg;
+            BackArray[2, 256, BackCount] = (int)Laufzeitzaehler;
+            BackArray[3, 256, BackCount] = (int)Quarzfrequenz;
+            BackArray[4, 256, BackCount] = 0;
+            BackArray[5, 256, BackCount] = 0;
+            BackArray[6, 256, BackCount] = 0;
+            BackArray[7, 256, BackCount] = 0;
+            //Stack
+            Stack_Backhelper = new Stack<int>(Stack.Reverse());
+            for (int StackPos = 0; StackPos < 8; StackPos++)
             {
-                if (BackCount == 100)
+                try
                 {
-                    MessageBox.Show("Zu viele Steps, StepBack nicht mehr möglich");
-                    BackCount++;
+                    BackArray[StackPos, 257, BackCount] = Stack_Backhelper.Pop();
+
+                }
+                catch (InvalidOperationException)
+                {
+                    //Falls Stack leer
                 }
             }
         }
