@@ -38,6 +38,7 @@ namespace PicSim
             //Für sleep - Unterbrechung
             if (CheckOtherInterrupts())
             {
+                //PD BIT
                 mem.ram[3, Const.STATUS] = 1;
             }
             //Wenn True Interrupt an Prozessor
@@ -47,6 +48,7 @@ namespace PicSim
                 //clear GIE damit keine Interrupts mehr möglich
                 mem.ram[7, Const.INTCON] = 0;
 
+                mem.pc++;
                 //Adresse 4 laden - Interrupt Service Routine
                 befehle.call(0x04);
 

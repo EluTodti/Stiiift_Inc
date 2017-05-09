@@ -464,7 +464,7 @@ namespace PicSim
                 mem.IncLaufzeitzaehler();
                 backgroundWorker1.ReportProgress(mem.pc); //ruft backgroundWorker1_ProgressChanged Funktion auf, also GUIaktualisieren
                 
-                System.Threading.Thread.Sleep(50); 
+                System.Threading.Thread.Sleep(20); 
             }        
         }
 
