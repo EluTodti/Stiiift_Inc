@@ -282,9 +282,6 @@ namespace PicSim
         public void PreInstructions(int binCode)
         {
             mem.SafeBack();
-            setZero(0);
-            setCarry(0);
-            setDigitCarry(0);
             GetTimerValOld();
             mem.TwoCycles = false;
 
