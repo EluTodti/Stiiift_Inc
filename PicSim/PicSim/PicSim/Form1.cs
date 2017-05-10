@@ -374,22 +374,9 @@ namespace PicSim
             {
                 CheckForSleep();
                 interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
-                mem.SafeBack();
-<<<<<<< HEAD
-                //MessageBox.Show("alt" + mem.TimerValOld.ToString());
-                mem.TwoCycles = false;
+                
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
-                //MessageBox.Show("neu" + mem.TimerValNew.ToString());
-                mem.IncLaufzeitzaehler();
-                mem.pc++;
-=======
-                mem.TimerValOld = befehle.getFileVal(Const.TMR0); //Für TMR0
-                mem.TwoCycles = false;
-                decoder.Decode(mem.BefehlsArray[mem.pc]);
-                mem.TimerValNew = befehle.getFileVal(Const.TMR0); //Für TMR0
->>>>>>> 25163c31e8226bba68f1d6bfe569fbdfadd7d827
                 GUIAktualisieren();
-                //RamAktualisieren();
             }
         }
         //StepBack nicht zwischen Calls anwenden!
@@ -459,7 +446,6 @@ namespace PicSim
         {
             while (mem.pc < mem.BefehlsArray.Length) //evtl while Schleife eleganter?
             {
-
                 if (backgroundWorker1.CancellationPending == true)  //ist True, wenn Pause Button gedrückt wurde
                 {
                     e.Cancel = true;
@@ -468,17 +454,11 @@ namespace PicSim
                 }
                 CheckForSleep();
                 interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
-                mem.SafeBack();
-                mem.TwoCycles = false;
+
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
-<<<<<<< HEAD
-                mem.pc++;
-                mem.IncLaufzeitzaehler();
-=======
-                mem.TimerValNew = befehle.getFileVal(Const.TMR0); //Für TMR0
->>>>>>> 25163c31e8226bba68f1d6bfe569fbdfadd7d827
-                backgroundWorker1.ReportProgress(mem.pc); //ruft backgroundWorker1_ProgressChanged Funktion auf, also GUIaktualisieren
-                
+
+                backgroundWorker1.ReportProgress(mem.pc); //ruft backgroundWorker1_ProgressChanged Funktion auf, also GUIaktualisieren             
+
                 System.Threading.Thread.Sleep(20); 
             }        
         }

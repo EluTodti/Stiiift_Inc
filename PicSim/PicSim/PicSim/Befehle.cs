@@ -281,6 +281,7 @@ namespace PicSim
         }
         public void PreInstructions(int binCode)
         {
+            mem.SafeBack();
             setZero(0);
             setCarry(0);
             setDigitCarry(0);
@@ -307,33 +308,24 @@ namespace PicSim
 
         public void movlw(int binCode)
         {
-            GetTimerValOld();
-            literal = binCode & 0x00FF;
-
-            mem.setWReg(literal);
-                
-
+            PreInstructions(binCode);
+            mem.setWReg(literal);                   
             mem.setWReg(literal); 
-            PostInstruction();           
-
+            PostInstruction();
         }
 
         public void andlw(int binCode)
         {
-            GetTimerValOld();
-            literal = binCode & 0x00FF;
+            PreInstructions(binCode);
             mem.setWReg(literal & mem.WReg);                     
             CheckZero(mem.WReg);
-
             CheckTimer();
-
             PostInstruction();
         }
 
         public void iorlw(int binCode)
         {
-            GetTimerValOld();
-            literal = binCode & 0x00FF;
+            PreInstructions(binCode);
             mem.setWReg(literal | mem.WReg);            
             CheckZero(mem.WReg);
             PostInstruction();
@@ -341,20 +333,17 @@ namespace PicSim
 
         public void sublw(int binCode)
         {
-            GetTimerValOld();
-            literal = binCode & 0x00FF;
+            PreInstructions(binCode);
             mem.setWReg(literal - mem.WReg);
             CheckZero(mem.WReg);
             CheckCarry();
-            CheckDigitCarry();
-            
+            CheckDigitCarry();            
             PostInstruction();
         }
 
         public void xorlw(int binCode)
         {
-            GetTimerValOld();
-            literal = binCode & 0x00FF;
+            PreInstructions(binCode);
             mem.setWReg(literal ^ mem.WReg);
             CheckZero(mem.WReg);
             
@@ -363,19 +352,17 @@ namespace PicSim
 
         public void addlw(int binCode)
         {
-            GetTimerValOld();
-            literal = binCode & 0x00FF;
+            PreInstructions(binCode);
             mem.setWReg(literal + mem.WReg);
             CheckZero(mem.WReg);
             CheckCarry();
-            CheckDigitCarry();
-            
+            CheckDigitCarry();            
             PostInstruction();
         }
 
         public void  goto_(int binCode)
         {
-            GetTimerValOld();
+            PreInstructions(binCode);
             //TODO 2 Cycles            
             int pclath = 0;  //<< 7;         //TODO pclath
             int adresse = (binCode & 0x07FF);
@@ -384,15 +371,14 @@ namespace PicSim
             mem.pc--;
 
             mem.IncLaufzeitzaehler();
-            mem.TwoCycles = true;
-            
+            mem.TwoCycles = true;         
 
             PostInstruction();
         }
 
         public void call(int binCode)
         {
-            GetTimerValOld();
+            PreInstructions(binCode);
             //TODO 2 Cycles
             mem.pc++;
             StackPush();
@@ -411,15 +397,14 @@ namespace PicSim
 
         public void nop(int binCode)
         {
-            GetTimerValOld();
-            
+            PreInstructions(binCode);
             //Nope
             PostInstruction();
         }
 
         public void return_(int binCode)
         {
-            GetTimerValOld();
+            PreInstructions(binCode);
             StackPop();
             //PC -1, da in for Schleife erhöht
             mem.pc--;
@@ -433,8 +418,7 @@ namespace PicSim
 
         public void retlw(int binCode)
         {
-            GetTimerValOld();
-            literal = binCode & 0x00FF;
+            PreInstructions(binCode);
             mem.setWReg(literal);
             StackPop();
             mem.pc--;
@@ -449,9 +433,7 @@ namespace PicSim
 
         public void movwf(int binCode)
         {
-            GetTimerValOld();
-            fileAdress = binCode & 0x007F;
-            IndirekteAdressierung(fileAdress);
+            PreInstructions(binCode);
             schreibeInRam(fileAdress, mem.WReg);
             
 
@@ -460,14 +442,7 @@ namespace PicSim
 
         public void addwf(int binCode)
         {
-            GetTimerValOld();
-            fileAdress = binCode & 0x007F;
-
-            IndirekteAdressierung(fileAdress);
-
-            fileVal = getFileVal(fileAdress);
-            destination = binCode & 0x0080;
- 
+            PreInstructions(binCode);
 
             if (destination == 0)
             {
@@ -490,13 +465,7 @@ namespace PicSim
 
         public void andwf(int binCode)
         {
-            GetTimerValOld();
-            fileAdress = binCode & 0x007F;
-
-            IndirekteAdressierung(fileAdress);
-
-            fileVal = getFileVal(fileAdress);
-            destination = binCode & 0x0080;
+            PreInstructions(binCode);
 
             if (destination == 0)
             {
@@ -516,10 +485,7 @@ namespace PicSim
 
         public void clrf(int binCode)
         {
-            GetTimerValOld();
-            fileAdress = binCode & 0x007F;
-
-            IndirekteAdressierung(fileAdress);
+            PreInstructions(binCode);
 
             schreibeInRam(fileAdress, 0);
             setZero(1);
@@ -532,13 +498,7 @@ namespace PicSim
 
         public void comf(int binCode)
         {
-            GetTimerValOld();
-            fileAdress = binCode & 0x007F;
-
-            IndirekteAdressierung(fileAdress);
-
-            fileVal = getFileVal(fileAdress);
-            destination = binCode & 0x0080;
+            PreInstructions(binCode);
 
             if (destination == 0)
             {
@@ -558,13 +518,7 @@ namespace PicSim
 
         public void decf(int binCode)
         {
-            GetTimerValOld();
-            fileAdress = binCode & 0x007F;
-
-            IndirekteAdressierung(fileAdress);
-
-            fileVal = getFileVal(fileAdress);
-            destination = binCode & 0x0080;
+            PreInstructions(binCode);
 
             if (destination == 0)
             {
@@ -585,13 +539,7 @@ namespace PicSim
 
         public void incf(int binCode)
         {
-            GetTimerValOld();
-            fileAdress = binCode & 0x007F;
-
-            IndirekteAdressierung(fileAdress);
-
-            fileVal = getFileVal(fileAdress);
-            destination = binCode & 0x0080;
+            PreInstructions(binCode);
 
             if (destination == 0)
             {
@@ -611,15 +559,9 @@ namespace PicSim
 
         public void movf(int binCode)
         {
-            GetTimerValOld();
-            fileAdress = binCode & 0x007F;
+            PreInstructions(binCode);
 
-            IndirekteAdressierung(fileAdress);
 
-            fileVal = getFileVal(fileAdress);
-            destination = binCode & 0x0080;
-
-           
             if (destination == 0)
             {
                 if (fileAdress == 1)
@@ -650,12 +592,7 @@ namespace PicSim
 
         public void iorwf(int binCode)
         {
-            fileAdress = binCode & 0x007F;
-
-            IndirekteAdressierung(fileAdress);
-
-            fileVal = getFileVal(fileAdress);
-            destination = binCode & 0x0080;
+            PreInstructions(binCode);
 
             fileVal = fileVal | mem.WReg;
             if (destination == 0)
@@ -676,13 +613,7 @@ namespace PicSim
 
         public void subwf(int binCode)
         {
-            GetTimerValOld();
-            fileAdress = binCode & 0x007F;
-
-            IndirekteAdressierung(fileAdress);
-
-            fileVal = getFileVal(fileAdress);
-            destination = binCode & 0x0080;
+            PreInstructions(binCode);
 
             //Complement(WReg) + 1 = - WReg
             fileVal = fileVal + (~mem.WReg + 1);
@@ -698,25 +629,16 @@ namespace PicSim
             }
             CheckZero(fileVal);
             CheckCarry();
-            CheckDigitCarry();
-
-            
-
+            CheckDigitCarry();           
             PostInstruction();
 
         }
 
         public void swapf(int binCode)
         {
-            GetTimerValOld();
-            fileAdress = binCode & 0x007F;
-
-            IndirekteAdressierung(fileAdress);
-
-            fileVal = getFileVal(fileAdress);
-            destination = binCode & 0x0080;
+            PreInstructions(binCode);
             //SwapNibbles
-            fileVal= SwapNibbles(fileVal);
+            fileVal = SwapNibbles(fileVal);
 
             if (destination == 0)
             {
@@ -725,23 +647,14 @@ namespace PicSim
             else
             {
                 schreibeInRam(fileAdress, fileVal);
-            }
-
-            
-
+            }          
             PostInstruction();
 
         }
 
         public void xorwf(int binCode)
         {
-            GetTimerValOld();
-            fileAdress = binCode & 0x007F;
-
-            IndirekteAdressierung(fileAdress);
-
-            fileVal = getFileVal(fileAdress);
-            destination = binCode & 0x0080;
+            PreInstructions(binCode);
 
             fileVal = fileVal ^ mem.WReg;
             if (destination == 0)
@@ -752,41 +665,25 @@ namespace PicSim
             {
                 schreibeInRam(fileAdress, fileVal);
             }
-            CheckZero(fileVal);
-
-            
-
+            CheckZero(fileVal);          
             PostInstruction();
-
         }
 
         public void clrw(int binCode)
         {
-            GetTimerValOld();
+            PreInstructions(binCode);
             mem.setWReg(0);
-            setZero(1);
-
-            
-
+            setZero(1);           
             PostInstruction();
-
         }
 
 
         //Test4
         public void rlf(int binCode)
         {
-            GetTimerValOld();
-            fileAdress = binCode & 0x007F;
-
-            IndirekteAdressierung(fileAdress);
-            fileVal = getFileVal(fileAdress);
-            destination = binCode & 0x0080;
+            PreInstructions(binCode);
 
             int carryBit = mem.ram[0, Const.STATUS];
-
-
-
             if (carryBit == 1)
             {
                 if (fileVal >= 128)
@@ -799,9 +696,7 @@ namespace PicSim
                 }
                 fileVal = fileVal << 1;
                 fileVal += 1;
-
             }
-
             else
             {
                 if (fileVal >= 128)
@@ -824,23 +719,15 @@ namespace PicSim
             else
             {
                 schreibeInRam(fileAdress, fileVal);
-            }
-
-            
-
+            }           
             PostInstruction();
-
         }
 
 
 
         public void rrf(int binCode)
         {
-            GetTimerValOld();
-            fileAdress = binCode & 0x007F;
-            IndirekteAdressierung(fileAdress);
-            fileVal = getFileVal(fileAdress);
-            destination = binCode & 0x0080;
+            PreInstructions(binCode);
 
             int carryBit = mem.ram[0, Const.STATUS];
             if (carryBit == 1)
@@ -870,56 +757,34 @@ namespace PicSim
             else
             {
                 schreibeInRam(fileAdress, fileVal);
-            }
-
-            
-
+            }           
             PostInstruction();
-
         }
 
         //Test5
 
         public void bsf(int binCode)
         {
-            GetTimerValOld();
-            fileAdress = binCode & 0x007F;
-
-            IndirekteAdressierung(fileAdress);
+            PreInstructions(binCode);
 
             bit = (byte)((binCode >> 7) & 0x7);
 
             BitSetOderBitClear(bit, fileAdress, true);
-
-
-            
-
             PostInstruction();
-
         }
 
         public void bcf(int binCode)
         {
-            GetTimerValOld();
-            fileAdress = binCode & 0x007F;
+            PreInstructions(binCode);
             bit = (byte)((binCode >> 7) & 0x7);
 
-            BitSetOderBitClear(bit, fileAdress, false);
-
-            
-
+            BitSetOderBitClear(bit, fileAdress, false);            
             PostInstruction();
-
         }
 
         public void btfsc(int binCode)
         {
-            GetTimerValOld();
-            fileAdress = binCode & 0x007F;
-
-            IndirekteAdressierung(fileAdress);
-
-            fileVal = getFileVal(fileAdress);
+            PreInstructions(binCode);
             bit = (byte)((binCode >> 7) & 0x7);
 
             int Bool = mem.ram[bit, fileAdress];
@@ -931,24 +796,14 @@ namespace PicSim
             {
                 nop(binCode);
                 mem.TwoCycles = true;
-
-
-            }
-
-            
+            }           
 
             PostInstruction();
-
         }
 
         public void btfss(int binCode)
         {
-            GetTimerValOld();
-            fileAdress = binCode & 0x007F;
-
-            IndirekteAdressierung(fileAdress);
-
-            fileVal = getFileVal(fileAdress);
+            PreInstructions(binCode);
             bit = (byte)((binCode >> 7) & 0x7);
 
             int Bool = mem.ram[bit, fileAdress];
@@ -960,78 +815,68 @@ namespace PicSim
             {
                 nop(binCode);
                 mem.TwoCycles = true;
-            }
-
-            
-
+            }          
             PostInstruction();
-
         }
 
 
         public void decfsz(int binCode)
         {
-            GetTimerValOld();
-            decf(binCode);
-            fileAdress = binCode & 0x007F;
+            PreInstructions(binCode);
+            if (destination == 0)
+            {
+                mem.setWReg(fileVal - 1);
+            }
+            else
+            {
+                schreibeInRam(fileAdress, fileVal - 1);
+            }
 
-            IndirekteAdressierung(fileAdress);
-
-            fileVal = getFileVal(fileAdress);
             if (fileVal == 0)
             {
                 nop(binCode);
                 mem.TwoCycles = true;
-            }
-
-            
-
+            }          
             PostInstruction();
-
         }
 
 
 
         public void incfsz(int binCode)
         {
-            GetTimerValOld();
-            incf(binCode);
-            fileAdress = binCode & 0x007F;
+            PreInstructions(binCode);
+            if (destination == 0)
+            {
+                mem.setWReg(fileVal + 1);
+            }
+            else
+            {
+                schreibeInRam(fileAdress, fileVal + 1);
+            }
 
-            IndirekteAdressierung(fileAdress);
-
-            fileVal = getFileVal(fileAdress);
             if (fileVal == 0)
             {
                 nop(binCode);
                 mem.TwoCycles = true;
             }
-
-            
-
             PostInstruction();
-
         }
 
 
         public void clrwdt(int binCode)
         {
-            GetTimerValOld();
+            PreInstructions(binCode);
             //TODO 00H -> WDT bzw Startwert 18.000
             //TODO 0 -> WDT prescaler bzw. Startwert
             mem.ram[Const.STATUS, 3] = 1;
             mem.ram[Const.STATUS, 4] = 1;
-            //TODO TMR0 ++
-
-            
-
+            //TODO TMR0 ++          
             PostInstruction();
-
         }
 
         public void sleep(int binCode)
         {
-            GetTimerValOld();
+            PreInstructions(binCode);
             /*  *Kann unterbrochen werden durch:
                 *clrwdt (PD bit = 1)
                 *Interrupt auf RB0, RB4-7 (nur wenn als input)
@@ -1041,19 +886,15 @@ namespace PicSim
             //Prinzipiell clrwdt(binCode) mit Const.Status, 4 = 1
             mem.ram[Const.STATUS, 3] = 0;
             mem.ram[Const.STATUS, 4] = 1;
-            //Kein TMR0 erhöhen, da in clrwdt ++
-
-            
-
+            //Kein TMR0 erhöhen, da in clrwdt ++            
             PostInstruction();
-
         }
 
 
         //TODO überprüfen
         public void retfie(int binCode)
         {
-            GetTimerValOld();
+            PreInstructions(binCode);
             //exit interrupt routine
             //TODO richtig?
             StackPop();
@@ -1063,14 +904,9 @@ namespace PicSim
             mem.pc--;
 
             mem.IncLaufzeitzaehler();
-            mem.TwoCycles = true;
-
-
-            
+            mem.TwoCycles = true;            
 
             PostInstruction();
-
         }
-
     }
 }
