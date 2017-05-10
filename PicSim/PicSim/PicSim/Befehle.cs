@@ -135,6 +135,16 @@ namespace PicSim
             mem.ram[2, Const.STATUS] = n;
         }
 
+        public void setCarry(int n)
+        {
+            mem.ram[0, Const.STATUS] = n;
+        }
+
+        public void setDigitCarry(int n)
+        {
+            mem.ram[0, Const.STATUS] = n;
+        }
+
         //Swap Nibbles
         public int SwapNibbles(int fileValue)
         {
@@ -173,32 +183,156 @@ namespace PicSim
             }
         }
 
+        public void GetTimerValOld()
+        {
+            mem.TimerValOld = getFileVal(Const.TMR0);
+        }
+        public void CheckTimer()
+        {
+            //Check for Mode
+            if (mem.ram[5, Const.OPTION_REG + 128] == 0)
+            {
+                //Timer Mode                     
+                mem.TimerValNew = getFileVal(0x01);
+                if (!(mem.TimerValOld == mem.TimerValNew))
+                {
+                    //mem.setTimerInhibit();
+                    mem.TimerInhibit = 2;
+                    mem.IncomingOverFlow = false;
+                    mem.TimerInhibit++; //Da unten decrement
+                }
+
+                if (mem.TimerInhibit == 0)
+                {
+                    int val = getFileVal(0x01);
+                    int f = 0x01;
+
+                    if (mem.ram[5, Const.STATUS] == 1)   //Check Bank - if Bank 1 then:
+
+                    {
+                        f -= 128;
+                    }
+
+                    schreibeInRam(f, val + 1);
+
+                    if (mem.IncomingOverFlow)
+                    {
+                        //Muss vom Benutzer in Software wieder gecleart werden ¯\_(ツ)_/¯
+                        mem.ram[2, Const.INTCON] = 1;
+                        setZero(1);
+                        mem.IncomingOverFlow = false;
+                    }
+
+                    if (getFileVal(1) == 255)
+                    {
+                        mem.IncomingOverFlow = true;
+                        //Bei ZweiZykligen Befehlen werden diese hier abgefangen, damit der Overflow direkt festgestellt wird
+                        if (mem.TwoCycles)
+                        {
+                            mem.ram[2, Const.INTCON] = 1;
+
+                            if (mem.ram[5, Const.STATUS] == 1)   //Check Bank - if Bank 1 then:
+
+                            {
+                                f -= 128;
+                            }
+                            schreibeInRam(f, val + 1);
+
+                            mem.IncomingOverFlow = false;
+                            mem.TwoCycles = false;
+                        }
+                    }
+                    //Bei Zweizykligen Befehlen, wenn kein Overflow stattfinden kann
+                    if (mem.TwoCycles)
+                    {
+                        schreibeInRam(f, val + 1);
+                        mem.TwoCycles = false;
+                    }
+                    if (getFileVal(1) == 255)
+                    {
+                        mem.IncomingOverFlow = true;
+                    }
+                }
+                else
+                {
+                    if (mem.TwoCycles)
+                        mem.decTimerInhibit();
+                    mem.decTimerInhibit();
+                }
+
+            }
+            //Counter Mode
+            /*
+            if (mem.ram[4, Const.OPTION_REG + 128] == 0)
+            {
+                //rising edge
+
+                if (mem.Ra4ValOld == 0 && mem.Ra4ValNew == 1)
+                {
+                    schreibeInRam(Const.TMR0, getFileVal(Const.TMR0) + 1);
+                }
+
+                //falling edge
+                if (mem.Ra4ValOld == 1 && mem.Ra4ValNew == 0)
+                {
+                    befehle.schreibeInRam(Const.TMR0, befehle.getFileVal(Const.TMR0) + 1);
+                }
+            }*/
+        }
+        public void PreInstructions(int binCode)
+        {
+            setZero(0);
+            setCarry(0);
+            setDigitCarry(0);
+            GetTimerValOld();
+            mem.TwoCycles = false;
+
+            fileAdress = binCode & 0x007F;
+            IndirekteAdressierung(fileAdress);
+
+            fileVal = getFileVal(fileAdress);
+            literal = binCode & 0x00FF;
+            destination = binCode & 0x0080;
+        }
+
         public void PostInstruction()
         {
             CheckTimer();
             mem.pc++;
             mem.IncLaufzeitzaehler();
+
         }
-        //==============================
+        //==
         //Befehle         
 
         public void movlw(int binCode)
         {
+            GetTimerValOld();
             literal = binCode & 0x00FF;
+
+            mem.setWReg(literal);
+                
+
             mem.setWReg(literal); 
             PostInstruction();           
+
         }
 
         public void andlw(int binCode)
         {
+            GetTimerValOld();
             literal = binCode & 0x00FF;
             mem.setWReg(literal & mem.WReg);                     
             CheckZero(mem.WReg);
+
+            CheckTimer();
+
             PostInstruction();
         }
 
         public void iorlw(int binCode)
         {
+            GetTimerValOld();
             literal = binCode & 0x00FF;
             mem.setWReg(literal | mem.WReg);            
             CheckZero(mem.WReg);
@@ -207,34 +341,41 @@ namespace PicSim
 
         public void sublw(int binCode)
         {
+            GetTimerValOld();
             literal = binCode & 0x00FF;
             mem.setWReg(literal - mem.WReg);
             CheckZero(mem.WReg);
             CheckCarry();
             CheckDigitCarry();
+            
             PostInstruction();
         }
 
         public void xorlw(int binCode)
         {
+            GetTimerValOld();
             literal = binCode & 0x00FF;
             mem.setWReg(literal ^ mem.WReg);
             CheckZero(mem.WReg);
+            
             PostInstruction();
         }
 
         public void addlw(int binCode)
         {
+            GetTimerValOld();
             literal = binCode & 0x00FF;
             mem.setWReg(literal + mem.WReg);
             CheckZero(mem.WReg);
             CheckCarry();
             CheckDigitCarry();
+            
             PostInstruction();
         }
 
         public void  goto_(int binCode)
         {
+            GetTimerValOld();
             //TODO 2 Cycles            
             int pclath = 0;  //<< 7;         //TODO pclath
             int adresse = (binCode & 0x07FF);
@@ -244,12 +385,14 @@ namespace PicSim
 
             mem.IncLaufzeitzaehler();
             mem.TwoCycles = true;
+            
 
             PostInstruction();
         }
 
         public void call(int binCode)
         {
+            GetTimerValOld();
             //TODO 2 Cycles
             mem.pc++;
             StackPush();
@@ -261,30 +404,36 @@ namespace PicSim
 
             mem.IncLaufzeitzaehler();
             mem.TwoCycles = true;
+            
 
             PostInstruction();
         }
 
         public void nop(int binCode)
         {
+            GetTimerValOld();
+            
             //Nope
             PostInstruction();
         }
 
         public void return_(int binCode)
         {
+            GetTimerValOld();
             StackPop();
             //PC -1, da in for Schleife erhöht
             mem.pc--;
 
             mem.IncLaufzeitzaehler();
             mem.TwoCycles = true;
+            
 
             PostInstruction();
         }
 
         public void retlw(int binCode)
         {
+            GetTimerValOld();
             literal = binCode & 0x00FF;
             mem.setWReg(literal);
             StackPop();
@@ -293,20 +442,25 @@ namespace PicSim
             mem.IncLaufzeitzaehler();
             mem.TwoCycles = true;
 
+            
+
             PostInstruction();
         }
 
         public void movwf(int binCode)
         {
+            GetTimerValOld();
             fileAdress = binCode & 0x007F;
             IndirekteAdressierung(fileAdress);
             schreibeInRam(fileAdress, mem.WReg);
+            
 
             PostInstruction();
         }
 
         public void addwf(int binCode)
-        {            
+        {
+            GetTimerValOld();
             fileAdress = binCode & 0x007F;
 
             IndirekteAdressierung(fileAdress);
@@ -327,11 +481,16 @@ namespace PicSim
             CheckZero(mem.WReg + fileVal);
             CheckCarry();
             CheckDigitCarry();
+
+            
+
             PostInstruction();
+
         } 
 
         public void andwf(int binCode)
         {
+            GetTimerValOld();
             fileAdress = binCode & 0x007F;
 
             IndirekteAdressierung(fileAdress);
@@ -348,22 +507,32 @@ namespace PicSim
                 schreibeInRam(fileAdress, mem.WReg & fileVal);
             }
             CheckZero(mem.WReg & fileVal);
+
+            
+
             PostInstruction();
+
         } 
 
         public void clrf(int binCode)
         {
+            GetTimerValOld();
             fileAdress = binCode & 0x007F;
 
             IndirekteAdressierung(fileAdress);
 
             schreibeInRam(fileAdress, 0);
             setZero(1);
+
+            
+
             PostInstruction();
+
         }
 
         public void comf(int binCode)
         {
+            GetTimerValOld();
             fileAdress = binCode & 0x007F;
 
             IndirekteAdressierung(fileAdress);
@@ -379,13 +548,17 @@ namespace PicSim
             {
                 schreibeInRam(fileAdress, 255 - fileVal);
             }
-
             CheckZero(255 - fileVal);
+
+            
+
             PostInstruction();
+
         }
 
         public void decf(int binCode)
         {
+            GetTimerValOld();
             fileAdress = binCode & 0x007F;
 
             IndirekteAdressierung(fileAdress);
@@ -403,11 +576,16 @@ namespace PicSim
             }
             CheckZero(fileVal - 1);
 
+            
+
+
             PostInstruction();
+
         }
 
         public void incf(int binCode)
         {
+            GetTimerValOld();
             fileAdress = binCode & 0x007F;
 
             IndirekteAdressierung(fileAdress);
@@ -424,11 +602,16 @@ namespace PicSim
                 schreibeInRam(fileAdress, fileVal + 1);
             }
             CheckZero(fileVal + 1);
+
+            
+
             PostInstruction();
+
         }
 
         public void movf(int binCode)
         {
+            GetTimerValOld();
             fileAdress = binCode & 0x007F;
 
             IndirekteAdressierung(fileAdress);
@@ -460,6 +643,7 @@ namespace PicSim
                     schreibeInRam(fileAdress, fileVal);
                 }
             }
+            
             CheckZero(fileVal);
             PostInstruction();
         }
@@ -483,11 +667,16 @@ namespace PicSim
                 schreibeInRam(fileAdress, fileVal);
             }
             CheckZero(fileVal);
+
+            
+
             PostInstruction();
+
         }
 
         public void subwf(int binCode)
         {
+            GetTimerValOld();
             fileAdress = binCode & 0x007F;
 
             IndirekteAdressierung(fileAdress);
@@ -510,11 +699,16 @@ namespace PicSim
             CheckZero(fileVal);
             CheckCarry();
             CheckDigitCarry();
+
+            
+
             PostInstruction();
+
         }
 
         public void swapf(int binCode)
         {
+            GetTimerValOld();
             fileAdress = binCode & 0x007F;
 
             IndirekteAdressierung(fileAdress);
@@ -532,11 +726,16 @@ namespace PicSim
             {
                 schreibeInRam(fileAdress, fileVal);
             }
+
+            
+
             PostInstruction();
+
         }
 
         public void xorwf(int binCode)
         {
+            GetTimerValOld();
             fileAdress = binCode & 0x007F;
 
             IndirekteAdressierung(fileAdress);
@@ -554,20 +753,30 @@ namespace PicSim
                 schreibeInRam(fileAdress, fileVal);
             }
             CheckZero(fileVal);
+
+            
+
             PostInstruction();
+
         }
 
         public void clrw(int binCode)
         {
+            GetTimerValOld();
             mem.setWReg(0);
             setZero(1);
+
+            
+
             PostInstruction();
+
         }
 
 
         //Test4
         public void rlf(int binCode)
         {
+            GetTimerValOld();
             fileAdress = binCode & 0x007F;
 
             IndirekteAdressierung(fileAdress);
@@ -616,12 +825,18 @@ namespace PicSim
             {
                 schreibeInRam(fileAdress, fileVal);
             }
+
+            
+
             PostInstruction();
+
         }
+
 
 
         public void rrf(int binCode)
         {
+            GetTimerValOld();
             fileAdress = binCode & 0x007F;
             IndirekteAdressierung(fileAdress);
             fileVal = getFileVal(fileAdress);
@@ -656,13 +871,18 @@ namespace PicSim
             {
                 schreibeInRam(fileAdress, fileVal);
             }
+
+            
+
             PostInstruction();
+
         }
 
         //Test5
 
         public void bsf(int binCode)
         {
+            GetTimerValOld();
             fileAdress = binCode & 0x007F;
 
             IndirekteAdressierung(fileAdress);
@@ -670,20 +890,31 @@ namespace PicSim
             bit = (byte)((binCode >> 7) & 0x7);
 
             BitSetOderBitClear(bit, fileAdress, true);
+
+
+            
+
             PostInstruction();
+
         }
 
         public void bcf(int binCode)
         {
+            GetTimerValOld();
             fileAdress = binCode & 0x007F;
             bit = (byte)((binCode >> 7) & 0x7);
 
             BitSetOderBitClear(bit, fileAdress, false);
+
+            
+
             PostInstruction();
+
         }
 
         public void btfsc(int binCode)
         {
+            GetTimerValOld();
             fileAdress = binCode & 0x007F;
 
             IndirekteAdressierung(fileAdress);
@@ -701,12 +932,18 @@ namespace PicSim
                 nop(binCode);
                 mem.TwoCycles = true;
 
+
             }
+
+            
+
             PostInstruction();
+
         }
 
         public void btfss(int binCode)
         {
+            GetTimerValOld();
             fileAdress = binCode & 0x007F;
 
             IndirekteAdressierung(fileAdress);
@@ -724,12 +961,17 @@ namespace PicSim
                 nop(binCode);
                 mem.TwoCycles = true;
             }
+
+            
+
             PostInstruction();
+
         }
 
 
         public void decfsz(int binCode)
         {
+            GetTimerValOld();
             decf(binCode);
             fileAdress = binCode & 0x007F;
 
@@ -741,13 +983,18 @@ namespace PicSim
                 nop(binCode);
                 mem.TwoCycles = true;
             }
+
+            
+
             PostInstruction();
+
         }
 
 
 
         public void incfsz(int binCode)
         {
+            GetTimerValOld();
             incf(binCode);
             fileAdress = binCode & 0x007F;
 
@@ -759,22 +1006,32 @@ namespace PicSim
                 nop(binCode);
                 mem.TwoCycles = true;
             }
+
+            
+
             PostInstruction();
+
         }
 
 
         public void clrwdt(int binCode)
         {
+            GetTimerValOld();
             //TODO 00H -> WDT bzw Startwert 18.000
             //TODO 0 -> WDT prescaler bzw. Startwert
             mem.ram[Const.STATUS, 3] = 1;
             mem.ram[Const.STATUS, 4] = 1;
             //TODO TMR0 ++
+
+            
+
             PostInstruction();
+
         }
 
         public void sleep(int binCode)
         {
+            GetTimerValOld();
             /*  *Kann unterbrochen werden durch:
                 *clrwdt (PD bit = 1)
                 *Interrupt auf RB0, RB4-7 (nur wenn als input)
@@ -785,13 +1042,18 @@ namespace PicSim
             mem.ram[Const.STATUS, 3] = 0;
             mem.ram[Const.STATUS, 4] = 1;
             //Kein TMR0 erhöhen, da in clrwdt ++
+
+            
+
             PostInstruction();
+
         }
 
 
         //TODO überprüfen
         public void retfie(int binCode)
         {
+            GetTimerValOld();
             //exit interrupt routine
             //TODO richtig?
             StackPop();
@@ -802,7 +1064,13 @@ namespace PicSim
 
             mem.IncLaufzeitzaehler();
             mem.TwoCycles = true;
+
+
+            
+
             PostInstruction();
+
         }
+
     }
 }
