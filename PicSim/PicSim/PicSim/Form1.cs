@@ -375,14 +375,10 @@ namespace PicSim
                 CheckForSleep();
                 interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
                 mem.SafeBack();
-                mem.TimerValOld = befehle.getFileVal(Const.TMR0); //Für TMR0
                 //MessageBox.Show("alt" + mem.TimerValOld.ToString());
                 mem.TwoCycles = false;
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
-                mem.TimerValNew = befehle.getFileVal(Const.TMR0); //Für TMR0
                 //MessageBox.Show("neu" + mem.TimerValNew.ToString());
-
-                CheckTimer();
                 mem.IncLaufzeitzaehler();
                 mem.pc++;
                 GUIAktualisieren();
@@ -461,11 +457,8 @@ namespace PicSim
                 CheckForSleep();
                 interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
                 mem.SafeBack();
-                mem.TimerValOld = befehle.getFileVal(Const.TMR0); //Für TMR0
                 mem.TwoCycles = false;
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
-                mem.TimerValNew = befehle.getFileVal(Const.TMR0); //Für TMR0
-                CheckTimer();
                 mem.pc++;
                 mem.IncLaufzeitzaehler();
                 backgroundWorker1.ReportProgress(mem.pc); //ruft backgroundWorker1_ProgressChanged Funktion auf, also GUIaktualisieren
@@ -505,96 +498,7 @@ namespace PicSim
                 }
             }
         }
-        public void CheckTimer() { 
-            //Check for Mode
-            if (mem.ram[5, Const.OPTION_REG + 128] == 0)
-            {
-                //Timer Mode                     
-                mem.TimerValNew = befehle.getFileVal(0x01);
-                if (!(mem.TimerValOld == mem.TimerValNew))
-                {
-                   //mem.setTimerInhibit();
-                    mem.TimerInhibit = 2;
-                    mem.IncomingOverFlow = false;
-                    mem.TimerInhibit++; //Da unten decrement
-                }
-
-                if (mem.TimerInhibit == 0)
-                {
-                    int val = befehle.getFileVal(0x01);
-                    int f = 0x01;
-
-                    if (mem.ram[5, Const.STATUS] == 1)   //Check Bank - if Bank 1 then:
-
-                    {
-                        f -= 128;
-                    }
-
-                    befehle.schreibeInRam(f, val + 1);
-
-                    if (mem.IncomingOverFlow)
-                    {
-                        //Muss vom Benutzer in Software wieder gecleart werden ¯\_(ツ)_/¯
-                        mem.ram[2, Const.INTCON] = 1;
-                        mem.IncomingOverFlow = false;
-                    }
-
-                    if (befehle.getFileVal(1) == 255)
-                    {
-                        mem.IncomingOverFlow = true;
-                        //Bei ZweiZykligen Befehlen werden diese hier abgefangen, damit der Overflow direkt festgestellt wird
-                        if (mem.TwoCycles)
-                        {
-                            mem.ram[2, Const.INTCON] = 1;
-
-                            if (mem.ram[5, Const.STATUS] == 1)   //Check Bank - if Bank 1 then:
-
-                            {
-                                f -= 128;
-                            }
-                            befehle.schreibeInRam(f, val + 1);
-
-                            mem.IncomingOverFlow = false;
-                            mem.TwoCycles = false;
-                        }
-                    }
-                    //Bei Zweizykligen Befehlen, wenn kein Overflow stattfinden kann
-                    if (mem.TwoCycles)
-                    {
-                        befehle.schreibeInRam(f, val + 1);
-                        mem.TwoCycles = false;
-                    }
-                    if (befehle.getFileVal(1) == 255)
-                    {
-                        mem.IncomingOverFlow = true;
-                    }
-                }
-                else
-                {
-                    if(mem.TwoCycles)
-                        mem.decTimerInhibit();
-                    mem.decTimerInhibit();
-                }
-
-            }
-            //Counter Mode
-            /*
-            if (mem.ram[4, Const.OPTION_REG + 128] == 0)
-            {
-                //rising edge
-
-                if (mem.Ra4ValOld == 0 && mem.Ra4ValNew == 1)
-                {
-                    schreibeInRam(Const.TMR0, getFileVal(Const.TMR0) + 1);
-                }
-
-                //falling edge
-                if (mem.Ra4ValOld == 1 && mem.Ra4ValNew == 0)
-                {
-                    befehle.schreibeInRam(Const.TMR0, befehle.getFileVal(Const.TMR0) + 1);
-                }
-            }*/
-        }
+        
         //==============================
     }
 }
