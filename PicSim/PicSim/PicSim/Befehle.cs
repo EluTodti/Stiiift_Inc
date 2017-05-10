@@ -113,9 +113,9 @@ namespace PicSim
             }
         }
 
-        public void CheckCarry()
+        public void CheckCarry(int val)
         {
-            if (mem.WReg > 255)
+            if (val > 255)
             {
                 mem.ram[0, Const.STATUS] = 1;
             }
@@ -125,9 +125,16 @@ namespace PicSim
             }
         }
 
-        public void CheckDigitCarry()
+        public void CheckDigitCarry(int val)
         {
-            //
+            if(val > 15)
+            {
+                mem.ram[1, Const.STATUS] = 1;
+            }
+            else
+            {
+                mem.ram[1, Const.STATUS] = 0;
+            }
         }
 
         public void setZero(int n)
@@ -314,33 +321,41 @@ namespace PicSim
         public void andlw(int binCode)
         {
             PreInstructions(binCode);
+
             mem.setWReg(literal & mem.WReg);                     
             CheckZero(mem.WReg);
-            CheckTimer();
+
             PostInstruction();
         }
 
         public void iorlw(int binCode)
         {
             PreInstructions(binCode);
+
             mem.setWReg(literal | mem.WReg);            
             CheckZero(mem.WReg);
+
             PostInstruction();
         }
 
         public void sublw(int binCode)
         {
             PreInstructions(binCode);
-            mem.setWReg(literal - mem.WReg);
+            //helper für Überprüfung des Carry Bits
+            int helper = ((255 - mem.WReg + 1) & 0xFF) + literal;
+            int helperDC = (((255 - mem.WReg + 1) & 0x0F) + (literal & 0x0F));
+            mem.setWReg(literal + (~mem.WReg +1));
             CheckZero(mem.WReg);
-            CheckCarry();
-            CheckDigitCarry();            
+            CheckCarry(helper);
+            CheckDigitCarry(helperDC); 
+                                   
             PostInstruction();
         }
 
         public void xorlw(int binCode)
         {
             PreInstructions(binCode);
+
             mem.setWReg(literal ^ mem.WReg);
             CheckZero(mem.WReg);
             
@@ -350,10 +365,14 @@ namespace PicSim
         public void addlw(int binCode)
         {
             PreInstructions(binCode);
+
+            int helperDC = (literal & 0x0F) + (mem.WReg & 0x0F);
             mem.setWReg(literal + mem.WReg);
+            
             CheckZero(mem.WReg);
-            CheckCarry();
-            CheckDigitCarry();            
+            CheckCarry(mem.WReg);
+            CheckDigitCarry(helperDC); 
+                       
             PostInstruction();
         }
 
@@ -402,13 +421,13 @@ namespace PicSim
         public void return_(int binCode)
         {
             PreInstructions(binCode);
+
             StackPop();
             //PC -1, da in for Schleife erhöht
             mem.pc--;
 
             mem.IncLaufzeitzaehler();
-            mem.TwoCycles = true;
-            
+            mem.TwoCycles = true;         
 
             PostInstruction();
         }
@@ -416,14 +435,12 @@ namespace PicSim
         public void retlw(int binCode)
         {
             PreInstructions(binCode);
+
             mem.setWReg(literal);
             StackPop();
             mem.pc--;
-
             mem.IncLaufzeitzaehler();
-            mem.TwoCycles = true;
-
-            
+            mem.TwoCycles = true;           
 
             PostInstruction();
         }
@@ -431,8 +448,8 @@ namespace PicSim
         public void movwf(int binCode)
         {
             PreInstructions(binCode);
-            schreibeInRam(fileAdress, mem.WReg);
-            
+
+            schreibeInRam(fileAdress, mem.WReg);           
 
             PostInstruction();
         }
@@ -440,6 +457,7 @@ namespace PicSim
         public void addwf(int binCode)
         {
             PreInstructions(binCode);
+            int helperDC = (fileVal & 0x0F) + (mem.WReg & 0x0F);
 
             if (destination == 0)
             {
@@ -451,13 +469,10 @@ namespace PicSim
                 schreibeInRam(fileAdress, mem.WReg + fileVal);
             }
             CheckZero(mem.WReg + fileVal);
-            CheckCarry();
-            CheckDigitCarry();
-
-            
-
+            CheckCarry(mem.WReg + fileVal);
+            CheckDigitCarry(helperDC);  
+                               
             PostInstruction();
-
         } 
 
         public void andwf(int binCode)
@@ -473,11 +488,8 @@ namespace PicSim
                 schreibeInRam(fileAdress, mem.WReg & fileVal);
             }
             CheckZero(mem.WReg & fileVal);
-
             
-
             PostInstruction();
-
         } 
 
         public void clrf(int binCode)
@@ -486,11 +498,8 @@ namespace PicSim
 
             schreibeInRam(fileAdress, 0);
             setZero(1);
-
             
-
             PostInstruction();
-
         }
 
         public void comf(int binCode)
@@ -506,11 +515,8 @@ namespace PicSim
                 schreibeInRam(fileAdress, 255 - fileVal);
             }
             CheckZero(255 - fileVal);
-
-            
-
+          
             PostInstruction();
-
         }
 
         public void decf(int binCode)
@@ -525,13 +531,9 @@ namespace PicSim
             {
                 schreibeInRam(fileAdress, fileVal - 1);
             }
-            CheckZero(fileVal - 1);
-
-            
-
+            CheckZero(fileVal - 1);         
 
             PostInstruction();
-
         }
 
         public void incf(int binCode)
@@ -546,25 +548,20 @@ namespace PicSim
             {
                 schreibeInRam(fileAdress, fileVal + 1);
             }
-            CheckZero(fileVal + 1);
-
-            
+            CheckZero(fileVal + 1);           
 
             PostInstruction();
-
         }
 
         public void movf(int binCode)
         {
             PreInstructions(binCode);
 
-
             if (destination == 0)
             {
                 if (fileAdress == 1)
                 {
                     mem.setWReg(fileVal + 1);
-
                 }
                 else
                 {
@@ -581,9 +578,9 @@ namespace PicSim
                 {
                     schreibeInRam(fileAdress, fileVal);
                 }
-            }
-            
+            }          
             CheckZero(fileVal);
+
             PostInstruction();
         }
 
@@ -600,22 +597,20 @@ namespace PicSim
             {
                 schreibeInRam(fileAdress, fileVal);
             }
-            CheckZero(fileVal);
-
-            
+            CheckZero(fileVal);           
 
             PostInstruction();
-
         }
 
         public void subwf(int binCode)
         {
             PreInstructions(binCode);
 
-            //Complement(WReg) + 1 = - WReg
+            //(~mem.WReg + 1) = Complement(WReg) + 1 = - WReg
+            int helper = ((255 - mem.WReg + 1) & 0xFF ) + fileVal;
+            int helperDC = (((255 - mem.WReg + 1) & 0x0F) + (fileVal & 0x0F));
+
             fileVal = fileVal + (~mem.WReg + 1);
-            fileVal = fileVal & 0x000000FF;
-            //d=0 or d=1 ?
             if (destination == 0)
             {
                 mem.setWReg(fileVal);
@@ -625,10 +620,10 @@ namespace PicSim
                 schreibeInRam(fileAdress, fileVal);
             }
             CheckZero(fileVal);
-            CheckCarry();
-            CheckDigitCarry();           
+            CheckCarry(helper);
+            CheckDigitCarry(helperDC);   
+                    
             PostInstruction();
-
         }
 
         public void swapf(int binCode)
@@ -662,18 +657,20 @@ namespace PicSim
             {
                 schreibeInRam(fileAdress, fileVal);
             }
-            CheckZero(fileVal);          
+            CheckZero(fileVal);
+                      
             PostInstruction();
         }
 
         public void clrw(int binCode)
         {
             PreInstructions(binCode);
+
             mem.setWReg(0);
-            setZero(1);           
+            setZero(1);    
+                   
             PostInstruction();
         }
-
 
         //Test4
         public void rlf(int binCode)
@@ -716,11 +713,10 @@ namespace PicSim
             else
             {
                 schreibeInRam(fileAdress, fileVal);
-            }           
+            }
+            //CheckCarry wird bereits geprüft        
             PostInstruction();
         }
-
-
 
         public void rrf(int binCode)
         {
@@ -754,7 +750,8 @@ namespace PicSim
             else
             {
                 schreibeInRam(fileAdress, fileVal);
-            }           
+            }
+            //CheckCarry wird bereits geprüft        
             PostInstruction();
         }
 
@@ -816,10 +813,10 @@ namespace PicSim
             PostInstruction();
         }
 
-
         public void decfsz(int binCode)
         {
             PreInstructions(binCode);
+
             if (destination == 0)
             {
                 mem.setWReg(fileVal - 1);
@@ -828,20 +825,22 @@ namespace PicSim
             {
                 schreibeInRam(fileAdress, fileVal - 1);
             }
+            //neu zuweisen, da oben geändert
+            fileVal = getFileVal(fileAdress);
 
             if (fileVal == 0)
             {
                 nop(binCode);
                 mem.TwoCycles = true;
-            }          
+            }    
+                  
             PostInstruction();
         }
-
-
 
         public void incfsz(int binCode)
         {
             PreInstructions(binCode);
+
             if (destination == 0)
             {
                 mem.setWReg(fileVal + 1);
@@ -850,15 +849,15 @@ namespace PicSim
             {
                 schreibeInRam(fileAdress, fileVal + 1);
             }
-
+            fileVal = getFileVal(fileAdress);
             if (fileVal == 0)
             {
                 nop(binCode);
                 mem.TwoCycles = true;
             }
+
             PostInstruction();
         }
-
 
         public void clrwdt(int binCode)
         {

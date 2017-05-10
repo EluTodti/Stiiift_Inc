@@ -136,7 +136,7 @@ namespace PicSim
             //Register
             lblWReg.Text = mem.WReg.ToString();
             lblPC.Text = mem.pc.ToString();
-            lblLaufzeitzaehler.Text = mem.Laufzeitzaehler.ToString("0.##µs");
+            lblLaufzeitzaehler.Text = mem.Laufzeitzaehler.ToString("0.## µs");
                 //string.Format("{0:N2}µs", mem.Laufzeitzaehler);
 
             //Quarzfrequenz
