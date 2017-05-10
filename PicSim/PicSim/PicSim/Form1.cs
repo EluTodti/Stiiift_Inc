@@ -375,12 +375,19 @@ namespace PicSim
                 CheckForSleep();
                 interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
                 mem.SafeBack();
+<<<<<<< HEAD
                 //MessageBox.Show("alt" + mem.TimerValOld.ToString());
                 mem.TwoCycles = false;
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
                 //MessageBox.Show("neu" + mem.TimerValNew.ToString());
                 mem.IncLaufzeitzaehler();
                 mem.pc++;
+=======
+                mem.TimerValOld = befehle.getFileVal(Const.TMR0); //Für TMR0
+                mem.TwoCycles = false;
+                decoder.Decode(mem.BefehlsArray[mem.pc]);
+                mem.TimerValNew = befehle.getFileVal(Const.TMR0); //Für TMR0
+>>>>>>> 25163c31e8226bba68f1d6bfe569fbdfadd7d827
                 GUIAktualisieren();
                 //RamAktualisieren();
             }
@@ -406,26 +413,7 @@ namespace PicSim
                 }
                 if ((mem.pc > 0) && (mem.CountOfStepsSafed > 0))
                 {
-                    mem.CountOfStepsSafed--;
-                    //mem.BackArray = (int[,])mem.BackStack.Pop();
-                    for (int adresse = 0; adresse < mem.length; adresse++)
-                    {
-                        for (int bits = 0; bits < 8; bits++)
-                        {
-                            mem.ram[bits, adresse] = mem.BackArray[bits, adresse, mem.BackCount];
-                        }
-                    }
-                    mem.pc = mem.BackArray[0, 256, mem.BackCount];
-                    mem.WReg = mem.BackArray[1, 256, mem.BackCount];
-                    mem.Laufzeitzaehler = (double)mem.BackArray[2, 256, mem.BackCount];
-                    mem.Quarzfrequenz = (double)mem.BackArray[3, 256, mem.BackCount];
-
-                    //Stack
-                    for (int StackPos = 0; StackPos < 8; StackPos++)
-                    {
-                        mem.StackArray[StackPos] = mem.BackArray[StackPos, 257, mem.BackCount];
-                        mem.Stack.Push(mem.StackArray[StackPos]);
-                    }
+                    DoBack();;
                 }
                 else
                 {
@@ -441,6 +429,30 @@ namespace PicSim
                 GUIAktualisieren();
             }
             
+        }
+
+        private void DoBack()
+        {
+            mem.CountOfStepsSafed--;
+            //mem.BackArray = (int[,])mem.BackStack.Pop();
+            for (int adresse = 0; adresse < mem.length; adresse++)
+            {
+                for (int bits = 0; bits < 8; bits++)
+                {
+                    mem.ram[bits, adresse] = mem.BackArray[bits, adresse, mem.BackCount];
+                }
+            }
+            mem.pc = mem.BackArray[0, 256, mem.BackCount];
+            mem.WReg = mem.BackArray[1, 256, mem.BackCount];
+            mem.Laufzeitzaehler = (double)mem.BackArray[2, 256, mem.BackCount];
+            mem.Quarzfrequenz = (double)mem.BackArray[3, 256, mem.BackCount];
+
+            //Stack
+            for (int StackPos = 0; StackPos < 8; StackPos++)
+            {
+                mem.StackArray[StackPos] = mem.BackArray[StackPos, 257, mem.BackCount];
+                mem.Stack.Push(mem.StackArray[StackPos]);
+            }
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -459,8 +471,12 @@ namespace PicSim
                 mem.SafeBack();
                 mem.TwoCycles = false;
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
+<<<<<<< HEAD
                 mem.pc++;
                 mem.IncLaufzeitzaehler();
+=======
+                mem.TimerValNew = befehle.getFileVal(Const.TMR0); //Für TMR0
+>>>>>>> 25163c31e8226bba68f1d6bfe569fbdfadd7d827
                 backgroundWorker1.ReportProgress(mem.pc); //ruft backgroundWorker1_ProgressChanged Funktion auf, also GUIaktualisieren
                 
                 System.Threading.Thread.Sleep(20); 
