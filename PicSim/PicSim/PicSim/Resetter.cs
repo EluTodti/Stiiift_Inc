@@ -19,7 +19,17 @@ namespace PicSim
             ResetRegister();
             ResetStackArrays();
             ResetInterrupts();
+            ResetBreakPoints();
             mem.BackCount = 0;
+        }
+
+        public void ResetBreakPoints()
+        {
+            for (int i = 0; i < mem.BreakPointArray.Length; i++)
+            {
+                mem.BreakPointArray[i] = 1000000;
+            }
+            mem.BPArrayIndex = 0;
         }
 
         public void ResetBefehlsArray()

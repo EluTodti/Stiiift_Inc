@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -451,6 +452,7 @@ namespace PicSim
                 interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
 
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
+                CheckBreakpoints();
 
                 backgroundWorker1.ReportProgress(mem.pc); //ruft backgroundWorker1_ProgressChanged Funktion auf, also GUIaktualisieren             
 
@@ -501,21 +503,40 @@ namespace PicSim
                 if (cell.Value.Equals(true))
                 {
                     cell.Value = false;
-                    MessageBox.Show(dgvCode.CurrentCell.ToString());
-                    DataGridViewCheckBoxCell pcCell = (DataGridViewCheckBoxCell) dgvCode.CurrentCell;
-                    CellValue = (string)dgvCode[1, pcCell.RowIndex].Value;
-                    MessageBox.Show(CellValue);
                 }
                 if (cell.Value.Equals(false))
                 {
-                    cell.Value = true;
                     MessageBox.Show(dgvCode.CurrentCell.ToString());
                     DataGridViewCheckBoxCell pcCell = (DataGridViewCheckBoxCell)dgvCode.CurrentCell;
                     CellValue = (string)dgvCode[1, pcCell.RowIndex].Value;
                     MessageBox.Show(CellValue);
-
+                    mem.BreakPointArray[mem.BPArrayIndex] = Convert.ToInt32(CellValue, 16);
+                    mem.BPArrayIndex++;
+                    System.Array.Sort(mem.BreakPointArray);
                 }
             }
+        }
+
+        public void CheckBreakpoints()
+        {
+            System.Array.Sort(mem.BreakPointArray);
+            if (mem.pc == mem.BreakPointArray[0])
+            {
+                for (int i = 0; i < mem.BreakPointArray.Length - 1; i++)
+                {
+                    mem.BreakPointArray[i] = mem.BreakPointArray[i + 1];
+                }
+                backgroundWorker1.CancelAsync(); //sagt Thread, er soll sich beenden
+               /* Versuch die Farbe zu ändern wenn Breakpoint angekommen
+               foreach (DataGridViewRow row in dgvCode.Rows)
+                {
+                    if((bool)row.Cells[0].Value && Convert.ToInt32((string)row.Cells[1].Value,16) == mem.pc)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.Yellow;
+                    }
+                }*/
+            }
+
         }
 
         //==============================
