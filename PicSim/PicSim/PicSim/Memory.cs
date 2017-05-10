@@ -83,7 +83,7 @@ namespace PicSim
             {
                 while (val < 0)
                 {
-                    WReg = 256 + val;
+                    val = 256 + val;
                 }
 
                 WReg = val;
