@@ -311,7 +311,7 @@ namespace PicSim
             literal = binCode & 0x00FF;
 
             mem.setWReg(literal);
-            CheckTimer();     
+                
 
             mem.setWReg(literal); 
             PostInstruction();           
@@ -347,7 +347,7 @@ namespace PicSim
             CheckZero(mem.WReg);
             CheckCarry();
             CheckDigitCarry();
-            CheckTimer();
+            
             PostInstruction();
         }
 
@@ -357,7 +357,7 @@ namespace PicSim
             literal = binCode & 0x00FF;
             mem.setWReg(literal ^ mem.WReg);
             CheckZero(mem.WReg);
-            CheckTimer();
+            
             PostInstruction();
         }
 
@@ -369,7 +369,7 @@ namespace PicSim
             CheckZero(mem.WReg);
             CheckCarry();
             CheckDigitCarry();
-            CheckTimer();
+            
             PostInstruction();
         }
 
@@ -385,7 +385,7 @@ namespace PicSim
 
             mem.IncLaufzeitzaehler();
             mem.TwoCycles = true;
-            CheckTimer();
+            
 
             PostInstruction();
         }
@@ -404,7 +404,7 @@ namespace PicSim
 
             mem.IncLaufzeitzaehler();
             mem.TwoCycles = true;
-            CheckTimer();
+            
 
             PostInstruction();
         }
@@ -412,7 +412,7 @@ namespace PicSim
         public void nop(int binCode)
         {
             GetTimerValOld();
-            CheckTimer();
+            
             //Nope
             PostInstruction();
         }
@@ -426,7 +426,7 @@ namespace PicSim
 
             mem.IncLaufzeitzaehler();
             mem.TwoCycles = true;
-            CheckTimer();
+            
 
             PostInstruction();
         }
@@ -442,7 +442,7 @@ namespace PicSim
             mem.IncLaufzeitzaehler();
             mem.TwoCycles = true;
 
-            CheckTimer();
+            
 
             PostInstruction();
         }
@@ -453,7 +453,7 @@ namespace PicSim
             fileAdress = binCode & 0x007F;
             IndirekteAdressierung(fileAdress);
             schreibeInRam(fileAdress, mem.WReg);
-            CheckTimer();
+            
 
             PostInstruction();
         }
@@ -482,7 +482,7 @@ namespace PicSim
             CheckCarry();
             CheckDigitCarry();
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -508,7 +508,7 @@ namespace PicSim
             }
             CheckZero(mem.WReg & fileVal);
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -524,7 +524,7 @@ namespace PicSim
             schreibeInRam(fileAdress, 0);
             setZero(1);
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -550,7 +550,7 @@ namespace PicSim
             }
             CheckZero(255 - fileVal);
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -576,7 +576,7 @@ namespace PicSim
             }
             CheckZero(fileVal - 1);
 
-            CheckTimer();
+            
 
 
             PostInstruction();
@@ -603,7 +603,7 @@ namespace PicSim
             }
             CheckZero(fileVal + 1);
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -643,7 +643,7 @@ namespace PicSim
                     schreibeInRam(fileAdress, fileVal);
                 }
             }
-            CheckTimer();
+            
             CheckZero(fileVal);
             PostInstruction();
         }
@@ -668,7 +668,7 @@ namespace PicSim
             }
             CheckZero(fileVal);
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -700,7 +700,7 @@ namespace PicSim
             CheckCarry();
             CheckDigitCarry();
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -727,7 +727,7 @@ namespace PicSim
                 schreibeInRam(fileAdress, fileVal);
             }
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -754,7 +754,7 @@ namespace PicSim
             }
             CheckZero(fileVal);
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -766,7 +766,7 @@ namespace PicSim
             mem.setWReg(0);
             setZero(1);
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -826,7 +826,7 @@ namespace PicSim
                 schreibeInRam(fileAdress, fileVal);
             }
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -872,7 +872,7 @@ namespace PicSim
                 schreibeInRam(fileAdress, fileVal);
             }
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -892,7 +892,7 @@ namespace PicSim
             BitSetOderBitClear(bit, fileAdress, true);
 
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -906,7 +906,7 @@ namespace PicSim
 
             BitSetOderBitClear(bit, fileAdress, false);
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -935,7 +935,7 @@ namespace PicSim
 
             }
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -962,7 +962,7 @@ namespace PicSim
                 mem.TwoCycles = true;
             }
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -984,7 +984,7 @@ namespace PicSim
                 mem.TwoCycles = true;
             }
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -1007,7 +1007,7 @@ namespace PicSim
                 mem.TwoCycles = true;
             }
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -1023,7 +1023,7 @@ namespace PicSim
             mem.ram[Const.STATUS, 4] = 1;
             //TODO TMR0 ++
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -1043,7 +1043,7 @@ namespace PicSim
             mem.ram[Const.STATUS, 4] = 1;
             //Kein TMR0 erhöhen, da in clrwdt ++
 
-            CheckTimer();
+            
 
             PostInstruction();
 
@@ -1066,7 +1066,7 @@ namespace PicSim
             mem.TwoCycles = true;
 
 
-            CheckTimer();
+            
 
             PostInstruction();
 
