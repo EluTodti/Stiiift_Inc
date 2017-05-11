@@ -62,6 +62,10 @@ namespace PicSim
             Laufzeitzaehler = Laufzeitzaehler*(double)1.0 + LaufzeitIntervall*(double)1.0;
         }
 
+        public bool PrescalerTIMER0;
+        public int ratio = -1;
+        public int prescaler = 0;
+ 
         //Timer0
         public int TimerValOld = 0;
         public int TimerValNew = 0;
