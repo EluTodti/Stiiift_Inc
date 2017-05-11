@@ -38,6 +38,7 @@ namespace PicSim
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+<<<<<<< HEAD
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -58,6 +59,28 @@ namespace PicSim
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+=======
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle301 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle302 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle303 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle304 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle305 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle306 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle307 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle308 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle309 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle310 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle311 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle312 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle313 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle314 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle315 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle316 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle317 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle318 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle319 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle320 = new System.Windows.Forms.DataGridViewCellStyle();
+>>>>>>> refs/remotes/origin/master
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
@@ -140,6 +163,62 @@ namespace PicSim
             this.PC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HexCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LineCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.btnPortA7 = new System.Windows.Forms.Button();
+            this.btnPortB7 = new System.Windows.Forms.Button();
+            this.btnPortB6 = new System.Windows.Forms.Button();
+            this.btnPortA6 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnPortB5 = new System.Windows.Forms.Button();
+            this.btnPortA5 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnPortB4 = new System.Windows.Forms.Button();
+            this.btnPortA4 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnPortB3 = new System.Windows.Forms.Button();
+            this.btnPortA3 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnPortB2 = new System.Windows.Forms.Button();
+            this.btnPortA2 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnPortB1 = new System.Windows.Forms.Button();
+            this.btnPortA1 = new System.Windows.Forms.Button();
+            this.btnPortB0 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblPortB = new System.Windows.Forms.Label();
+            this.lblPortA = new System.Windows.Forms.Label();
+            this.btnPortA0 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnTrisA7 = new System.Windows.Forms.Button();
+            this.btnTrisB7 = new System.Windows.Forms.Button();
+            this.btnTrisB6 = new System.Windows.Forms.Button();
+            this.btnTrisA6 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnTrisB5 = new System.Windows.Forms.Button();
+            this.btnTrisA5 = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.btnTrisB4 = new System.Windows.Forms.Button();
+            this.btnTrisA4 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.btnTrisB3 = new System.Windows.Forms.Button();
+            this.btnTrisA3 = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btnTrisB2 = new System.Windows.Forms.Button();
+            this.btnTrisA2 = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.btnTrisB1 = new System.Windows.Forms.Button();
+            this.btnTrisA1 = new System.Windows.Forms.Button();
+            this.btnTrisB0 = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.lblTrisB = new System.Windows.Forms.Label();
+            this.lblTrisA = new System.Windows.Forms.Label();
+            this.btnTrisA0 = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -153,6 +232,8 @@ namespace PicSim
             this.tableLayoutSpezialregister.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCode)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -269,6 +350,7 @@ namespace PicSim
             this.toolStop.Name = "toolStop";
             this.toolStop.Size = new System.Drawing.Size(24, 42);
             this.toolStop.Text = "Stop";
+            this.toolStop.Click += new System.EventHandler(this.toolStop_Click);
             // 
             // toolStatus
             // 
@@ -398,8 +480,13 @@ namespace PicSim
             // Address
             // 
             this.Address.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Address.DefaultCellStyle = dataGridViewCellStyle21;
+=======
+            dataGridViewCellStyle301.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Address.DefaultCellStyle = dataGridViewCellStyle301;
+>>>>>>> refs/remotes/origin/master
             this.Address.Frozen = true;
             this.Address.HeaderText = "ADDR";
             this.Address.MinimumWidth = 80;
@@ -413,8 +500,13 @@ namespace PicSim
             // StatusName
             // 
             this.StatusName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.StatusName.DefaultCellStyle = dataGridViewCellStyle22;
+=======
+            dataGridViewCellStyle302.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.StatusName.DefaultCellStyle = dataGridViewCellStyle302;
+>>>>>>> refs/remotes/origin/master
             this.StatusName.Frozen = true;
             this.StatusName.HeaderText = "Name";
             this.StatusName.MinimumWidth = 80;
@@ -428,8 +520,13 @@ namespace PicSim
             // Bit0
             // 
             this.Bit0.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Bit0.DefaultCellStyle = dataGridViewCellStyle23;
+=======
+            dataGridViewCellStyle303.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit0.DefaultCellStyle = dataGridViewCellStyle303;
+>>>>>>> refs/remotes/origin/master
             this.Bit0.HeaderText = "Bit0";
             this.Bit0.MinimumWidth = 30;
             this.Bit0.Name = "Bit0";
@@ -442,8 +539,13 @@ namespace PicSim
             // Bit1
             // 
             this.Bit1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Bit1.DefaultCellStyle = dataGridViewCellStyle24;
+=======
+            dataGridViewCellStyle304.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit1.DefaultCellStyle = dataGridViewCellStyle304;
+>>>>>>> refs/remotes/origin/master
             this.Bit1.HeaderText = "Bit1";
             this.Bit1.MinimumWidth = 30;
             this.Bit1.Name = "Bit1";
@@ -456,8 +558,13 @@ namespace PicSim
             // Bit2
             // 
             this.Bit2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Bit2.DefaultCellStyle = dataGridViewCellStyle25;
+=======
+            dataGridViewCellStyle305.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit2.DefaultCellStyle = dataGridViewCellStyle305;
+>>>>>>> refs/remotes/origin/master
             this.Bit2.HeaderText = "Bit2";
             this.Bit2.MinimumWidth = 30;
             this.Bit2.Name = "Bit2";
@@ -470,8 +577,13 @@ namespace PicSim
             // Bit3
             // 
             this.Bit3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Bit3.DefaultCellStyle = dataGridViewCellStyle26;
+=======
+            dataGridViewCellStyle306.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit3.DefaultCellStyle = dataGridViewCellStyle306;
+>>>>>>> refs/remotes/origin/master
             this.Bit3.HeaderText = "Bit3";
             this.Bit3.MinimumWidth = 30;
             this.Bit3.Name = "Bit3";
@@ -484,8 +596,13 @@ namespace PicSim
             // Bit4
             // 
             this.Bit4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Bit4.DefaultCellStyle = dataGridViewCellStyle27;
+=======
+            dataGridViewCellStyle307.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit4.DefaultCellStyle = dataGridViewCellStyle307;
+>>>>>>> refs/remotes/origin/master
             this.Bit4.HeaderText = "Bit4";
             this.Bit4.MinimumWidth = 30;
             this.Bit4.Name = "Bit4";
@@ -498,8 +615,13 @@ namespace PicSim
             // Bit5
             // 
             this.Bit5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Bit5.DefaultCellStyle = dataGridViewCellStyle28;
+=======
+            dataGridViewCellStyle308.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit5.DefaultCellStyle = dataGridViewCellStyle308;
+>>>>>>> refs/remotes/origin/master
             this.Bit5.HeaderText = "Bit5";
             this.Bit5.MinimumWidth = 30;
             this.Bit5.Name = "Bit5";
@@ -512,8 +634,13 @@ namespace PicSim
             // Bit6
             // 
             this.Bit6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Bit6.DefaultCellStyle = dataGridViewCellStyle29;
+=======
+            dataGridViewCellStyle309.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit6.DefaultCellStyle = dataGridViewCellStyle309;
+>>>>>>> refs/remotes/origin/master
             this.Bit6.HeaderText = "Bit6";
             this.Bit6.MinimumWidth = 30;
             this.Bit6.Name = "Bit6";
@@ -526,8 +653,13 @@ namespace PicSim
             // Bit7
             // 
             this.Bit7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Bit7.DefaultCellStyle = dataGridViewCellStyle30;
+=======
+            dataGridViewCellStyle310.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Bit7.DefaultCellStyle = dataGridViewCellStyle310;
+>>>>>>> refs/remotes/origin/master
             this.Bit7.HeaderText = "Bit7";
             this.Bit7.MinimumWidth = 30;
             this.Bit7.Name = "Bit7";
@@ -539,8 +671,13 @@ namespace PicSim
             // 
             // btnReset
             // 
+<<<<<<< HEAD
             this.btnReset.Location = new System.Drawing.Point(1085, 114);
             this.btnReset.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+=======
+            this.btnReset.Location = new System.Drawing.Point(621, 63);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+>>>>>>> refs/remotes/origin/master
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(219, 107);
             this.btnReset.TabIndex = 10;
@@ -608,8 +745,13 @@ namespace PicSim
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle31;
+=======
+            dataGridViewCellStyle311.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle311;
+>>>>>>> refs/remotes/origin/master
             this.dataGridViewTextBoxColumn1.Frozen = true;
             this.dataGridViewTextBoxColumn1.HeaderText = "ADDR";
             this.dataGridViewTextBoxColumn1.MinimumWidth = 80;
@@ -623,8 +765,13 @@ namespace PicSim
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle32;
+=======
+            dataGridViewCellStyle312.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle312;
+>>>>>>> refs/remotes/origin/master
             this.dataGridViewTextBoxColumn2.Frozen = true;
             this.dataGridViewTextBoxColumn2.HeaderText = "Name";
             this.dataGridViewTextBoxColumn2.MinimumWidth = 80;
@@ -638,8 +785,13 @@ namespace PicSim
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle33;
+=======
+            dataGridViewCellStyle313.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle313;
+>>>>>>> refs/remotes/origin/master
             this.dataGridViewTextBoxColumn3.HeaderText = "Bit0";
             this.dataGridViewTextBoxColumn3.MinimumWidth = 30;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
@@ -652,8 +804,13 @@ namespace PicSim
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle34;
+=======
+            dataGridViewCellStyle314.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle314;
+>>>>>>> refs/remotes/origin/master
             this.dataGridViewTextBoxColumn4.HeaderText = "Bit1";
             this.dataGridViewTextBoxColumn4.MinimumWidth = 30;
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
@@ -666,8 +823,13 @@ namespace PicSim
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle35;
+=======
+            dataGridViewCellStyle315.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle315;
+>>>>>>> refs/remotes/origin/master
             this.dataGridViewTextBoxColumn5.HeaderText = "Bit2";
             this.dataGridViewTextBoxColumn5.MinimumWidth = 30;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
@@ -680,8 +842,13 @@ namespace PicSim
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle36;
+=======
+            dataGridViewCellStyle316.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle316;
+>>>>>>> refs/remotes/origin/master
             this.dataGridViewTextBoxColumn6.HeaderText = "Bit3";
             this.dataGridViewTextBoxColumn6.MinimumWidth = 30;
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
@@ -694,8 +861,13 @@ namespace PicSim
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle37;
+=======
+            dataGridViewCellStyle317.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle317;
+>>>>>>> refs/remotes/origin/master
             this.dataGridViewTextBoxColumn7.HeaderText = "Bit4";
             this.dataGridViewTextBoxColumn7.MinimumWidth = 30;
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
@@ -708,8 +880,13 @@ namespace PicSim
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle38;
+=======
+            dataGridViewCellStyle318.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle318;
+>>>>>>> refs/remotes/origin/master
             this.dataGridViewTextBoxColumn8.HeaderText = "Bit5";
             this.dataGridViewTextBoxColumn8.MinimumWidth = 30;
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -722,8 +899,13 @@ namespace PicSim
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle39;
+=======
+            dataGridViewCellStyle319.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle319;
+>>>>>>> refs/remotes/origin/master
             this.dataGridViewTextBoxColumn9.HeaderText = "Bit6";
             this.dataGridViewTextBoxColumn9.MinimumWidth = 30;
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
@@ -736,8 +918,13 @@ namespace PicSim
             // dataGridViewTextBoxColumn10
             // 
             this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+<<<<<<< HEAD
             dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle40;
+=======
+            dataGridViewCellStyle320.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle320;
+>>>>>>> refs/remotes/origin/master
             this.dataGridViewTextBoxColumn10.HeaderText = "Bit7";
             this.dataGridViewTextBoxColumn10.MinimumWidth = 30;
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
@@ -1187,6 +1374,774 @@ namespace PicSim
             this.LineCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.LineCode.ToolTipText = "Executable code";
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 3;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.label12, 0, 8);
+            this.tableLayoutPanel3.Controls.Add(this.btnPortA7, 0, 8);
+            this.tableLayoutPanel3.Controls.Add(this.btnPortB7, 0, 8);
+            this.tableLayoutPanel3.Controls.Add(this.btnPortB6, 2, 7);
+            this.tableLayoutPanel3.Controls.Add(this.btnPortA6, 1, 7);
+            this.tableLayoutPanel3.Controls.Add(this.label11, 0, 7);
+            this.tableLayoutPanel3.Controls.Add(this.btnPortB5, 2, 6);
+            this.tableLayoutPanel3.Controls.Add(this.btnPortA5, 1, 6);
+            this.tableLayoutPanel3.Controls.Add(this.label10, 0, 6);
+            this.tableLayoutPanel3.Controls.Add(this.btnPortB4, 2, 5);
+            this.tableLayoutPanel3.Controls.Add(this.btnPortA4, 1, 5);
+            this.tableLayoutPanel3.Controls.Add(this.label9, 0, 5);
+            this.tableLayoutPanel3.Controls.Add(this.btnPortB3, 2, 4);
+            this.tableLayoutPanel3.Controls.Add(this.btnPortA3, 1, 4);
+            this.tableLayoutPanel3.Controls.Add(this.label8, 0, 4);
+            this.tableLayoutPanel3.Controls.Add(this.btnPortB2, 2, 3);
+            this.tableLayoutPanel3.Controls.Add(this.btnPortA2, 1, 3);
+            this.tableLayoutPanel3.Controls.Add(this.label7, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.btnPortB1, 2, 2);
+            this.tableLayoutPanel3.Controls.Add(this.btnPortA1, 1, 2);
+            this.tableLayoutPanel3.Controls.Add(this.btnPortB0, 2, 1);
+            this.tableLayoutPanel3.Controls.Add(this.label6, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.label3, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.lblPortB, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.lblPortA, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnPortA0, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.label5, 0, 1);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(621, 305);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 9;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(163, 307);
+            this.tableLayoutPanel3.TabIndex = 21;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label12.Location = new System.Drawing.Point(3, 272);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(32, 35);
+            this.label12.TabIndex = 28;
+            this.label12.Text = "7";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnPortA7
+            // 
+            this.btnPortA7.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPortA7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortA7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPortA7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPortA7.Location = new System.Drawing.Point(41, 275);
+            this.btnPortA7.Name = "btnPortA7";
+            this.btnPortA7.Size = new System.Drawing.Size(56, 29);
+            this.btnPortA7.TabIndex = 27;
+            this.btnPortA7.UseVisualStyleBackColor = false;
+            this.btnPortA7.Click += new System.EventHandler(this.btnPortA7_Click);
+            // 
+            // btnPortB7
+            // 
+            this.btnPortB7.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPortB7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortB7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPortB7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPortB7.Location = new System.Drawing.Point(103, 275);
+            this.btnPortB7.Name = "btnPortB7";
+            this.btnPortB7.Size = new System.Drawing.Size(57, 29);
+            this.btnPortB7.TabIndex = 26;
+            this.btnPortB7.UseVisualStyleBackColor = false;
+            this.btnPortB7.Click += new System.EventHandler(this.btnPortB7_Click);
+            // 
+            // btnPortB6
+            // 
+            this.btnPortB6.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPortB6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortB6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPortB6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPortB6.Location = new System.Drawing.Point(103, 241);
+            this.btnPortB6.Name = "btnPortB6";
+            this.btnPortB6.Size = new System.Drawing.Size(57, 28);
+            this.btnPortB6.TabIndex = 25;
+            this.btnPortB6.UseVisualStyleBackColor = false;
+            this.btnPortB6.Click += new System.EventHandler(this.btnPortB6_Click);
+            // 
+            // btnPortA6
+            // 
+            this.btnPortA6.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPortA6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortA6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPortA6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPortA6.Location = new System.Drawing.Point(41, 241);
+            this.btnPortA6.Name = "btnPortA6";
+            this.btnPortA6.Size = new System.Drawing.Size(56, 28);
+            this.btnPortA6.TabIndex = 24;
+            this.btnPortA6.UseVisualStyleBackColor = false;
+            this.btnPortA6.Click += new System.EventHandler(this.btnPortA6_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label11.Location = new System.Drawing.Point(3, 238);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(32, 34);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "6";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnPortB5
+            // 
+            this.btnPortB5.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPortB5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortB5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPortB5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPortB5.Location = new System.Drawing.Point(103, 207);
+            this.btnPortB5.Name = "btnPortB5";
+            this.btnPortB5.Size = new System.Drawing.Size(57, 28);
+            this.btnPortB5.TabIndex = 22;
+            this.btnPortB5.UseVisualStyleBackColor = false;
+            this.btnPortB5.Click += new System.EventHandler(this.btnPortB5_Click);
+            // 
+            // btnPortA5
+            // 
+            this.btnPortA5.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPortA5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortA5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPortA5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPortA5.Location = new System.Drawing.Point(41, 207);
+            this.btnPortA5.Name = "btnPortA5";
+            this.btnPortA5.Size = new System.Drawing.Size(56, 28);
+            this.btnPortA5.TabIndex = 21;
+            this.btnPortA5.UseVisualStyleBackColor = false;
+            this.btnPortA5.Click += new System.EventHandler(this.btnPortA5_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.Location = new System.Drawing.Point(3, 204);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(32, 34);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "5";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnPortB4
+            // 
+            this.btnPortB4.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPortB4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortB4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPortB4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPortB4.Location = new System.Drawing.Point(103, 173);
+            this.btnPortB4.Name = "btnPortB4";
+            this.btnPortB4.Size = new System.Drawing.Size(57, 28);
+            this.btnPortB4.TabIndex = 19;
+            this.btnPortB4.UseVisualStyleBackColor = false;
+            this.btnPortB4.Click += new System.EventHandler(this.btnPortB4_Click);
+            // 
+            // btnPortA4
+            // 
+            this.btnPortA4.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPortA4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortA4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPortA4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPortA4.Location = new System.Drawing.Point(41, 173);
+            this.btnPortA4.Name = "btnPortA4";
+            this.btnPortA4.Size = new System.Drawing.Size(56, 28);
+            this.btnPortA4.TabIndex = 18;
+            this.btnPortA4.UseVisualStyleBackColor = false;
+            this.btnPortA4.Click += new System.EventHandler(this.btnPortA4_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.Location = new System.Drawing.Point(3, 170);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(32, 34);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "4";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnPortB3
+            // 
+            this.btnPortB3.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPortB3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortB3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPortB3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPortB3.Location = new System.Drawing.Point(103, 139);
+            this.btnPortB3.Name = "btnPortB3";
+            this.btnPortB3.Size = new System.Drawing.Size(57, 28);
+            this.btnPortB3.TabIndex = 16;
+            this.btnPortB3.UseVisualStyleBackColor = false;
+            this.btnPortB3.Click += new System.EventHandler(this.btnPortB3_Click);
+            // 
+            // btnPortA3
+            // 
+            this.btnPortA3.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPortA3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortA3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPortA3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPortA3.Location = new System.Drawing.Point(41, 139);
+            this.btnPortA3.Name = "btnPortA3";
+            this.btnPortA3.Size = new System.Drawing.Size(56, 28);
+            this.btnPortA3.TabIndex = 15;
+            this.btnPortA3.UseVisualStyleBackColor = false;
+            this.btnPortA3.Click += new System.EventHandler(this.btnPortA3_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label8.Location = new System.Drawing.Point(3, 136);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(32, 34);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "3";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnPortB2
+            // 
+            this.btnPortB2.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPortB2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortB2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPortB2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPortB2.Location = new System.Drawing.Point(103, 105);
+            this.btnPortB2.Name = "btnPortB2";
+            this.btnPortB2.Size = new System.Drawing.Size(57, 28);
+            this.btnPortB2.TabIndex = 13;
+            this.btnPortB2.UseVisualStyleBackColor = false;
+            this.btnPortB2.Click += new System.EventHandler(this.btnPortB2_Click);
+            // 
+            // btnPortA2
+            // 
+            this.btnPortA2.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPortA2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortA2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPortA2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPortA2.Location = new System.Drawing.Point(41, 105);
+            this.btnPortA2.Name = "btnPortA2";
+            this.btnPortA2.Size = new System.Drawing.Size(56, 28);
+            this.btnPortA2.TabIndex = 12;
+            this.btnPortA2.UseVisualStyleBackColor = false;
+            this.btnPortA2.Click += new System.EventHandler(this.btnPortA2_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.Location = new System.Drawing.Point(3, 102);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(32, 34);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "2";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnPortB1
+            // 
+            this.btnPortB1.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPortB1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortB1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPortB1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPortB1.Location = new System.Drawing.Point(103, 71);
+            this.btnPortB1.Name = "btnPortB1";
+            this.btnPortB1.Size = new System.Drawing.Size(57, 28);
+            this.btnPortB1.TabIndex = 10;
+            this.btnPortB1.UseVisualStyleBackColor = false;
+            this.btnPortB1.Click += new System.EventHandler(this.btnPortB1_Click);
+            // 
+            // btnPortA1
+            // 
+            this.btnPortA1.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPortA1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortA1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPortA1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPortA1.Location = new System.Drawing.Point(41, 71);
+            this.btnPortA1.Name = "btnPortA1";
+            this.btnPortA1.Size = new System.Drawing.Size(56, 28);
+            this.btnPortA1.TabIndex = 9;
+            this.btnPortA1.UseVisualStyleBackColor = false;
+            this.btnPortA1.Click += new System.EventHandler(this.btnPortA1_Click);
+            // 
+            // btnPortB0
+            // 
+            this.btnPortB0.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPortB0.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortB0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPortB0.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPortB0.Location = new System.Drawing.Point(103, 37);
+            this.btnPortB0.Name = "btnPortB0";
+            this.btnPortB0.Size = new System.Drawing.Size(57, 28);
+            this.btnPortB0.TabIndex = 8;
+            this.btnPortB0.UseVisualStyleBackColor = false;
+            this.btnPortB0.Click += new System.EventHandler(this.btnPortB0_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.Location = new System.Drawing.Point(3, 68);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(32, 34);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "1";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Location = new System.Drawing.Point(3, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(32, 34);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Bit";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPortB
+            // 
+            this.lblPortB.AutoSize = true;
+            this.lblPortB.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.lblPortB.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPortB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPortB.Location = new System.Drawing.Point(103, 0);
+            this.lblPortB.Name = "lblPortB";
+            this.lblPortB.Size = new System.Drawing.Size(57, 34);
+            this.lblPortB.TabIndex = 1;
+            this.lblPortB.Text = "PortB";
+            this.lblPortB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPortA
+            // 
+            this.lblPortA.AutoSize = true;
+            this.lblPortA.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.lblPortA.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPortA.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPortA.Location = new System.Drawing.Point(41, 0);
+            this.lblPortA.Name = "lblPortA";
+            this.lblPortA.Size = new System.Drawing.Size(56, 34);
+            this.lblPortA.TabIndex = 0;
+            this.lblPortA.Text = "PortA";
+            this.lblPortA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnPortA0
+            // 
+            this.btnPortA0.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPortA0.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortA0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPortA0.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPortA0.Location = new System.Drawing.Point(41, 37);
+            this.btnPortA0.Name = "btnPortA0";
+            this.btnPortA0.Size = new System.Drawing.Size(56, 28);
+            this.btnPortA0.TabIndex = 2;
+            this.btnPortA0.UseVisualStyleBackColor = false;
+            this.btnPortA0.Click += new System.EventHandler(this.btnPortA0_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Location = new System.Drawing.Point(3, 34);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(32, 34);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "0";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 3;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.label1, 0, 8);
+            this.tableLayoutPanel4.Controls.Add(this.btnTrisA7, 0, 8);
+            this.tableLayoutPanel4.Controls.Add(this.btnTrisB7, 0, 8);
+            this.tableLayoutPanel4.Controls.Add(this.btnTrisB6, 2, 7);
+            this.tableLayoutPanel4.Controls.Add(this.btnTrisA6, 1, 7);
+            this.tableLayoutPanel4.Controls.Add(this.label2, 0, 7);
+            this.tableLayoutPanel4.Controls.Add(this.btnTrisB5, 2, 6);
+            this.tableLayoutPanel4.Controls.Add(this.btnTrisA5, 1, 6);
+            this.tableLayoutPanel4.Controls.Add(this.label13, 0, 6);
+            this.tableLayoutPanel4.Controls.Add(this.btnTrisB4, 2, 5);
+            this.tableLayoutPanel4.Controls.Add(this.btnTrisA4, 1, 5);
+            this.tableLayoutPanel4.Controls.Add(this.label14, 0, 5);
+            this.tableLayoutPanel4.Controls.Add(this.btnTrisB3, 2, 4);
+            this.tableLayoutPanel4.Controls.Add(this.btnTrisA3, 1, 4);
+            this.tableLayoutPanel4.Controls.Add(this.label15, 0, 4);
+            this.tableLayoutPanel4.Controls.Add(this.btnTrisB2, 2, 3);
+            this.tableLayoutPanel4.Controls.Add(this.btnTrisA2, 1, 3);
+            this.tableLayoutPanel4.Controls.Add(this.label16, 0, 3);
+            this.tableLayoutPanel4.Controls.Add(this.btnTrisB1, 2, 2);
+            this.tableLayoutPanel4.Controls.Add(this.btnTrisA1, 1, 2);
+            this.tableLayoutPanel4.Controls.Add(this.btnTrisB0, 2, 1);
+            this.tableLayoutPanel4.Controls.Add(this.label17, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.label18, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.lblTrisB, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.lblTrisA, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnTrisA0, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.label21, 0, 1);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(790, 305);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 9;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(163, 307);
+            this.tableLayoutPanel4.TabIndex = 22;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(3, 272);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(32, 35);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "7";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnTrisA7
+            // 
+            this.btnTrisA7.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTrisA7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrisA7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTrisA7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTrisA7.Location = new System.Drawing.Point(41, 275);
+            this.btnTrisA7.Name = "btnTrisA7";
+            this.btnTrisA7.Size = new System.Drawing.Size(56, 29);
+            this.btnTrisA7.TabIndex = 27;
+            this.btnTrisA7.UseVisualStyleBackColor = false;
+            this.btnTrisA7.Click += new System.EventHandler(this.btnTrisA7_Click);
+            // 
+            // btnTrisB7
+            // 
+            this.btnTrisB7.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTrisB7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrisB7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTrisB7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTrisB7.Location = new System.Drawing.Point(103, 275);
+            this.btnTrisB7.Name = "btnTrisB7";
+            this.btnTrisB7.Size = new System.Drawing.Size(57, 29);
+            this.btnTrisB7.TabIndex = 26;
+            this.btnTrisB7.UseVisualStyleBackColor = false;
+            this.btnTrisB7.Click += new System.EventHandler(this.btnTrisB7_Click);
+            // 
+            // btnTrisB6
+            // 
+            this.btnTrisB6.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTrisB6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrisB6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTrisB6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTrisB6.Location = new System.Drawing.Point(103, 241);
+            this.btnTrisB6.Name = "btnTrisB6";
+            this.btnTrisB6.Size = new System.Drawing.Size(57, 28);
+            this.btnTrisB6.TabIndex = 25;
+            this.btnTrisB6.UseVisualStyleBackColor = false;
+            this.btnTrisB6.Click += new System.EventHandler(this.btnTrisB6_Click);
+            // 
+            // btnTrisA6
+            // 
+            this.btnTrisA6.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTrisA6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrisA6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTrisA6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTrisA6.Location = new System.Drawing.Point(41, 241);
+            this.btnTrisA6.Name = "btnTrisA6";
+            this.btnTrisA6.Size = new System.Drawing.Size(56, 28);
+            this.btnTrisA6.TabIndex = 24;
+            this.btnTrisA6.UseVisualStyleBackColor = false;
+            this.btnTrisA6.Click += new System.EventHandler(this.btnTrisA6_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(3, 238);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(32, 34);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "6";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnTrisB5
+            // 
+            this.btnTrisB5.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTrisB5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrisB5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTrisB5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTrisB5.Location = new System.Drawing.Point(103, 207);
+            this.btnTrisB5.Name = "btnTrisB5";
+            this.btnTrisB5.Size = new System.Drawing.Size(57, 28);
+            this.btnTrisB5.TabIndex = 22;
+            this.btnTrisB5.UseVisualStyleBackColor = false;
+            this.btnTrisB5.Click += new System.EventHandler(this.btnTrisB5_Click);
+            // 
+            // btnTrisA5
+            // 
+            this.btnTrisA5.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTrisA5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrisA5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTrisA5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTrisA5.Location = new System.Drawing.Point(41, 207);
+            this.btnTrisA5.Name = "btnTrisA5";
+            this.btnTrisA5.Size = new System.Drawing.Size(56, 28);
+            this.btnTrisA5.TabIndex = 21;
+            this.btnTrisA5.UseVisualStyleBackColor = false;
+            this.btnTrisA5.Click += new System.EventHandler(this.btnTrisA5_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label13.Location = new System.Drawing.Point(3, 204);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(32, 34);
+            this.label13.TabIndex = 20;
+            this.label13.Text = "5";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnTrisB4
+            // 
+            this.btnTrisB4.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTrisB4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrisB4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTrisB4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTrisB4.Location = new System.Drawing.Point(103, 173);
+            this.btnTrisB4.Name = "btnTrisB4";
+            this.btnTrisB4.Size = new System.Drawing.Size(57, 28);
+            this.btnTrisB4.TabIndex = 19;
+            this.btnTrisB4.UseVisualStyleBackColor = false;
+            this.btnTrisB4.Click += new System.EventHandler(this.btnTrisB4_Click);
+            // 
+            // btnTrisA4
+            // 
+            this.btnTrisA4.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTrisA4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrisA4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTrisA4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTrisA4.Location = new System.Drawing.Point(41, 173);
+            this.btnTrisA4.Name = "btnTrisA4";
+            this.btnTrisA4.Size = new System.Drawing.Size(56, 28);
+            this.btnTrisA4.TabIndex = 18;
+            this.btnTrisA4.UseVisualStyleBackColor = false;
+            this.btnTrisA4.Click += new System.EventHandler(this.btnTrisA4_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label14.Location = new System.Drawing.Point(3, 170);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(32, 34);
+            this.label14.TabIndex = 17;
+            this.label14.Text = "4";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnTrisB3
+            // 
+            this.btnTrisB3.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTrisB3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrisB3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTrisB3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTrisB3.Location = new System.Drawing.Point(103, 139);
+            this.btnTrisB3.Name = "btnTrisB3";
+            this.btnTrisB3.Size = new System.Drawing.Size(57, 28);
+            this.btnTrisB3.TabIndex = 16;
+            this.btnTrisB3.UseVisualStyleBackColor = false;
+            this.btnTrisB3.Click += new System.EventHandler(this.btnTrisB3_Click);
+            // 
+            // btnTrisA3
+            // 
+            this.btnTrisA3.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTrisA3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrisA3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTrisA3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTrisA3.Location = new System.Drawing.Point(41, 139);
+            this.btnTrisA3.Name = "btnTrisA3";
+            this.btnTrisA3.Size = new System.Drawing.Size(56, 28);
+            this.btnTrisA3.TabIndex = 15;
+            this.btnTrisA3.UseVisualStyleBackColor = false;
+            this.btnTrisA3.Click += new System.EventHandler(this.btnTrisA3_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label15.Location = new System.Drawing.Point(3, 136);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(32, 34);
+            this.label15.TabIndex = 14;
+            this.label15.Text = "3";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnTrisB2
+            // 
+            this.btnTrisB2.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTrisB2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrisB2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTrisB2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTrisB2.Location = new System.Drawing.Point(103, 105);
+            this.btnTrisB2.Name = "btnTrisB2";
+            this.btnTrisB2.Size = new System.Drawing.Size(57, 28);
+            this.btnTrisB2.TabIndex = 13;
+            this.btnTrisB2.UseVisualStyleBackColor = false;
+            this.btnTrisB2.Click += new System.EventHandler(this.btnTrisB2_Click);
+            // 
+            // btnTrisA2
+            // 
+            this.btnTrisA2.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTrisA2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrisA2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTrisA2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTrisA2.Location = new System.Drawing.Point(41, 105);
+            this.btnTrisA2.Name = "btnTrisA2";
+            this.btnTrisA2.Size = new System.Drawing.Size(56, 28);
+            this.btnTrisA2.TabIndex = 12;
+            this.btnTrisA2.UseVisualStyleBackColor = false;
+            this.btnTrisA2.Click += new System.EventHandler(this.btnTrisA2_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label16.Location = new System.Drawing.Point(3, 102);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(32, 34);
+            this.label16.TabIndex = 11;
+            this.label16.Text = "2";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnTrisB1
+            // 
+            this.btnTrisB1.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTrisB1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrisB1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTrisB1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTrisB1.Location = new System.Drawing.Point(103, 71);
+            this.btnTrisB1.Name = "btnTrisB1";
+            this.btnTrisB1.Size = new System.Drawing.Size(57, 28);
+            this.btnTrisB1.TabIndex = 10;
+            this.btnTrisB1.UseVisualStyleBackColor = false;
+            this.btnTrisB1.Click += new System.EventHandler(this.btnTrisB1_Click);
+            // 
+            // btnTrisA1
+            // 
+            this.btnTrisA1.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTrisA1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrisA1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTrisA1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTrisA1.Location = new System.Drawing.Point(41, 71);
+            this.btnTrisA1.Name = "btnTrisA1";
+            this.btnTrisA1.Size = new System.Drawing.Size(56, 28);
+            this.btnTrisA1.TabIndex = 9;
+            this.btnTrisA1.UseVisualStyleBackColor = false;
+            this.btnTrisA1.Click += new System.EventHandler(this.btnTrisA1_Click);
+            // 
+            // btnTrisB0
+            // 
+            this.btnTrisB0.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTrisB0.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrisB0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTrisB0.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTrisB0.Location = new System.Drawing.Point(103, 37);
+            this.btnTrisB0.Name = "btnTrisB0";
+            this.btnTrisB0.Size = new System.Drawing.Size(57, 28);
+            this.btnTrisB0.TabIndex = 8;
+            this.btnTrisB0.UseVisualStyleBackColor = false;
+            this.btnTrisB0.Click += new System.EventHandler(this.btnTrisB0_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label17.Location = new System.Drawing.Point(3, 68);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(32, 34);
+            this.label17.TabIndex = 7;
+            this.label17.Text = "1";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label18.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label18.Location = new System.Drawing.Point(3, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(32, 34);
+            this.label18.TabIndex = 5;
+            this.label18.Text = "Bit";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTrisB
+            // 
+            this.lblTrisB.AutoSize = true;
+            this.lblTrisB.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.lblTrisB.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblTrisB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTrisB.Location = new System.Drawing.Point(103, 0);
+            this.lblTrisB.Name = "lblTrisB";
+            this.lblTrisB.Size = new System.Drawing.Size(57, 34);
+            this.lblTrisB.TabIndex = 1;
+            this.lblTrisB.Text = "TrisB";
+            this.lblTrisB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTrisA
+            // 
+            this.lblTrisA.AutoSize = true;
+            this.lblTrisA.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.lblTrisA.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblTrisA.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTrisA.Location = new System.Drawing.Point(41, 0);
+            this.lblTrisA.Name = "lblTrisA";
+            this.lblTrisA.Size = new System.Drawing.Size(56, 34);
+            this.lblTrisA.TabIndex = 0;
+            this.lblTrisA.Text = "TrisA";
+            this.lblTrisA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnTrisA0
+            // 
+            this.btnTrisA0.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTrisA0.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrisA0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTrisA0.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTrisA0.Location = new System.Drawing.Point(41, 37);
+            this.btnTrisA0.Name = "btnTrisA0";
+            this.btnTrisA0.Size = new System.Drawing.Size(56, 28);
+            this.btnTrisA0.TabIndex = 2;
+            this.btnTrisA0.UseVisualStyleBackColor = false;
+            this.btnTrisA0.Click += new System.EventHandler(this.btnTrisA0_Click);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label21.Location = new System.Drawing.Point(3, 34);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(32, 34);
+            this.label21.TabIndex = 6;
+            this.label21.Text = "0";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // form1BindingSource
             // 
             this.form1BindingSource.DataSource = typeof(PicSim.Form1);
@@ -1214,9 +2169,15 @@ namespace PicSim
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(3099, 1597);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+=======
+            this.ClientSize = new System.Drawing.Size(1771, 881);
+            this.Controls.Add(this.tableLayoutPanel4);
+            this.Controls.Add(this.tableLayoutPanel3);
+>>>>>>> refs/remotes/origin/master
             this.Controls.Add(this.dgvCode);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btnStepBack);
@@ -1249,6 +2210,10 @@ namespace PicSim
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCode)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1260,7 +2225,6 @@ namespace PicSim
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripTextBox txtQuarzfrequenz;
         private System.Windows.Forms.ToolStripLabel lblQuarzfrequenz;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
         private System.Windows.Forms.ToolStripMenuItem quarzfrequenzToolStripMenuItem;
@@ -1271,12 +2235,10 @@ namespace PicSim
         private System.Windows.Forms.ToolStripMenuItem toolHelp;
         private System.Windows.Forms.ToolStripLabel txtUnicorn;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel lblBottomValueQuarzfrequenz;
         private System.Windows.Forms.ToolStripStatusLabel lblBottomQuarzfrequenz;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripButton toolPlay;
         private System.Windows.Forms.ToolStripButton toolPause;
-        private DataGridView dgvRam0;
         private BindingSource form1BindingSource;
         private ToolStripStatusLabel lblBottomC;
         private DataGridViewTextBoxColumn Address;
@@ -1291,7 +2253,6 @@ namespace PicSim
         private DataGridViewTextBoxColumn Bit7;
         private Button btnReset;
         private TableLayoutPanel tableLayoutPanel2;
-        private DataGridView dgvRam1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -1302,18 +2263,9 @@ namespace PicSim
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private Label lblWReg;
-        private Label lblPC;
         private Button btnStep;
         private TableLayoutPanel tableLayoutStack;
         private Label lblStackAddr0;
-        private Label lblStackContent1;
-        private Label lblStackContent2;
-        private Label lblStackContent3;
-        private Label lblStackContent4;
-        private Label lblStackContent5;
-        private Label lblStackContent6;
-        private Label lblStackContent7;
         private Label label4;
         private Label lblStackAddr;
         private Label lblStackAddr1;
@@ -1323,24 +2275,96 @@ namespace PicSim
         private Label lblStackAddr5;
         private Label lblStackAddr6;
         private Label lblStackAddr7;
-        private Label lblStackContent0;
         private TableLayoutPanel tableLayoutSpezialregister;
-        private Label lblPCTxt;
         private Label lblWRegTxt;
         private Button btnStepBack;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private ToolStripLabel toolStatus;
         private ToolStripButton toolStop;
         private TableLayoutPanel tableLayoutPanel1;
-        private Label lblLaufzeitzaehler;
         private Label txtLaufzeitzaehler;
-        private DataGridView dgvCode;
         private DataGridViewCheckBoxColumn BreakPoint;
         private DataGridViewTextBoxColumn PC;
         private DataGridViewTextBoxColumn HexCode;
         private DataGridViewTextBoxColumn LineCode;
+<<<<<<< HEAD
         private Label label1;
         private Label label2;
+=======
+        private TableLayoutPanel tableLayoutPanel3;
+        private Label lblPortA;
+        private Label lblPortB;
+        private Label label12;
+        private Label label11;
+        private Label label10;
+        private Label label9;
+        private Label label8;
+        private Label label7;
+        private Label label6;
+        private Label label3;
+        private Label label5;
+        public DataGridView dgvRam0;
+        public DataGridView dgvRam1;
+        public DataGridView dgvCode;
+        public Label lblPC;
+        public Label lblStackContent1;
+        public Label lblStackContent2;
+        public Label lblStackContent3;
+        public Label lblStackContent4;
+        public Label lblStackContent5;
+        public Label lblStackContent6;
+        public Label lblStackContent7;
+        public Label lblStackContent0;
+        public Label lblLaufzeitzaehler;
+        public Label lblWReg;
+        private Label lblPCTxt;
+        public ToolStripTextBox txtQuarzfrequenz;
+        public ToolStripStatusLabel lblBottomValueQuarzfrequenz;
+        public ToolStripLabel toolStatus;
+        public Button btnPortA0;
+        public Button btnPortA7;
+        public Button btnPortB7;
+        public Button btnPortB6;
+        public Button btnPortA6;
+        public Button btnPortB5;
+        public Button btnPortA5;
+        public Button btnPortB4;
+        public Button btnPortA4;
+        public Button btnPortB3;
+        public Button btnPortA3;
+        public Button btnPortB2;
+        public Button btnPortA2;
+        public Button btnPortB1;
+        public Button btnPortA1;
+        public Button btnPortB0;
+        private TableLayoutPanel tableLayoutPanel4;
+        private Label label1;
+        public Button btnTrisA7;
+        public Button btnTrisB7;
+        public Button btnTrisB6;
+        public Button btnTrisA6;
+        private Label label2;
+        public Button btnTrisB5;
+        public Button btnTrisA5;
+        private Label label13;
+        public Button btnTrisB4;
+        public Button btnTrisA4;
+        private Label label14;
+        public Button btnTrisB3;
+        public Button btnTrisA3;
+        private Label label15;
+        public Button btnTrisB2;
+        public Button btnTrisA2;
+        private Label label16;
+        public Button btnTrisB1;
+        public Button btnTrisA1;
+        public Button btnTrisB0;
+        private Label label17;
+        private Label label18;
+        private Label lblTrisB;
+        private Label lblTrisA;
+        public Button btnTrisA0;
+        private Label label21;
+>>>>>>> refs/remotes/origin/master
     }
 }
 
