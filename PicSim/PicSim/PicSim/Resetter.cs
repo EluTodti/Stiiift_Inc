@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace PicSim
 
@@ -110,13 +106,10 @@ namespace PicSim
         public void ResetInterrupts()
         {
             /*
-            interrupter.INTRB0 = false;
-            interrupter.INTRB4 = false;
-            interrupter.INTRB5 = false;
-            interrupter.INTRB6 = false;
-            interrupter.INTRB7 = false;
+            wird im RAM zurückgesetzt
             */
         }
+
 
     }
 }

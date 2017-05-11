@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace PicSim
 {
@@ -72,7 +68,6 @@ namespace PicSim
         public int TimerInhibit = 0;
         public bool IncomingOverFlow = false;
         public bool TwoCycles = false;
-
         public void decTimerInhibit()
         {
             TimerInhibit--;

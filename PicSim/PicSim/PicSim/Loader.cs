@@ -9,11 +9,7 @@ using System.Windows.Forms;
 namespace PicSim
 {
     class Loader
-    {
- 
-       
-
-        
+    {     
         public static void LadeDatei(StreamReader streamReader)
         {
 
