@@ -51,6 +51,10 @@ namespace PicSim
         public int[] BefehlsArray = new int[666];
         public int[,] ram = new int[8, 256];
 
+        //Breakpoints
+        public int BPArrayIndex = 0;
+        public int[] BreakPointArray = new int[10];
+
         //Laufzeitzähler
         public double Laufzeitzaehler = 0;
         public double LaufzeitIntervall = 0;

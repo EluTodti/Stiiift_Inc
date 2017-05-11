@@ -105,7 +105,6 @@ namespace PicSim
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBoxCode = new System.Windows.Forms.TextBox();
             this.lblWReg = new System.Windows.Forms.Label();
             this.lblPC = new System.Windows.Forms.Label();
             this.btnStep = new System.Windows.Forms.Button();
@@ -136,6 +135,11 @@ namespace PicSim
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblLaufzeitzaehler = new System.Windows.Forms.Label();
             this.txtLaufzeitzaehler = new System.Windows.Forms.Label();
+            this.dgvCode = new System.Windows.Forms.DataGridView();
+            this.BreakPoint = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.PC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HexCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -146,6 +150,7 @@ namespace PicSim
             this.tableLayoutStack.SuspendLayout();
             this.tableLayoutSpezialregister.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -355,6 +360,7 @@ namespace PicSim
             this.dgvRam0.AllowUserToDeleteRows = false;
             this.dgvRam0.AllowUserToResizeColumns = false;
             this.dgvRam0.AllowUserToResizeRows = false;
+            this.dgvRam0.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvRam0.ColumnHeadersHeight = 50;
             this.dgvRam0.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvRam0.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -553,6 +559,7 @@ namespace PicSim
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(615, 796);
             this.tableLayoutPanel2.TabIndex = 11;
             // 
@@ -562,6 +569,7 @@ namespace PicSim
             this.dgvRam1.AllowUserToDeleteRows = false;
             this.dgvRam1.AllowUserToResizeColumns = false;
             this.dgvRam1.AllowUserToResizeRows = false;
+            this.dgvRam1.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvRam1.ColumnHeadersHeight = 20;
             this.dgvRam1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvRam1.ColumnHeadersVisible = false;
@@ -735,17 +743,6 @@ namespace PicSim
             this.dataGridViewTextBoxColumn10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn10.ToolTipText = "MsB Bit7";
             this.dataGridViewTextBoxColumn10.Width = 30;
-            // 
-            // textBoxCode
-            // 
-            this.textBoxCode.Dock = System.Windows.Forms.DockStyle.Right;
-            this.textBoxCode.Location = new System.Drawing.Point(956, 56);
-            this.textBoxCode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxCode.Multiline = true;
-            this.textBoxCode.Name = "textBoxCode";
-            this.textBoxCode.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxCode.Size = new System.Drawing.Size(815, 796);
-            this.textBoxCode.TabIndex = 6;
             // 
             // lblWReg
             // 
@@ -1086,6 +1083,83 @@ namespace PicSim
             this.txtLaufzeitzaehler.TabIndex = 14;
             this.txtLaufzeitzaehler.Text = "Laufzeitzähler";
             // 
+            // dgvCode
+            // 
+            this.dgvCode.AllowUserToAddRows = false;
+            this.dgvCode.AllowUserToDeleteRows = false;
+            this.dgvCode.AllowUserToResizeColumns = false;
+            this.dgvCode.AllowUserToResizeRows = false;
+            this.dgvCode.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dgvCode.ColumnHeadersHeight = 40;
+            this.dgvCode.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvCode.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.BreakPoint,
+            this.PC,
+            this.HexCode,
+            this.LineCode});
+            this.dgvCode.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dgvCode.Dock = System.Windows.Forms.DockStyle.Right;
+            this.dgvCode.Location = new System.Drawing.Point(1007, 56);
+            this.dgvCode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvCode.MultiSelect = false;
+            this.dgvCode.Name = "dgvCode";
+            this.dgvCode.ReadOnly = true;
+            this.dgvCode.RowHeadersVisible = false;
+            this.dgvCode.RowHeadersWidth = 20;
+            this.dgvCode.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dgvCode.RowTemplate.DefaultCellStyle.Format = "N0";
+            this.dgvCode.RowTemplate.DefaultCellStyle.NullValue = null;
+            this.dgvCode.RowTemplate.Height = 20;
+            this.dgvCode.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCode.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvCode.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvCode.Size = new System.Drawing.Size(764, 796);
+            this.dgvCode.TabIndex = 20;
+            this.dgvCode.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCode_CellClick);
+            // 
+            // BreakPoint
+            // 
+            this.BreakPoint.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.BreakPoint.Frozen = true;
+            this.BreakPoint.HeaderText = "BP";
+            this.BreakPoint.MinimumWidth = 30;
+            this.BreakPoint.Name = "BreakPoint";
+            this.BreakPoint.ReadOnly = true;
+            this.BreakPoint.ToolTipText = "Check to set BreakPoint";
+            this.BreakPoint.Width = 30;
+            // 
+            // PC
+            // 
+            this.PC.HeaderText = "PC";
+            this.PC.MinimumWidth = 30;
+            this.PC.Name = "PC";
+            this.PC.ReadOnly = true;
+            this.PC.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.PC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.PC.ToolTipText = "Program Counter";
+            this.PC.Width = 50;
+            // 
+            // HexCode
+            // 
+            this.HexCode.HeaderText = "Hex";
+            this.HexCode.MinimumWidth = 30;
+            this.HexCode.Name = "HexCode";
+            this.HexCode.ReadOnly = true;
+            this.HexCode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.HexCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.HexCode.ToolTipText = "HexCode";
+            this.HexCode.Width = 50;
+            // 
+            // LineCode
+            // 
+            this.LineCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LineCode.HeaderText = "Code";
+            this.LineCode.MinimumWidth = 400;
+            this.LineCode.Name = "LineCode";
+            this.LineCode.ReadOnly = true;
+            this.LineCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.LineCode.ToolTipText = "Executable code";
+            // 
             // form1BindingSource
             // 
             this.form1BindingSource.DataSource = typeof(PicSim.Form1);
@@ -1096,6 +1170,7 @@ namespace PicSim
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1771, 881);
+            this.Controls.Add(this.dgvCode);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btnStepBack);
             this.Controls.Add(this.tableLayoutSpezialregister);
@@ -1103,7 +1178,6 @@ namespace PicSim
             this.Controls.Add(this.btnStep);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.btnReset);
-            this.Controls.Add(this.textBoxCode);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -1127,6 +1201,7 @@ namespace PicSim
             this.tableLayoutSpezialregister.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1180,7 +1255,6 @@ namespace PicSim
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private TextBox textBoxCode;
         private Label lblWReg;
         private Label lblPC;
         private Button btnStep;
@@ -1213,6 +1287,11 @@ namespace PicSim
         private TableLayoutPanel tableLayoutPanel1;
         private Label lblLaufzeitzaehler;
         private Label txtLaufzeitzaehler;
+        private DataGridView dgvCode;
+        private DataGridViewCheckBoxColumn BreakPoint;
+        private DataGridViewTextBoxColumn PC;
+        private DataGridViewTextBoxColumn HexCode;
+        private DataGridViewTextBoxColumn LineCode;
     }
 }
 

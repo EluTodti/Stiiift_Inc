@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -9,20 +10,41 @@ namespace PicSim
 {
     public partial class Form1 : Form
     {
+        private static object m_lock =new object();
+        //Singleton
+        private static Form1 instance;
+
+        public static Form1 getInstance()
+        {
+ 
+                if (instance == null)
+                {
+                    lock (m_lock)
+                    {
+                        if (instance==null)
+                        {
+                        instance = new Form1();
+
+                    }
+                }
+                }
+                return instance;
+        }
+
 
         private Resetter resetter = new Resetter();
         private Memory mem = Memory.Instance;
         private Decoder decoder = Decoder.Instance;
         private Interrupter interrupter = Interrupter.Instance;
         private Befehle befehle = Befehle.Instance;
-        
+ 
         //Tooltip
         ToolTip tooltipStepBack = new ToolTip();
         ToolTip tooltipStep = new ToolTip();
         public Form1()
         {
             InitializeComponent();
-            textBoxCode.ScrollBars = ScrollBars.Vertical;
+            //textBoxCode.ScrollBars = ScrollBars.Vertical;
             Tooltips();
             Fill_dgvRam();
             resetter.Reset();
@@ -41,9 +63,14 @@ namespace PicSim
         {
             dgvRam0.ColumnCount = 10;
             dgvRam1.ColumnCount = 10;
+            dgvCode.ColumnCount = 4;
             var rowCount = mem.ram.GetLength(0);
             var rowLength = mem.ram.GetLength(1);
             int hexincrement = 0x80;
+
+         
+
+
 
             //Reihen hinzufügen
             for (int i = 0; i < 80; i++)
@@ -179,63 +206,32 @@ namespace PicSim
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                dgvCode.Rows.Clear();
                 System.IO.StreamReader sr = new System.IO.StreamReader(openFileDialog1.FileName);
-                //Datei wir in TextBoxCode ausgegeben
-                textBoxCode.Text = sr.ReadToEnd();
-                //Datei wir in String Variable gespeichert
-                String stringtxt = textBoxCode.Text;
-                //String wird in char Array geschrieben
-
-                char[] chartxt = new char[stringtxt.Length];
-
-                chartxt = stringtxt.ToCharArray(0, stringtxt.Length);
-
-                int arrIndex = 0;
-                for (int i = 0; i < chartxt.Length; i++)
-                {
-                    if (chartxt[i] == 32)
-                    {
-                        //Index bis zum Ende der Zeile
-                        for (int a = i; a < chartxt.Length; a++)
-                        {
-                            if (chartxt[a] == '\n')
-                            {
-                                i++;
-                                break;
-                            }
-                            i++;
-                        }
-                    }
-                    else
-                    {
-                        i += 4; //Zeilennummer im Index i überspringen
-                        char[] chars = { chartxt[i], chartxt[i + 1], chartxt[i + 2], chartxt[i + 3] };
-                        string hexString = new string(chars);
-
-                        int num = Int32.Parse(hexString, System.Globalization.NumberStyles.HexNumber);
-                        //Befehle werden in Array gespeichert                        
-                        mem.BefehlsArray[arrIndex] = num;
-                        arrIndex += 1;
-
-                        //Index bis zum Ende der Zeile
-                        for (int a = i; a < chartxt.Length; a++)
-                        {
-                            if (chartxt[a] == '\n')
-                            {
-                                i++;
-                                break;
-                            }
-                            i++;
-                        }
-                    }
-                }
-                //Nur zum testen
+                Loader.LadeDatei(sr);
+                /*Nur zum testen
                 for (int y = 0; y < mem.BefehlsArray.Length; y++)
                 {
                     textBoxCode.Text = textBoxCode.Text + mem.BefehlsArray[y];
-                }
+                }*/
             }
         }
+
+        public void LadeInDGVCode(DataGridViewRow row,string ProgrammZeile, string Code, string HexCode)
+        {
+
+            if (HexCode.Trim() == "")
+            {
+                int i = dgvCode.Rows.Add(new object[] {false, ProgrammZeile, HexCode, Code});
+               dgvCode.Rows[i].ReadOnly = true;
+            }
+            else
+            {
+                dgvCode.Rows.Add(new object[] { false, ProgrammZeile, HexCode,Code });
+            }
+            
+        }
+        
 
         private void toolHelp_Click(object sender, EventArgs e)
         {
@@ -269,12 +265,18 @@ namespace PicSim
 
         private void dgvRam0_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)
-                dgvRam0.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            DataGridViewTextBoxCell RegB1 = (DataGridViewTextBoxCell)
-                dgvRam1.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            RegisterSynchronisieren(e, cell, RegB1);
-
+            try
+            {
+                DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)
+                    dgvRam0.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                DataGridViewTextBoxCell RegB1 = (DataGridViewTextBoxCell)
+                    dgvRam1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                RegisterSynchronisieren(e, cell, RegB1);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                //Verhindert Absturz wenn RowHeader geklickt wird
+            }
         }
 
         private void dgvRam1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -315,7 +317,7 @@ namespace PicSim
 
         private void toolPlay_Click(object sender, EventArgs e)
         {
-            if (textBoxCode.Text == "")
+            if (false)
             {
                 MessageBox.Show("Kein Code gefunden!");
             }
@@ -366,7 +368,7 @@ namespace PicSim
 
         private void btnStep_Click(object sender, EventArgs e)
         {
-            if (textBoxCode.Text == "")
+            if (false)
             {
                 MessageBox.Show("Kein Code gefunden!");
             }
@@ -383,7 +385,7 @@ namespace PicSim
         private void btnStepBack_Click(object sender, EventArgs e)
         {
             
-            if (textBoxCode.Text == "")
+            if (false)
             {
                 MessageBox.Show("Kein Code gefunden!");
             }
@@ -456,6 +458,7 @@ namespace PicSim
                 interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
 
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
+                CheckBreakpoints();
 
                 backgroundWorker1.ReportProgress(mem.pc); //ruft backgroundWorker1_ProgressChanged Funktion auf, also GUIaktualisieren             
 
@@ -494,7 +497,54 @@ namespace PicSim
                 }
             }
         }
-        
+
+        private void dgvCode_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Nur CheckBoxes
+            if (dgvCode.CurrentCell.ColumnIndex == 0)
+            {
+                DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)
+                    dgvCode.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                string CellValue = "";
+                if (cell.Value.Equals(true))
+                {
+                    cell.Value = false;
+                }
+                if (cell.Value.Equals(false))
+                {
+                    MessageBox.Show(dgvCode.CurrentCell.ToString());
+                    DataGridViewCheckBoxCell pcCell = (DataGridViewCheckBoxCell)dgvCode.CurrentCell;
+                    CellValue = (string)dgvCode[1, pcCell.RowIndex].Value;
+                    MessageBox.Show(CellValue);
+                    mem.BreakPointArray[mem.BPArrayIndex] = Convert.ToInt32(CellValue, 16);
+                    mem.BPArrayIndex++;
+                    System.Array.Sort(mem.BreakPointArray);
+                }
+            }
+        }
+
+        public void CheckBreakpoints()
+        {
+            System.Array.Sort(mem.BreakPointArray);
+            if (mem.pc == mem.BreakPointArray[0])
+            {
+                for (int i = 0; i < mem.BreakPointArray.Length - 1; i++)
+                {
+                    mem.BreakPointArray[i] = mem.BreakPointArray[i + 1];
+                }
+                backgroundWorker1.CancelAsync(); //sagt Thread, er soll sich beenden
+               /* Versuch die Farbe zu ändern wenn Breakpoint angekommen
+               foreach (DataGridViewRow row in dgvCode.Rows)
+                {
+                    if((bool)row.Cells[0].Value && Convert.ToInt32((string)row.Cells[1].Value,16) == mem.pc)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.Yellow;
+                    }
+                }*/
+            }
+
+        }
+
         //==============================
     }
 }
