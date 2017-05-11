@@ -85,6 +85,7 @@ namespace PicSim
             mem.LaufzeitIntervall = (double)4.0/(mem.Quarzfrequenz/(double)1000000.0);
             mem.IncomingOverFlow = false;
             mem.TwoCycles = false;
+            mem.prescaler = 0;
     }
 
         public void ResetStackArrays()

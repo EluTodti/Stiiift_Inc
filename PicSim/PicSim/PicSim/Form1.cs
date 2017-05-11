@@ -172,9 +172,15 @@ namespace PicSim
             lblWReg.Text = mem.WReg.ToString();
             lblPC.Text = mem.pc.ToString();
             lblLaufzeitzaehler.Text = mem.Laufzeitzaehler.ToString("0.## µs");
+<<<<<<< HEAD
+            //string.Format("{0:N2}µs", mem.Laufzeitzaehler);
+            label1.Text = "PS: "+mem.prescaler.ToString();
+            label2.Text = "Timer: "+befehle.getFileVal(0x01).ToString();
+=======
         }
         private  void AktualisiereQuarzfrequenz()
         {
+>>>>>>> refs/remotes/origin/master
             //Quarzfrequenz
             lblBottomValueQuarzfrequenz.Text = mem.Quarzfrequenz.ToString();
             txtQuarzfrequenz.Text = mem.Quarzfrequenz.ToString();
