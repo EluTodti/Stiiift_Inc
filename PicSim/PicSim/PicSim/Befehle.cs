@@ -75,11 +75,11 @@ namespace PicSim
             mem.RegisterSynchronisieren(f, val);
         }
 
-        private void BitSetOderBitClear(byte bit,int fileaddress, bool BitSetIfTrue)
+        private void BitSetOderBitClear(byte bit, int fileaddress, bool BitSetIfTrue)
         {
             if (BitSetIfTrue)
             {
-                schreibeInRam(fileaddress ,getFileVal(fileaddress) | (int) Math.Pow(2, bit));
+                schreibeInRam(fileaddress, getFileVal(fileaddress) | (int)Math.Pow(2, bit));
             }
             else
             {
@@ -90,7 +90,7 @@ namespace PicSim
         private void IndirekteAdressierung(int fileadress)
         {
             //Wenn INDF adressiert, lese Wert aus FSR-Adresse : movwf indirect => indirect adressing
-            
+
             //Beispiel: 10H=0
             //steht in FST 10H, so adressiert addwf 10H --> 10H=1
             if (fileadress == 0)
@@ -105,7 +105,7 @@ namespace PicSim
         {
             if (val == 0)
             {
-                mem.ram[2, Const.STATUS] = 1;               
+                mem.ram[2, Const.STATUS] = 1;
             }
             else
             {
@@ -127,7 +127,7 @@ namespace PicSim
 
         public void CheckDigitCarry(int val)
         {
-            if(val > 15)
+            if (val > 15)
             {
                 mem.ram[1, Const.STATUS] = 1;
             }
@@ -170,7 +170,7 @@ namespace PicSim
         {
             mem.pc = mem.Stack.Pop();
             mem.StackArray[mem.Stack.Count()] = 0;
-           
+
         }
         public void StackPush()
         {
@@ -189,105 +189,197 @@ namespace PicSim
                 MessageBox.Show("StepBack sollte nicht zwischen call und return ausgeführt werden! PicSim bitte resetten.");
             }
         }
+        public void IncrementPrescaler()
+        {
+            mem.prescaler++;
+        }
+        public void CheckPrescalerMode()
+        {
+            if (mem.ram[3, Const.OPTION_REG + 128] == 1)
+            {
+                mem.PrescalerTIMER0 = false;
+            }
+            else
+            {
+                mem.PrescalerTIMER0 = true;
+            }          
+        }
 
+        public void CheckPrescaler()
+        {
+            if (mem.PrescalerTIMER0)
+            {
+                int bitVal = getFileVal(0x81) & 0x7;
+                if(mem.prescaler==11)
+                {
+                    MessageBox.Show("Penis");
+                }
+                switch (bitVal)
+                {
+                    case 0:
+                        if (mem.prescaler % 2 == 0)
+                            IncrementTimer();
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 1:
+                        if (mem.prescaler % 4 == 0)
+                            IncrementTimer();
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 2:
+                        if (mem.prescaler % 8 == 0)
+                            IncrementTimer();
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 3:
+                        if (mem.prescaler % 16 == 0)
+                            IncrementTimer();
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 4:
+                        if (mem.prescaler % 32 == 0)
+                            IncrementTimer();
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 5:
+                        if (mem.prescaler % 64 == 0)
+                            IncrementTimer();
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 6:
+                        if (mem.prescaler % 128 == 0)
+                            IncrementTimer();
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 7:
+                        if (mem.prescaler % 256 == 0)
+                            IncrementTimer();
+                        else
+                            IncrementPrescaler();
+                        break;
+                }
+            }
+            else
+            {
+                int TimerAdress = 0x01;
+                int Timer = getFileVal(TimerAdress);
+
+                if (mem.ram[5, Const.STATUS] == 1)   //Check Bank - if Bank 1 then:
+                {
+                    TimerAdress -= 128;
+                }
+                schreibeInRam(TimerAdress, Timer + 1);
+            }             
+        }
         public void GetTimerValOld()
         {
             mem.TimerValOld = getFileVal(Const.TMR0);
         }
-        public void CheckTimer()
+        public void CheckTimerMode()
         {
-            //Check for Mode
-            if (mem.ram[5, Const.OPTION_REG + 128] == 0)
+            if (mem.ram[5, Const.OPTION_REG + 128] == 0) //Timer Mode TOCS
             {
-                //Timer Mode                     
-                mem.TimerValNew = getFileVal(0x01);
-                if (!(mem.TimerValOld == mem.TimerValNew))
+                TimerMode();   
+            }
+            else
+            {
+                //Counter Mode
+                /*
+                if (mem.ram[4, Const.OPTION_REG + 128] == 0)
                 {
-                    //mem.setTimerInhibit();
-                    mem.TimerInhibit = 2;
+                    //rising edge
+                    if (mem.Ra4ValOld == 0 && mem.Ra4ValNew == 1)
+                    {
+                        schreibeInRam(Const.TMR0, getFileVal(Const.TMR0) + 1);
+                    }
+                    //falling edge
+                    if (mem.Ra4ValOld == 1 && mem.Ra4ValNew == 0)
+                    {
+                        befehle.schreibeInRam(Const.TMR0, befehle.getFileVal(Const.TMR0) + 1);
+                    }
+                }*/
+            }
+        }
+              
+        public void IncrementTimer()
+        {
+            int TimerAdress = 0x01;
+            int Timer = getFileVal(TimerAdress);
+
+            if (mem.ram[5, Const.STATUS] == 1)   //Check Bank - if Bank 1 then:
+            {
+                TimerAdress -= 128;
+            }
+            schreibeInRam(TimerAdress, Timer + 1);
+            IncrementPrescaler();
+        }
+
+
+        public void TimerMode()
+        {
+            //Timer Mode                     
+            mem.TimerValNew = getFileVal(0x01);
+            if (!(mem.TimerValOld == mem.TimerValNew))
+            {
+                mem.prescaler = 0;
+                mem.TimerInhibit = 2;
+                mem.IncomingOverFlow = false;
+                mem.TimerInhibit++; //Da unten decrement
+            }
+
+            if (mem.TimerInhibit == 0)
+            {
+                CheckPrescaler();
+                if (mem.IncomingOverFlow)
+                {
+                    //Muss vom Benutzer in Software wieder gecleart werden ¯\_(ツ)_/¯
+                    mem.ram[2, Const.INTCON] = 1;
+                    setZero(1);
                     mem.IncomingOverFlow = false;
-                    mem.TimerInhibit++; //Da unten decrement
                 }
 
-                if (mem.TimerInhibit == 0)
+                if (getFileVal(1) == 255)
                 {
-                    int val = getFileVal(0x01);
-                    int f = 0x01;
-
-                    if (mem.ram[5, Const.STATUS] == 1)   //Check Bank - if Bank 1 then:
-
-                    {
-                        f -= 128;
-                    }
-
-                    schreibeInRam(f, val + 1);
-
-                    if (mem.IncomingOverFlow)
-                    {
-                        //Muss vom Benutzer in Software wieder gecleart werden ¯\_(ツ)_/¯
-                        mem.ram[2, Const.INTCON] = 1;
-                        setZero(1);
-                        mem.IncomingOverFlow = false;
-                    }
-
-                    if (getFileVal(1) == 255)
-                    {
-                        mem.IncomingOverFlow = true;
-                        //Bei ZweiZykligen Befehlen werden diese hier abgefangen, damit der Overflow direkt festgestellt wird
-                        if (mem.TwoCycles)
-                        {
-                            mem.ram[2, Const.INTCON] = 1;
-
-                            if (mem.ram[5, Const.STATUS] == 1)   //Check Bank - if Bank 1 then:
-
-                            {
-                                f -= 128;
-                            }
-                            schreibeInRam(f, val + 1);
-
-                            mem.IncomingOverFlow = false;
-                            mem.TwoCycles = false;
-                        }
-                    }
-                    //Bei Zweizykligen Befehlen, wenn kein Overflow stattfinden kann
+                    mem.IncomingOverFlow = true;
+                    //Bei ZweiZykligen Befehlen werden diese hier abgefangen, damit der Overflow direkt festgestellt wird
                     if (mem.TwoCycles)
                     {
-                        schreibeInRam(f, val + 1);
+                        mem.ram[2, Const.INTCON] = 1;
+
+                        CheckPrescaler();
+                        mem.IncomingOverFlow = false;
                         mem.TwoCycles = false;
                     }
-                    if (getFileVal(1) == 255)
-                    {
-                        mem.IncomingOverFlow = true;
-                    }
                 }
-                else
+                //Bei Zweizykligen Befehlen, wenn kein Overflow stattfinden kann
+                if (mem.TwoCycles)
                 {
-                    if (mem.TwoCycles)
-                        mem.decTimerInhibit();
-                    mem.decTimerInhibit();
+                    CheckPrescaler();
+                    mem.TwoCycles = false;
                 }
-
+                if (getFileVal(1) == 255)
+                {
+                    mem.IncomingOverFlow = true;
+                }
             }
-            //Counter Mode
-            /*
-            if (mem.ram[4, Const.OPTION_REG + 128] == 0)
+            else
             {
-                //rising edge
-
-                if (mem.Ra4ValOld == 0 && mem.Ra4ValNew == 1)
-                {
-                    schreibeInRam(Const.TMR0, getFileVal(Const.TMR0) + 1);
-                }
-
-                //falling edge
-                if (mem.Ra4ValOld == 1 && mem.Ra4ValNew == 0)
-                {
-                    befehle.schreibeInRam(Const.TMR0, befehle.getFileVal(Const.TMR0) + 1);
-                }
-            }*/
+                if (mem.TwoCycles)
+                    mem.decTimerInhibit();
+                mem.decTimerInhibit();
+            }
         }
+    
         public void PreInstructions(int binCode)
         {
+
             mem.SafeBack();
             GetTimerValOld();
             mem.TwoCycles = false;
@@ -302,7 +394,8 @@ namespace PicSim
 
         public void PostInstruction()
         {
-            CheckTimer();
+            CheckPrescalerMode();
+            CheckTimerMode();
             mem.pc++;
             mem.IncLaufzeitzaehler();
 
@@ -385,8 +478,8 @@ namespace PicSim
             mem.pc = adresse + pclath;
             //PC -1, da in for Schleife erhöht
             mem.pc--;
-
-            mem.IncLaufzeitzaehler();
+            nop(binCode);
+            mem.pc--;
             mem.TwoCycles = true;         
 
             PostInstruction();
