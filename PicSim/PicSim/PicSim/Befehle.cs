@@ -191,6 +191,7 @@ namespace PicSim
         }
         public void IncrementPrescaler()
         {
+            mem.prescaler = 0xFF & mem.prescaler;
             mem.prescaler++;
         }
         public void CheckPrescalerMode()
@@ -210,10 +211,7 @@ namespace PicSim
             if (mem.PrescalerTIMER0)
             {
                 int bitVal = getFileVal(0x81) & 0x7;
-                if(mem.prescaler==11)
-                {
-                    MessageBox.Show("Penis");
-                }
+
                 switch (bitVal)
                 {
                     case 0:
@@ -317,6 +315,14 @@ namespace PicSim
             {
                 TimerAdress -= 128;
             }
+
+            if (Timer == 0)
+            {
+                //Muss vom Benutzer in Software wieder gecleart werden ¯\_(ツ)_/¯
+                mem.ram[2, Const.INTCON] = 1;
+                setZero(1);
+            }
+
             schreibeInRam(TimerAdress, Timer + 1);
             IncrementPrescaler();
         }
@@ -337,42 +343,9 @@ namespace PicSim
             if (mem.TimerInhibit == 0)
             {
                 CheckPrescaler();
-                if (mem.IncomingOverFlow)
-                {
-                    //Muss vom Benutzer in Software wieder gecleart werden ¯\_(ツ)_/¯
-                    mem.ram[2, Const.INTCON] = 1;
-                    setZero(1);
-                    mem.IncomingOverFlow = false;
-                }
-
-                if (getFileVal(1) == 255)
-                {
-                    mem.IncomingOverFlow = true;
-                    //Bei ZweiZykligen Befehlen werden diese hier abgefangen, damit der Overflow direkt festgestellt wird
-                    if (mem.TwoCycles)
-                    {
-                        mem.ram[2, Const.INTCON] = 1;
-
-                        CheckPrescaler();
-                        mem.IncomingOverFlow = false;
-                        mem.TwoCycles = false;
-                    }
-                }
-                //Bei Zweizykligen Befehlen, wenn kein Overflow stattfinden kann
-                if (mem.TwoCycles)
-                {
-                    CheckPrescaler();
-                    mem.TwoCycles = false;
-                }
-                if (getFileVal(1) == 255)
-                {
-                    mem.IncomingOverFlow = true;
-                }
             }
             else
             {
-                if (mem.TwoCycles)
-                    mem.decTimerInhibit();
                 mem.decTimerInhibit();
             }
         }
@@ -382,7 +355,7 @@ namespace PicSim
 
             mem.SafeBack();
             GetTimerValOld();
-            mem.TwoCycles = false;
+
 
             fileAdress = binCode & 0x007F;
             IndirekteAdressierung(fileAdress);
@@ -398,7 +371,12 @@ namespace PicSim
             CheckTimerMode();
             mem.pc++;
             mem.IncLaufzeitzaehler();
-
+        }
+        public void TwoCycles()
+        {
+            CheckPrescalerMode();
+            CheckTimerMode();
+            mem.IncLaufzeitzaehler();
         }
         //==
         //Befehle         
@@ -472,22 +450,22 @@ namespace PicSim
         public void  goto_(int binCode)
         {
             PreInstructions(binCode);
+
             //TODO 2 Cycles            
             int pclath = 0;  //<< 7;         //TODO pclath
             int adresse = (binCode & 0x07FF);
             mem.pc = adresse + pclath;
             //PC -1, da in for Schleife erhöht
             mem.pc--;
-            nop(binCode);
-            mem.pc--;
-            mem.TwoCycles = true;         
-
+            TwoCycles();
+             
             PostInstruction();
         }
 
         public void call(int binCode)
         {
             PreInstructions(binCode);
+
             //TODO 2 Cycles
             mem.pc++;
             StackPush();
@@ -496,10 +474,7 @@ namespace PicSim
             mem.pc = adresse + pclath;
             //PC -1, da in for Schleife erhöht
             mem.pc--;
-
-            mem.IncLaufzeitzaehler();
-            mem.TwoCycles = true;
-            
+            TwoCycles();
 
             PostInstruction();
         }
@@ -519,9 +494,7 @@ namespace PicSim
             //PC -1, da in for Schleife erhöht
             mem.pc--;
 
-            mem.IncLaufzeitzaehler();
-            mem.TwoCycles = true;         
-
+            TwoCycles();
             PostInstruction();
         }
 
@@ -532,8 +505,7 @@ namespace PicSim
             mem.setWReg(literal);
             StackPop();
             mem.pc--;
-            mem.IncLaufzeitzaehler();
-            mem.TwoCycles = true;           
+            TwoCycles();
 
             PostInstruction();
         }
@@ -654,7 +626,7 @@ namespace PicSim
             {
                 if (fileAdress == 1)
                 {
-                    mem.setWReg(fileVal + 1);
+                    mem.setWReg(fileVal);
                 }
                 else
                 {
@@ -881,8 +853,8 @@ namespace PicSim
             }
             else
             {
-                nop(binCode);
-                mem.TwoCycles = true;
+                TwoCycles();
+                mem.pc++;
             }           
 
             PostInstruction();
@@ -900,8 +872,8 @@ namespace PicSim
             }
             else
             {
-                nop(binCode);
-                mem.TwoCycles = true;
+                TwoCycles();
+                mem.pc++;
             }          
             PostInstruction();
         }
@@ -923,10 +895,8 @@ namespace PicSim
 
             if (fileVal == 0)
             {
-                nop(binCode);
-                mem.TwoCycles = true;
-            }    
-                  
+                TwoCycles();
+            }                      
             PostInstruction();
         }
 
@@ -945,8 +915,7 @@ namespace PicSim
             fileVal = getFileVal(fileAdress);
             if (fileVal == 0)
             {
-                nop(binCode);
-                mem.TwoCycles = true;
+                TwoCycles();
             }
 
             PostInstruction();
@@ -991,9 +960,7 @@ namespace PicSim
             mem.ram[7, Const.INTCON] = 1;
             //pc-1 da in for Schleife +1
             mem.pc--;
-
-            mem.IncLaufzeitzaehler();
-            mem.TwoCycles = true;            
+            TwoCycles();
 
             PostInstruction();
         }
