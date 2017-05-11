@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Runtime.Remoting.Channels;
 using System.Windows.Forms;
 
 
@@ -37,6 +38,7 @@ namespace PicSim
         private Decoder decoder = Decoder.Instance;
         private Interrupter interrupter = Interrupter.Instance;
         //private Befehle befehle = Befehle.Instance;
+        private bool FileIsLoaded = false;
  
         //Tooltip
         ToolTip tooltipStepBack = new ToolTip();
@@ -149,6 +151,7 @@ namespace PicSim
             AktualisiereStack();
             AktualisierePorts();
             AktualisiereTris();
+            AktualisiereButtons();
         }
         private  void AktualisiereDGV()
         {
@@ -234,6 +237,23 @@ namespace PicSim
             btnTrisB5.Text = mem.ram[5, Const.TRISB + 128].ToString();
             btnTrisB6.Text = mem.ram[6, Const.TRISB + 128].ToString();
             btnTrisB7.Text = mem.ram[7, Const.TRISB + 128].ToString();
+        }
+        private void AktualisiereButtons()
+        {
+            if (mem.StepBackEnabled)
+            {
+                btnStepBack.Enabled = true;
+                checkStepBack.Checked = true;
+                checkStepBack.BackColor = Color.Lime;
+                checkStepBack.Text = "StepBack enabled";
+            }
+            else
+            {
+                btnStepBack.Enabled = false;
+                checkStepBack.Checked = false;
+                checkStepBack.BackColor = Color.Crimson;
+                checkStepBack.Text = "StepBack disabled";
+            }
         }
         //=========================================================================================
 
@@ -327,10 +347,8 @@ namespace PicSim
                 if (cell.Value.Equals(false))
                 {
                     cell.TrueValue = 1;
-                    //MessageBox.Show(dgvCode.CurrentCell.ToString());
                     DataGridViewCheckBoxCell pcCell = (DataGridViewCheckBoxCell)dgvCode.CurrentCell;
                     CellValue = (string)dgvCode[1, pcCell.RowIndex].Value;
-                    //MessageBox.Show(CellValue);
                     mem.BreakPointArray[mem.BPArrayIndex] = Convert.ToInt32(CellValue, 16);
                     cell.Value = cell.TrueValue;
                     mem.BPArrayIndex++;
@@ -417,9 +435,8 @@ namespace PicSim
         //==============================
         private void toolPlay_Click(object sender, EventArgs e)
         {
-            if (dgvCode.Text == "")
-            {
-                
+            if (!FileIsLoaded)
+            {                
                 MessageBox.Show("Kein Code gefunden!");
             }
             else
@@ -439,11 +456,11 @@ namespace PicSim
                 {
                     backgroundWorker1.CancelAsync();    //sagt Thread, er soll sich beenden
                 }
+                btnStepBack.Enabled = true;
             }
             private void btnReset_Click(object sender, EventArgs e)
             {
                 resetter.Reset();
-                mem.pc = 0;
                 GUIAktualisieren();
             }
             private void toolStop_Click(object sender, EventArgs e)
@@ -453,7 +470,8 @@ namespace PicSim
                     backgroundWorker1.CancelAsync();    //sagt Thread, er soll sich beenden
                 }
                 resetter.Reset();
-            }
+                GUIAktualisieren();
+        }
             private void lblQuarzfrequenz_Click(object sender, EventArgs e)
             {
                 try
@@ -476,12 +494,12 @@ namespace PicSim
             }
             private void btnStep_Click(object sender, EventArgs e)
             {
-                if (dgvCode.Text == "")
+                if (!FileIsLoaded)
                 {
                     MessageBox.Show("Kein Code gefunden!");
                 }
                 else
-                {
+                {                    
                     CheckForSleep();
                     interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
 
@@ -543,7 +561,7 @@ namespace PicSim
                 {
                     dgvCode.Rows.Add(new object[] { false, ProgrammZeile, HexCode, Code });
                 }
-
+                FileIsLoaded = true;
             }
             //-------------------
             //StepBack-----------
@@ -551,7 +569,7 @@ namespace PicSim
             private void btnStepBack_Click(object sender, EventArgs e)
             {
 
-                if (dgvCode.Text == "")
+                if (!FileIsLoaded)
                 {
                     MessageBox.Show("Kein Code gefunden!");
                 }
@@ -947,6 +965,19 @@ namespace PicSim
                 }
                 GUIAktualisieren();
             }
+
+        private void checkStepBack_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (mem.StepBackEnabled)
+            {
+                mem.StepBackEnabled = false;
+            }
+            else
+            {
+                mem.StepBackEnabled = true;
+            }
+            GUIAktualisieren();
+        }
 
 #pragma endregion GuiClick
         //==========================================================

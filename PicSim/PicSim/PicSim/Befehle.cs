@@ -339,10 +339,18 @@ namespace PicSim
         }
 #pragma endregion Timer & Prescaler
 
+        private void IsStepBackEnabled()
+        {
+            if (mem.StepBackEnabled)
+            {
+                mem.SafeBack();
+            }
+        }
+
         public void PreInstructions(int binCode)
         {
 
-            mem.SafeBack();
+            IsStepBackEnabled();
             GetTimerValOld();
 
 

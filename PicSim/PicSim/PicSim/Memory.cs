@@ -162,6 +162,7 @@ namespace PicSim
             //TimerValOld   TimerValNew     TimerInhibit
         public int CountOfStepsSafed = 0;
 
+        public bool StepBackEnabled = true;
         public void SafeBack()
         {
             /* Mit Stack
