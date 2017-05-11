@@ -41,6 +41,7 @@ namespace PicSim
         //Tooltip
         ToolTip tooltipStepBack = new ToolTip();
         ToolTip tooltipStep = new ToolTip();
+
         public Form1()
         {
             InitializeComponent();
@@ -210,7 +211,7 @@ namespace PicSim
             btnPortB4.Text = mem.ram[4, Const.PORTB].ToString();
             btnPortB5.Text = mem.ram[5, Const.PORTB].ToString();
             btnPortB6.Text = mem.ram[6, Const.PORTB].ToString();
-            btnPortB7.Text = mem.ram[7, Const.PORTA].ToString();
+            btnPortB7.Text = mem.ram[7, Const.PORTB].ToString();
         }
         private void AktualisiereTris()
         {
@@ -407,7 +408,7 @@ namespace PicSim
         }
 
         //==============================
-#pragma GuiClick        //Gui click
+#pragma region GuiClick        //Gui click
         private void toolPlay_Click(object sender, EventArgs e)
             {
                 if (false)
@@ -937,6 +938,7 @@ namespace PicSim
                 }
                 GUIAktualisieren();
             }
+#pragma endregion GuiClick
         //==========================================================
 
     }
