@@ -55,6 +55,13 @@ namespace PicSim
             GUIAktualisieren();
         }
 
+        private void Tooltips()
+        {
+            tooltipStepBack.SetToolTip(btnStepBack, "Achtung: StepBack darf nicht zwischen call und return verwendet werden!");
+            tooltipStep.SetToolTip(btnStep, "Einen Befehl ausführen");
+
+        }
+        #region Ram
         private void Fill_dgvRam()
         {
             dgvRam0.ColumnCount = 10;
@@ -135,13 +142,28 @@ namespace PicSim
             dgvRam1[1, 10].Value = "PCLATH";
             dgvRam1[1, 11].Value = "INTCON";
         }
-        private void Tooltips()
+        private void RamAktualisieren()
         {
-            tooltipStepBack.SetToolTip(btnStepBack, "Achtung: StepBack darf nicht zwischen call und return verwendet werden!");
-            tooltipStep.SetToolTip(btnStep,"Einen Befehl ausführen");
+            for (int Spalte = 2; Spalte < 10; Spalte++)
+            {
+                for (int Reihe = 0; Reihe < 80; Reihe++)
+                {
+                    mem.ram[Spalte - 2, Reihe] = (int)dgvRam0[Spalte, Reihe].Value;
+                }
+                int dgvRamReihe = 0;
+                for (int Reihe = 128; Reihe < 207; Reihe++)
+                {
+
+                    mem.ram[Spalte - 2, Reihe] = (int)dgvRam1[Spalte, dgvRamReihe].Value;
+                    dgvRamReihe++;
+                }
+            }
+
 
         }
+        #endregion Ram
 
+        #region GUI Aktualisieren
         //GUIAktualisieren===========================================================
         public  void GUIAktualisieren()
         {
@@ -256,29 +278,12 @@ namespace PicSim
             }
         }
         //=========================================================================================
+        #endregion GUI Aktualisieren
 
-        private void RamAktualisieren()
-        {
-            for (int Spalte = 2; Spalte < 10; Spalte++)
-            {
-                for (int Reihe = 0; Reihe < 80; Reihe++)
-                {
-                    mem.ram[Spalte - 2, Reihe] = (int)dgvRam0[Spalte, Reihe].Value;
-                }
-                int dgvRamReihe = 0;
-                for (int Reihe = 128; Reihe < 207; Reihe++)
-                {
 
-                    mem.ram[Spalte - 2, Reihe] = (int)dgvRam1[Spalte, dgvRamReihe].Value;
-                    dgvRamReihe++;
-                }
-            }
-  
-            
-        }
 
-        //DataGridView click
-            //dgvRam click-------
+        #region DataGridView click
+        //dgvRam click-------
         private void dgvRam0_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -357,6 +362,7 @@ namespace PicSim
             }
         }
         //======================================================
+        #endregion DataGridView click
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
@@ -449,7 +455,9 @@ namespace PicSim
             }
             btnStepBack.Enabled = false;
         }
-#pragma region GuiClick         //Gui click
+
+        #region GuiClick         
+        //Gui click
         private void toolPause_Click(object sender, EventArgs e)
             {
                 if (backgroundWorker1.IsBusy)
@@ -979,7 +987,7 @@ namespace PicSim
             GUIAktualisieren();
         }
 
-#pragma endregion GuiClick
+            #endregion GuiClick
         //==========================================================
 
     }
