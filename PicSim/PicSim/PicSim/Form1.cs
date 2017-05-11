@@ -319,15 +319,20 @@ namespace PicSim
                 string CellValue = "";
                 if (cell.Value.Equals(true))
                 {
-                    cell.Value = false;
+                    cell.FalseValue = 0;
+                    cell.Value = cell.FalseValue;
+                    mem.BreakPointArray[0] = 1000000;
+                    System.Array.Sort(mem.BreakPointArray);
                 }
                 if (cell.Value.Equals(false))
                 {
-                    MessageBox.Show(dgvCode.CurrentCell.ToString());
+                    cell.TrueValue = 1;
+                    //MessageBox.Show(dgvCode.CurrentCell.ToString());
                     DataGridViewCheckBoxCell pcCell = (DataGridViewCheckBoxCell)dgvCode.CurrentCell;
                     CellValue = (string)dgvCode[1, pcCell.RowIndex].Value;
-                    MessageBox.Show(CellValue);
+                    //MessageBox.Show(CellValue);
                     mem.BreakPointArray[mem.BPArrayIndex] = Convert.ToInt32(CellValue, 16);
+                    cell.Value = cell.TrueValue;
                     mem.BPArrayIndex++;
                     System.Array.Sort(mem.BreakPointArray);
                 }
@@ -370,8 +375,6 @@ namespace PicSim
             //PD Bit checken
             if (mem.ram[3, Const.STATUS] == 0)
             {
-                //TODO den PIC schlafen lassen, bis powerup oder clrwdt
-                //TODO Backgroundworker anhalten
                 while (true)
                 {
                     //Wenn clrwdt --> PD = 1
@@ -383,9 +386,9 @@ namespace PicSim
                         return;
                     }
                     mem.IncLaufzeitzaehler();
-                    backgroundWorker1.ReportProgress(mem.pc);
+                    //
+                    backgroundWorker1.ReportProgress(mem.pc);  //ruft backgroundWorker1_ProgressChanged Funktion auf, also GUIaktualisieren  
                     System.Threading.Thread.Sleep(20);
-                    //TODO evtl sleep einbauen?
                 }
             }
         }
@@ -414,8 +417,9 @@ namespace PicSim
         //==============================
         private void toolPlay_Click(object sender, EventArgs e)
         {
-            if (false)
+            if (dgvCode.Text == "")
             {
+                
                 MessageBox.Show("Kein Code gefunden!");
             }
             else
@@ -426,9 +430,10 @@ namespace PicSim
                     backgroundWorker1.RunWorkerAsync(); //startet backgroundWorker1_DoWork Funktion
                 }
             }
+            btnStepBack.Enabled = false;
         }
-#pragma region GuiClick        //Gui click
-            private void toolPause_Click(object sender, EventArgs e)
+#pragma region GuiClick         //Gui click
+        private void toolPause_Click(object sender, EventArgs e)
             {
                 if (backgroundWorker1.IsBusy)
                 {
@@ -471,7 +476,7 @@ namespace PicSim
             }
             private void btnStep_Click(object sender, EventArgs e)
             {
-                if (false)
+                if (dgvCode.Text == "")
                 {
                     MessageBox.Show("Kein Code gefunden!");
                 }
@@ -546,7 +551,7 @@ namespace PicSim
             private void btnStepBack_Click(object sender, EventArgs e)
             {
 
-                if (false)
+                if (dgvCode.Text == "")
                 {
                     MessageBox.Show("Kein Code gefunden!");
                 }

@@ -27,7 +27,6 @@ namespace PicSim
 
         //Spezialregister
         public int pc = 0;
-
         public int WReg = 0;
 
         public Stack<int> Stack = new Stack<int>();
@@ -40,6 +39,7 @@ namespace PicSim
         public int BackCount = 0;
         public int[,,] BackArray = new int[8,258,100];
         public Stack<int>Stack_Backhelper=new Stack<int>();
+        public bool BackEnabled = true;
         //0-255 = ram
         //256: 0:PC, 1:WReg, 2: Laufzeitzähler, 3: Quarzfrequenz 
 
@@ -63,7 +63,6 @@ namespace PicSim
         }
 
         public bool PrescalerTIMER0;
-        public int ratio = -1;
         public int prescaler = 0;
  
         //Timer0
