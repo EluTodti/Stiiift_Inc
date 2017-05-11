@@ -130,7 +130,7 @@ namespace PicSim
             if (mem.ram[6, Const.INTCON] == 1)
             {
                 //EEIF gesetzt? (completion of a data EEPROM write cycle)
-                if (mem.ram[4,Const.EECON1] == 1)
+                if (mem.ram[4, Const.EECON1 + 128] == 1)
                 {
                     return true;
                 }

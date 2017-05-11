@@ -95,8 +95,6 @@ namespace PicSim
             }
         }
 
-        //TODO complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //Argumentübergabe, da die Operation an sich auf 0 überprüft werden muss, nicht nur das WReg.
         public void CheckZero(int val)
         {
             if (val == 0)
@@ -108,7 +106,6 @@ namespace PicSim
                 mem.ram[2, Const.STATUS] = 0;
             }
         }
-
         public void CheckCarry(int val)
         {
             if (val > 255)
@@ -120,7 +117,6 @@ namespace PicSim
                 mem.ram[0, Const.STATUS] = 0;
             }
         }
-
         public void CheckDigitCarry(int val)
         {
             if (val > 15)
@@ -132,17 +128,14 @@ namespace PicSim
                 mem.ram[1, Const.STATUS] = 0;
             }
         }
-
         public void setZero(int n)
         {
             mem.ram[2, Const.STATUS] = n;
         }
-
         public void setCarry(int n)
         {
             mem.ram[0, Const.STATUS] = n;
         }
-
         public void setDigitCarry(int n)
         {
             mem.ram[0, Const.STATUS] = n;
@@ -185,6 +178,9 @@ namespace PicSim
                 MessageBox.Show("StepBack sollte nicht zwischen call und return ausgeführt werden! PicSim bitte resetten.");
             }
         }
+
+        
+#pragma region Timer & Prescaler
         public void IncrementPrescaler()
         {
             mem.prescaler = 0xFF & mem.prescaler;
@@ -201,7 +197,6 @@ namespace PicSim
                 mem.PrescalerTIMER0 = true;
             }          
         }
-
         public void CheckPrescaler()
         {
             if (mem.PrescalerTIMER0)
@@ -300,8 +295,7 @@ namespace PicSim
                     }
                 }*/
             }
-        }
-              
+        }              
         public void IncrementTimer()
         {
             int TimerAdress = 0x01;
@@ -322,8 +316,6 @@ namespace PicSim
             schreibeInRam(TimerAdress, Timer + 1);
             IncrementPrescaler();
         }
-
-
         public void TimerMode()
         {
             //Timer Mode                     
@@ -345,11 +337,20 @@ namespace PicSim
                 mem.decTimerInhibit();
             }
         }
-    
+#pragma endregion Timer & Prescaler
+
+        private void IsStepBackEnabled()
+        {
+            if (mem.StepBackEnabled)
+            {
+                mem.SafeBack();
+            }
+        }
+
         public void PreInstructions(int binCode)
         {
 
-            mem.SafeBack();
+            IsStepBackEnabled();
             GetTimerValOld();
 
 
@@ -374,7 +375,8 @@ namespace PicSim
             CheckTimerMode();
             mem.IncLaufzeitzaehler();
         }
-        //==
+        //=====================================
+        
         //Befehle         
 
         public void movlw(int binCode)
