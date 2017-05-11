@@ -265,12 +265,18 @@ namespace PicSim
 
         private void dgvRam0_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)
-                dgvRam0.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            DataGridViewTextBoxCell RegB1 = (DataGridViewTextBoxCell)
-                dgvRam1.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            RegisterSynchronisieren(e, cell, RegB1);
-
+            try
+            {
+                DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)
+                    dgvRam0.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                DataGridViewTextBoxCell RegB1 = (DataGridViewTextBoxCell)
+                    dgvRam1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                RegisterSynchronisieren(e, cell, RegB1);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                //Verhindert Absturz wenn RowHeader geklickt wird
+            }
         }
 
         private void dgvRam1_CellContentClick(object sender, DataGridViewCellEventArgs e)

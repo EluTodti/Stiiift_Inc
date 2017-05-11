@@ -360,6 +360,7 @@ namespace PicSim
             this.dgvRam0.AllowUserToDeleteRows = false;
             this.dgvRam0.AllowUserToResizeColumns = false;
             this.dgvRam0.AllowUserToResizeRows = false;
+            this.dgvRam0.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvRam0.ColumnHeadersHeight = 50;
             this.dgvRam0.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvRam0.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -568,6 +569,7 @@ namespace PicSim
             this.dgvRam1.AllowUserToDeleteRows = false;
             this.dgvRam1.AllowUserToResizeColumns = false;
             this.dgvRam1.AllowUserToResizeRows = false;
+            this.dgvRam1.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvRam1.ColumnHeadersHeight = 20;
             this.dgvRam1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvRam1.ColumnHeadersVisible = false;
@@ -1087,6 +1089,7 @@ namespace PicSim
             this.dgvCode.AllowUserToDeleteRows = false;
             this.dgvCode.AllowUserToResizeColumns = false;
             this.dgvCode.AllowUserToResizeRows = false;
+            this.dgvCode.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvCode.ColumnHeadersHeight = 40;
             this.dgvCode.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvCode.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
