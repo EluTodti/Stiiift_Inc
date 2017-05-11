@@ -172,15 +172,9 @@ namespace PicSim
             lblWReg.Text = mem.WReg.ToString();
             lblPC.Text = mem.pc.ToString();
             lblLaufzeitzaehler.Text = mem.Laufzeitzaehler.ToString("0.## µs");
-<<<<<<< HEAD
-            //string.Format("{0:N2}µs", mem.Laufzeitzaehler);
-            label1.Text = "PS: "+mem.prescaler.ToString();
-            label2.Text = "Timer: "+befehle.getFileVal(0x01).ToString();
-=======
         }
         private  void AktualisiereQuarzfrequenz()
         {
->>>>>>> refs/remotes/origin/master
             //Quarzfrequenz
             lblBottomValueQuarzfrequenz.Text = mem.Quarzfrequenz.ToString();
             txtQuarzfrequenz.Text = mem.Quarzfrequenz.ToString();
@@ -383,10 +377,14 @@ namespace PicSim
                     //Wenn clrwdt --> PD = 1
                     //Wenn Interupt an RB0, RB4-7 -> aufwachen
                     //Interrupter setzt PD im RAM auf 1
+                    interrupter.CheckInterrupt();
                     if (mem.ram[3, Const.STATUS] == 1)
                     {
                         return;
                     }
+                    mem.IncLaufzeitzaehler();
+                    backgroundWorker1.ReportProgress(mem.pc);
+                    System.Threading.Thread.Sleep(20);
                     //TODO evtl sleep einbauen?
                 }
             }
@@ -414,22 +412,22 @@ namespace PicSim
         }
 
         //==============================
-#pragma region GuiClick        //Gui click
         private void toolPlay_Click(object sender, EventArgs e)
+        {
+            if (false)
             {
-                if (false)
+                MessageBox.Show("Kein Code gefunden!");
+            }
+            else
+            {
+                if (!backgroundWorker1.IsBusy)
                 {
-                    MessageBox.Show("Kein Code gefunden!");
-                }
-                else
-                {
-                    if (!backgroundWorker1.IsBusy)
-                    {
-                        toolStatus.Text = "Status: running...";
-                        backgroundWorker1.RunWorkerAsync(); //startet backgroundWorker1_DoWork Funktion
-                    }
+                    toolStatus.Text = "Status: running...";
+                    backgroundWorker1.RunWorkerAsync(); //startet backgroundWorker1_DoWork Funktion
                 }
             }
+        }
+#pragma region GuiClick        //Gui click
             private void toolPause_Click(object sender, EventArgs e)
             {
                 if (backgroundWorker1.IsBusy)
@@ -944,6 +942,7 @@ namespace PicSim
                 }
                 GUIAktualisieren();
             }
+
 #pragma endregion GuiClick
         //==========================================================
 
