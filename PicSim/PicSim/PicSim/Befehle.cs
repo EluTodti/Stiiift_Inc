@@ -290,8 +290,6 @@ namespace PicSim
             }          
         }
         
-                    
-        
         public void CheckPrescaler()
         {
             if (mem.PrescalerTIMER0)
@@ -456,12 +454,14 @@ namespace PicSim
             CheckPrescalerMode();
             CheckTimerMode();
             mem.pc++;
+            InkrementWDT();
             mem.IncLaufzeitzaehler();
         }
         public void TwoCycles()
         {
             CheckPrescalerMode();
             CheckTimerMode();
+            InkrementWDT();
             mem.IncLaufzeitzaehler();
         }
         //==

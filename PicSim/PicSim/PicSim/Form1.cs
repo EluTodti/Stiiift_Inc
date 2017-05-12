@@ -380,8 +380,8 @@ namespace PicSim
                     e.Cancel = true;
                     return;
                 }
-                befehle.InkrementWDT();                
-                if (mem.watchdog > 2)
+                                
+                if (mem.watchdog > 100)
                 {
                     //MessageBox.Show("WDT");
                     mem.ram[4, Const.STATUS] = 0;
@@ -417,6 +417,7 @@ namespace PicSim
                     }
                     if (mem.ram[4, Const.STATUS] == 0) //Watchdog
                         return;
+                    befehle.InkrementWDT();
                     mem.IncLaufzeitzaehler();
                     backgroundWorker1.ReportProgress(mem.pc);
                     System.Threading.Thread.Sleep(20);
