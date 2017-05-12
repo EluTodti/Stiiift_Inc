@@ -24,7 +24,6 @@ namespace PicSim
                 return instance;
             }
         }
-
         Memory mem = Memory.Instance;
         private int literal = 0;
         private int fileAdress = 0;
@@ -44,6 +43,95 @@ namespace PicSim
             return FileVal;
         }
 
+        public void InkrementWDT()
+        {
+            mem.LaufzeitIntervall = 4.0 / (mem.Quarzfrequenz / 1000000.0);
+            if (!mem.PrescalerTIMER0)
+            {
+                int bitVal = getFileVal(0x81) & 0x7;
+
+                switch (bitVal)
+                {
+                    case 0:
+                        if (mem.prescaler % 1 == 0)
+                        {
+                            IncrementPrescaler();
+                            mem.watchdog += mem.LaufzeitIntervall;
+                        }
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 1:
+                        if (mem.prescaler % 2 == 0)
+                        {
+                            IncrementPrescaler();
+                            mem.watchdog += mem.LaufzeitIntervall;
+                        }                        
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 2:
+                        if (mem.prescaler % 4 == 0)
+                        {
+                            IncrementPrescaler();
+                            mem.watchdog += mem.LaufzeitIntervall;
+                        }
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 3:
+                        if (mem.prescaler % 8 == 0)
+                        {
+                            IncrementPrescaler();
+                            mem.watchdog += mem.LaufzeitIntervall;
+                        }
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 4:
+                        if (mem.prescaler % 16 == 0)
+                        {
+                            IncrementPrescaler();
+                            mem.watchdog += mem.LaufzeitIntervall;
+                        }
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 5:
+                        if (mem.prescaler % 32 == 0)
+                        {
+                            IncrementPrescaler();
+                            mem.watchdog += mem.LaufzeitIntervall;
+                        }
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 6:
+                        if (mem.prescaler % 64 == 0)
+                        {
+                            IncrementPrescaler();
+                            mem.watchdog += mem.LaufzeitIntervall;
+                        }
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 7:
+                        if (mem.prescaler % 128 == 0)
+                        {
+                            IncrementPrescaler();
+                            mem.watchdog += mem.LaufzeitIntervall;
+                        }
+                        else
+                            IncrementPrescaler();
+                        break;
+                }
+            }
+            else
+            {
+                mem.watchdog += mem.LaufzeitIntervall;
+            }
+        }
+    
         public void schreibeInRam(int f, int val)
         {
 
@@ -201,7 +289,9 @@ namespace PicSim
                 mem.PrescalerTIMER0 = true;
             }          
         }
-
+        
+                    
+        
         public void CheckPrescaler()
         {
             if (mem.PrescalerTIMER0)
@@ -345,7 +435,7 @@ namespace PicSim
                 mem.decTimerInhibit();
             }
         }
-    
+
         public void PreInstructions(int binCode)
         {
 
@@ -924,6 +1014,11 @@ namespace PicSim
             //TODO 0 -> WDT prescaler bzw. Startwert
             mem.ram[Const.STATUS, 3] = 1;
             mem.ram[Const.STATUS, 4] = 1;
+           // watchdog.watchdog = 0;
+            if (!mem.PrescalerTIMER0)
+            {
+                mem.prescaler = 0;
+            }
             //TODO TMR0 ++          
             PostInstruction();
         }

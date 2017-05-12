@@ -77,7 +77,9 @@ namespace PicSim
             TimerInhibit--;
         }
 
-
+        public double watchdog = 0;
+        public bool WDTTimeOut = false;
+    
         public void setWReg(int val)
         {
             //TODTDO: CARRY checken
