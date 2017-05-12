@@ -32,7 +32,8 @@ namespace PicSim
                 return instance;
         }
 
-
+        private SerialPorts serial = new SerialPorts("COM1");
+        private SerialPorts answer = new SerialPorts("COM2");
         private Resetter resetter = new Resetter();
         private Memory mem = Memory.Instance;
         private Decoder decoder = Decoder.Instance;
@@ -53,6 +54,7 @@ namespace PicSim
             resetter.Reset();
             resetter.ResetBefehlsArray();
             GUIAktualisieren();
+            serial.PCsenden();
         }
 
         private void Tooltips()
@@ -986,10 +988,43 @@ namespace PicSim
             }
             GUIAktualisieren();
         }
-
-            #endregion GuiClick
+        #endregion GuiClick
         //==========================================================
 
+        #region SerialPort
+        private void btnSerialEinschalten_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                serial.PCsenden();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("SerialPort ist geschlossen");
+            }
+            
+        }
+
+        private void btnSerialAusschalten_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            serialPort1.Close();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            string A = serialPort1.ReadExisting();
+            if (A != "")
+            {
+                richTextBox1.AppendText(A);
+            }
+        }
+        #endregion SerialPort
+
+        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            richTextBox1.Text = serialPort1.ReadTo(""+Convert.ToChar(0x0d));
+        }
     }
 }
  

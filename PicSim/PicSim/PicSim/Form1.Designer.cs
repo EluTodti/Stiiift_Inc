@@ -197,7 +197,12 @@ namespace PicSim
             this.btnTrisA0 = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.checkStepBack = new System.Windows.Forms.CheckBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.btnSerialEinschalten = new System.Windows.Forms.Button();
+            this.btnSerialAusschalten = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -231,7 +236,7 @@ namespace PicSim
             this.toolStatus});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1771, 28);
+            this.toolStrip1.Size = new System.Drawing.Size(1914, 28);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -343,7 +348,7 @@ namespace PicSim
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1771, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1914, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -379,10 +384,10 @@ namespace PicSim
             this.lblBottomValueQuarzfrequenz,
             this.lblBottomQuarzfrequenz,
             this.lblBottomC});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 852);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 984);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 13, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1771, 29);
+            this.statusStrip1.Size = new System.Drawing.Size(1914, 29);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -448,7 +453,7 @@ namespace PicSim
             this.dgvRam0.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvRam0.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvRam0.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvRam0.Size = new System.Drawing.Size(609, 394);
+            this.dgvRam0.Size = new System.Drawing.Size(609, 460);
             this.dgvRam0.TabIndex = 9;
             this.dgvRam0.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRam0_CellClick);
             // 
@@ -620,7 +625,7 @@ namespace PicSim
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(615, 796);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(615, 928);
             this.tableLayoutPanel2.TabIndex = 11;
             // 
             // dgvRam1
@@ -646,7 +651,7 @@ namespace PicSim
             this.dataGridViewTextBoxColumn10});
             this.dgvRam1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgvRam1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvRam1.Location = new System.Drawing.Point(3, 400);
+            this.dgvRam1.Location = new System.Drawing.Point(3, 466);
             this.dgvRam1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvRam1.MultiSelect = false;
             this.dgvRam1.Name = "dgvRam1";
@@ -658,7 +663,7 @@ namespace PicSim
             this.dgvRam1.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvRam1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvRam1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvRam1.Size = new System.Drawing.Size(609, 394);
+            this.dgvRam1.Size = new System.Drawing.Size(609, 460);
             this.dgvRam1.TabIndex = 10;
             this.dgvRam1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRam1_CellContentClick);
             // 
@@ -808,9 +813,9 @@ namespace PicSim
             // 
             this.lblWReg.AutoSize = true;
             this.lblWReg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblWReg.Location = new System.Drawing.Point(65, 0);
+            this.lblWReg.Location = new System.Drawing.Point(73, 0);
             this.lblWReg.Name = "lblWReg";
-            this.lblWReg.Size = new System.Drawing.Size(56, 25);
+            this.lblWReg.Size = new System.Drawing.Size(65, 25);
             this.lblWReg.TabIndex = 12;
             this.lblWReg.Text = "WREG";
             // 
@@ -818,9 +823,9 @@ namespace PicSim
             // 
             this.lblPC.AutoSize = true;
             this.lblPC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPC.Location = new System.Drawing.Point(65, 25);
+            this.lblPC.Location = new System.Drawing.Point(73, 25);
             this.lblPC.Name = "lblPC";
-            this.lblPC.Size = new System.Drawing.Size(56, 25);
+            this.lblPC.Size = new System.Drawing.Size(65, 25);
             this.lblPC.TabIndex = 13;
             this.lblPC.Text = "PC";
             // 
@@ -859,7 +864,7 @@ namespace PicSim
             this.tableLayoutStack.Controls.Add(this.lblStackAddr5, 0, 3);
             this.tableLayoutStack.Controls.Add(this.lblStackAddr6, 0, 2);
             this.tableLayoutStack.Controls.Add(this.lblStackAddr7, 0, 1);
-            this.tableLayoutStack.Location = new System.Drawing.Point(625, 673);
+            this.tableLayoutStack.Location = new System.Drawing.Point(625, 805);
             this.tableLayoutStack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutStack.Name = "tableLayoutStack";
             this.tableLayoutStack.RowCount = 9;
@@ -873,16 +878,16 @@ namespace PicSim
             this.tableLayoutStack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutStack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutStack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutStack.Size = new System.Drawing.Size(293, 178);
+            this.tableLayoutStack.Size = new System.Drawing.Size(328, 178);
             this.tableLayoutStack.TabIndex = 16;
             // 
             // lblStackContent0
             // 
             this.lblStackContent0.AutoSize = true;
             this.lblStackContent0.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblStackContent0.Location = new System.Drawing.Point(129, 160);
+            this.lblStackContent0.Location = new System.Drawing.Point(144, 160);
             this.lblStackContent0.Name = "lblStackContent0";
-            this.lblStackContent0.Size = new System.Drawing.Size(161, 20);
+            this.lblStackContent0.Size = new System.Drawing.Size(181, 20);
             this.lblStackContent0.TabIndex = 17;
             // 
             // lblStackAddr0
@@ -891,7 +896,7 @@ namespace PicSim
             this.lblStackAddr0.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStackAddr0.Location = new System.Drawing.Point(3, 160);
             this.lblStackAddr0.Name = "lblStackAddr0";
-            this.lblStackAddr0.Size = new System.Drawing.Size(120, 20);
+            this.lblStackAddr0.Size = new System.Drawing.Size(135, 20);
             this.lblStackAddr0.TabIndex = 42;
             this.lblStackAddr0.Text = "0";
             // 
@@ -899,72 +904,72 @@ namespace PicSim
             // 
             this.lblStackContent1.AutoSize = true;
             this.lblStackContent1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblStackContent1.Location = new System.Drawing.Point(129, 140);
+            this.lblStackContent1.Location = new System.Drawing.Point(144, 140);
             this.lblStackContent1.Name = "lblStackContent1";
-            this.lblStackContent1.Size = new System.Drawing.Size(161, 20);
+            this.lblStackContent1.Size = new System.Drawing.Size(181, 20);
             this.lblStackContent1.TabIndex = 41;
             // 
             // lblStackContent2
             // 
             this.lblStackContent2.AutoSize = true;
             this.lblStackContent2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblStackContent2.Location = new System.Drawing.Point(129, 120);
+            this.lblStackContent2.Location = new System.Drawing.Point(144, 120);
             this.lblStackContent2.Name = "lblStackContent2";
-            this.lblStackContent2.Size = new System.Drawing.Size(161, 20);
+            this.lblStackContent2.Size = new System.Drawing.Size(181, 20);
             this.lblStackContent2.TabIndex = 40;
             // 
             // lblStackContent3
             // 
             this.lblStackContent3.AutoSize = true;
             this.lblStackContent3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblStackContent3.Location = new System.Drawing.Point(129, 100);
+            this.lblStackContent3.Location = new System.Drawing.Point(144, 100);
             this.lblStackContent3.Name = "lblStackContent3";
-            this.lblStackContent3.Size = new System.Drawing.Size(161, 20);
+            this.lblStackContent3.Size = new System.Drawing.Size(181, 20);
             this.lblStackContent3.TabIndex = 39;
             // 
             // lblStackContent4
             // 
             this.lblStackContent4.AutoSize = true;
             this.lblStackContent4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblStackContent4.Location = new System.Drawing.Point(129, 80);
+            this.lblStackContent4.Location = new System.Drawing.Point(144, 80);
             this.lblStackContent4.Name = "lblStackContent4";
-            this.lblStackContent4.Size = new System.Drawing.Size(161, 20);
+            this.lblStackContent4.Size = new System.Drawing.Size(181, 20);
             this.lblStackContent4.TabIndex = 38;
             // 
             // lblStackContent5
             // 
             this.lblStackContent5.AutoSize = true;
             this.lblStackContent5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblStackContent5.Location = new System.Drawing.Point(129, 60);
+            this.lblStackContent5.Location = new System.Drawing.Point(144, 60);
             this.lblStackContent5.Name = "lblStackContent5";
-            this.lblStackContent5.Size = new System.Drawing.Size(161, 20);
+            this.lblStackContent5.Size = new System.Drawing.Size(181, 20);
             this.lblStackContent5.TabIndex = 37;
             // 
             // lblStackContent6
             // 
             this.lblStackContent6.AutoSize = true;
             this.lblStackContent6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblStackContent6.Location = new System.Drawing.Point(129, 40);
+            this.lblStackContent6.Location = new System.Drawing.Point(144, 40);
             this.lblStackContent6.Name = "lblStackContent6";
-            this.lblStackContent6.Size = new System.Drawing.Size(161, 20);
+            this.lblStackContent6.Size = new System.Drawing.Size(181, 20);
             this.lblStackContent6.TabIndex = 36;
             // 
             // lblStackContent7
             // 
             this.lblStackContent7.AutoSize = true;
             this.lblStackContent7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblStackContent7.Location = new System.Drawing.Point(129, 20);
+            this.lblStackContent7.Location = new System.Drawing.Point(144, 20);
             this.lblStackContent7.Name = "lblStackContent7";
-            this.lblStackContent7.Size = new System.Drawing.Size(161, 20);
+            this.lblStackContent7.Size = new System.Drawing.Size(181, 20);
             this.lblStackContent7.TabIndex = 35;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(129, 0);
+            this.label4.Location = new System.Drawing.Point(144, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(161, 20);
+            this.label4.Size = new System.Drawing.Size(181, 20);
             this.label4.TabIndex = 34;
             this.label4.Text = "Inhalt";
             // 
@@ -974,7 +979,7 @@ namespace PicSim
             this.lblStackAddr.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStackAddr.Location = new System.Drawing.Point(3, 0);
             this.lblStackAddr.Name = "lblStackAddr";
-            this.lblStackAddr.Size = new System.Drawing.Size(120, 20);
+            this.lblStackAddr.Size = new System.Drawing.Size(135, 20);
             this.lblStackAddr.TabIndex = 33;
             this.lblStackAddr.Text = "Stack ADDR";
             // 
@@ -984,7 +989,7 @@ namespace PicSim
             this.lblStackAddr1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStackAddr1.Location = new System.Drawing.Point(3, 140);
             this.lblStackAddr1.Name = "lblStackAddr1";
-            this.lblStackAddr1.Size = new System.Drawing.Size(120, 20);
+            this.lblStackAddr1.Size = new System.Drawing.Size(135, 20);
             this.lblStackAddr1.TabIndex = 32;
             this.lblStackAddr1.Text = "1";
             // 
@@ -994,7 +999,7 @@ namespace PicSim
             this.lblStackAddr2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStackAddr2.Location = new System.Drawing.Point(3, 120);
             this.lblStackAddr2.Name = "lblStackAddr2";
-            this.lblStackAddr2.Size = new System.Drawing.Size(120, 20);
+            this.lblStackAddr2.Size = new System.Drawing.Size(135, 20);
             this.lblStackAddr2.TabIndex = 25;
             this.lblStackAddr2.Text = "2";
             // 
@@ -1004,7 +1009,7 @@ namespace PicSim
             this.lblStackAddr3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStackAddr3.Location = new System.Drawing.Point(3, 100);
             this.lblStackAddr3.Name = "lblStackAddr3";
-            this.lblStackAddr3.Size = new System.Drawing.Size(120, 20);
+            this.lblStackAddr3.Size = new System.Drawing.Size(135, 20);
             this.lblStackAddr3.TabIndex = 23;
             this.lblStackAddr3.Text = "3";
             // 
@@ -1014,7 +1019,7 @@ namespace PicSim
             this.lblStackAddr4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStackAddr4.Location = new System.Drawing.Point(3, 80);
             this.lblStackAddr4.Name = "lblStackAddr4";
-            this.lblStackAddr4.Size = new System.Drawing.Size(120, 20);
+            this.lblStackAddr4.Size = new System.Drawing.Size(135, 20);
             this.lblStackAddr4.TabIndex = 21;
             this.lblStackAddr4.Text = "4";
             // 
@@ -1024,7 +1029,7 @@ namespace PicSim
             this.lblStackAddr5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStackAddr5.Location = new System.Drawing.Point(3, 60);
             this.lblStackAddr5.Name = "lblStackAddr5";
-            this.lblStackAddr5.Size = new System.Drawing.Size(120, 20);
+            this.lblStackAddr5.Size = new System.Drawing.Size(135, 20);
             this.lblStackAddr5.TabIndex = 19;
             this.lblStackAddr5.Text = "5";
             // 
@@ -1034,7 +1039,7 @@ namespace PicSim
             this.lblStackAddr6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStackAddr6.Location = new System.Drawing.Point(3, 40);
             this.lblStackAddr6.Name = "lblStackAddr6";
-            this.lblStackAddr6.Size = new System.Drawing.Size(120, 20);
+            this.lblStackAddr6.Size = new System.Drawing.Size(135, 20);
             this.lblStackAddr6.TabIndex = 17;
             this.lblStackAddr6.Text = "6";
             // 
@@ -1044,7 +1049,7 @@ namespace PicSim
             this.lblStackAddr7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStackAddr7.Location = new System.Drawing.Point(3, 20);
             this.lblStackAddr7.Name = "lblStackAddr7";
-            this.lblStackAddr7.Size = new System.Drawing.Size(120, 20);
+            this.lblStackAddr7.Size = new System.Drawing.Size(135, 20);
             this.lblStackAddr7.TabIndex = 15;
             this.lblStackAddr7.Text = "7";
             // 
@@ -1058,14 +1063,14 @@ namespace PicSim
             this.tableLayoutSpezialregister.Controls.Add(this.lblWRegTxt, 0, 0);
             this.tableLayoutSpezialregister.Controls.Add(this.lblWReg, 1, 0);
             this.tableLayoutSpezialregister.Controls.Add(this.lblPC, 1, 1);
-            this.tableLayoutSpezialregister.Location = new System.Drawing.Point(625, 617);
+            this.tableLayoutSpezialregister.Location = new System.Drawing.Point(625, 749);
             this.tableLayoutSpezialregister.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutSpezialregister.Name = "tableLayoutSpezialregister";
             this.tableLayoutSpezialregister.RowCount = 2;
             this.tableLayoutSpezialregister.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutSpezialregister.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutSpezialregister.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutSpezialregister.Size = new System.Drawing.Size(124, 50);
+            this.tableLayoutSpezialregister.Size = new System.Drawing.Size(141, 50);
             this.tableLayoutSpezialregister.TabIndex = 17;
             // 
             // lblPCTxt
@@ -1074,7 +1079,7 @@ namespace PicSim
             this.lblPCTxt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPCTxt.Location = new System.Drawing.Point(3, 25);
             this.lblPCTxt.Name = "lblPCTxt";
-            this.lblPCTxt.Size = new System.Drawing.Size(56, 25);
+            this.lblPCTxt.Size = new System.Drawing.Size(64, 25);
             this.lblPCTxt.TabIndex = 15;
             this.lblPCTxt.Text = "PC";
             // 
@@ -1084,7 +1089,7 @@ namespace PicSim
             this.lblWRegTxt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblWRegTxt.Location = new System.Drawing.Point(3, 0);
             this.lblWRegTxt.Name = "lblWRegTxt";
-            this.lblWRegTxt.Size = new System.Drawing.Size(56, 25);
+            this.lblWRegTxt.Size = new System.Drawing.Size(64, 25);
             this.lblWRegTxt.TabIndex = 14;
             this.lblWRegTxt.Text = "W-Reg";
             // 
@@ -1115,13 +1120,13 @@ namespace PicSim
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.lblLaufzeitzaehler, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtLaufzeitzaehler, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(757, 617);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(769, 749);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(158, 50);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(184, 50);
             this.tableLayoutPanel1.TabIndex = 19;
             // 
             // lblLaufzeitzaehler
@@ -1130,7 +1135,7 @@ namespace PicSim
             this.lblLaufzeitzaehler.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblLaufzeitzaehler.Location = new System.Drawing.Point(3, 25);
             this.lblLaufzeitzaehler.Name = "lblLaufzeitzaehler";
-            this.lblLaufzeitzaehler.Size = new System.Drawing.Size(152, 25);
+            this.lblLaufzeitzaehler.Size = new System.Drawing.Size(178, 25);
             this.lblLaufzeitzaehler.TabIndex = 15;
             // 
             // txtLaufzeitzaehler
@@ -1139,7 +1144,7 @@ namespace PicSim
             this.txtLaufzeitzaehler.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtLaufzeitzaehler.Location = new System.Drawing.Point(3, 0);
             this.txtLaufzeitzaehler.Name = "txtLaufzeitzaehler";
-            this.txtLaufzeitzaehler.Size = new System.Drawing.Size(152, 25);
+            this.txtLaufzeitzaehler.Size = new System.Drawing.Size(178, 25);
             this.txtLaufzeitzaehler.TabIndex = 14;
             this.txtLaufzeitzaehler.Text = "Laufzeitzähler";
             // 
@@ -1159,7 +1164,7 @@ namespace PicSim
             this.LineCode});
             this.dgvCode.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgvCode.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dgvCode.Location = new System.Drawing.Point(1007, 56);
+            this.dgvCode.Location = new System.Drawing.Point(1150, 56);
             this.dgvCode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvCode.MultiSelect = false;
             this.dgvCode.Name = "dgvCode";
@@ -1173,7 +1178,7 @@ namespace PicSim
             this.dgvCode.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvCode.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvCode.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvCode.Size = new System.Drawing.Size(764, 796);
+            this.dgvCode.Size = new System.Drawing.Size(764, 928);
             this.dgvCode.TabIndex = 20;
             this.dgvCode.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCode_CellClick);
             // 
@@ -1222,6 +1227,7 @@ namespace PicSim
             // 
             // tableLayoutPanel3
             // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1253,7 +1259,7 @@ namespace PicSim
             this.tableLayoutPanel3.Controls.Add(this.lblPortA, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnPortA0, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.label5, 0, 1);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(621, 305);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(621, 437);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 9;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1606,6 +1612,7 @@ namespace PicSim
             // 
             // tableLayoutPanel4
             // 
+            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tableLayoutPanel4.ColumnCount = 3;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1637,7 +1644,7 @@ namespace PicSim
             this.tableLayoutPanel4.Controls.Add(this.lblTrisA, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnTrisA0, 1, 1);
             this.tableLayoutPanel4.Controls.Add(this.label21, 0, 1);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(790, 305);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(790, 437);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 9;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -2002,6 +2009,41 @@ namespace PicSim
             this.checkStepBack.UseVisualStyleBackColor = false;
             this.checkStepBack.MouseClick += new System.Windows.Forms.MouseEventHandler(this.checkStepBack_MouseClick);
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.richTextBox1.Location = new System.Drawing.Point(956, 437);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(303, 488);
+            this.richTextBox1.TabIndex = 25;
+            this.richTextBox1.Text = "";
+            // 
+            // btnSerialEinschalten
+            // 
+            this.btnSerialEinschalten.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSerialEinschalten.Location = new System.Drawing.Point(959, 931);
+            this.btnSerialEinschalten.Name = "btnSerialEinschalten";
+            this.btnSerialEinschalten.Size = new System.Drawing.Size(146, 50);
+            this.btnSerialEinschalten.TabIndex = 26;
+            this.btnSerialEinschalten.Text = "Serial einschalten";
+            this.btnSerialEinschalten.UseVisualStyleBackColor = true;
+            this.btnSerialEinschalten.Click += new System.EventHandler(this.btnSerialEinschalten_Click);
+            // 
+            // btnSerialAusschalten
+            // 
+            this.btnSerialAusschalten.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSerialAusschalten.Location = new System.Drawing.Point(1111, 931);
+            this.btnSerialAusschalten.Name = "btnSerialAusschalten";
+            this.btnSerialAusschalten.Size = new System.Drawing.Size(146, 50);
+            this.btnSerialAusschalten.TabIndex = 27;
+            this.btnSerialAusschalten.Text = "Serial Ausschalten";
+            this.btnSerialAusschalten.UseVisualStyleBackColor = true;
+            this.btnSerialAusschalten.Click += new System.EventHandler(this.btnSerialAusschalten_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // form1BindingSource
             // 
             this.form1BindingSource.DataSource = typeof(PicSim.Form1);
@@ -2011,7 +2053,10 @@ namespace PicSim
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1771, 881);
+            this.ClientSize = new System.Drawing.Size(1914, 1013);
+            this.Controls.Add(this.btnSerialAusschalten);
+            this.Controls.Add(this.btnSerialEinschalten);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.checkStepBack);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tableLayoutPanel3);
@@ -2198,6 +2243,11 @@ namespace PicSim
         public Button btnTrisA0;
         private Label label21;
         private CheckBox checkStepBack;
+        private RichTextBox richTextBox1;
+        private Button btnSerialEinschalten;
+        private Button btnSerialAusschalten;
+        private Timer timer1;
+        private System.IO.Ports.SerialPort serialPort1;
     }
 }
 
