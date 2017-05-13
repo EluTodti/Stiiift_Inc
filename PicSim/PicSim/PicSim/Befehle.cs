@@ -231,7 +231,7 @@ namespace PicSim
         }
         public int getPCLATH()
         {
-            return getFileVal(0x10) << 8;
+            return (getFileVal(0x10) & 0x1F) << 8;
         }
         public int SwapNibbles(int fileValue)
         {
@@ -987,7 +987,9 @@ namespace PicSim
 
             if (fileVal == 0)
             {
+                mem.pc++;
                 TwoCycles();
+
             }                      
             PostInstruction();
         }
@@ -1007,6 +1009,7 @@ namespace PicSim
             fileVal = getFileVal(fileAdress);
             if (fileVal == 0)
             {
+                mem.pc++;
                 TwoCycles();
             }
 
