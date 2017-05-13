@@ -38,9 +38,6 @@ namespace PicSim
         private Decoder decoder = Decoder.Instance;
         private Interrupter interrupter = Interrupter.Instance;
         private Befehle befehle = Befehle.Instance;
-        ManualResetEvent WaitHandle = new ManualResetEvent(false);
-
-        //private Befehle befehle = Befehle.Instance;
 
         //Tooltip
         ToolTip tooltipStepBack = new ToolTip();
@@ -54,7 +51,7 @@ namespace PicSim
             Fill_dgvRam();
             resetter.Reset();
             resetter.ResetBefehlsArray();
-            
+
             GUIAktualisieren();
         }
 
@@ -339,25 +336,21 @@ namespace PicSim
             }
         }
         //======================================================
-
-
         
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             while (mem.pc < mem.BefehlsArray.Length) //evtl while Schleife eleganter?
             {
+                CheckForSleep();
                 if (backgroundWorker1.CancellationPending == true)  //ist True, wenn Pause Button gedrückt wurde
                 {
                     e.Cancel = true;
                     backgroundWorker1.ReportProgress(mem.pc);
                     return;
-                }            
-                CheckForSleep();
+                }                          
                 interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
-                
                 decoder.Decode(mem.BefehlsArray[mem.pc]);
-                CheckBreakpoints();
-
+                CheckBreakpoints();             
                 backgroundWorker1.ReportProgress(mem.pc); //ruft backgroundWorker1_ProgressChanged Funktion auf, also GUIaktualisieren             
 
                 System.Threading.Thread.Sleep(20); 
@@ -387,9 +380,8 @@ namespace PicSim
                     mem.ram[4, Const.STATUS] = 0;
                     //mem.WDTTimeOut = true;
                     backgroundWorker2.ReportProgress(1);
-                }               
-                
-                System.Threading.Thread.Sleep(10);
+                }                              
+                System.Threading.Thread.Sleep(50);
             }
         }
         private void backgroundWorker2_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
@@ -399,14 +391,19 @@ namespace PicSim
 
         public void CheckForSleep()
         {
-            mem.watchdog = 0;
+            
             //PD Bit checken
             if (mem.ram[3, Const.STATUS] == 0)
             {
+                mem.watchdog = 0;
                 //TODO den PIC schlafen lassen, bis powerup oder clrwdt
                 //TODO Backgroundworker anhalten
                 while (true)
                 {
+                    if (backgroundWorker1.CancellationPending == true)
+                    {
+                        return;
+                    }
                     //Wenn clrwdt --> PD = 1
                     //Wenn Interupt an RB0, RB4-7 -> aufwachen
                     //Interrupter setzt PD im RAM auf 1
@@ -415,13 +412,13 @@ namespace PicSim
                     {
                         return;
                     }
-                    if (mem.ram[4, Const.STATUS] == 0) //Watchdog
+                    if (mem.ram[4, Const.STATUS] == 0) //WatchdogOverflow
                         return;
+
                     befehle.InkrementWDT();
                     mem.IncLaufzeitzaehler();
                     backgroundWorker1.ReportProgress(mem.pc);
-                    System.Threading.Thread.Sleep(20);
-                    //TODO evtl sleep einbauen?
+                    System.Threading.Thread.Sleep(20);                  
                 }
             }
         }
@@ -477,12 +474,8 @@ namespace PicSim
 
                 if (backgroundWorker2.IsBusy)
                 {
-                backgroundWorker2.CancelAsync();    //sagt Thread, er soll sich beenden
+                    backgroundWorker2.CancelAsync();
                 }
-        }
-        public void CheckWDT()
-        {
-
         }
         private void btnReset_Click(object sender, EventArgs e)
             {
@@ -528,8 +521,8 @@ namespace PicSim
                 else
                 {           
                 CheckForSleep();
-                    interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
-
+                interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
+            
                     decoder.Decode(mem.BefehlsArray[mem.pc]);
                     GUIAktualisieren();
                 }

@@ -86,6 +86,8 @@ namespace PicSim
             mem.IncomingOverFlow = false;
             mem.TwoCycles = false;
             mem.prescaler = 0;
+            mem.watchdog = 0;
+            
     }
 
         public void ResetStackArrays()

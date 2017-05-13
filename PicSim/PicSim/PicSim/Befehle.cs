@@ -45,7 +45,6 @@ namespace PicSim
 
         public void InkrementWDT()
         {
-            mem.LaufzeitIntervall = 4.0 / (mem.Quarzfrequenz / 1000000.0);
             if (!mem.PrescalerTIMER0)
             {
                 int bitVal = getFileVal(0x81) & 0x7;
@@ -56,7 +55,7 @@ namespace PicSim
                         if (mem.prescaler % 1 == 0)
                         {
                             IncrementPrescaler();
-                            mem.watchdog += mem.LaufzeitIntervall;
+                            mem.IncWDT();
                         }
                         else
                             IncrementPrescaler();
@@ -65,7 +64,7 @@ namespace PicSim
                         if (mem.prescaler % 2 == 0)
                         {
                             IncrementPrescaler();
-                            mem.watchdog += mem.LaufzeitIntervall;
+                            mem.IncWDT();
                         }                        
                         else
                             IncrementPrescaler();
@@ -74,7 +73,7 @@ namespace PicSim
                         if (mem.prescaler % 4 == 0)
                         {
                             IncrementPrescaler();
-                            mem.watchdog += mem.LaufzeitIntervall;
+                            mem.IncWDT();
                         }
                         else
                             IncrementPrescaler();
@@ -83,7 +82,7 @@ namespace PicSim
                         if (mem.prescaler % 8 == 0)
                         {
                             IncrementPrescaler();
-                            mem.watchdog += mem.LaufzeitIntervall;
+                            mem.IncWDT();
                         }
                         else
                             IncrementPrescaler();
@@ -92,7 +91,7 @@ namespace PicSim
                         if (mem.prescaler % 16 == 0)
                         {
                             IncrementPrescaler();
-                            mem.watchdog += mem.LaufzeitIntervall;
+                            mem.IncWDT();
                         }
                         else
                             IncrementPrescaler();
@@ -101,7 +100,7 @@ namespace PicSim
                         if (mem.prescaler % 32 == 0)
                         {
                             IncrementPrescaler();
-                            mem.watchdog += mem.LaufzeitIntervall;
+                            mem.IncWDT();
                         }
                         else
                             IncrementPrescaler();
@@ -110,7 +109,7 @@ namespace PicSim
                         if (mem.prescaler % 64 == 0)
                         {
                             IncrementPrescaler();
-                            mem.watchdog += mem.LaufzeitIntervall;
+                            mem.IncWDT();
                         }
                         else
                             IncrementPrescaler();
@@ -119,7 +118,7 @@ namespace PicSim
                         if (mem.prescaler % 128 == 0)
                         {
                             IncrementPrescaler();
-                            mem.watchdog += mem.LaufzeitIntervall;
+                            mem.IncWDT();
                         }
                         else
                             IncrementPrescaler();
@@ -128,7 +127,7 @@ namespace PicSim
             }
             else
             {
-                mem.watchdog += mem.LaufzeitIntervall;
+                mem.IncWDT();
             }
         }
     
@@ -411,7 +410,6 @@ namespace PicSim
             IncrementPrescaler();
         }
 
-
         public void TimerMode()
         {
             //Timer Mode                     
@@ -436,10 +434,8 @@ namespace PicSim
 
         public void PreInstructions(int binCode)
         {
-
             mem.SafeBack();
             GetTimerValOld();
-
 
             fileAdress = binCode & 0x007F;
             IndirekteAdressierung(fileAdress);
@@ -454,7 +450,7 @@ namespace PicSim
             CheckPrescalerMode();
             CheckTimerMode();
             mem.pc++;
-            InkrementWDT();
+            InkrementWDT();           
             mem.IncLaufzeitzaehler();
         }
         public void TwoCycles()
