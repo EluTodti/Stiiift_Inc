@@ -284,10 +284,10 @@ namespace PicSim
                 mem.PrescalerTIMER0 = true;
             }          
         }
-<<<<<<< HEAD
+
         
-=======
->>>>>>> refs/remotes/origin/master
+
+
         public void CheckPrescaler()
         {
             if (mem.PrescalerTIMER0)
@@ -407,10 +407,6 @@ namespace PicSim
             schreibeInRam(TimerAdress, Timer + 1);
             IncrementPrescaler();
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/master
         public void TimerMode()
         {
             //Timer Mode                     
@@ -432,12 +428,7 @@ namespace PicSim
                 mem.decTimerInhibit();
             }
         }
-<<<<<<< HEAD
 
-        public void PreInstructions(int binCode)
-        {
-            mem.SafeBack();
-=======
 #pragma endregion Timer & Prescaler
 
         private void IsStepBackEnabled()
@@ -450,9 +441,9 @@ namespace PicSim
 
         public void PreInstructions(int binCode)
         {
-
+            mem.SafeBack();
             IsStepBackEnabled();
->>>>>>> refs/remotes/origin/master
+
             GetTimerValOld();
 
             fileAdress = binCode & 0x007F;
@@ -478,7 +469,7 @@ namespace PicSim
             InkrementWDT();
             mem.IncLaufzeitzaehler();
         }
-        //=====================================
+        //==
         
         //Befehle         
 
