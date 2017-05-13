@@ -40,10 +40,8 @@ namespace PicSim
                 string code = aktuelleZeile.Substring(26);
                 form.LadeInDGVCode(row, programmzeile, code, hexCode);
             }
-            MessageBox.Show(befehltxt);
             BefehleExtrahieren(befehltxt);
         }
-
 
         private static void BefehleExtrahieren(String stringtxt)
         {

@@ -81,7 +81,31 @@ namespace PicSim
         {
             TimerInhibit--;
         }
-    
+        public int Ra4Flanke= 0;
+        private int ra4new = 0;
+        public int Ra4new
+        {
+            get
+            {
+                return this.ra4new;
+            }
+            set
+            {
+                this.ra4new = value;
+            }
+        }
+        private int ra4old = 0;
+        public int Ra4old
+        {
+            get
+            {
+                return this.ra4old;
+            }
+            set
+            {
+                this.ra4old = value;
+            }
+        }
         public void setWReg(int val)
         {
             //TODTDO: CARRY checken
@@ -158,8 +182,6 @@ namespace PicSim
                     ram[i, fileadresse - 128] = int.Parse(binVal[7 - i].ToString());
                 }
             }
-
-
         }
 
         //Funktion: Speichern der Werte im BackStack für StepBack Button

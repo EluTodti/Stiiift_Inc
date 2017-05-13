@@ -284,10 +284,7 @@ namespace PicSim
                 mem.PrescalerTIMER0 = true;
             }          
         }
-
         
-
-
         public void CheckPrescaler()
         {
             if (mem.PrescalerTIMER0)
@@ -362,31 +359,40 @@ namespace PicSim
         {
             mem.TimerValOld = getFileVal(Const.TMR0);
         }
+
         public void CheckTimerMode()
         {
             if (mem.ram[5, Const.OPTION_REG + 128] == 0) //Timer Mode TOCS
             {
-                TimerMode();   
+                TimerMode();
             }
             else
             {
-                //Counter Mode
-                /*
-                if (mem.ram[4, Const.OPTION_REG + 128] == 0)
-                {
-                    //rising edge
-                    if (mem.Ra4ValOld == 0 && mem.Ra4ValNew == 1)
-                    {
-                        schreibeInRam(Const.TMR0, getFileVal(Const.TMR0) + 1);
-                    }
-                    //falling edge
-                    if (mem.Ra4ValOld == 1 && mem.Ra4ValNew == 0)
-                    {
-                        befehle.schreibeInRam(Const.TMR0, befehle.getFileVal(Const.TMR0) + 1);
-                    }
-                }*/
+                CounterMode();
             }
-        }              
+        }
+        public void CounterMode()
+        { 
+
+            if (mem.ram[4, Const.OPTION_REG + 128] == 0)
+            {
+                //rising edge
+                if (mem.Ra4Flanke == 1)
+                {
+                    CheckPrescaler();
+                    mem.Ra4Flanke = 0;
+                }
+            }
+            else
+            {
+                //falling edge
+                if (mem.Ra4Flanke == 2)
+                {
+                    CheckPrescaler();
+                    mem.Ra4Flanke = 0;
+                }
+            }
+        }                     
         public void IncrementTimer()
         {
             int TimerAdress = 0x01;
@@ -445,6 +451,7 @@ namespace PicSim
             IsStepBackEnabled();
 
             GetTimerValOld();
+            //GetRa4ValOld();
 
             fileAdress = binCode & 0x007F;
             IndirekteAdressierung(fileAdress);

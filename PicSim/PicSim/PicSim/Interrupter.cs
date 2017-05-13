@@ -51,7 +51,6 @@ namespace PicSim
                 mem.pc++;
                 //Adresse 4 laden - Interrupt Service Routine
                 befehle.call(0x04);
-
             }
         }
 
@@ -138,6 +137,22 @@ namespace PicSim
             return false;
         }
 
+        public void CheckRA4()
+        {
+            mem.Ra4old = mem.ram[4, Const.PORTA];
+
+            if (mem.Ra4old == 1 && mem.Ra4new == 0)
+            {
+                mem.Ra4Flanke = 1;
+            }
+
+            if (mem.Ra4old == 0 && mem.Ra4new == 1)
+            {
+                mem.Ra4Flanke = 2;
+            }
+
+            mem.Ra4new = mem.ram[4, Const.PORTA];
+        }
         //Check 
 
     }
