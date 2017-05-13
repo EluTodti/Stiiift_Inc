@@ -196,7 +196,11 @@ namespace PicSim
             this.lblTrisA = new System.Windows.Forms.Label();
             this.btnTrisA0 = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
+<<<<<<< HEAD
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+=======
+            this.checkStepBack = new System.Windows.Forms.CheckBox();
+>>>>>>> refs/remotes/origin/master
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -1113,8 +1117,13 @@ namespace PicSim
             // 
             // btnStepBack
             // 
+<<<<<<< HEAD
             this.btnStepBack.Location = new System.Drawing.Point(1311, 228);
             this.btnStepBack.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+=======
+            this.btnStepBack.Location = new System.Drawing.Point(749, 153);
+            this.btnStepBack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+>>>>>>> refs/remotes/origin/master
             this.btnStepBack.Name = "btnStepBack";
             this.btnStepBack.Size = new System.Drawing.Size(219, 107);
             this.btnStepBack.TabIndex = 18;
@@ -2069,12 +2078,28 @@ namespace PicSim
             this.label21.Text = "0";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+<<<<<<< HEAD
             // backgroundWorker2
             // 
             this.backgroundWorker2.WorkerReportsProgress = true;
             this.backgroundWorker2.WorkerSupportsCancellation = true;
             this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
             this.backgroundWorker2.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker2_ProgressChanged);
+=======
+            // checkStepBack
+            // 
+            this.checkStepBack.AutoSize = true;
+            this.checkStepBack.BackColor = System.Drawing.Color.LimeGreen;
+            this.checkStepBack.Checked = true;
+            this.checkStepBack.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkStepBack.Location = new System.Drawing.Point(742, 127);
+            this.checkStepBack.Name = "checkStepBack";
+            this.checkStepBack.Size = new System.Drawing.Size(145, 21);
+            this.checkStepBack.TabIndex = 24;
+            this.checkStepBack.Text = "StepBack enabled";
+            this.checkStepBack.UseVisualStyleBackColor = false;
+            this.checkStepBack.MouseClick += new System.Windows.Forms.MouseEventHandler(this.checkStepBack_MouseClick);
+>>>>>>> refs/remotes/origin/master
             // 
             // form1BindingSource
             // 
@@ -2085,7 +2110,12 @@ namespace PicSim
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(3099, 1597);
+=======
+            this.ClientSize = new System.Drawing.Size(1771, 881);
+            this.Controls.Add(this.checkStepBack);
+>>>>>>> refs/remotes/origin/master
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.dgvCode);
@@ -2270,7 +2300,11 @@ namespace PicSim
         private Label lblTrisA;
         public Button btnTrisA0;
         private Label label21;
+<<<<<<< HEAD
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
+=======
+        private CheckBox checkStepBack;
+>>>>>>> refs/remotes/origin/master
     }
 }
 

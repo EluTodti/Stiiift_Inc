@@ -25,7 +25,17 @@ namespace PicSim
 
                 string aktuelleZeile = streamReader.ReadLine();
                 befehltxt += aktuelleZeile +"\n";
-                string hexCode = aktuelleZeile.Substring(5, 4);
+                string hexCode = "";             
+                try
+                {
+                    hexCode = aktuelleZeile.Substring(5, 4);
+
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    MessageBox.Show("Datei entspricht nicht dem richtigen Format");
+                    return;
+                }
                 string programmzeile = aktuelleZeile.Substring(0, 4);
                 string code = aktuelleZeile.Substring(26);
                 form.LadeInDGVCode(row, programmzeile, code, hexCode);
