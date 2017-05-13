@@ -6,7 +6,7 @@ namespace PicSim
 {
     class Befehle
     {
-        //Singleton
+        #region Singleton
         private static Befehle instance;
 
         private Befehle()
@@ -24,6 +24,8 @@ namespace PicSim
                 return instance;
             }
         }
+        #endregion Sinleton
+
         Memory mem = Memory.Instance;
         private int literal = 0;
         private int fileAdress = 0;
@@ -227,8 +229,10 @@ namespace PicSim
         {
             mem.ram[0, Const.STATUS] = n;
         }
-
-        //Swap Nibbles
+        public int getPCLATH()
+        {
+            return getFileVal(0x10) << 8;
+        }
         public int SwapNibbles(int fileValue)
         {
             //LowerNibble
@@ -476,7 +480,6 @@ namespace PicSim
             InkrementWDT();
             mem.IncLaufzeitzaehler();
         }
-        //==
         
         //Befehle         
 
@@ -511,7 +514,7 @@ namespace PicSim
         public void sublw(int binCode)
         {
             PreInstructions(binCode);
-            //helper für Überprüfung des Carry Bits
+            
             int helper = ((255 - mem.WReg + 1) & 0xFF) + literal;
             int helperDC = (((255 - mem.WReg + 1) & 0x0F) + (literal & 0x0F));
             mem.setWReg(literal + (~mem.WReg +1));
@@ -549,12 +552,9 @@ namespace PicSim
         public void  goto_(int binCode)
         {
             PreInstructions(binCode);
-
-            //TODO 2 Cycles            
-            int pclath = 0;  //<< 7;         //TODO pclath
+            
             int adresse = (binCode & 0x07FF);
-            mem.pc = adresse + pclath;
-            //PC -1, da in for Schleife erhöht
+            mem.pc = adresse + getPCLATH();     
             mem.pc--;
             TwoCycles();
              
@@ -565,13 +565,10 @@ namespace PicSim
         {
             PreInstructions(binCode);
 
-            //TODO 2 Cycles
             mem.pc++;
             StackPush();
-            int pclath = 0;  //<< 7;         //TODO pclath
             int adresse = (binCode & 0x07FF);
-            mem.pc = adresse + pclath;
-            //PC -1, da in for Schleife erhöht
+            mem.pc = adresse + getPCLATH();
             mem.pc--;
             TwoCycles();
 
@@ -770,7 +767,6 @@ namespace PicSim
         {
             PreInstructions(binCode);
 
-            //(~mem.WReg + 1) = Complement(WReg) + 1 = - WReg
             int helper = ((255 - mem.WReg + 1) & 0xFF ) + fileVal;
             int helperDC = (((255 - mem.WReg + 1) & 0x0F) + (fileVal & 0x0F));
 
@@ -793,7 +789,7 @@ namespace PicSim
         public void swapf(int binCode)
         {
             PreInstructions(binCode);
-            //SwapNibbles
+
             fileVal = SwapNibbles(fileVal);
 
             if (destination == 0)
@@ -836,7 +832,6 @@ namespace PicSim
             PostInstruction();
         }
 
-        //Test4
         public void rlf(int binCode)
         {
             PreInstructions(binCode);
@@ -918,8 +913,6 @@ namespace PicSim
             //CheckCarry wird bereits geprüft        
             PostInstruction();
         }
-
-        //Test5
 
         public void bsf(int binCode)
         {
@@ -1023,16 +1016,15 @@ namespace PicSim
         public void clrwdt(int binCode)
         {
             PreInstructions(binCode);
-            //TODO 00H -> WDT bzw Startwert 18.000
-            //TODO 0 -> WDT prescaler bzw. Startwert
+
             mem.ram[Const.STATUS, 3] = 1;
             mem.ram[Const.STATUS, 4] = 1;
-           // watchdog.watchdog = 0;
+            mem.watchdog = 0;
             if (!mem.PrescalerTIMER0)
             {
                 mem.prescaler = 0;
             }
-            //TODO TMR0 ++          
+                    
             PostInstruction();
         }
 

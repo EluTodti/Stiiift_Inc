@@ -19,8 +19,7 @@ namespace PicSim
             //Datei wird in String Variable gespeichert
             //stringtxt = streamReader.ReadToEnd();
             while (!streamReader.EndOfStream)
-            {
-                
+            {                
                 var row = new DataGridViewRow();
 
                 string aktuelleZeile = streamReader.ReadLine();
@@ -29,7 +28,6 @@ namespace PicSim
                 try
                 {
                     hexCode = aktuelleZeile.Substring(5, 4);
-
                 }
                 catch (ArgumentOutOfRangeException)
                 {

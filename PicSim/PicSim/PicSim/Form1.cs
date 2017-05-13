@@ -404,7 +404,8 @@ namespace PicSim
                     return;
                 }
 
-                if (mem.watchdog > 100)
+                interrupter.CheckRA4();
+                if (mem.watchdog > 18000)
                 {
                     //MessageBox.Show("WDT");
                     mem.ram[4, Const.STATUS] = 0;
