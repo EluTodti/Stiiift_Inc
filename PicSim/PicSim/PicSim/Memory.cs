@@ -54,12 +54,18 @@ namespace PicSim
         //Laufzeitzähler
         public double Laufzeitzaehler = 0;
         public double LaufzeitIntervall = 0;
-
         public double Quarzfrequenz = 2500;
-
         public void IncLaufzeitzaehler()
         {
-            Laufzeitzaehler = Laufzeitzaehler*(double)1.0 + LaufzeitIntervall*(double)1.0;
+            Laufzeitzaehler = Laufzeitzaehler*1.0 + LaufzeitIntervall*1.0;
+        }
+        
+        //WDT
+        public double watchdog = 0;
+        public bool WDTTimeOut = false;
+        public void IncWDT()
+        {
+            watchdog = watchdog * 1.0 + LaufzeitIntervall * 1.0;
         }
 
         public bool PrescalerTIMER0;
@@ -75,8 +81,7 @@ namespace PicSim
         {
             TimerInhibit--;
         }
-
-
+    
         public void setWReg(int val)
         {
             //TODTDO: CARRY checken
