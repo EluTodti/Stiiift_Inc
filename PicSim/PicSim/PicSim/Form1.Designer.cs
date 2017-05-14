@@ -200,9 +200,9 @@ namespace PicSim
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.btnSerialEinschalten = new System.Windows.Forms.Button();
             this.btnSerialAusschalten = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.backgroundWorkerSerialPort = new System.ComponentModel.BackgroundWorker();
+            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -2040,9 +2040,13 @@ namespace PicSim
             this.btnSerialAusschalten.UseVisualStyleBackColor = true;
             this.btnSerialAusschalten.Click += new System.EventHandler(this.btnSerialAusschalten_Click);
             // 
-            // timer1
+            // backgroundWorkerSerialPort
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.backgroundWorkerSerialPort.WorkerReportsProgress = true;
+            this.backgroundWorkerSerialPort.WorkerSupportsCancellation = true;
+            this.backgroundWorkerSerialPort.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSerialPort_DoWork);
+            this.backgroundWorkerSerialPort.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerSerialPort_ProgressChanged);
+            this.backgroundWorkerSerialPort.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerSerialPort_RunWorkerCompleted);
             // 
             // form1BindingSource
             // 
@@ -2246,8 +2250,8 @@ namespace PicSim
         private RichTextBox richTextBox1;
         private Button btnSerialEinschalten;
         private Button btnSerialAusschalten;
-        private Timer timer1;
         private System.IO.Ports.SerialPort serialPort1;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerSerialPort;
     }
 }
 

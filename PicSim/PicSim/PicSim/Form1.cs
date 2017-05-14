@@ -40,7 +40,13 @@ namespace PicSim
         private Interrupter interrupter = Interrupter.Instance;
         //private Befehle befehle = Befehle.Instance;
         private bool FileIsLoaded = false;
- 
+
+        #region Init SerialPort
+        private bool _continue;
+        SerialPorts _serialPort = new SerialPorts("COM1");
+        StringComparer stringComparer = StringComparer.OrdinalIgnoreCase;
+        #endregion Init SerialPort
+
         //Tooltip
         ToolTip tooltipStepBack = new ToolTip();
         ToolTip tooltipStep = new ToolTip();
@@ -636,9 +642,9 @@ namespace PicSim
                     mem.Stack.Push(mem.StackArray[StackPos]);
                 }
             }
-            //-------------------
-
-            private void btnPortA0_Click(object sender, EventArgs e)
+        //-------------------
+        #region Latchfunktion der IO-Register
+        private void btnPortA0_Click(object sender, EventArgs e)
             {
                 if (btnPortA0.Text == "0")
                 {
@@ -975,7 +981,7 @@ namespace PicSim
                 }
                 GUIAktualisieren();
             }
-
+            #endregion Latchfunktion der IO-Register
         private void checkStepBack_MouseClick(object sender, MouseEventArgs e)
         {
             if (mem.StepBackEnabled)
@@ -994,36 +1000,76 @@ namespace PicSim
         #region SerialPort
         private void btnSerialEinschalten_Click(object sender, EventArgs e)
         {
-            try
+            _serialPort.Open();
+            _continue = true;
+            if (!backgroundWorkerSerialPort.IsBusy)
             {
-                serial.PCsenden();
+                btnSerialEinschalten.Enabled = false;
+                btnSerialEinschalten.Enabled = true;
+                backgroundWorkerSerialPort.RunWorkerAsync(); //startet backgroundWorker1_DoWork Funktion
             }
-            catch (Exception exception)
-            {
-                MessageBox.Show("SerialPort ist geschlossen");
-            }
-            
         }
-
         private void btnSerialAusschalten_Click(object sender, EventArgs e)
         {
-            timer1.Stop();
-            serialPort1.Close();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            string A = serialPort1.ReadExisting();
-            if (A != "")
+            //timer1.Stop();
+            //serialPort1.Close();
+            btnSerialAusschalten.Enabled = false;
+            btnSerialEinschalten.Enabled = true;
+            if (backgroundWorkerSerialPort.IsBusy)
             {
-                richTextBox1.AppendText(A);
+                backgroundWorkerSerialPort.CancelAsync();    //sagt Thread, er soll sich beenden
             }
+            _serialPort.Close();
         }
         #endregion SerialPort
 
-        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        private void backgroundWorkerSerialPort_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            richTextBox1.Text = serialPort1.ReadTo(""+Convert.ToChar(0x0d));
+
+            string messagetosend = "";
+            if (backgroundWorkerSerialPort.CancellationPending == true) //ist True, wenn Pause Button gedrückt wurde
+            {
+                e.Cancel = true;
+                backgroundWorkerSerialPort.ReportProgress(mem.pc);
+                return;
+            }
+            //senden
+            messagetosend = _serialPort.PCsenden();
+            MessageBox.Show("Gesendet: " + messagetosend);
+            //empfangen
+            while (_continue)
+            {
+                try
+                {
+                    string message = _serialPort.PCempfangen();
+                    MessageBox.Show("Empfangen: " + message);
+                }
+                catch (TimeoutException)
+                {
+                    MessageBox.Show("Kein Empfang");
+                }
+                //try
+                //{
+                //    serial.PCsenden();
+                //}
+                //catch (Exception exception)
+                //{
+                //    MessageBox.Show("SerialPort ist geschlossen");
+                //}
+
+
+                //backgroundWorkerSerialPort.ReportProgress(mem.pc); //ruft backgroundWorkerSerialPort_ProgressChanged Funktion auf          
+                System.Threading.Thread.Sleep(20);
+            }
+        }
+
+        private void backgroundWorkerSerialPort_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            GUIAktualisieren();
+        }
+        private void backgroundWorkerSerialPort_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+
         }
     }
 }

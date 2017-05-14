@@ -24,7 +24,7 @@ namespace PicSim
                 return instance;
             }
         }
-
+        #region Initialisierungen
         Memory mem = Memory.Instance;
         private int literal = 0;
         private int fileAdress = 0;
@@ -32,7 +32,7 @@ namespace PicSim
         private int destination;
         private byte bit;
         //string binaryval = Convert.ToString(literal, 2);
-
+        #endregion Initialisierungen
         public int getFileVal(int f)
         {
             int FileVal = 0;
@@ -95,6 +95,7 @@ namespace PicSim
             }
         }
 
+        #region CheckStatusRegister
         public void CheckZero(int val)
         {
             if (val == 0)
@@ -140,6 +141,7 @@ namespace PicSim
         {
             mem.ram[0, Const.STATUS] = n;
         }
+        #endregion CheckStatusRegister
 
         //Swap Nibbles
         public int SwapNibbles(int fileValue)
@@ -179,8 +181,8 @@ namespace PicSim
             }
         }
 
-        
-#pragma region Timer & Prescaler
+
+        #region Timer & Prescaler
         public void IncrementPrescaler()
         {
             mem.prescaler = 0xFF & mem.prescaler;
@@ -337,7 +339,7 @@ namespace PicSim
                 mem.decTimerInhibit();
             }
         }
-#pragma endregion Timer & Prescaler
+        #endregion Timer & Prescaler
 
         private void IsStepBackEnabled()
         {
@@ -376,9 +378,8 @@ namespace PicSim
             mem.IncLaufzeitzaehler();
         }
         //=====================================
-        
-        //Befehle         
-
+      
+        #region Befehle
         public void movlw(int binCode)
         {
             PreInstructions(binCode);
@@ -386,7 +387,6 @@ namespace PicSim
             mem.setWReg(literal); 
             PostInstruction();
         }
-
         public void andlw(int binCode)
         {
             PreInstructions(binCode);
@@ -396,7 +396,6 @@ namespace PicSim
 
             PostInstruction();
         }
-
         public void iorlw(int binCode)
         {
             PreInstructions(binCode);
@@ -406,7 +405,6 @@ namespace PicSim
 
             PostInstruction();
         }
-
         public void sublw(int binCode)
         {
             PreInstructions(binCode);
@@ -420,7 +418,6 @@ namespace PicSim
                                    
             PostInstruction();
         }
-
         public void xorlw(int binCode)
         {
             PreInstructions(binCode);
@@ -430,7 +427,6 @@ namespace PicSim
             
             PostInstruction();
         }
-
         public void addlw(int binCode)
         {
             PreInstructions(binCode);
@@ -444,7 +440,6 @@ namespace PicSim
                        
             PostInstruction();
         }
-
         public void  goto_(int binCode)
         {
             PreInstructions(binCode);
@@ -459,7 +454,6 @@ namespace PicSim
              
             PostInstruction();
         }
-
         public void call(int binCode)
         {
             PreInstructions(binCode);
@@ -476,14 +470,12 @@ namespace PicSim
 
             PostInstruction();
         }
-
         public void nop(int binCode)
         {
             PreInstructions(binCode);
             //Nope
             PostInstruction();
         }
-
         public void return_(int binCode)
         {
             PreInstructions(binCode);
@@ -495,7 +487,6 @@ namespace PicSim
             TwoCycles();
             PostInstruction();
         }
-
         public void retlw(int binCode)
         {
             PreInstructions(binCode);
@@ -507,7 +498,6 @@ namespace PicSim
 
             PostInstruction();
         }
-
         public void movwf(int binCode)
         {
             PreInstructions(binCode);
@@ -516,7 +506,6 @@ namespace PicSim
 
             PostInstruction();
         }
-
         public void addwf(int binCode)
         {
             PreInstructions(binCode);
@@ -537,7 +526,6 @@ namespace PicSim
                                
             PostInstruction();
         } 
-
         public void andwf(int binCode)
         {
             PreInstructions(binCode);
@@ -554,7 +542,6 @@ namespace PicSim
             
             PostInstruction();
         } 
-
         public void clrf(int binCode)
         {
             PreInstructions(binCode);
@@ -564,7 +551,6 @@ namespace PicSim
             
             PostInstruction();
         }
-
         public void comf(int binCode)
         {
             PreInstructions(binCode);
@@ -581,7 +567,6 @@ namespace PicSim
           
             PostInstruction();
         }
-
         public void decf(int binCode)
         {
             PreInstructions(binCode);
@@ -598,7 +583,6 @@ namespace PicSim
 
             PostInstruction();
         }
-
         public void incf(int binCode)
         {
             PreInstructions(binCode);
@@ -615,7 +599,6 @@ namespace PicSim
 
             PostInstruction();
         }
-
         public void movf(int binCode)
         {
             PreInstructions(binCode);
@@ -646,7 +629,6 @@ namespace PicSim
 
             PostInstruction();
         }
-
         public void iorwf(int binCode)
         {
             PreInstructions(binCode);
@@ -664,7 +646,6 @@ namespace PicSim
 
             PostInstruction();
         }
-
         public void subwf(int binCode)
         {
             PreInstructions(binCode);
@@ -688,7 +669,6 @@ namespace PicSim
                     
             PostInstruction();
         }
-
         public void swapf(int binCode)
         {
             PreInstructions(binCode);
@@ -706,7 +686,6 @@ namespace PicSim
             PostInstruction();
 
         }
-
         public void xorwf(int binCode)
         {
             PreInstructions(binCode);
@@ -724,7 +703,6 @@ namespace PicSim
                       
             PostInstruction();
         }
-
         public void clrw(int binCode)
         {
             PreInstructions(binCode);
@@ -734,7 +712,6 @@ namespace PicSim
                    
             PostInstruction();
         }
-
         //Test4
         public void rlf(int binCode)
         {
@@ -780,7 +757,6 @@ namespace PicSim
             //CheckCarry wird bereits geprüft        
             PostInstruction();
         }
-
         public void rrf(int binCode)
         {
             PreInstructions(binCode);
@@ -817,9 +793,7 @@ namespace PicSim
             //CheckCarry wird bereits geprüft        
             PostInstruction();
         }
-
         //Test5
-
         public void bsf(int binCode)
         {
             PreInstructions(binCode);
@@ -829,7 +803,6 @@ namespace PicSim
             BitSetOderBitClear(bit, fileAdress, true);
             PostInstruction();
         }
-
         public void bcf(int binCode)
         {
             PreInstructions(binCode);
@@ -838,7 +811,6 @@ namespace PicSim
             BitSetOderBitClear(bit, fileAdress, false);            
             PostInstruction();
         }
-
         public void btfsc(int binCode)
         {
             PreInstructions(binCode);
@@ -857,7 +829,6 @@ namespace PicSim
 
             PostInstruction();
         }
-
         public void btfss(int binCode)
         {
             PreInstructions(binCode);
@@ -875,7 +846,6 @@ namespace PicSim
             }          
             PostInstruction();
         }
-
         public void decfsz(int binCode)
         {
             PreInstructions(binCode);
@@ -897,7 +867,6 @@ namespace PicSim
             }                      
             PostInstruction();
         }
-
         public void incfsz(int binCode)
         {
             PreInstructions(binCode);
@@ -918,7 +887,6 @@ namespace PicSim
 
             PostInstruction();
         }
-
         public void clrwdt(int binCode)
         {
             PreInstructions(binCode);
@@ -929,7 +897,6 @@ namespace PicSim
             //TODO TMR0 ++          
             PostInstruction();
         }
-
         public void sleep(int binCode)
         {
             PreInstructions(binCode);
@@ -945,8 +912,6 @@ namespace PicSim
             //Kein TMR0 erhöhen, da in clrwdt ++            
             PostInstruction();
         }
-
-
         //TODO überprüfen
         public void retfie(int binCode)
         {
@@ -962,5 +927,6 @@ namespace PicSim
 
             PostInstruction();
         }
+        #endregion Befehle
     }
 }
