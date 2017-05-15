@@ -32,14 +32,21 @@ namespace PicSim
                 return instance;
         }
 
-
+        private SerialPorts serial = new SerialPorts("COM1");
+        private SerialPorts answer = new SerialPorts("COM2");
         private Resetter resetter = new Resetter();
         private Memory mem = Memory.Instance;
         private Decoder decoder = Decoder.Instance;
         private Interrupter interrupter = Interrupter.Instance;
         private Befehle befehle = Befehle.Instance;
         private bool FileIsLoaded = false;
- 
+
+        #region Init SerialPort
+        private bool _continue;
+        SerialPorts _serialPort = new SerialPorts("COM1");
+        StringComparer stringComparer = StringComparer.OrdinalIgnoreCase;
+        #endregion Init SerialPort
+
         //Tooltip
         ToolTip tooltipStepBack = new ToolTip();
         ToolTip tooltipStep = new ToolTip();
@@ -53,6 +60,7 @@ namespace PicSim
             resetter.Reset();
             resetter.ResetBefehlsArray();
             GUIAktualisieren();
+            serial.PCsenden();
         }
 
         private void Tooltips()
@@ -673,17 +681,31 @@ namespace PicSim
                 mem.WReg = mem.BackArray[1, 256, mem.BackCount];
                 mem.Laufzeitzaehler = (double)mem.BackArray[2, 256, mem.BackCount];
                 mem.Quarzfrequenz = (double)mem.BackArray[3, 256, mem.BackCount];
-
-                //Stack
-                for (int StackPos = 0; StackPos < 8; StackPos++)
+                mem.TimerValOld = mem.BackArray[4, 256, mem.BackCount];
+                mem.TimerValNew = mem.BackArray[5, 256, mem.BackCount];
+                mem.TimerInhibit = mem.BackArray[6, 256, mem.BackCount];
+                mem.watchdog = (double) mem.BackArray[7, 256, mem.BackCount];
+                mem.prescaler = mem.BackArray[0, 257, mem.BackCount];
+                if (mem.BackArray[1,257,mem.BackCount] == 1)
+                {
+                    mem.PrescalerTIMER0 = true;
+                }
+                else
+                {
+                    mem.PrescalerTIMER0 = false;
+                }
+                mem.Ra4old = mem.BackArray[2, 257, mem.BackCount];
+                mem.Ra4new = mem.BackArray[3, 257, mem.BackCount];
+            //Stack
+            for (int StackPos = 0; StackPos < 8; StackPos++)
                 {
                     mem.StackArray[StackPos] = mem.BackArray[StackPos, 257, mem.BackCount];
                     mem.Stack.Push(mem.StackArray[StackPos]);
                 }
             }
-            //-------------------
-
-            private void btnPortA0_Click(object sender, EventArgs e)
+        //-------------------
+        #region Latchfunktion der IO-Register
+        private void btnPortA0_Click(object sender, EventArgs e)
             {
                 if (btnPortA0.Text == "0")
                 {
@@ -1020,7 +1042,7 @@ namespace PicSim
                 }
                 GUIAktualisieren();
             }
-
+            #endregion Latchfunktion der IO-Register
         private void checkStepBack_MouseClick(object sender, MouseEventArgs e)
         {
             if (mem.StepBackEnabled)
@@ -1033,10 +1055,79 @@ namespace PicSim
             }
             GUIAktualisieren();
         }
-
-            #endregion GuiClick
+        #endregion GuiClick
         //==========================================================
 
+        #region SerialPort
+        private void btnSerialEinschalten_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _serialPort.Open();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Kein COM Port verfügbar");
+            }
+            _continue = true;
+            if (!backgroundWorkerSerialPort.IsBusy)
+            {
+                btnSerialEinschalten.Enabled = false;
+                btnSerialEinschalten.Enabled = true;
+                backgroundWorkerSerialPort.RunWorkerAsync(); //startet backgroundWorker1_DoWork Funktion
+            }
+        }
+        private void btnSerialAusschalten_Click(object sender, EventArgs e)
+        {
+            //timer1.Stop();
+            //serialPort1.Close();
+            btnSerialAusschalten.Enabled = false;
+            btnSerialEinschalten.Enabled = true;
+            if (backgroundWorkerSerialPort.IsBusy)
+            {
+                backgroundWorkerSerialPort.CancelAsync();    //sagt Thread, er soll sich beenden
+            }
+            _serialPort.Close();
+        }
+        #endregion SerialPort
+        private void backgroundWorkerSerialPort_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+
+            string messagetosend = "";
+            if (backgroundWorkerSerialPort.CancellationPending == true) //ist True, wenn Pause Button gedrückt wurde
+            {
+                e.Cancel = true;
+                backgroundWorkerSerialPort.ReportProgress(mem.pc);
+                return;
+            }
+            //senden
+            messagetosend = _serialPort.PCsenden();
+            MessageBox.Show("Gesendet: " + messagetosend);
+            //empfangen
+            while (_continue)
+            {
+                try
+                {
+                    string message = _serialPort.PCempfangen();
+                    MessageBox.Show("Empfangen: " + message);
+                }
+                catch (TimeoutException)
+                {
+                    MessageBox.Show("Kein Empfang");
+                }
+
+                backgroundWorkerSerialPort.ReportProgress(mem.pc); //ruft backgroundWorkerSerialPort_ProgressChanged Funktion auf          
+                System.Threading.Thread.Sleep(20);
+            }
+        }
+        private void backgroundWorkerSerialPort_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            GUIAktualisieren();
+        }
+        private void backgroundWorkerSerialPort_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+
+        }
     }
 }
  

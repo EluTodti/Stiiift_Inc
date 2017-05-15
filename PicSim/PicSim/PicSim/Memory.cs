@@ -37,7 +37,7 @@ namespace PicSim
         //public Stack<Array> BackStack = new Stack<Array>();
         public int length = 256;        //mem.ram.length wirft exception, deshalb hard-coded
         public int BackCount = 0;
-        public int[,,] BackArray = new int[8,258,100];
+        public int[,,] BackArray = new int[8,259,100];
         public Stack<int>Stack_Backhelper=new Stack<int>();
         public bool BackEnabled = true;
         //0-255 = ram
@@ -234,10 +234,22 @@ namespace PicSim
             BackArray[1, 256, BackCount] = WReg;
             BackArray[2, 256, BackCount] = (int)Laufzeitzaehler;
             BackArray[3, 256, BackCount] = (int)Quarzfrequenz;
-            BackArray[4, 256, BackCount] = 0;
-            BackArray[5, 256, BackCount] = 0;
-            BackArray[6, 256, BackCount] = 0;
-            BackArray[7, 256, BackCount] = 0;
+            BackArray[4, 256, BackCount] = TimerValOld;
+            BackArray[5, 256, BackCount] = TimerValNew;
+            BackArray[6, 256, BackCount] = TimerInhibit;
+            BackArray[7, 256, BackCount] = (int)watchdog;
+            BackArray[0, 257, BackCount] = prescaler;
+            if (PrescalerTIMER0)
+            {
+                BackArray[1, 257, BackCount] = 1;
+            }
+            else
+            {
+                BackArray[1, 257, BackCount] = 0;
+            }
+            BackArray[2, 257, BackCount] = ra4old;
+            BackArray[3, 257, BackCount] = ra4new;
+            
             //Stack
             Stack_Backhelper = new Stack<int>(Stack.Reverse());
             for (int StackPos = 0; StackPos < 8; StackPos++)
