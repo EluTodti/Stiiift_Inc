@@ -38,7 +38,7 @@ namespace PicSim
         private Memory mem = Memory.Instance;
         private Decoder decoder = Decoder.Instance;
         private Interrupter interrupter = Interrupter.Instance;
-        //private Befehle befehle = Befehle.Instance;
+        private Befehle befehle = Befehle.Instance;
         private bool FileIsLoaded = false;
 
         #region Init SerialPort
@@ -402,13 +402,47 @@ namespace PicSim
             toolStatus.Text = "Status: stopped";
         }
 
+        private void backgroundWorker2_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            while (true)
+            {
+                if (backgroundWorker2.CancellationPending == true)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+
+                interrupter.CheckRA4();
+                if (mem.watchdog > 18000)
+                {
+                    //MessageBox.Show("WDT");
+                    mem.ram[4, Const.STATUS] = 0;
+                    //mem.WDTTimeOut = true;
+                    backgroundWorker2.ReportProgress(1);
+                }
+                System.Threading.Thread.Sleep(50);
+            }
+        }
+
+        private void backgroundWorker2_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            resetter.Reset();
+        }
         public void CheckForSleep()
         {
+
             //PD Bit checken
             if (mem.ram[3, Const.STATUS] == 0)
             {
+                mem.watchdog = 0;
+                //TODO den PIC schlafen lassen, bis powerup oder clrwdt
+                //TODO Backgroundworker anhalten
                 while (true)
                 {
+                    if (backgroundWorker1.CancellationPending == true)
+                    {
+                        return;
+                    }
                     //Wenn clrwdt --> PD = 1
                     //Wenn Interupt an RB0, RB4-7 -> aufwachen
                     //Interrupter setzt PD im RAM auf 1
@@ -417,9 +451,12 @@ namespace PicSim
                     {
                         return;
                     }
+                    if (mem.ram[4, Const.STATUS] == 0) //WatchdogOverflow
+                        return;
+
+                    befehle.InkrementWDT();
                     mem.IncLaufzeitzaehler();
-                    //
-                    backgroundWorker1.ReportProgress(mem.pc);  //ruft backgroundWorker1_ProgressChanged Funktion auf, also GUIaktualisieren  
+                    backgroundWorker1.ReportProgress(mem.pc);
                     System.Threading.Thread.Sleep(20);
                 }
             }
@@ -460,6 +497,11 @@ namespace PicSim
                     toolStatus.Text = "Status: running...";
                     backgroundWorker1.RunWorkerAsync(); //startet backgroundWorker1_DoWork Funktion
                 }
+                if (!backgroundWorker2.IsBusy)
+                {
+                    toolStatus.Text = "Status: running...";
+                    backgroundWorker2.RunWorkerAsync(); //startet backgroundWorker1_DoWork Funktion
+                }
             }
             btnStepBack.Enabled = false;
         }
@@ -472,7 +514,12 @@ namespace PicSim
                 {
                     backgroundWorker1.CancelAsync();    //sagt Thread, er soll sich beenden
                 }
-                btnStepBack.Enabled = true;
+
+                if (backgroundWorker2.IsBusy)
+                {
+                    backgroundWorker2.CancelAsync();    //sagt Thread, er soll sich beenden
+                }
+            btnStepBack.Enabled = true;
             }
             private void btnReset_Click(object sender, EventArgs e)
             {

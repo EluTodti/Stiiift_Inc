@@ -6,7 +6,7 @@ namespace PicSim
 {
     class Befehle
     {
-        //Singleton
+        #region Singleton
         private static Befehle instance;
 
         private Befehle()
@@ -24,7 +24,10 @@ namespace PicSim
                 return instance;
             }
         }
+        #endregion Sinleton
+
         #region Initialisierungen
+
         Memory mem = Memory.Instance;
         private int literal = 0;
         private int fileAdress = 0;
@@ -44,6 +47,94 @@ namespace PicSim
             return FileVal;
         }
 
+        public void InkrementWDT()
+        {
+            if (!mem.PrescalerTIMER0)
+            {
+                int bitVal = getFileVal(0x81) & 0x7;
+
+                switch (bitVal)
+                {
+                    case 0:
+                        if (mem.prescaler % 1 == 0)
+                        {
+                            IncrementPrescaler();
+                            mem.IncWDT();
+                        }
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 1:
+                        if (mem.prescaler % 2 == 0)
+                        {
+                            IncrementPrescaler();
+                            mem.IncWDT();
+                        }                        
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 2:
+                        if (mem.prescaler % 4 == 0)
+                        {
+                            IncrementPrescaler();
+                            mem.IncWDT();
+                        }
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 3:
+                        if (mem.prescaler % 8 == 0)
+                        {
+                            IncrementPrescaler();
+                            mem.IncWDT();
+                        }
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 4:
+                        if (mem.prescaler % 16 == 0)
+                        {
+                            IncrementPrescaler();
+                            mem.IncWDT();
+                        }
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 5:
+                        if (mem.prescaler % 32 == 0)
+                        {
+                            IncrementPrescaler();
+                            mem.IncWDT();
+                        }
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 6:
+                        if (mem.prescaler % 64 == 0)
+                        {
+                            IncrementPrescaler();
+                            mem.IncWDT();
+                        }
+                        else
+                            IncrementPrescaler();
+                        break;
+                    case 7:
+                        if (mem.prescaler % 128 == 0)
+                        {
+                            IncrementPrescaler();
+                            mem.IncWDT();
+                        }
+                        else
+                            IncrementPrescaler();
+                        break;
+                }
+            }
+            else
+            {
+                mem.IncWDT();
+            }
+        }
+    
         public void schreibeInRam(int f, int val)
         {
 
@@ -144,6 +235,10 @@ namespace PicSim
         #endregion CheckStatusRegister
 
         //Swap Nibbles
+        public int getPCLATH()
+        {
+            return (getFileVal(0x10) & 0x1F) << 8;
+        }
         public int SwapNibbles(int fileValue)
         {
             //LowerNibble
@@ -199,6 +294,7 @@ namespace PicSim
                 mem.PrescalerTIMER0 = true;
             }          
         }
+        
         public void CheckPrescaler()
         {
             if (mem.PrescalerTIMER0)
@@ -273,31 +369,40 @@ namespace PicSim
         {
             mem.TimerValOld = getFileVal(Const.TMR0);
         }
+
         public void CheckTimerMode()
         {
             if (mem.ram[5, Const.OPTION_REG + 128] == 0) //Timer Mode TOCS
             {
-                TimerMode();   
+                TimerMode();
             }
             else
             {
-                //Counter Mode
-                /*
-                if (mem.ram[4, Const.OPTION_REG + 128] == 0)
-                {
-                    //rising edge
-                    if (mem.Ra4ValOld == 0 && mem.Ra4ValNew == 1)
-                    {
-                        schreibeInRam(Const.TMR0, getFileVal(Const.TMR0) + 1);
-                    }
-                    //falling edge
-                    if (mem.Ra4ValOld == 1 && mem.Ra4ValNew == 0)
-                    {
-                        befehle.schreibeInRam(Const.TMR0, befehle.getFileVal(Const.TMR0) + 1);
-                    }
-                }*/
+                CounterMode();
             }
-        }              
+        }
+        public void CounterMode()
+        { 
+
+            if (mem.ram[4, Const.OPTION_REG + 128] == 0)
+            {
+                //rising edge
+                if (mem.Ra4Flanke == 1)
+                {
+                    CheckPrescaler();
+                    mem.Ra4Flanke = 0;
+                }
+            }
+            else
+            {
+                //falling edge
+                if (mem.Ra4Flanke == 2)
+                {
+                    CheckPrescaler();
+                    mem.Ra4Flanke = 0;
+                }
+            }
+        }                     
         public void IncrementTimer()
         {
             int TimerAdress = 0x01;
@@ -339,6 +444,7 @@ namespace PicSim
                 mem.decTimerInhibit();
             }
         }
+
         #endregion Timer & Prescaler
 
         private void IsStepBackEnabled()
@@ -351,10 +457,11 @@ namespace PicSim
 
         public void PreInstructions(int binCode)
         {
-
+            mem.SafeBack();
             IsStepBackEnabled();
-            GetTimerValOld();
 
+            GetTimerValOld();
+            //GetRa4ValOld();
 
             fileAdress = binCode & 0x007F;
             IndirekteAdressierung(fileAdress);
@@ -369,17 +476,21 @@ namespace PicSim
             CheckPrescalerMode();
             CheckTimerMode();
             mem.pc++;
+            InkrementWDT();           
             mem.IncLaufzeitzaehler();
         }
         public void TwoCycles()
         {
             CheckPrescalerMode();
             CheckTimerMode();
+            InkrementWDT();
             mem.IncLaufzeitzaehler();
         }
+
         //=====================================
       
         #region Befehle
+
         public void movlw(int binCode)
         {
             PreInstructions(binCode);
@@ -408,7 +519,7 @@ namespace PicSim
         public void sublw(int binCode)
         {
             PreInstructions(binCode);
-            //helper für Überprüfung des Carry Bits
+            
             int helper = ((255 - mem.WReg + 1) & 0xFF) + literal;
             int helperDC = (((255 - mem.WReg + 1) & 0x0F) + (literal & 0x0F));
             mem.setWReg(literal + (~mem.WReg +1));
@@ -443,12 +554,9 @@ namespace PicSim
         public void  goto_(int binCode)
         {
             PreInstructions(binCode);
-
-            //TODO 2 Cycles            
-            int pclath = 0;  //<< 7;         //TODO pclath
+            
             int adresse = (binCode & 0x07FF);
-            mem.pc = adresse + pclath;
-            //PC -1, da in for Schleife erhöht
+            mem.pc = adresse + getPCLATH();     
             mem.pc--;
             TwoCycles();
              
@@ -458,13 +566,10 @@ namespace PicSim
         {
             PreInstructions(binCode);
 
-            //TODO 2 Cycles
             mem.pc++;
             StackPush();
-            int pclath = 0;  //<< 7;         //TODO pclath
             int adresse = (binCode & 0x07FF);
-            mem.pc = adresse + pclath;
-            //PC -1, da in for Schleife erhöht
+            mem.pc = adresse + getPCLATH();
             mem.pc--;
             TwoCycles();
 
@@ -650,7 +755,6 @@ namespace PicSim
         {
             PreInstructions(binCode);
 
-            //(~mem.WReg + 1) = Complement(WReg) + 1 = - WReg
             int helper = ((255 - mem.WReg + 1) & 0xFF ) + fileVal;
             int helperDC = (((255 - mem.WReg + 1) & 0x0F) + (fileVal & 0x0F));
 
@@ -672,7 +776,7 @@ namespace PicSim
         public void swapf(int binCode)
         {
             PreInstructions(binCode);
-            //SwapNibbles
+
             fileVal = SwapNibbles(fileVal);
 
             if (destination == 0)
@@ -712,7 +816,6 @@ namespace PicSim
                    
             PostInstruction();
         }
-        //Test4
         public void rlf(int binCode)
         {
             PreInstructions(binCode);
@@ -793,7 +896,6 @@ namespace PicSim
             //CheckCarry wird bereits geprüft        
             PostInstruction();
         }
-        //Test5
         public void bsf(int binCode)
         {
             PreInstructions(binCode);
@@ -863,7 +965,9 @@ namespace PicSim
 
             if (fileVal == 0)
             {
+                mem.pc++;
                 TwoCycles();
+
             }                      
             PostInstruction();
         }
@@ -882,6 +986,7 @@ namespace PicSim
             fileVal = getFileVal(fileAdress);
             if (fileVal == 0)
             {
+                mem.pc++;
                 TwoCycles();
             }
 
@@ -890,11 +995,15 @@ namespace PicSim
         public void clrwdt(int binCode)
         {
             PreInstructions(binCode);
-            //TODO 00H -> WDT bzw Startwert 18.000
-            //TODO 0 -> WDT prescaler bzw. Startwert
+
             mem.ram[Const.STATUS, 3] = 1;
             mem.ram[Const.STATUS, 4] = 1;
-            //TODO TMR0 ++          
+            mem.watchdog = 0;
+            if (!mem.PrescalerTIMER0)
+            {
+                mem.prescaler = 0;
+            }
+                    
             PostInstruction();
         }
         public void sleep(int binCode)

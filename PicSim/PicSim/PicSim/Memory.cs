@@ -54,12 +54,18 @@ namespace PicSim
         //Laufzeitzähler
         public double Laufzeitzaehler = 0;
         public double LaufzeitIntervall = 0;
-
         public double Quarzfrequenz = 2500;
-
         public void IncLaufzeitzaehler()
         {
-            Laufzeitzaehler = Laufzeitzaehler*(double)1.0 + LaufzeitIntervall*(double)1.0;
+            Laufzeitzaehler = Laufzeitzaehler*1.0 + LaufzeitIntervall*1.0;
+        }
+        
+        //WDT
+        public double watchdog = 0;
+        public bool WDTTimeOut = false;
+        public void IncWDT()
+        {
+            watchdog = watchdog * 1.0 + LaufzeitIntervall * 1.0;
         }
 
         public bool PrescalerTIMER0;
@@ -75,8 +81,31 @@ namespace PicSim
         {
             TimerInhibit--;
         }
-
-
+        public int Ra4Flanke= 0;
+        private int ra4new = 0;
+        public int Ra4new
+        {
+            get
+            {
+                return this.ra4new;
+            }
+            set
+            {
+                this.ra4new = value;
+            }
+        }
+        private int ra4old = 0;
+        public int Ra4old
+        {
+            get
+            {
+                return this.ra4old;
+            }
+            set
+            {
+                this.ra4old = value;
+            }
+        }
         public void setWReg(int val)
         {
             //TODTDO: CARRY checken
@@ -153,8 +182,6 @@ namespace PicSim
                     ram[i, fileadresse - 128] = int.Parse(binVal[7 - i].ToString());
                 }
             }
-
-
         }
 
         //Funktion: Speichern der Werte im BackStack für StepBack Button
