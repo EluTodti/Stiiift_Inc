@@ -46,7 +46,6 @@ namespace PicSim
             }
             return FileVal;
         }
-
         public void InkrementWDT()
         {
             if (!mem.PrescalerTIMER0)
@@ -133,8 +132,7 @@ namespace PicSim
             {
                 mem.IncWDT();
             }
-        }
-    
+        } 
         public void schreibeInRam(int f, int val)
         {
 
@@ -161,7 +159,6 @@ namespace PicSim
 
             mem.RegisterSynchronisieren(f, val);
         }
-
         private void BitSetOderBitClear(byte bit, int fileaddress, bool BitSetIfTrue)
         {
             if (BitSetIfTrue)
@@ -173,7 +170,6 @@ namespace PicSim
                 schreibeInRam(fileaddress, getFileVal(fileaddress) & (0xFF - (int)Math.Pow(2, bit)));
             }
         }
-
         private void IndirekteAdressierung(int fileadress)
         {
             //Wenn INDF adressiert, lese Wert aus FSR-Adresse : movwf indirect => indirect adressing
@@ -185,7 +181,6 @@ namespace PicSim
                 fileAdress = getFileVal(Const.FSR);
             }
         }
-
         #region CheckStatusRegister
         public void CheckZero(int val)
         {
@@ -233,7 +228,6 @@ namespace PicSim
             mem.ram[0, Const.STATUS] = n;
         }
         #endregion CheckStatusRegister
-
         //Swap Nibbles
         public int getPCLATH()
         {
@@ -250,7 +244,6 @@ namespace PicSim
 
             return fileValue;
         }
-
         //Befehle für Stackänderungen
         public void StackPop()
         {
@@ -275,8 +268,6 @@ namespace PicSim
                 MessageBox.Show("StepBack sollte nicht zwischen call und return ausgeführt werden! PicSim bitte resetten.");
             }
         }
-
-
         #region Timer & Prescaler
         public void IncrementPrescaler()
         {
@@ -447,7 +438,6 @@ namespace PicSim
         }
 
         #endregion Timer & Prescaler
-
         private void IsStepBackEnabled()
         {
             if (mem.StepBackEnabled)
@@ -455,7 +445,6 @@ namespace PicSim
                 mem.SafeBack();
             }
         }
-
         public void PreInstructions(int binCode)
         {
             mem.SafeBack();
@@ -471,7 +460,6 @@ namespace PicSim
             literal = binCode & 0x00FF;
             destination = binCode & 0x0080;
         }
-
         public void PostInstruction()
         {
             CheckPrescalerMode();
@@ -487,9 +475,7 @@ namespace PicSim
             InkrementWDT();
             mem.IncLaufzeitzaehler();
         }
-
-        //=====================================
-      
+        //=====================================    
         #region Befehle
 
         public void movlw(int binCode)

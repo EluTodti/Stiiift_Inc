@@ -4,7 +4,7 @@ namespace PicSim
 {
     class Decoder
     {
-        //Singleton
+        #region Singleton
         private static Decoder instance;
         private Decoder() { }
         public static Decoder Instance
@@ -18,6 +18,7 @@ namespace PicSim
                 return instance;
             }
         }
+        #endregion Singleton
         Befehle befehle = Befehle.Instance;
 
         public void Decode(int binCode)

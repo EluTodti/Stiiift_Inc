@@ -18,8 +18,10 @@ namespace PicSim
         public SerialPorts(string PortName)
         {
             comPort = new System.IO.Ports.SerialPort(PortName, 4800, Parity.None, 8, StopBits.One);
-            comPort.ReadTimeout = 500;
-            comPort.WriteTimeout = 500;
+            comPort.ReadTimeout = 1000;
+            //comPort.WriteTimeout = 500;
+            //comPort.ReadBufferSize = 4;
+            //comPort.ReceivedBytesThreshold = 4;
         }
         #region Init
         Befehle befehle = Befehle.Instance;
@@ -74,8 +76,8 @@ namespace PicSim
             //}
             if (comPort.IsOpen)
             {
+                comPort.Write(ZuSendendeDaten());
                 return ZuSendendeDaten();
-                //comPort.Write(ZuSendendeDaten());
             }
             return "Error";
         }
@@ -85,7 +87,11 @@ namespace PicSim
             //GetLine
             //ONPortA UNPortA, ONPortB UNPortB, CR
             //input = comPort.ReadTo("" + CarriageReturn);
-            input = comPort.ReadLine();
+            //comPort.
+            char[] buffer;
+            buffer = comPort.ReadTo("\r").ToCharArray();
+            MessageBox.Show(buffer.ToString());
+            //input = comPort.ReadLine();
             DecodeDaten(input);
             return input;
         }
@@ -101,16 +107,7 @@ namespace PicSim
             //DecodeStringZuHex();
             DecodeStringZuHex(RecONPortA, RecUNPortA, RecONPortB, RecUNPortB);
         }
-        //private void DecodeHexstringZuInt(string _RecONPortA, string _RecUNPortA, string _RecONPortB, string _RecUNPortB)
-        //{
-        //    //Strings zusammenführen
-        //    string PortA = _RecONPortA + _RecUNPortA;
-        //    string PortB = _RecONPortB + _RecUNPortB;
-        //    //Strings in Int umwandeln
-        //    //int WPortA = Int32.Parse()
-        //    PortA = (Convert.ToString(Convert.ToInt32(PortA, 16), 2));
-        //    PortB = (Convert.ToString(Convert.ToInt32(PortB, 16), 2));
-        //}
+
         private void DecodeStringZuHex(string _RecONPortA, string _RecUNPortA, string _RecONPortB, string _RecUNPortB)
         {
             //Zeichen in Hex umwandeln
@@ -129,6 +126,16 @@ namespace PicSim
         //    string WONPortB = Convert.ToString(_RecONPortB, 2);
         //    string WUNPortB = Convert.ToString(_RecUNPortB, 2);
         //    SchreibeInRAM(WONPortA, WUNPortA, WONPortB, WUNPortB);
+        //}
+        //private void DecodeHexstringZuInt(string _RecONPortA, string _RecUNPortA, string _RecONPortB, string _RecUNPortB)
+        //{
+        //    //Strings zusammenführen
+        //    string PortA = _RecONPortA + _RecUNPortA;
+        //    string PortB = _RecONPortB + _RecUNPortB;
+        //    //Strings in Int umwandeln
+        //    //int WPortA = Int32.Parse()
+        //    PortA = (Convert.ToString(Convert.ToInt32(PortA, 16), 2));
+        //    PortB = (Convert.ToString(Convert.ToInt32(PortB, 16), 2));
         //}
         private void SchreibeInRAM(int _WPortA, int _WPortB)
         {

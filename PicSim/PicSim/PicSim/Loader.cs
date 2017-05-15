@@ -14,7 +14,6 @@ namespace PicSim
         {
 
             Form1 form = Form1.getInstance();
-            String stringtxt;
             String befehltxt = "";
             //Datei wird in String Variable gespeichert
             //stringtxt = streamReader.ReadToEnd();
