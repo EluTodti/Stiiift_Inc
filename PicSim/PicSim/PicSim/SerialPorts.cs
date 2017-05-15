@@ -13,22 +13,23 @@ namespace PicSim
 {
     class SerialPorts
     {
-        Befehle befehle = Befehle.Instance;
 
         private System.IO.Ports.SerialPort comPort;
-
         public SerialPorts(string PortName)
         {
             comPort = new System.IO.Ports.SerialPort(PortName, 4800, Parity.None, 8, StopBits.One);
             comPort.ReadTimeout = 500;
             comPort.WriteTimeout = 500;
         }
-
+        #region Init
+        Befehle befehle = Befehle.Instance;
         public int CarriageReturn = 0x0D;
         private int UnteresNibble = 0;
         private int OberesNibble = 0;
         private string input ="";
+        #endregion Init
         #region Funktionen 
+        #region Senden
         public int HoleUnteresNibble(int Wert)
         {
             return (Wert & 15) + 0x30;
@@ -78,8 +79,7 @@ namespace PicSim
             }
             return "Error";
         }
-
-
+        #endregion Senden
         public string PCempfangen()
         {
             //GetLine
@@ -89,7 +89,7 @@ namespace PicSim
             DecodeDaten(input);
             return input;
         }
-
+        #region Decode und in in Ram schreiben
         private void DecodeDaten(string Empfangen)
         {
             MessageBox.Show(Empfangen);
@@ -99,28 +99,29 @@ namespace PicSim
             string RecONPortB = Empfangen.Substring(2, 1);
             string RecUNPortB = Empfangen.Substring(3, 1);
             //DecodeStringZuHex();
-            DecodeHexstringZuInt(RecONPortA, RecUNPortA, RecONPortB, RecUNPortB);
+            DecodeStringZuHex(RecONPortA, RecUNPortA, RecONPortB, RecUNPortB);
         }
-
-        private void DecodeHexstringZuInt(string _RecONPortA, string _RecUNPortA, string _RecONPortB, string _RecUNPortB)
-        {
-            //Strings zusammenführen
-            string PortA = _RecONPortA + _RecUNPortA;
-            string PortB = _RecONPortB + _RecUNPortB;
-            //Strings in Int umwandeln
-            //int WPortA = Int32.Parse()
-            PortA = (Convert.ToString(Convert.ToInt32(PortA, 16), 2));
-            PortB = (Convert.ToString(Convert.ToInt32(PortB, 16), 2));
-        }
-        //private void DecodeStringZuHex(string _RecONPortA, string _RecUNPortA, string _RecONPortB, string _RecUNPortB)
+        //private void DecodeHexstringZuInt(string _RecONPortA, string _RecUNPortA, string _RecONPortB, string _RecUNPortB)
         //{
-        //    //Zeichen in Hex umwandeln
-        //    int DecONPortA = Int32.Parse(_RecONPortA, System.Globalization.NumberStyles.HexNumber);
-        //    int DecUNPortA = Int32.Parse(_RecUNPortA, System.Globalization.NumberStyles.HexNumber);
-        //    int DecONPortB = Int32.Parse(_RecONPortB, System.Globalization.NumberStyles.HexNumber);
-        //    int DecUNPortB = Int32.Parse(_RecUNPortB, System.Globalization.NumberStyles.HexNumber);
-        //    DecodeHexZuBinaer(DecONPortA, DecUNPortA, DecONPortB, DecUNPortB);
+        //    //Strings zusammenführen
+        //    string PortA = _RecONPortA + _RecUNPortA;
+        //    string PortB = _RecONPortB + _RecUNPortB;
+        //    //Strings in Int umwandeln
+        //    //int WPortA = Int32.Parse()
+        //    PortA = (Convert.ToString(Convert.ToInt32(PortA, 16), 2));
+        //    PortB = (Convert.ToString(Convert.ToInt32(PortB, 16), 2));
         //}
+        private void DecodeStringZuHex(string _RecONPortA, string _RecUNPortA, string _RecONPortB, string _RecUNPortB)
+        {
+            //Zeichen in Hex umwandeln
+            int DecONPortA = (Int32.Parse(_RecONPortA, System.Globalization.NumberStyles.HexNumber) << 4) & 0xF0; // shift nach links damit als 1 hex
+            int DecUNPortA = Int32.Parse(_RecUNPortA, System.Globalization.NumberStyles.HexNumber) & 0xF;
+            int DecONPortB = (Int32.Parse(_RecONPortB, System.Globalization.NumberStyles.HexNumber)<<4) & 0xF0;
+            int DecUNPortB = Int32.Parse(_RecUNPortB, System.Globalization.NumberStyles.HexNumber) & 0xF;
+            int WPortA = DecONPortA + DecUNPortA;
+            int WPortB = DecONPortB + DecUNPortB;
+            SchreibeInRAM(WPortA, WPortB);
+        }
         //private void DecodeHexZuBinaer(int _RecONPortA, int _RecUNPortA, int _RecONPortB, int _RecUNPortB)
         //{
         //    string WONPortA = Convert.ToString(_RecONPortA,2);
@@ -129,11 +130,12 @@ namespace PicSim
         //    string WUNPortB = Convert.ToString(_RecUNPortB, 2);
         //    SchreibeInRAM(WONPortA, WUNPortA, WONPortB, WUNPortB);
         //}
-        private void SchreibeInRAM(string _WPortA, string _WPortB)
+        private void SchreibeInRAM(int _WPortA, int _WPortB)
         {
-            befehle.schreibeInRam(Const.PORTA, );
+            befehle.schreibeInRam(Const.PORTA, _WPortA);
+            befehle.schreibeInRam(Const.PORTB, _WPortB);
         }
-
+        #endregion Decode und in in Ram schreiben
         public string ReadLine()
         {
             return comPort.ReadLine();
@@ -153,7 +155,7 @@ namespace PicSim
         {
             comPort.Close();
         }
-        #endregion
+        #endregion Funktionen
 
     }
 }

@@ -1022,7 +1022,6 @@ namespace PicSim
             _serialPort.Close();
         }
         #endregion SerialPort
-
         private void backgroundWorkerSerialPort_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
 
@@ -1048,17 +1047,8 @@ namespace PicSim
                 {
                     MessageBox.Show("Kein Empfang");
                 }
-                //try
-                //{
-                //    serial.PCsenden();
-                //}
-                //catch (Exception exception)
-                //{
-                //    MessageBox.Show("SerialPort ist geschlossen");
-                //}
 
-
-                //backgroundWorkerSerialPort.ReportProgress(mem.pc); //ruft backgroundWorkerSerialPort_ProgressChanged Funktion auf          
+                backgroundWorkerSerialPort.ReportProgress(mem.pc); //ruft backgroundWorkerSerialPort_ProgressChanged Funktion auf          
                 System.Threading.Thread.Sleep(20);
             }
         }

@@ -207,9 +207,9 @@ namespace PicSim
             BackArray[1, 256, BackCount] = WReg;
             BackArray[2, 256, BackCount] = (int)Laufzeitzaehler;
             BackArray[3, 256, BackCount] = (int)Quarzfrequenz;
-            BackArray[4, 256, BackCount] = 0;
-            BackArray[5, 256, BackCount] = 0;
-            BackArray[6, 256, BackCount] = 0;
+            BackArray[4, 256, BackCount] = TimerValOld;
+            BackArray[5, 256, BackCount] = TimerValNew;
+            BackArray[6, 256, BackCount] = TimerInhibit;
             BackArray[7, 256, BackCount] = 0;
             //Stack
             Stack_Backhelper = new Stack<int>(Stack.Reverse());
