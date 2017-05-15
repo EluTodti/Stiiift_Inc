@@ -1190,6 +1190,8 @@ namespace PicSim
             this.dgvCode.Size = new System.Drawing.Size(764, 928);
             this.dgvCode.TabIndex = 20;
             this.dgvCode.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCode_CellClick);
+            this.dgvCode.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCode.MultiSelect = false;
             // 
             // BreakPoint
             // 

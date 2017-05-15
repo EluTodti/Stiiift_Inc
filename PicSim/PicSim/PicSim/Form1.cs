@@ -397,13 +397,6 @@ namespace PicSim
                 DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)
                     dgvCode.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 string CellValue = "";
-                if (cell.Value.Equals(true))
-                {
-                    cell.FalseValue = false;
-                    cell.Value = cell.FalseValue;
-                    mem.BreakPointArray[0] = 1000000;
-                    System.Array.Sort(mem.BreakPointArray);
-                }
                 if (cell.Value.Equals(false))
                 {
                     cell.TrueValue = true;
@@ -422,8 +415,16 @@ namespace PicSim
                     mem.BPArrayIndex++;
                     System.Array.Sort(mem.BreakPointArray);
                 }
+                else
+                {
+                    cell.FalseValue = false;
+                    cell.Value = cell.FalseValue;
+                    mem.BreakPointArray[0] = 1000000;
+                    System.Array.Sort(mem.BreakPointArray);
+                }
             }
         }
+        
 
         //======================================================
 
