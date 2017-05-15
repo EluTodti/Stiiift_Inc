@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.IO.Ports;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using AxWMPLib;
 
 namespace PicSim
 {
@@ -19,13 +12,10 @@ namespace PicSim
         {
             comPort = new System.IO.Ports.SerialPort(PortName, 4800, Parity.None, 8, StopBits.One);
             comPort.ReadTimeout = 1000;
-            //comPort.WriteTimeout = 500;
-            //comPort.ReadBufferSize = 4;
-            //comPort.ReceivedBytesThreshold = 4;
         }
         #region Init
         Befehle befehle = Befehle.Instance;
-        public int CarriageReturn = 0x0D;
+        public string CarriageReturn = "\r";
         private int UnteresNibble = 0;
         private int OberesNibble = 0;
         private string input ="";
@@ -84,14 +74,7 @@ namespace PicSim
         #endregion Senden
         public string PCempfangen()
         {
-            //GetLine
-            //ONPortA UNPortA, ONPortB UNPortB, CR
-            //input = comPort.ReadTo("" + CarriageReturn);
-            //comPort.
-            char[] buffer;
-            buffer = comPort.ReadTo("\r").ToCharArray();
-            MessageBox.Show(buffer.ToString());
-            //input = comPort.ReadLine();
+            input = comPort.ReadTo("\r");
             DecodeDaten(input);
             return input;
         }
@@ -119,24 +102,6 @@ namespace PicSim
             int WPortB = DecONPortB + DecUNPortB;
             SchreibeInRAM(WPortA, WPortB);
         }
-        //private void DecodeHexZuBinaer(int _RecONPortA, int _RecUNPortA, int _RecONPortB, int _RecUNPortB)
-        //{
-        //    string WONPortA = Convert.ToString(_RecONPortA,2);
-        //    string WUNPortA = Convert.ToString(_RecUNPortA, 2);
-        //    string WONPortB = Convert.ToString(_RecONPortB, 2);
-        //    string WUNPortB = Convert.ToString(_RecUNPortB, 2);
-        //    SchreibeInRAM(WONPortA, WUNPortA, WONPortB, WUNPortB);
-        //}
-        //private void DecodeHexstringZuInt(string _RecONPortA, string _RecUNPortA, string _RecONPortB, string _RecUNPortB)
-        //{
-        //    //Strings zusammenführen
-        //    string PortA = _RecONPortA + _RecUNPortA;
-        //    string PortB = _RecONPortB + _RecUNPortB;
-        //    //Strings in Int umwandeln
-        //    //int WPortA = Int32.Parse()
-        //    PortA = (Convert.ToString(Convert.ToInt32(PortA, 16), 2));
-        //    PortB = (Convert.ToString(Convert.ToInt32(PortB, 16), 2));
-        //}
         private void SchreibeInRAM(int _WPortA, int _WPortB)
         {
             befehle.schreibeInRam(Const.PORTA, _WPortA);
