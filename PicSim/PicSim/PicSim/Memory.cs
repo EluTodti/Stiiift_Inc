@@ -72,7 +72,6 @@ namespace PicSim
         public int TimerValOld = 0;
         public int TimerValNew = 0;
         public int TimerInhibit = 0;
-        public bool IncomingOverFlow = false;
         public bool TwoCycles = false;
         public void decTimerInhibit()
         {
@@ -105,6 +104,137 @@ namespace PicSim
                 this.ra4old = value;
             }
         }
+
+        private int rb0new = 0;
+        public int Rb0new
+        {
+            get
+            {
+                return rb0new;
+            }
+            set
+            {
+                rb0new = value;
+            }
+        }
+        private int rb0old = 0;
+        public int Rb0old
+        {
+            get
+            {
+                return rb0old;
+            }
+            set
+            {
+                value = rb0new;
+            }
+        }
+        public bool Rb0Int = false;
+
+        private int rb4new = 0;
+        public int Rb4new
+        {
+            get
+            {
+                return rb4new;
+            }
+            set
+            {
+                rb4new = value;
+            }
+        }
+        private int rb4old = 0;
+        public int Rb4old
+        {
+            get
+            {
+                return rb4old;
+            }
+            set
+            {
+                value = rb4new;
+            }
+        }
+        public bool Rb4Int = false;
+
+        private int rb5new = 0;
+        public int Rb5new
+        {
+            get
+            {
+                return rb5new;
+            }
+            set
+            {
+                rb4new = value;
+            }
+        }
+        private int rb5old = 0;
+        public int Rb5old
+        {
+            get
+            {
+                return rb5old;
+            }
+            set
+            {
+                value = rb5new;
+            }
+        }
+        public bool Rb5Int = false;
+
+        private int rb6new = 0;
+        public int Rb6new
+        {
+            get
+            {
+                return rb6new;
+            }
+            set
+            {
+                rb6new = value;
+            }
+        }
+        private int rb6old = 0;
+        public int Rb6old
+        {
+            get
+            {
+                return rb6old;
+            }
+            set
+            {
+                value = rb6new;
+            }
+        }
+        public bool Rb6Int = false;
+
+        private int rb7new = 0;
+        public int Rb7new
+        {
+            get
+            {
+                return rb7new;
+            }
+            set
+            {
+                rb7new = value;
+            }
+        }
+        private int rb7old = 0;
+        public int Rb7old
+        {
+            get
+            {
+                return rb7old;
+            }
+            set
+            {
+                value = rb7new;
+            }
+        }
+        public bool Rb7Int = false;
+
         public void setWReg(int val)
         {
             //TODTDO: CARRY checken

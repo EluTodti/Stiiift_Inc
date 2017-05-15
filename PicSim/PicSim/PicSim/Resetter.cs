@@ -83,7 +83,6 @@ namespace PicSim
             mem.Laufzeitzaehler = 0;
             mem.Quarzfrequenz = 4000000;
             mem.LaufzeitIntervall = (double)4.0/(mem.Quarzfrequenz/(double)1000000.0);
-            mem.IncomingOverFlow = false;
             mem.TwoCycles = false;
             mem.prescaler = 0;
             mem.watchdog = 0;
