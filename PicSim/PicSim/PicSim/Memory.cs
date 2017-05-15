@@ -72,7 +72,6 @@ namespace PicSim
         public int TimerValOld = 0;
         public int TimerValNew = 0;
         public int TimerInhibit = 0;
-        public bool IncomingOverFlow = false;
         public bool TwoCycles = false;
         public void decTimerInhibit()
         {
@@ -130,6 +129,7 @@ namespace PicSim
                 value = rb0new;
             }
         }
+        public bool Rb0Int = false;
 
         private int rb4new = 0;
         public int Rb4new
@@ -155,6 +155,7 @@ namespace PicSim
                 value = rb4new;
             }
         }
+        public bool Rb4Int = false;
 
         private int rb5new = 0;
         public int Rb5new
@@ -180,6 +181,7 @@ namespace PicSim
                 value = rb5new;
             }
         }
+        public bool Rb5Int = false;
 
         private int rb6new = 0;
         public int Rb6new
@@ -205,6 +207,7 @@ namespace PicSim
                 value = rb6new;
             }
         }
+        public bool Rb6Int = false;
 
         private int rb7new = 0;
         public int Rb7new
@@ -230,6 +233,7 @@ namespace PicSim
                 value = rb7new;
             }
         }
+        public bool Rb7Int = false;
 
         public void setWReg(int val)
         {

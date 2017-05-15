@@ -231,7 +231,7 @@ namespace PicSim
         //Swap Nibbles
         public int getPCLATH()
         {
-            return (getFileVal(0x10) & 0x1F) << 8;
+            return (getFileVal(0x0a) & 0x1F) << 8;
         }
         public int SwapNibbles(int fileValue)
         {
@@ -423,8 +423,6 @@ namespace PicSim
             {
                 mem.prescaler = 0;
                 mem.TimerInhibit = 2;
-                mem.IncomingOverFlow = false;
-                mem.TimerInhibit++; //Da unten decrement
             }
 
             if (mem.TimerInhibit == 0)
@@ -445,13 +443,28 @@ namespace PicSim
                 mem.SafeBack();
             }
         }
+        public void CheckIOInterrupts() {
+
+            if (mem.Rb0Int)
+            {
+                mem.ram[1, Const.INTCON] = 1;
+            }
+            if(mem.Rb4Int|| mem.Rb5Int || mem.Rb6Int || mem.Rb7Int)
+            {
+                mem.ram[0, Const.INTCON] = 1;
+            }
+            mem.Rb4Int = false;
+            mem.Rb5Int = false;
+            mem.Rb6Int = false;
+            mem.Rb7Int = false;
+            mem.Rb0Int = false;
+                }
         public void PreInstructions(int binCode)
         {
             mem.SafeBack();
             IsStepBackEnabled();
 
             GetTimerValOld();
-            //GetRa4ValOld();
 
             fileAdress = binCode & 0x007F;
             IndirekteAdressierung(fileAdress);
@@ -460,6 +473,7 @@ namespace PicSim
             literal = binCode & 0x00FF;
             destination = binCode & 0x0080;
         }
+
         public void PostInstruction()
         {
             CheckPrescalerMode();
@@ -467,6 +481,7 @@ namespace PicSim
             mem.pc++;
             InkrementWDT();           
             mem.IncLaufzeitzaehler();
+            CheckIOInterrupts();
         }
         public void TwoCycles()
         {

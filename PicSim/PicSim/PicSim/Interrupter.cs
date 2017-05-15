@@ -72,10 +72,6 @@ namespace PicSim
             return false;
         }
 
-<<<<<<< HEAD
-=======
-        //Check TMR0 Interrupt
->>>>>>> refs/remotes/origin/master
         private bool InterruptTMR0()
         {
             //Wenn T0IE gesetzt sind TMR0 Interrupts möglich
@@ -148,10 +144,9 @@ namespace PicSim
 
             mem.Ra4new = mem.ram[4, Const.PORTA];
         }
-<<<<<<< HEAD
-=======
+
         #endregion Abfrage einzelne Interrupt bits
->>>>>>> refs/remotes/origin/master
+
 
         public void CheckRB0()
         {
@@ -161,14 +156,14 @@ namespace PicSim
             {
                 if (mem.Rb0old == 1 && mem.Rb0new == 0)
                 {
-                    mem.ram[1, Const.INTCON] = 1;
+                    mem.Rb0Int = true;
                 }
             }
             else //rising
             {
                 if (mem.Rb0old == 0 && mem.Rb0new == 1)
                 {
-                    mem.ram[1, Const.INTCON] = 1;
+                    mem.Rb0Int = true;
                 }
             }
 
@@ -184,22 +179,22 @@ namespace PicSim
             if (mem.ram[4, Const.TRISB] == 1) //falls input
             {
                 if (mem.Rb4old != mem.Rb4new)
-                    mem.ram[0, Const.INTCON] = 1;
+                    mem.Rb4Int = true;
             }
             if (mem.ram[5, Const.TRISB] == 1) //falls input
             {
                 if (mem.Rb5old != mem.Rb5new)
-                    mem.ram[0, Const.INTCON] = 1;
+                    mem.Rb5Int = true;
             }
             if (mem.ram[6, Const.TRISB] == 1) //falls input
             {
                 if (mem.Rb6old != mem.Rb6new)
-                    mem.ram[0, Const.INTCON] = 1;
+                    mem.Rb6Int = true;
             }
             if (mem.ram[7, Const.TRISB] == 1) //falls input
             {
                 if (mem.Rb7old != mem.Rb7new)
-                    mem.ram[0, Const.INTCON] = 1;
+                    mem.Rb7Int = true;
             }
 
             mem.Rb4new = mem.ram[4, Const.PORTB];
