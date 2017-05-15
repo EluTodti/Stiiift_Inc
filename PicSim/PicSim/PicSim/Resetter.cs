@@ -90,8 +90,6 @@ namespace PicSim
             mem.StepBackEnabled = true;
         }
 
-
-
         public void ResetStackArrays()
         {
             for (int i = 0; i < mem.StackArray.Length; i++)

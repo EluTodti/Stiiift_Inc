@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Runtime.Remoting.Channels;
+using System.Reflection;
 using System.Windows.Forms;
 
 
@@ -11,27 +10,27 @@ namespace PicSim
 {
     public partial class Form1 : Form
     {
-        private static object m_lock =new object();
-        //Singleton
+        #region Singleton
+        private static object m_lock = new object();
         private static Form1 instance;
-
         public static Form1 getInstance()
         {
- 
-                if (instance == null)
+
+            if (instance == null)
+            {
+                lock (m_lock)
                 {
-                    lock (m_lock)
+                    if (instance == null)
                     {
-                        if (instance==null)
-                        {
                         instance = new Form1();
 
                     }
                 }
-                }
-                return instance;
+            }
+            return instance;
         }
-
+        #endregion
+        #region Init
         private SerialPorts serial = new SerialPorts("COM1");
         private SerialPorts answer = new SerialPorts("COM2");
         private Resetter resetter = new Resetter();
@@ -40,17 +39,15 @@ namespace PicSim
         private Interrupter interrupter = Interrupter.Instance;
         private Befehle befehle = Befehle.Instance;
         private bool FileIsLoaded = false;
-
+        #endregion Init
         #region Init SerialPort
         private bool _continue;
         SerialPorts _serialPort = new SerialPorts("COM1");
         StringComparer stringComparer = StringComparer.OrdinalIgnoreCase;
+        private string message = "";
         #endregion Init SerialPort
-
-        //Tooltip
         ToolTip tooltipStepBack = new ToolTip();
         ToolTip tooltipStep = new ToolTip();
-
         public Form1()
         {
             InitializeComponent();
@@ -62,7 +59,6 @@ namespace PicSim
             GUIAktualisieren();
             serial.PCsenden();
         }
-
         private void Tooltips()
         {
             tooltipStepBack.SetToolTip(btnStepBack, "Achtung: StepBack darf nicht zwischen call und return verwendet werden!");
@@ -170,7 +166,6 @@ namespace PicSim
 
         }
         #endregion Ram
-
         #region GUI Aktualisieren
         //GUIAktualisieren===========================================================
         public  void GUIAktualisieren()
@@ -182,6 +177,7 @@ namespace PicSim
             AktualisierePorts();
             AktualisiereTris();
             AktualisiereButtons();
+            richTextBox1.Text = message;
         }
         private  void AktualisiereDGV()
         {
@@ -287,9 +283,6 @@ namespace PicSim
         }
         //=========================================================================================
         #endregion GUI Aktualisieren
-
-
-
         #region DataGridView click
         //dgvRam click-------
         private void dgvRam0_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -371,7 +364,7 @@ namespace PicSim
         }
         //======================================================
         #endregion DataGridView click
-
+        #region BackgroundWorker1
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             while (mem.pc < mem.BefehlsArray.Length) //evtl while Schleife eleganter?
@@ -401,7 +394,8 @@ namespace PicSim
         {
             toolStatus.Text = "Status: stopped";
         }
-
+        #endregion BackgroundWorker1
+        #region BackgroundWorker2
         private void backgroundWorker2_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             while (true)
@@ -423,11 +417,11 @@ namespace PicSim
                 System.Threading.Thread.Sleep(50);
             }
         }
-
         private void backgroundWorker2_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
             resetter.Reset();
         }
+        #endregion BackgroundWorker2
         public void CheckForSleep()
         {
 
@@ -482,12 +476,13 @@ namespace PicSim
             }
 
         }
-
         //==============================
+        #region GuiClick         
+        //Gui click
         private void toolPlay_Click(object sender, EventArgs e)
         {
             if (!FileIsLoaded)
-            {                
+            {
                 MessageBox.Show("Kein Code gefunden!");
             }
             else
@@ -505,9 +500,6 @@ namespace PicSim
             }
             btnStepBack.Enabled = false;
         }
-
-        #region GuiClick         
-        //Gui click
         private void toolPause_Click(object sender, EventArgs e)
             {
                 if (backgroundWorker1.IsBusy)
@@ -572,13 +564,14 @@ namespace PicSim
             }
             private void toolHelp_Click(object sender, EventArgs e)
             {
+                MessageBox.Show(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
                 try
                 {
-                    System.Diagnostics.Process.Start("D:/Stiiift_Inc/PicSim/Help/Help.pdf");
+                    System.Diagnostics.Process.Start(@"..\..\..\..\Help\Help.pdf");
                 }
-                catch (Exception FileNotFoundException)
+                catch (Exception)
                 {
-                    MessageBox.Show("File not found:" + FileNotFoundException);
+                    MessageBox.Show("File not found");
                 }
             }
             private void toolAbout_Click(object sender, EventArgs e)
@@ -586,7 +579,8 @@ namespace PicSim
                 //Dateipfad
                 try
                 {
-                    System.Diagnostics.Process.Start("D:/Stiiift_Inc/PicSim/About/About.pdf");
+                    
+                    System.Diagnostics.Process.Start("About.pdf");
                 }
                 catch (FileNotFoundException)
                 {
@@ -1057,7 +1051,6 @@ namespace PicSim
         }
         #endregion GuiClick
         //==========================================================
-
         #region SerialPort
         private void btnSerialEinschalten_Click(object sender, EventArgs e)
         {
@@ -1065,7 +1058,7 @@ namespace PicSim
             {
                 _serialPort.Open();
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 MessageBox.Show("Kein COM Port verfügbar");
             }
@@ -1089,7 +1082,6 @@ namespace PicSim
             }
             _serialPort.Close();
         }
-        #endregion SerialPort
         private void backgroundWorkerSerialPort_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
 
@@ -1102,18 +1094,18 @@ namespace PicSim
             }
             //senden
             messagetosend = _serialPort.PCsenden();
-            MessageBox.Show("Gesendet: " + messagetosend);
+            //MessageBox.Show("Gesendet: " + messagetosend);
             //empfangen
             while (_continue)
             {
                 try
                 {
-                    string message = _serialPort.PCempfangen();
+                    message = _serialPort.PCempfangen();                   
                     MessageBox.Show("Empfangen: " + message);
                 }
                 catch (TimeoutException)
                 {
-                    MessageBox.Show("Kein Empfang");
+                    //MessageBox.Show("Kein Empfang");
                 }
 
                 backgroundWorkerSerialPort.ReportProgress(mem.pc); //ruft backgroundWorkerSerialPort_ProgressChanged Funktion auf          
@@ -1128,6 +1120,8 @@ namespace PicSim
         {
 
         }
+        #endregion SerialPort
+
     }
 }
  

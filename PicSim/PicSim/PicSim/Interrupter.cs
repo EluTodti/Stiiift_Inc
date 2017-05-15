@@ -8,6 +8,7 @@ namespace PicSim
 {
     class Interrupter
     {
+        #region Singleton
         private static Interrupter instance;
 
         public static Interrupter Instance
@@ -21,17 +22,11 @@ namespace PicSim
                 return instance;
             }
         }
-
-
+        #endregion Singleton
+        #region Init
         private Memory mem = Memory.Instance;
         Befehle befehle = Befehle.Instance;
-        /*Initialisierung
-        public bool INTRB0 = false;
-        public bool INTRB4 = false;
-        public bool INTRB5 = false;
-        public bool INTRB6 = false;
-        public bool INTRB7 = false;
-        */
+        #endregion Init
 
         public void CheckInterrupt()
         {
@@ -65,9 +60,7 @@ namespace PicSim
             return false;
         }
 
-
-
-        //------------------------------------Abfragen einzelner Interrupt bits-----------------------------
+        #region Abfrage einzelne Interrupt bits
         //Check GIE
         //Wenn GIE gesetzt
         private bool InterruptGIE()
@@ -80,7 +73,7 @@ namespace PicSim
         }
 
         //Check TMR0 Interrupt
-    private bool InterruptTMR0()
+        private bool InterruptTMR0()
         {
             //Wenn T0IE gesetzt sind TMR0 Interrupts möglich
             if (mem.ram[5, Const.INTCON] == 1)
@@ -109,6 +102,7 @@ namespace PicSim
             //TODO : The status of the GIE bit decides whether the processor branches to the interrupt vector following wake-up
         }
 
+        //Check Interrupt PortB<7-4>
         private bool InterruptPORTB()
         {
             //RBIE set?
@@ -153,7 +147,7 @@ namespace PicSim
 
             mem.Ra4new = mem.ram[4, Const.PORTA];
         }
-        //Check 
+        #endregion Abfrage einzelne Interrupt bits
 
     }
 }

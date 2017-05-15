@@ -6,13 +6,11 @@ namespace PicSim
 {
     class Memory
     {
-        //Singleton
+        #region Singleton
         private static Memory instance;
-
         private Memory()
         {
         }
-
         public static Memory Instance
         {
             get
@@ -24,54 +22,53 @@ namespace PicSim
                 return instance;
             }
         }
+        #endregion
 
         //Spezialregister
         public int pc = 0;
         public int WReg = 0;
-
+        #region Stack
         public Stack<int> Stack = new Stack<int>();
         public int[] StackArray = new int[8];
         public int[] StackArrayHelper = new int[8];
-
-        //StepBack
+        #endregion Stack
+        #region StepBackInit
         //public Stack<Array> BackStack = new Stack<Array>();
         public int length = 256;        //mem.ram.length wirft exception, deshalb hard-coded
         public int BackCount = 0;
-        public int[,,] BackArray = new int[8,259,100];
-        public Stack<int>Stack_Backhelper=new Stack<int>();
+        public int[,,] BackArray = new int[8, 259, 100];
+        public Stack<int> Stack_Backhelper = new Stack<int>();
         public bool BackEnabled = true;
         //0-255 = ram
         //256: 0:PC, 1:WReg, 2: Laufzeitzähler, 3: Quarzfrequenz 
-
-        //BefehlsArray & RAM
+        #endregion StepBackInit
         public int[] BefehlsArray = new int[666];
         public int[,] ram = new int[8, 256];
-
+        #region Breakpoints
         //Breakpoints
         public int BPArrayIndex = 0;
         public int[] BreakPointArray = new int[10];
-
-        //Laufzeitzähler
+        #endregion Breakpoints
+        #region Laufzeitzähler
         public double Laufzeitzaehler = 0;
         public double LaufzeitIntervall = 0;
         public double Quarzfrequenz = 2500;
         public void IncLaufzeitzaehler()
         {
-            Laufzeitzaehler = Laufzeitzaehler*1.0 + LaufzeitIntervall*1.0;
+            Laufzeitzaehler = Laufzeitzaehler * 1.0 + LaufzeitIntervall * 1.0;
         }
-        
-        //WDT
+        #endregion Laufzeitzähler
+        #region WDT
         public double watchdog = 0;
         public bool WDTTimeOut = false;
         public void IncWDT()
         {
             watchdog = watchdog * 1.0 + LaufzeitIntervall * 1.0;
         }
-
         public bool PrescalerTIMER0;
         public int prescaler = 0;
- 
-        //Timer0
+        #endregion WDT
+        #region Timer0
         public int TimerValOld = 0;
         public int TimerValNew = 0;
         public int TimerInhibit = 0;
@@ -81,7 +78,9 @@ namespace PicSim
         {
             TimerInhibit--;
         }
-        public int Ra4Flanke= 0;
+        #endregion Timer0
+        #region RA4
+        public int Ra4Flanke = 0;
         private int ra4new = 0;
         public int Ra4new
         {
@@ -129,11 +128,8 @@ namespace PicSim
                 WReg = val;
             }
         }
-
+        #endregion RA4
         public bool statusdurchgang = true;
-
-        //RegisterSynchronisieren bei Adressierung
-        //eingefügt in befehle.schreibeInRam();
         public void RegisterSynchronisieren(int fileadresse, int filevalue)
         {
             if (fileadresse == Const.INDF || fileadresse == Const.PCL || fileadresse == Const.STATUS
@@ -183,12 +179,8 @@ namespace PicSim
                 }
             }
         }
-
-        //Funktion: Speichern der Werte im BackStack für StepBack Button
-
-            //TimerValOld   TimerValNew     TimerInhibit
+        #region StepBack
         public int CountOfStepsSafed = 0;
-
         public bool StepBackEnabled = true;
         public void SafeBack()
         {
@@ -216,7 +208,6 @@ namespace PicSim
                 BackCount = 0;
             }
         }
-
         //Für SafeBack
         private void Safe()
         {
@@ -265,6 +256,7 @@ namespace PicSim
                 }
             }
         }
+        #endregion StepBack
     }
 
 }
