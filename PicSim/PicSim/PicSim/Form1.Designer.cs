@@ -207,6 +207,7 @@ namespace PicSim
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtDisableUnicornMode = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -240,7 +241,8 @@ namespace PicSim
             this.toolPlay,
             this.toolPause,
             this.toolStop,
-            this.toolStatus});
+            this.toolStatus,
+            this.txtDisableUnicornMode});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1914, 28);
@@ -2099,6 +2101,14 @@ namespace PicSim
             // 
             this.form1BindingSource.DataSource = typeof(PicSim.Form1);
             // 
+            // txtDisableUnicornMode
+            // 
+            this.txtDisableUnicornMode.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.txtDisableUnicornMode.Name = "txtDisableUnicornMode";
+            this.txtDisableUnicornMode.Size = new System.Drawing.Size(159, 25);
+            this.txtDisableUnicornMode.Text = "Disable Unicorn-Mode";
+            this.txtDisableUnicornMode.Click += new System.EventHandler(this.txtDisableUnicornMode_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2309,6 +2319,7 @@ namespace PicSim
         private PictureBox pictureBox;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
+        private ToolStripLabel txtDisableUnicornMode;
     }
 }
 

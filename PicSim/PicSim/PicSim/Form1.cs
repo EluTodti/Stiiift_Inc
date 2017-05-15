@@ -82,6 +82,7 @@ namespace PicSim
             pictureBox.Visible = false;
             pictureBox1.Visible = false;
             pictureBox2.Visible = false;
+            txtDisableUnicornMode.Visible = false;
         }
         private void Tooltips()
         {
@@ -697,8 +698,18 @@ namespace PicSim
             pictureBox.Visible = true;
             pictureBox1.Visible = true;
             pictureBox2.Visible = true;
+            txtUnicorn.Visible = false;
+            txtDisableUnicornMode.Visible = true;
         }
-
+        private void txtDisableUnicornMode_Click(object sender, EventArgs e)
+        {
+            this.BackColor = Color.FromKnownColor(KnownColor.Control);
+            pictureBox.Visible = false;
+            pictureBox1.Visible = false;
+            pictureBox2.Visible = false;
+            txtUnicorn.Visible = true;
+            txtDisableUnicornMode.Visible = false;
+        }
         //Datei einlesen-----
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1286,6 +1297,8 @@ namespace PicSim
         }
 
         #endregion SerialPort
+
+
     }
 }
  
