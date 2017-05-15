@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Media;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -45,7 +46,9 @@ namespace PicSim
         private Befehle befehle = Befehle.Instance;
         private bool FileIsLoaded = false;
         private bool StepBackEnablen = false;
-
+        SoundPlayer simpleSound = new SoundPlayer(@"..\..\..\..\..\..\Sounds\Pink_Fluffy_Unicorns_Dancing_On_Rainbows.wav");
+        
+        
         #endregion Init
 
         #region Init SerialPort
@@ -83,6 +86,7 @@ namespace PicSim
             pictureBox1.Visible = false;
             pictureBox2.Visible = false;
             txtDisableUnicornMode.Visible = false;
+            txtChangeSong.Visible = false;
         }
         private void Tooltips()
         {
@@ -694,14 +698,23 @@ namespace PicSim
         }
 
         private void txtUnicorn_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=a-xWhG4UU_Y");
+        {           
             this.BackColor = System.Drawing.Color.HotPink;
             pictureBox.Visible = true;
             pictureBox1.Visible = true;
             pictureBox2.Visible = true;
             txtUnicorn.Visible = false;
             txtDisableUnicornMode.Visible = true;
+            txtChangeSong.Visible = true;
+            try
+            {
+                simpleSound.PlayLooping();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Datei nicht gefunden");
+            }
+
         }
         private void txtDisableUnicornMode_Click(object sender, EventArgs e)
         {
@@ -711,6 +724,23 @@ namespace PicSim
             pictureBox2.Visible = false;
             txtUnicorn.Visible = true;
             txtDisableUnicornMode.Visible = false;
+            txtChangeSong.Visible = false;
+            simpleSound.Stop();
+            simpleSound = simpleSound = new SoundPlayer(@"..\..\..\..\..\..\Sounds\Pink_Fluffy_Unicorns_Dancing_On_Rainbows.wav");
+        }
+
+        private void txtChangeSong_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                simpleSound = new SoundPlayer(@"..\..\..\..\..\..\Sounds\Look_at_my_horse.wav");
+                simpleSound.PlayLooping();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Datei nicht gefunden");
+            }
+
         }
         //Datei einlesen-----
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1298,8 +1328,8 @@ namespace PicSim
 
         }
 
-        #endregion SerialPort
 
+        #endregion SerialPort
 
     }
 }
