@@ -203,7 +203,7 @@ namespace PicSim
         {
             //Register
             lblWReg.Text = mem.WReg.ToString();
-            lblPC.Text = mem.pc.ToString();
+            lblPC.Text = mem.pc.ToString("X");
             lblLaufzeitzaehler.Text = mem.Laufzeitzaehler.ToString("0.## µs");
         }
         private  void AktualisiereQuarzfrequenz()
@@ -413,11 +413,12 @@ namespace PicSim
                 }
 
                 interrupter.CheckRA4();
+                interrupter.CheckRB0();
+                interrupter.ChechRB47();
+
                 if (mem.watchdog > 18000)
                 {
-                    //MessageBox.Show("WDT");
                     mem.ram[4, Const.STATUS] = 0;
-                    //mem.WDTTimeOut = true;
                     backgroundWorker2.ReportProgress(1);
                 }
                 System.Threading.Thread.Sleep(50);

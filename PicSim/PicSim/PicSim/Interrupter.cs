@@ -58,7 +58,7 @@ namespace PicSim
         private bool CheckOtherInterrupts()
         {
             //TMR0 kann Sleep nicht unterbrechen, steht aber in der Abbildung so ¯\_(ツ)_/¯
-            if (InterruptINT() || InterruptPORTB()||InterruptEEPROM() || InterruptTMR0())
+            if (InterruptINT() || InterruptPORTB() || InterruptEEPROM() || InterruptTMR0())
             {
                 return true;
             }
@@ -79,8 +79,7 @@ namespace PicSim
             return false;
         }
 
-        //Check TMR0 Interrupt
-    private bool InterruptTMR0()
+        private bool InterruptTMR0()
         {
             //Wenn T0IE gesetzt sind TMR0 Interrupts möglich
             if (mem.ram[5, Const.INTCON] == 1)
@@ -94,11 +93,9 @@ namespace PicSim
             return false;
         }
 
-        //Check INT Interrupt (RB0/INT)
         private bool InterruptINT()
         {
-            //INT INTERRUPT
-            if (mem.ram[4, Const.INTCON ]==1)
+            if (mem.ram[4, Const.INTCON] == 1)
             {
                 if (mem.ram[1, Const.INTCON] == 1)
                 {
@@ -112,7 +109,7 @@ namespace PicSim
         private bool InterruptPORTB()
         {
             //RBIE set?
-            if (mem.ram[3,Const.INTCON] == 1)
+            if (mem.ram[3, Const.INTCON] == 1)
             {
                 //RBIF Set wenn interrupt bei RB4-7
                 if (mem.ram[0, Const.INTCON] == 1)
@@ -153,7 +150,61 @@ namespace PicSim
 
             mem.Ra4new = mem.ram[4, Const.PORTA];
         }
-        //Check 
 
+        public void CheckRB0()
+        {
+            mem.Rb0old = mem.ram[0, Const.PORTB];
+
+            if (mem.ram[0, Const.OPTION_REG + 128] == 0) //falling
+            {
+                if (mem.Rb0old == 1 && mem.Rb0new == 0)
+                {
+                    mem.ram[1, Const.INTCON] = 1;
+                }
+            }
+            else //rising
+            {
+                if (mem.Rb0old == 0 && mem.Rb0new == 1)
+                {
+                    mem.ram[1, Const.INTCON] = 1;
+                }
+            }
+
+            mem.Rb0new = mem.ram[0, Const.PORTB];
+        }
+        public void ChechRB47()
+        {
+            mem.Rb4old = mem.ram[4, Const.PORTB];
+            mem.Rb5old = mem.ram[5, Const.PORTB];
+            mem.Rb6old = mem.ram[6, Const.PORTB];
+            mem.Rb7old = mem.ram[7, Const.PORTB];
+
+            if (mem.ram[4, Const.TRISB] == 1) //falls input
+            {
+                if (mem.Rb4old != mem.Rb4new)
+                    mem.ram[0, Const.INTCON] = 1;
+            }
+            if (mem.ram[5, Const.TRISB] == 1) //falls input
+            {
+                if (mem.Rb5old != mem.Rb5new)
+                    mem.ram[0, Const.INTCON] = 1;
+            }
+            if (mem.ram[6, Const.TRISB] == 1) //falls input
+            {
+                if (mem.Rb6old != mem.Rb6new)
+                    mem.ram[0, Const.INTCON] = 1;
+            }
+            if (mem.ram[7, Const.TRISB] == 1) //falls input
+            {
+                if (mem.Rb7old != mem.Rb7new)
+                    mem.ram[0, Const.INTCON] = 1;
+            }
+
+            mem.Rb4new = mem.ram[4, Const.PORTB];
+            mem.Rb5new = mem.ram[5, Const.PORTB];
+            mem.Rb6new = mem.ram[6, Const.PORTB];
+            mem.Rb7new = mem.ram[7, Const.PORTB];
+
+        }
     }
 }

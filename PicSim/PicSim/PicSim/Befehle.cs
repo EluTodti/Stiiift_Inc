@@ -402,26 +402,27 @@ namespace PicSim
                     mem.Ra4Flanke = 0;
                 }
             }
-        }                     
+        }
         public void IncrementTimer()
         {
-            int TimerAdress = 0x01;
-            int Timer = getFileVal(TimerAdress);
+            int f = 0x01;
+            int Timer = getFileVal(f);
 
-            if (mem.ram[5, Const.STATUS] == 1)   //Check Bank - if Bank 1 then:
+            if (mem.ram[5, Const.STATUS] == 1)
             {
-                TimerAdress -= 128;
+                f -= 128;
             }
 
-            if (Timer == 0)
+            schreibeInRam(f, Timer + 1);
+
+            if (getFileVal(0x01) == 0)
             {
-                //Muss vom Benutzer in Software wieder gecleart werden ¯\_(ツ)_/¯
                 mem.ram[2, Const.INTCON] = 1;
                 setZero(1);
             }
 
-            schreibeInRam(TimerAdress, Timer + 1);
             IncrementPrescaler();
+
         }
         public void TimerMode()
         {
