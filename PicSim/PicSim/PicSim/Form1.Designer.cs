@@ -202,8 +202,12 @@ namespace PicSim
             this.btnSerialAusschalten = new System.Windows.Forms.Button();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.backgroundWorkerSerialPort = new System.ComponentModel.BackgroundWorker();
-            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtDisableUnicornMode = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -216,6 +220,9 @@ namespace PicSim
             ((System.ComponentModel.ISupportInitialize)(this.dgvCode)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -234,7 +241,8 @@ namespace PicSim
             this.toolPlay,
             this.toolPause,
             this.toolStop,
-            this.toolStatus});
+            this.toolStatus,
+            this.txtDisableUnicornMode});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1914, 28);
@@ -2013,16 +2021,16 @@ namespace PicSim
             // richTextBox1
             // 
             this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.richTextBox1.Location = new System.Drawing.Point(956, 437);
+            this.richTextBox1.Location = new System.Drawing.Point(956, 549);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(303, 488);
+            this.richTextBox1.Size = new System.Drawing.Size(149, 432);
             this.richTextBox1.TabIndex = 25;
             this.richTextBox1.Text = "";
             // 
             // btnSerialEinschalten
             // 
             this.btnSerialEinschalten.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSerialEinschalten.Location = new System.Drawing.Point(959, 931);
+            this.btnSerialEinschalten.Location = new System.Drawing.Point(959, 437);
             this.btnSerialEinschalten.Name = "btnSerialEinschalten";
             this.btnSerialEinschalten.Size = new System.Drawing.Size(146, 50);
             this.btnSerialEinschalten.TabIndex = 26;
@@ -2033,7 +2041,7 @@ namespace PicSim
             // btnSerialAusschalten
             // 
             this.btnSerialAusschalten.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSerialAusschalten.Location = new System.Drawing.Point(1111, 931);
+            this.btnSerialAusschalten.Location = new System.Drawing.Point(959, 493);
             this.btnSerialAusschalten.Name = "btnSerialAusschalten";
             this.btnSerialAusschalten.Size = new System.Drawing.Size(146, 50);
             this.btnSerialAusschalten.TabIndex = 27;
@@ -2049,10 +2057,6 @@ namespace PicSim
             this.backgroundWorkerSerialPort.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerSerialPort_ProgressChanged);
             this.backgroundWorkerSerialPort.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerSerialPort_RunWorkerCompleted);
             // 
-            // form1BindingSource
-            // 
-            this.form1BindingSource.DataSource = typeof(PicSim.Form1);
-            // 
             // backgroundWorker2
             // 
             this.backgroundWorker2.WorkerReportsProgress = true;
@@ -2060,12 +2064,58 @@ namespace PicSim
             this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
             this.backgroundWorker2.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker2_ProgressChanged);
             // 
+            // pictureBox
+            // 
+            this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
+            this.pictureBox.InitialImage = null;
+            this.pictureBox.Location = new System.Drawing.Point(893, 59);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(250, 352);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox.TabIndex = 28;
+            this.pictureBox.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(618, 59);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(269, 255);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 29;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.InitialImage = null;
+            this.pictureBox2.Location = new System.Drawing.Point(618, 320);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(269, 91);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox2.TabIndex = 30;
+            this.pictureBox2.TabStop = false;
+            // 
+            // form1BindingSource
+            // 
+            this.form1BindingSource.DataSource = typeof(PicSim.Form1);
+            // 
+            // txtDisableUnicornMode
+            // 
+            this.txtDisableUnicornMode.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.txtDisableUnicornMode.Name = "txtDisableUnicornMode";
+            this.txtDisableUnicornMode.Size = new System.Drawing.Size(159, 25);
+            this.txtDisableUnicornMode.Text = "Disable Unicorn-Mode";
+            this.txtDisableUnicornMode.Click += new System.EventHandler(this.txtDisableUnicornMode_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1914, 1013);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnSerialAusschalten);
             this.Controls.Add(this.btnSerialEinschalten);
             this.Controls.Add(this.richTextBox1);
@@ -2083,6 +2133,8 @@ namespace PicSim
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.pictureBox);
+            this.Controls.Add(this.pictureBox1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
@@ -2108,6 +2160,9 @@ namespace PicSim
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -2261,6 +2316,10 @@ namespace PicSim
         private System.IO.Ports.SerialPort serialPort1;
         private System.ComponentModel.BackgroundWorker backgroundWorkerSerialPort;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private PictureBox pictureBox;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
+        private ToolStripLabel txtDisableUnicornMode;
     }
 }
 
