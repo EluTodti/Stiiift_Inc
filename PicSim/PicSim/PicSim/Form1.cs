@@ -681,9 +681,23 @@ namespace PicSim
                 mem.WReg = mem.BackArray[1, 256, mem.BackCount];
                 mem.Laufzeitzaehler = (double)mem.BackArray[2, 256, mem.BackCount];
                 mem.Quarzfrequenz = (double)mem.BackArray[3, 256, mem.BackCount];
-
-                //Stack
-                for (int StackPos = 0; StackPos < 8; StackPos++)
+                mem.TimerValOld = mem.BackArray[4, 256, mem.BackCount];
+                mem.TimerValNew = mem.BackArray[5, 256, mem.BackCount];
+                mem.TimerInhibit = mem.BackArray[6, 256, mem.BackCount];
+                mem.watchdog = (double) mem.BackArray[7, 256, mem.BackCount];
+                mem.prescaler = mem.BackArray[0, 257, mem.BackCount];
+                if (mem.BackArray[1,257,mem.BackCount] == 1)
+                {
+                    mem.PrescalerTIMER0 = true;
+                }
+                else
+                {
+                    mem.PrescalerTIMER0 = false;
+                }
+                mem.Ra4old = mem.BackArray[2, 257, mem.BackCount];
+                mem.Ra4new = mem.BackArray[3, 257, mem.BackCount];
+            //Stack
+            for (int StackPos = 0; StackPos < 8; StackPos++)
                 {
                     mem.StackArray[StackPos] = mem.BackArray[StackPos, 257, mem.BackCount];
                     mem.Stack.Push(mem.StackArray[StackPos]);
@@ -1047,7 +1061,14 @@ namespace PicSim
         #region SerialPort
         private void btnSerialEinschalten_Click(object sender, EventArgs e)
         {
-            _serialPort.Open();
+            try
+            {
+                _serialPort.Open();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Kein COM Port verfügbar");
+            }
             _continue = true;
             if (!backgroundWorkerSerialPort.IsBusy)
             {
@@ -1099,7 +1120,6 @@ namespace PicSim
                 System.Threading.Thread.Sleep(20);
             }
         }
-
         private void backgroundWorkerSerialPort_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
             GUIAktualisieren();
