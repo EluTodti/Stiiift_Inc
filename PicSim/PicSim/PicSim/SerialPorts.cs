@@ -81,7 +81,7 @@ namespace PicSim
         #region Decode und in in Ram schreiben
         private void DecodeDaten(string Empfangen)
         {
-            MessageBox.Show(Empfangen);
+            //MessageBox.Show(Empfangen);
             //Zeichen extrahieren
             string RecONPortA = Empfangen.Substring(0, 1); 
             string RecUNPortA = Empfangen.Substring(1, 1);
@@ -94,10 +94,10 @@ namespace PicSim
         private void DecodeStringZuHex(string _RecONPortA, string _RecUNPortA, string _RecONPortB, string _RecUNPortB)
         {
             //Zeichen in Hex umwandeln
-            int DecONPortA = (Int32.Parse(_RecONPortA, System.Globalization.NumberStyles.HexNumber) << 4) & 0xF0; // shift nach links damit als 1 hex
-            int DecUNPortA = Int32.Parse(_RecUNPortA, System.Globalization.NumberStyles.HexNumber) & 0xF;
-            int DecONPortB = (Int32.Parse(_RecONPortB, System.Globalization.NumberStyles.HexNumber)<<4) & 0xF0;
-            int DecUNPortB = Int32.Parse(_RecUNPortB, System.Globalization.NumberStyles.HexNumber) & 0xF;
+            int DecONPortA = ((int)Char.GetNumericValue(Convert.ToChar(_RecONPortA)) << 4) & 0xF0; // shift nach links damit als 1 hex
+            int DecUNPortA = (int)Char.GetNumericValue(Convert.ToChar(_RecUNPortA)) & 0x0F;
+            int DecONPortB = ((int)Char.GetNumericValue(Convert.ToChar(_RecONPortB)) << 4) & 0xF0;
+            int DecUNPortB = (int)Char.GetNumericValue(Convert.ToChar(_RecUNPortB)) & 0x0F;
             int WPortA = DecONPortA + DecUNPortA;
             int WPortB = DecONPortB + DecUNPortB;
             SchreibeInRAM(WPortA, WPortB);
