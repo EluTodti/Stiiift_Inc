@@ -229,9 +229,9 @@ namespace PicSim
         }
         #endregion CheckStatusRegister
         //Swap Nibbles
-        public int getPCLATH()
+        public int UpdatePCLATH()
         {
-            return (getFileVal(0x0a) & 0x1F) << 8;
+            return (getFileVal(0x02) & 0x1F00) >> 8;
         }
         public int SwapNibbles(int fileValue)
         {
@@ -459,6 +459,12 @@ namespace PicSim
             mem.Rb7Int = false;
             mem.Rb0Int = false;
                 }
+        //public void checkPC()
+        //{
+        //    int pclath = getFileVal(0x0A);
+        //    mem.pc = mem.pc | ((pclath & 0x1F) << 8);
+        //}
+
         public void PreInstructions(int binCode)
         {
             mem.SafeBack();
@@ -479,6 +485,9 @@ namespace PicSim
             CheckPrescalerMode();
             CheckTimerMode();
             mem.pc++;
+            schreibeInRam(Const.PCL, mem.pc);
+            //checkPC();
+            UpdatePCLATH();
             InkrementWDT();           
             mem.IncLaufzeitzaehler();
             CheckIOInterrupts();
@@ -558,7 +567,7 @@ namespace PicSim
             PreInstructions(binCode);
             
             int adresse = (binCode & 0x07FF);
-            mem.pc = adresse + getPCLATH();     
+            mem.pc = adresse;     
             mem.pc--;
             TwoCycles();
              
@@ -571,7 +580,7 @@ namespace PicSim
             mem.pc++;
             StackPush();
             int adresse = (binCode & 0x07FF);
-            mem.pc = adresse + getPCLATH();
+            mem.pc = adresse;
             mem.pc--;
             TwoCycles();
 

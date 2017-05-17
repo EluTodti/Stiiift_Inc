@@ -243,7 +243,7 @@ namespace PicSim
         private void AktualisiereRegister()
         {
             //Register
-            lblWReg.Text = mem.WReg.ToString();
+            lblWReg.Text = mem.WReg.ToString("X");
             lblPC.Text = mem.pc.ToString("X");
             lblLaufzeitzaehler.Text = mem.Laufzeitzaehler.ToString("0.## µs");
         }
@@ -449,7 +449,7 @@ namespace PicSim
                 CheckForSleep();
                 interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
 
-                decoder.Decode(mem.BefehlsArray[mem.pc]);
+                decoder.Decode(mem.BefehlsArray[befehle.getFileVal(0x02)]);
                 CheckBreakpoints();
 
                 backgroundWorker1
