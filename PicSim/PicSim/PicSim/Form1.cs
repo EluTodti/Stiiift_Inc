@@ -449,7 +449,7 @@ namespace PicSim
                 CheckForSleep();
                 interrupter.CheckInterrupt(); //TODO evtl Thread benötigt (externe Interrupts - um sleep zu beenden)
 
-                decoder.Decode(mem.BefehlsArray[befehle.getFileVal(0x02)]);
+                decoder.Decode(mem.BefehlsArray[mem.pc]);
                 CheckBreakpoints();
 
                 backgroundWorker1
