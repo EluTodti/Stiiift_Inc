@@ -44,6 +44,10 @@ namespace PicSim
             {
                 FileVal += mem.ram[i, f] * (int)Math.Pow(2, i);
             }
+            if (f == 2)
+            {
+                return mem.pc;
+            }
             return FileVal;
         }
         public void InkrementWDT()
@@ -135,7 +139,10 @@ namespace PicSim
         } 
         public void schreibeInRam(int f, int val)
         {
-
+            if (f == 2)
+            {
+                mem.pcHelper = val;
+            }
             if (val > 255)
             {
                 val = val & 0x00FF;
@@ -229,10 +236,7 @@ namespace PicSim
         }
         #endregion CheckStatusRegister
         //Swap Nibbles
-        public int UpdatePCLATH()
-        {
-            return (getFileVal(0x02) & 0x1F00) >> 8;
-        }
+
         public int SwapNibbles(int fileValue)
         {
             //LowerNibble
@@ -459,11 +463,6 @@ namespace PicSim
             mem.Rb7Int = false;
             mem.Rb0Int = false;
                 }
-        //public void checkPC()
-        //{
-        //    int pclath = getFileVal(0x0A);
-        //    mem.pc = mem.pc | ((pclath & 0x1F) << 8);
-        //}
 
         public void PreInstructions(int binCode)
         {
@@ -485,9 +484,6 @@ namespace PicSim
             CheckPrescalerMode();
             CheckTimerMode();
             mem.pc++;
-            schreibeInRam(Const.PCL, mem.pc);
-            //checkPC();
-            UpdatePCLATH();
             InkrementWDT();           
             mem.IncLaufzeitzaehler();
             CheckIOInterrupts();

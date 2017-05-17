@@ -23,9 +23,53 @@ namespace PicSim
             }
         }
         #endregion
-
         //Spezialregister
-        public int pc = 0;
+        private int PC;
+        public int pc
+        {
+            get
+            {
+                return PC;
+            }
+            set
+            {
+                PC = value;
+                schreibePCInRam(Const.PCL,value);
+            }
+        }
+        public int pcHelper
+        {
+            set
+            {
+                PC = value;
+            }
+        }
+       private void schreibePCInRam(int f, int val)
+        {
+
+            if (val > 255)
+            {
+                val = val & 0x00FF;
+            }
+
+            string binVal = Convert.ToString(val, 2);
+            //Nullen werden bei String vorrangestellt bis 8 Zeichen
+            while (binVal.Length < 8)
+            {
+                binVal = binVal.Insert(0, "0");
+            }
+            binVal.ToArray(); //Array enthält immer 8 Bit
+            if (ram[5, Const.STATUS] == 1)
+            {
+                f = f + Const.bank;
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                ram[i, f] = int.Parse(binVal[7 - i].ToString());
+            }
+
+            RegisterSynchronisieren(f, val);
+        }
         public int WReg = 0;
         #region Stack
         public Stack<int> Stack = new Stack<int>();
