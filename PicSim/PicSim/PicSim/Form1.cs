@@ -243,7 +243,7 @@ namespace PicSim
         private void AktualisiereRegister()
         {
             //Register
-            lblWReg.Text = mem.WReg.ToString();
+            lblWReg.Text = mem.WReg.ToString("X");
             lblPC.Text = mem.pc.ToString("X");
             lblLaufzeitzaehler.Text = mem.Laufzeitzaehler.ToString("0.## µs");
         }
@@ -685,16 +685,7 @@ namespace PicSim
 
         private void toolAbout_Click(object sender, EventArgs e)
         {
-            //Dateipfad
-            try
-            {
 
-                System.Diagnostics.Process.Start("About.pdf");
-            }
-            catch (FileNotFoundException)
-            {
-                MessageBox.Show("File not found");
-            }
         }
 
         private void txtUnicorn_Click(object sender, EventArgs e)
@@ -1331,6 +1322,54 @@ namespace PicSim
 
         #endregion SerialPort
 
+        private void txtQuarzfrequenz_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (int.Parse(txtQuarzfrequenz.Text) < 2147483647)
+                {
+                    mem.Quarzfrequenz = double.Parse(txtQuarzfrequenz.Text);
+                    mem.LaufzeitIntervall = (double)4.0 / (mem.Quarzfrequenz / (double)1000000.0);
+                    GUIAktualisieren();
+                }
+                else
+                {
+                    MessageBox.Show("Quarzwert zu groß");
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Nur int erlaubt!");
+            }
+        
+     }
+
+        private void toolStrip1_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    if (int.Parse(txtQuarzfrequenz.Text) < 2147483647)
+                    {
+                        mem.Quarzfrequenz = double.Parse(txtQuarzfrequenz.Text);
+                        mem.LaufzeitIntervall = (double)4.0 / (mem.Quarzfrequenz / (double)1000000.0);
+                        GUIAktualisieren();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Quarzwert zu groß");
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Nur int erlaubt!");
+                }
+            }
+        
+    }
     }
 }
  

@@ -44,6 +44,10 @@ namespace PicSim
             {
                 FileVal += mem.ram[i, f] * (int)Math.Pow(2, i);
             }
+            if (f == 2)
+            {
+                return mem.pc;
+            }
             return FileVal;
         }
         public void InkrementWDT()
@@ -135,7 +139,10 @@ namespace PicSim
         } 
         public void schreibeInRam(int f, int val)
         {
-
+            if (f == 2)
+            {
+                mem.pcHelper = val;
+            }
             if (val > 255)
             {
                 val = val & 0x00FF;
@@ -229,10 +236,7 @@ namespace PicSim
         }
         #endregion CheckStatusRegister
         //Swap Nibbles
-        public int getPCLATH()
-        {
-            return (getFileVal(0x0a) & 0x1F) << 8;
-        }
+
         public int SwapNibbles(int fileValue)
         {
             //LowerNibble
@@ -459,6 +463,7 @@ namespace PicSim
             mem.Rb7Int = false;
             mem.Rb0Int = false;
                 }
+
         public void PreInstructions(int binCode)
         {
             mem.SafeBack();
@@ -558,7 +563,7 @@ namespace PicSim
             PreInstructions(binCode);
             
             int adresse = (binCode & 0x07FF);
-            mem.pc = adresse + getPCLATH();     
+            mem.pc = adresse;     
             mem.pc--;
             TwoCycles();
              
@@ -571,7 +576,7 @@ namespace PicSim
             mem.pc++;
             StackPush();
             int adresse = (binCode & 0x07FF);
-            mem.pc = adresse + getPCLATH();
+            mem.pc = adresse;
             mem.pc--;
             TwoCycles();
 
