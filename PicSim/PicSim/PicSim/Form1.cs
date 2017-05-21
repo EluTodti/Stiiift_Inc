@@ -219,6 +219,7 @@ namespace PicSim
             else
             {
                 btnStepBack.Enabled = false;
+                AktualisiereButtons();
             }
             richTextBox1.Text = message;
         }
@@ -825,8 +826,8 @@ namespace PicSim
             mem.TimerValNew = mem.BackArray[5, 256, mem.BackCount];
             mem.TimerInhibit = mem.BackArray[6, 256, mem.BackCount];
             mem.watchdog = (double) mem.BackArray[7, 256, mem.BackCount];
-            mem.prescaler = mem.BackArray[0, 257, mem.BackCount];
-            if (mem.BackArray[1, 257, mem.BackCount] == 1)
+            mem.prescaler = mem.BackArray[0, 258, mem.BackCount];
+            if (mem.BackArray[1, 258, mem.BackCount] == 1)
             {
                 mem.PrescalerTIMER0 = true;
             }
@@ -834,8 +835,8 @@ namespace PicSim
             {
                 mem.PrescalerTIMER0 = false;
             }
-            mem.Ra4old = mem.BackArray[2, 257, mem.BackCount];
-            mem.Ra4new = mem.BackArray[3, 257, mem.BackCount];
+            mem.Ra4old = mem.BackArray[2, 258, mem.BackCount];
+            mem.Ra4new = mem.BackArray[3, 258, mem.BackCount];
             //Stack
             for (int StackPos = 0; StackPos < 8; StackPos++)
             {
