@@ -61,8 +61,6 @@ namespace PicSim
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.txtQuarzfrequenz = new System.Windows.Forms.ToolStripTextBox();
             this.lblQuarzfrequenz = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
-            this.quarzfrequenzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.txtUnicorn = new System.Windows.Forms.ToolStripLabel();
             this.toolPlay = new System.Windows.Forms.ToolStripButton();
@@ -205,6 +203,7 @@ namespace PicSim
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.Herz = new System.Windows.Forms.ToolStripLabel();
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -229,8 +228,8 @@ namespace PicSim
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.txtQuarzfrequenz,
+            this.Herz,
             this.lblQuarzfrequenz,
-            this.toolStripSplitButton1,
             this.toolStripSeparator2,
             this.txtUnicorn,
             this.toolPlay,
@@ -250,6 +249,7 @@ namespace PicSim
             this.txtQuarzfrequenz.AcceptsReturn = true;
             this.txtQuarzfrequenz.Name = "txtQuarzfrequenz";
             this.txtQuarzfrequenz.Size = new System.Drawing.Size(100, 27);
+            this.txtQuarzfrequenz.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtQuarzfrequenz_KeyDown);
             // 
             // lblQuarzfrequenz
             // 
@@ -257,22 +257,6 @@ namespace PicSim
             this.lblQuarzfrequenz.Size = new System.Drawing.Size(106, 24);
             this.lblQuarzfrequenz.Text = "Quarzfrequenz";
             this.lblQuarzfrequenz.Click += new System.EventHandler(this.lblQuarzfrequenz_Click);
-            // 
-            // toolStripSplitButton1
-            // 
-            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.quarzfrequenzToolStripMenuItem});
-            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(19, 24);
-            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
-            // 
-            // quarzfrequenzToolStripMenuItem
-            // 
-            this.quarzfrequenzToolStripMenuItem.Name = "quarzfrequenzToolStripMenuItem";
-            this.quarzfrequenzToolStripMenuItem.Size = new System.Drawing.Size(132, 26);
-            this.quarzfrequenzToolStripMenuItem.Text = "100000";
             // 
             // toolStripSeparator2
             // 
@@ -394,18 +378,19 @@ namespace PicSim
             // 
             // lblBottomValueQuarzfrequenz
             // 
+            this.lblBottomValueQuarzfrequenz.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.lblBottomValueQuarzfrequenz.Name = "lblBottomValueQuarzfrequenz";
-            this.lblBottomValueQuarzfrequenz.Size = new System.Drawing.Size(88, 24);
+            this.lblBottomValueQuarzfrequenz.Size = new System.Drawing.Size(92, 24);
             this.lblBottomValueQuarzfrequenz.Text = "Value Quarz";
             // 
             // lblBottomQuarzfrequenz
             // 
-            this.lblBottomQuarzfrequenz.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            this.lblBottomQuarzfrequenz.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.lblBottomQuarzfrequenz.Name = "lblBottomQuarzfrequenz";
-            this.lblBottomQuarzfrequenz.Size = new System.Drawing.Size(102, 24);
-            this.lblBottomQuarzfrequenz.Text = "Qurzfrequenz";
+            this.lblBottomQuarzfrequenz.Size = new System.Drawing.Size(110, 24);
+            this.lblBottomQuarzfrequenz.Text = "Quarzfrequenz";
             // 
             // lblBottomC
             // 
@@ -2089,6 +2074,12 @@ namespace PicSim
             this.pictureBox2.TabIndex = 30;
             this.pictureBox2.TabStop = false;
             // 
+            // Herz
+            // 
+            this.Herz.Name = "Herz";
+            this.Herz.Size = new System.Drawing.Size(27, 24);
+            this.Herz.Text = "Hz";
+            // 
             // form1BindingSource
             // 
             this.form1BindingSource.DataSource = typeof(PicSim.Form1);
@@ -2156,8 +2147,6 @@ namespace PicSim
         #endregion
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel lblQuarzfrequenz;
-        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
-        private System.Windows.Forms.ToolStripMenuItem quarzfrequenzToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolFile;
@@ -2302,6 +2291,7 @@ namespace PicSim
         private PictureBox pictureBox2;
         private ToolStripLabel txtDisableUnicornMode;
         private ToolStripLabel txtChangeSong;
+        private ToolStripLabel Herz;
     }
 }
 

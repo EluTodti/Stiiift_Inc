@@ -319,14 +319,14 @@ namespace PicSim
         {
             if (mem.StepBackEnabled)
             {
-                btnStepBack.Enabled = true;
+                //btnStepBack.Enabled = true;
                 checkStepBack.Checked = true;
                 checkStepBack.BackColor = Color.Lime;
                 checkStepBack.Text = "StepBack enabled";
             }
             else
             {
-                btnStepBack.Enabled = false;
+                //btnStepBack.Enabled = false;
                 checkStepBack.Checked = false;
                 checkStepBack.BackColor = Color.Crimson;
                 checkStepBack.Text = "StepBack disabled";
@@ -457,7 +457,7 @@ namespace PicSim
                     .ReportProgress(mem
                         .pc); //ruft backgroundWorker1_ProgressChanged Funktion auf, also GUIaktualisieren             
 
-                System.Threading.Thread.Sleep(20);
+                System.Threading.Thread.Sleep(10);
             }
         }
 
@@ -495,7 +495,7 @@ namespace PicSim
                     mem.ram[4, Const.STATUS] = 0;
                     backgroundWorker2.ReportProgress(1);
                 }
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(10);
             }
         }
 
@@ -1323,32 +1323,11 @@ namespace PicSim
 
         #endregion SerialPort
 
-        private void txtQuarzfrequenz_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtQuarzfrequenz_KeyDown(object sender, KeyEventArgs e)
         {
-            try
-            {
-                if (int.Parse(txtQuarzfrequenz.Text) < 2147483647)
-                {
-                    mem.Quarzfrequenz = double.Parse(txtQuarzfrequenz.Text);
-                    mem.LaufzeitIntervall = (double)4.0 / (mem.Quarzfrequenz / (double)1000000.0);
-                    GUIAktualisieren();
-                }
-                else
-                {
-                    MessageBox.Show("Quarzwert zu groß");
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Nur int erlaubt!");
-            }
-        
-     }
 
-        private void toolStrip1_KeyDown(object sender, KeyEventArgs e)
-        {
-            
-        
+
+
             if (e.KeyCode == Keys.Enter)
             {
                 try
@@ -1356,7 +1335,7 @@ namespace PicSim
                     if (int.Parse(txtQuarzfrequenz.Text) < 2147483647)
                     {
                         mem.Quarzfrequenz = double.Parse(txtQuarzfrequenz.Text);
-                        mem.LaufzeitIntervall = (double)4.0 / (mem.Quarzfrequenz / (double)1000000.0);
+                        mem.LaufzeitIntervall = (double) 4.0 / (mem.Quarzfrequenz / (double) 1000000.0);
                         GUIAktualisieren();
                     }
                     else
@@ -1369,8 +1348,9 @@ namespace PicSim
                     MessageBox.Show("Nur int erlaubt!");
                 }
             }
-        
-    }
+
+
+        }
     }
 }
  
