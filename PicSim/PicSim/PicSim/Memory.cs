@@ -403,17 +403,17 @@ namespace PicSim
             BackArray[5, 256, BackCount] = TimerValNew;
             BackArray[6, 256, BackCount] = TimerInhibit;
             BackArray[7, 256, BackCount] = (int)watchdog;
-            BackArray[0, 257, BackCount] = prescaler;
+            BackArray[0, 258, BackCount] = prescaler;
             if (PrescalerTIMER0)
             {
-                BackArray[1, 257, BackCount] = 1;
+                BackArray[1, 258, BackCount] = 1;
             }
             else
             {
-                BackArray[1, 257, BackCount] = 0;
+                BackArray[1, 258, BackCount] = 0;
             }
-            BackArray[2, 257, BackCount] = ra4old;
-            BackArray[3, 257, BackCount] = ra4new;
+            BackArray[2, 258, BackCount] = ra4old;
+            BackArray[3, 258, BackCount] = ra4new;
             
             //Stack
             Stack_Backhelper = new Stack<int>(Stack.Reverse());
