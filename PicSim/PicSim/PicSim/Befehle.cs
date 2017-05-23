@@ -128,7 +128,7 @@ namespace PicSim
                             mem.IncWDT();
                         }
                         else
-                            IncrementPrescaler();
+                        { IncrementPrescaler();}
                         break;
                 }
             }
@@ -300,51 +300,51 @@ namespace PicSim
                 {
                     case 0:
                         if (mem.prescaler % 2 == 0)
-                            IncrementTimer();
+                        { IncrementTimer();}
                         else
-                            IncrementPrescaler();
+                        {  IncrementPrescaler();}
                         break;
                     case 1:
                         if (mem.prescaler % 4 == 0)
-                            IncrementTimer();
+                        {   IncrementTimer();}
                         else
-                            IncrementPrescaler();
+                        {   IncrementPrescaler();}
                         break;
                     case 2:
                         if (mem.prescaler % 8 == 0)
-                            IncrementTimer();
+                            {IncrementTimer();}
                         else
-                            IncrementPrescaler();
+                        { IncrementPrescaler();}
                         break;
                     case 3:
                         if (mem.prescaler % 16 == 0)
-                            IncrementTimer();
+                        { IncrementTimer();}
                         else
-                            IncrementPrescaler();
+                        { IncrementPrescaler();}
                         break;
                     case 4:
                         if (mem.prescaler % 32 == 0)
-                            IncrementTimer();
+                        { IncrementTimer();}
                         else
-                            IncrementPrescaler();
+                        { IncrementPrescaler();}
                         break;
                     case 5:
                         if (mem.prescaler % 64 == 0)
-                            IncrementTimer();
+                        { IncrementTimer();}
                         else
-                            IncrementPrescaler();
+                        { IncrementPrescaler();}
                         break;
                     case 6:
                         if (mem.prescaler % 128 == 0)
-                            IncrementTimer();
+                        { IncrementTimer();}
                         else
-                            IncrementPrescaler();
+                        { IncrementPrescaler();}
                         break;
                     case 7:
                         if (mem.prescaler % 256 == 0)
-                            IncrementTimer();
+                        { IncrementTimer();}
                         else
-                            IncrementPrescaler();
+                        { IncrementPrescaler();}
                         break;
                 }
             }
@@ -476,7 +476,7 @@ namespace PicSim
 
             fileVal = getFileVal(fileAdress);
             literal = binCode & 0x00FF;
-            destination = binCode & 0x0080;
+            destination = binCode & 0x0080;         // d bit
         }
 
         public void PostInstruction()
@@ -573,7 +573,7 @@ namespace PicSim
         {
             PreInstructions(binCode);
 
-            mem.pc++;
+            mem.pc++;           //damit nächster PC auf Stack
             StackPush();
             int adresse = (binCode & 0x07FF);
             mem.pc = adresse;
@@ -876,26 +876,21 @@ namespace PicSim
             {
                 fileVal += 256;
             }
-
             if ((fileVal % 2) == 1)
             {
-
                 fileVal = fileVal >> 1;
                 mem.ram[0, Const.STATUS] = 1;
             }
-
             else
             {
                 fileVal = fileVal >> 1;
                 mem.ram[0, Const.STATUS] = 0;
             }
 
-
             if (destination == 0)
             {
                 mem.setWReg(fileVal);
             }
-
             else
             {
                 schreibeInRam(fileAdress, fileVal);

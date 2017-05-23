@@ -173,22 +173,22 @@
             if (mem.ram[4, Const.TRISB] == 1) //falls input
             {
                 if (mem.Rb4old != mem.Rb4new)
-                    mem.Rb4Int = true;
+                { mem.Rb4Int = true;}
             }
             if (mem.ram[5, Const.TRISB] == 1) //falls input
             {
                 if (mem.Rb5old != mem.Rb5new)
-                    mem.Rb5Int = true;
+                { mem.Rb5Int = true;}
             }
             if (mem.ram[6, Const.TRISB] == 1) //falls input
             {
                 if (mem.Rb6old != mem.Rb6new)
-                    mem.Rb6Int = true;
+                { mem.Rb6Int = true;}
             }
             if (mem.ram[7, Const.TRISB] == 1) //falls input
             {
                 if (mem.Rb7old != mem.Rb7new)
-                    mem.Rb7Int = true;
+                { mem.Rb7Int = true;}
             }
 
             mem.Rb4new = mem.ram[4, Const.PORTB];

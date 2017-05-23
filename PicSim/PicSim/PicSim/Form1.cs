@@ -48,7 +48,6 @@ namespace PicSim
         private bool StepBackEnablen = false;
         SoundPlayer simpleSound = new SoundPlayer(@"..\..\..\..\..\..\Sounds\Pink_Fluffy_Unicorns_Dancing_On_Rainbows.wav");
         
-        
         #endregion Init
 
         #region Init SerialPort
@@ -93,7 +92,6 @@ namespace PicSim
             tooltipStepBack.SetToolTip(btnStepBack,
                 "Achtung: StepBack darf nicht zwischen call und return verwendet werden!");
             tooltipStep.SetToolTip(btnStep, "Einen Befehl ausführen");
-
         }
 
         #region Ram

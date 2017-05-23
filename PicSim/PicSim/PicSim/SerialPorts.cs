@@ -16,17 +16,17 @@ namespace PicSim
         #region Init
         Befehle befehle = Befehle.Instance;
         public string CarriageReturn = "\r";
-        private int UnteresNibble = 0;
-        private int OberesNibble = 0;
+        private int UnteresNibble;
+        private int OberesNibble;
         private string input ="";
         #endregion Init
         #region Funktionen 
         #region Senden
-        public int HoleUnteresNibble(int Wert)
+        static int HoleUnteresNibble(int Wert)
         {
             return (Wert & 15) + 0x30;
         }
-        public int HoleOberesNibble(int Wert)
+        static int HoleOberesNibble(int Wert)
         {
             return ((Wert >> 4) & 0xF) + 0x30;
         }
@@ -48,7 +48,7 @@ namespace PicSim
 
             return ONTrisA + UNTrisA + ONPortA + UNPortA + ONTrisB + UNTrisB + ONPortB + UNPortB + CarriageReturn;
         }
-        private string KonvertiereZuASCII(int Zeichen)
+        static string KonvertiereZuASCII(int Zeichen)
         {
             string helper = "";
             return helper + Convert.ToChar(Zeichen); //Damit automatisch ein String returnt wird
