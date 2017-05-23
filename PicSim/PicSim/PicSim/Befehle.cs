@@ -130,6 +130,8 @@ namespace PicSim
                         else
                         { IncrementPrescaler();}
                         break;
+                    default:
+                        break;
                 }
             }
             else
