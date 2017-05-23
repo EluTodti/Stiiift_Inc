@@ -719,14 +719,7 @@ namespace PicSim
 
             if (destination == 0)
             {
-                if (fileAdress == 1)
-                {
-                    mem.setWReg(fileVal);
-                }
-                else
-                {
-                    mem.setWReg(fileVal);
-                }
+                mem.setWReg(fileVal);
             }
             else
             {
@@ -738,7 +731,7 @@ namespace PicSim
                 {
                     schreibeInRam(fileAdress, fileVal);
                 }
-            }          
+            }
             CheckZero(fileVal);
 
             PostInstruction();
@@ -923,16 +916,11 @@ namespace PicSim
             bit = (byte)((binCode >> 7) & 0x7);
 
             int Bool = mem.ram[bit, fileAdress];
-            if (Bool == 1)
-            {
-
-            }
-            else
+            if (Bool != 1)
             {
                 TwoCycles();
                 mem.pc++;
-            }           
-
+            }
             PostInstruction();
         }
         public void btfss(int binCode)
@@ -941,15 +929,11 @@ namespace PicSim
             bit = (byte)((binCode >> 7) & 0x7);
 
             int Bool = mem.ram[bit, fileAdress];
-            if (Bool == 0)
-            {
-
-            }
-            else
+            if (Bool != 0)
             {
                 TwoCycles();
                 mem.pc++;
-            }          
+            }        
             PostInstruction();
         }
         public void decfsz(int binCode)
