@@ -462,11 +462,11 @@ namespace PicSim
             mem.Rb6Int = false;
             mem.Rb7Int = false;
             mem.Rb0Int = false;
-                }
+            }
 
         public void PreInstructions(int binCode)
         {
-            mem.SafeBack();
+            //mem.SafeBack();
             IsStepBackEnabled();
 
             GetTimerValOld();
@@ -476,7 +476,7 @@ namespace PicSim
 
             fileVal = getFileVal(fileAdress);
             literal = binCode & 0x00FF;
-            destination = binCode & 0x0080;         // d bit
+            destination = binCode & 0x0080;  // d bit
         }
 
         public void PostInstruction()
